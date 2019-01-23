@@ -1,1 +1,0 @@
-This illustration shows the Device Model page, with the title "No device models in this application." The following message appears under the title: "Click the button below to add a device model to your application. Tell me more." Under the message are two buttons, Choose Device Model (10) and Create Device Model. The Choose Device Model (10) button is selected.
