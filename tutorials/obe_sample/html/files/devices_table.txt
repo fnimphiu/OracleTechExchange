@@ -1,0 +1,5 @@
+This illustration shows part of the Devices table on the Device Model page. The table displays values in the following columns for the device model:
+• Row number: 1
+• Name: Transport container
+• Description: (blank)
+• Modified: May 11, 2017 3:21 PM

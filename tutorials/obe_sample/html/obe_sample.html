@@ -1,0 +1,173 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <!-- Part number: E86839-03 -->
+        <!-- Published date: October 2018 -->
+        <!-- Template date: October 15, 2018 -->
+        <!-- Put the content ID of this OBE between the empty quotation marks for 'content' below -->
+        <meta name="contentid" content="20219">
+        <meta content="text/html; charset=utf-8" http-equiv="content-type">
+        <!-- The title below is displayed on the browser tab, in search results, and in  history. It can be longer than the tutorial title in the <h1> element, below.-->
+		<!-- Use an imperative verb in the title. -->
+        <title>Oracle Internet of Things Cloud Service: Configure a Device Model</title>
+        <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+        <meta name="robots" content="INDEX, FOLLOW">
+        <meta name="description" content="Learn how to configure a device model in Oracle Internet of Things Cloud Service.">
+        <meta name="keywords" content="Device Model, Oracle Internet of Things Cloud  Service">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <link rel="stylesheet" href="css/normalize.min.css">
+        <link rel="stylesheet" href="css/font-awesome.min.css">
+        <link rel="stylesheet" href="css/obe-lite.css">
+        <script src="js/jquery-1.11.0.min.js"></script>
+        <script src="js/jquery-ui-1.10.4.custom.js"></script>
+        <script src="js/jquery.tocify.jd.js"></script>
+        <script src="js/leftnav.js"></script>
+    </head>
+    <body>
+        <header>
+            <div class="w1024" style="min-height:55px; display:block;"> <a href="https://docs.oracle.com" class="oracle-logo"><img src="img/oracle_doc_logo.png" alt="Oracle Documentation"             style="max-width: none;" height="22" width="236"></a> </div>
+        </header>
+        <!--end header-->
+
+        <div id="content">
+
+            <h1><img src="img/obe_tag.png" align="middle" alt="Oracle by Example branding">Configure a Device Model</h1>
+            <div class="w1024" style="clear:both; position:relative; margin-top:40px;">
+                <div class="navbackwide border-right"></div>
+                <div id="shownav" title="Show Navigation" tabindex="0"><span class="fa fa-list"></span></div>
+                <div id="sidebar">
+                    <div class="left-nav-tut">
+                        <div id="hidenavw" title="Hide Navigation" tabindex="0"><span class="fa fa-close"></span></div>
+                        <div  id="navbar" class="left-nav-w" >
+                            <div id="toc" class="tocify"></div>
+                        </div>
+                    </div>
+                </div>
+                <div id="bookContainer">
+                    <article>
+            <section>
+              <h2><img src="img/32_begin.png" alt="section 0" height="32" width="32" class="num_circ">Before You Begin</h2>
+              <p>This 10-minute tutorial shows you how to create a device model in Oracle Internet of Things (IoT) Cloud Service and associate the device model with the Oracle IoT Asset Monitoring Cloud Service application.</p>
+
+              <h3>Background</h3>
+              <p>In Oracle IoT Cloud Service, you can create a device model by using one of the following methods. In this tutorial, you create a device model with the cURL tool.</p>
+                <ul>
+                    <li>The cURL tool</li>
+                    <li>An instance of Oracle IoT Cloud Service </li>
+                    <li>In a browser, a Representational State Transfer (REST) client plug-in</li>
+                </ul>
+              <h3>What Do You Need?</h3>
+              <ul>
+                    <li>A desktop or laptop computer running Microsoft Windows 8, Apple macOS 10.9 or later, or Linux with a web browser and Java Development Kit (JDK) 1.8 or later</li>
+                    <li>Access to an Oracle IoT Cloud Service instance</li>     
+                    <li>Downloaded and installed <a href="https://curl.haxx.se/download.html" target="_blank">cURL</a> tool</li>
+                    <li>The <a target="_blank" href= "files/transport_container.json"><code>transport_container.json</code></a> file</li>                                    
+              </ul>   
+            </section>
+
+            <!-- ========================================================================================================================= -->
+            <section>
+              <hr>
+              <h2 id="section_1" role="button" style="text-align: left;"><img src="img/32_1.png" alt="section 1" height="32" width="32" class="num_circ">Create a Device Model</h2>
+              <ol>
+                  <li>In a command-line interface, replace <code><var>iot_user_name</var></code>, <code><var>iot_password</var></code>, <code><var>transport_container_file_path</var></code>, and <code><var>myinstance-myidentitydomain</var></code> with your corresponding values.
+                       <pre>curl -X POST 
+-H 'Content-Type: application/json'
+-u <var>iot_user_name:iot_password</var>
+-d <var></var>@transport_container_file_path</var>
+https://<var>myinstance-myidentitydomain</var>.iot.us.oraclecloud.com/iot/api/v2/deviceModels</pre>                                             		
+                 </li>
+                 <li>In a web browser, enter the URL for your Oracle IoT Cloud Service instance, enter your user name and password, and then click <strong>Sign In</strong>.</li>
+                 <li>On the Oracle IoT Cloud Service home page, click <strong>Action</strong> <img src="img/mainmenu.png" alt="Menu icon">,
+                                    select <strong>Devices</strong>, select <strong>Model</strong>, and then verify that
+                                    your device model is listed in the table.
+                                    <figure> <img src="img/devices_table.png"      
+                                                alt="Description of devices_table.png follows">
+                                    	<figcaption> <a href="files/devices_table.txt">Description of the illustration devices_table.png</a> </figcaption> 
+                                    </figure>
+                                </li>
+            </ol>              
+            </section>
+            <hr>
+            <section>
+              <h2 id="section_2" role="button" style="text-align: left;"><img src="img/32_2.png" alt="section 2" height="32" width="32" class="num_circ">Associate a Device Model with an Application</h2>
+              <ol>
+                <li>Click <strong>Action</strong> 
+                    <img src="img/mainmenu.png" alt="Menu icon"> and select <strong>Applications</strong>. From the <strong>Applications</strong> 
+                     menu, select <strong>Browse Applications</strong>.
+                </li>   
+                <li>On the <strong>Applications</strong> page, click <strong>Oracle IoT Asset Monitoring Cloud Service</strong>.
+                    <figure><img src="img/asset_monitoring_app.png" alt="Description of asset_monitoring_app.png follows">
+                    <figcaption><a href="files/asset_monitoring_app.txt" >Description of the illustration asset_monitoring_app.png
+                        </a></figcaption> </figure>
+                </li>
+                <li>Click <strong>Action</strong> <img src="img/mainmenu.png"
+                                      alt="Menu icon"> and select <strong>Device Model</strong>.
+                </li>
+                <li>Click <strong>Choose Device Model</strong>.
+                  <figure><img src="img/device_model_page.png" alt="Description of device_model_page.png follows">
+                    <figcaption><a href="files/device_model_page.txt" >Description of the illustration device_model_page.png</a></figcaption> </figure>
+                </li> 
+                <li>In the Device Models dialog box, select the <strong>Transport Container</strong> device model and click <strong>Done</strong>.
+                </li>           
+             </ol>
+            </section>
+
+            <hr>                                        
+            <section>
+              <h2 id="more_info" role="button" style="text-align: left;"><img src="img/32_more.png" alt="more information" height="32" width="32" class="num_circ">Want to Learn More?</h2>
+               <ul>
+                    <li><a href="http://www.oracle.com/pls/topic/lookup?ctx=cloud&id=IOTGS-GUID-B1C128C7-4497-44E1-BFD5-7D0C2B4B6210" target="_blank">Creating a New Device Model</a></li> 
+				   <li><a href="http://www.oracle.com/pls/topic/lookup?ctx=cloud&id=IOTGS-GUID-2CB32EDC-7BAD-44F1-B6D8-7AD4115C56D9" target="_blank">Assign a Device Model to a Cloud Service</a>
+                   </li>
+                    <li><a href="http://www.oracle.com/pls/topic/lookup?ctx=cloud&id=IOTGS-GUID-D2246A95-141A-4D01-9F99-B23FCA8D2E49" target="_blank">Registering a Single Device</a></li>                    
+                </ul>
+            </section>
+            <hr>
+          </article>
+                </div>
+                <br class="clearfloat">
+            </div>
+        </div>
+        <!--close main--> 
+        <!--end content-->
+        <div class="footer-container ">
+            <div style="max-width: 994px; padding:10px 0 0 17px;">
+                <footer class="footer-list">
+                    <ul>
+                        <li> <a href="https://www.oracle.com/corporate/index.html" target="_blank">About Oracle</a> </li>
+                        <li> <a href="https://www.oracle.com/us/corporate/contact/index.html" target="_blank">Contact Us</a> </li>
+                        <li> <a href="https://www.oracle.com/us/legal/index.html" target="_blank">Legal Notices</a> </li>
+                        <li> <a href="https://www.oracle.com/us/legal/terms/index.html" target="_blank">Terms of Use</a> </li>
+                        <li> <a href="https://www.oracle.com/us/legal/privacy/index.html" target="_blank">Your Privacy Rights</a> </li>
+                        <li> <a href="https://www.oracle.com/pls/topic/lookup?ctx=cpyr&id=en">Copyright © 2018, Oracle and/or its affiliates. All rights reserved.</a></li>
+                    </ul>
+                </footer>
+            </div>
+            <script type="text/javascript" src="https://www.oracleimg.com/us/assets/metrics/ora_docs.js"></script>
+        </div>
+        <!-- OBE Dialog Box code 10/15/2018 -->
+        <!-- DO NOT ALTER THE CODE BELOW   -->
+        <div id="lpModal" class="modal">
+                <!-- Modal hdr and body -->
+                <div id="obe_dialog" class="modal-content">
+                  <div class="modal-header">
+                        <a href="#" class="close">  
+                            <span class="close">&times;</span>
+                        </a>
+                    <h1>Associated Learning Paths</h1>
+                  </div>
+                  <div id="dialog-content" >
+                  </div>
+                  <div id="dialog-close" class="closeBtn">
+                    <a href="#" class="close2">  
+                        <p class="close2"> 
+                            <span>&nbsp;&nbsp;View&nbsp;&nbsp;</span> 
+                        </p>
+                    </a>  
+                 </div>
+
+                </div>   
+        </div>
+    </body>
+</html>
