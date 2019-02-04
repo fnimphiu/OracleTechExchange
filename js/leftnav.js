@@ -27,7 +27,7 @@ $(document).ready(function(){
         eventid        = getParameter("eventid",      location.href);
     } else {
         //Check to see if this OBE is associated with any learning paths on OLL
-        amIPartofALearningPath();
+        //amIPartofALearningPath();
     }
     
     var s_prefix = "OBE";
@@ -187,8 +187,8 @@ var closesidebar = function(){
 
 
 //Learning Path support functions
-function amIPartofALearningPath() {
-    var obeid = $('meta[name="contentid"]').attr("content");
+function amIPartofALearningPath() {    
+    var obeid = null 
     var content = "";
     
     if (obeid === undefined || obeid == null ) return; //No processing when obe does not have a content ID set
