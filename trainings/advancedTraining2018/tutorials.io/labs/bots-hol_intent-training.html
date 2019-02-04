@@ -1,0 +1,296 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <!-- Part number: Ennnnn-01 -->
+        <!-- Published date: Month Year -->
+        <!-- Template date: 10/18/17 -->
+        <meta content="text/html; charset=utf-8" http-equiv="content-type">
+        <title>Oracle Intelligent Bots Advanced Training - Lab 1 (Intent Training)</title>
+        <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+        <meta name="robots" content="INDEX, FOLLOW">
+        <meta name="description" content="Put the description of the tutorial here.">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <link rel="stylesheet" href="css/normalize.min.css">
+        <link rel="stylesheet" href="css/font-awesome.min.css">
+        <link rel="stylesheet" href="css/obe-lite.css">
+        <script src="js/jquery-1.11.0.min.js"></script>
+        <script src="js/jquery-ui-1.10.4.custom.js"></script>
+        <script src="js/jquery.tocify.jd.js"></script>
+        <script src="js/leftnav.js"></script>
+    </head>
+    <body>
+        <header>
+            <div class="w1024" style="min-height:55px; display:block;"> <a href="https://docs.oracle.com" class="oracle-logo">
+              <img src="./img/oracle_doc_logo.png" alt="Oracle Documentation" style="max-width: none;" height="22" width="236"></a>
+            </div>
+        </header>
+        <!--end header-->
+
+        <div id="content">
+<blockquote><h4><a href="../index.html">Back to the Index Page</a></h4></blockquote>
+
+            <h1><img src="./img/obe_tag.png" align="middle" alt="Oracle by Example branding">Oracle Intelligent Bots Advanced Training - Lab 1 (Intent Training)</h1>
+            <div class="w1024" style="clear:both; position:relative; margin-top:40px;">
+                <div class="navbackwide border-right"><!-- --></div>
+                <div id="shownav" title="Show Navigation" tabindex="0"><span class="fa fa-list"></span></div>
+                <div id="sidebar"><!-- -->
+                    <div class="left-nav-tut"><!-- -->
+                        <div id="hidenavw" title="Hide Navigation" tabindex="0"><span class="fa fa-close"></span></div>
+                        <div  id="navbar" class="left-nav-w"><!-- -->
+                            <div id="toc" class="tocify"><!-- --></div>
+                        </div>
+                    </div>
+                </div>
+                <div id="bookContainer">
+                    <article>
+						<p>The purpose of this lab is to become familiar with tips and techniques for training and testing your bot.  
+						Specifically, you will add utterances to the bot to train it to understand the 24 Hours Flowers use case. Then you'll work with a colleague to iteratively test your bot, adding more test data as you go along to fine-tune intent resolution.</p>
+						<p>We’ll focus on these intents:</p>
+						<ul>
+							<li><code>FileComplaint</code> – used when the customer has an issue that needs to be resolved, probably by a live agent.</li>
+							<li><code>OpenFranchise</code> –  allows the customer to inquire about opening up a franchise to sell flowers online.</li>
+							<li><code>TrackOrder</code> – used when the customer wants to check the status of an order, cancel and order, or check the progress of an order.</li>
+						</ul>
+
+						<hr>
+
+                        <!-- ========================================================================================================================= -->
+                        <section>
+                            <h2 id="section_1" role="button" style="text-align: left;"><img src="./img/32_1.png" alt="section 1" height="32" width="32" class="num_circ">Clone the <code>advt24hrsflowers_bot1</code> Bot</h2>
+							<p>We'll start with a bot that has been pre-populated with a few intents. Since you won't be the only one using your instance, you'll want to create your own copy of that bot to work with.</p>
+                            <ol>
+                                <li>Open the main menu by clicking <img src="img/hamburger.png" alt="main menu icon"> and select <b>Development > Bots</b>.</li>
+								<li>Within the tile for the <code>advt24hrsflowers_bot1</code> bot, click <img src="img/options-menu.png" alt="the Options menu icon">, select <b>Clone</b>, and name the clone <code><i>&lt;YourInitials&gt;</i>_24hrsflowers_bot1</code>.
+								<p class="note">For example: <code>JS_24hrsflowers_bot1</i></code>.</p></li>
+								<li>Locate the tile for your clone of the bot  (using the Search field might help) and click it to open the bot.</li>
+                            </ol>
+                        </section>
+                        <hr>
+                        <section>
+                            <h2 id="section_2" role="button" style="text-align: left;"><img src="./img/32_2.png" alt="section 2" height="32" width="32" class="num_circ">Turn On Conversation Logging</h2>
+                            <p>We'll log the conversations with the bot in order to use those inputs to retrain and test the bot.</p>
+                            <ol>
+                                <li>In the left navigation of your bot, click <img src="img/left_nav_settings.png" alt="the Settings icon">.</li>
+								<li>Select the <b>General</b> tab.</li>
+                                <li>Set the Enable Conversation Logging switches for <b>Intent Conversation</b>, <b>Q&A Conversation</b>, and <b>Bot Conversation</b> to ON.</li>
+                            </ol>
+                        </section>
+                        <hr>
+                        <section>
+                            <h2 id="section_3" role="button" style="text-align: left;"><img src="./img/32_3.png" alt="section 3" height="32" width="32" class="num_circ">Create Utterances and Do a Round of Batch Testing</h2>
+							<p>Next we'll prepare some data so we can run reproducible tests to help measure the success of the bot in understanding a conversation with a user.  You can do batch testing by uploading a <code>.csv</code> file that contains test phrases and the intents to which they should resolve.</p>
+							<p>As a starting point, let's export the intents of the bot to get a <code>.csv</code> file with the correct format.</p>
+                            <ol>
+                                <li>Select <img src="img/left_nav_intents.png" alt="the Intents icon"> and select <b>More > Export intents</b>.<br><br>
+								<img src="img/export-intents.png" alt="screenshot showing the selection of the Export intents menu item from the More menu."> 
+								<!--<p class="note">You should see the data displayed in two columns.</p>
+								<p class="note"><b>Note:</b> If you open the file in Microsoft Excel, the data may initially appear in just one column. You can fix this by selecting the whole column, selecting the <b>Data</b> ribbon, clicking <b>Text to Columns</b> and specifying in the wizard that the content is comma-delimited.<i>PK: still need to test this</i></p>-->
+								</li>
+								<li>Save the files as <code>batchtest1.csv</code>.</li>
+                                <li>In Notepad or a similar text editor, write phrases that you think would be representative utterances for the <code>FileComplaint</code>, <code>OpenFranchise</code>, and <code>TrackOrders</code> intents.
+								<p class="note">Write <b>10 utterances</b> for each of those intents.</p></li>
+								<li>For each intent, add 7 of the utterances you have just written to the bot by doing the following:
+									<ol type="a">
+										<li>Selecting the intent.</li>
+										<li>Within the Examples area, pasting the utterances.</li>
+										<li>Clicking <img src="img/train-button.png" alt="Train bot icon">, leaving <b>Trainer Ht</b> selected, and clicking <b>Submit</b>.</li>
+									</ol></li>
+								<li>Add the remaining 3 utterances for each intent to the <code>batchtest1.csv</code> file by:
+									<ol type="a">
+										<li>Copying the utterances into the first column.</li>
+										<li>In the second column of each row, entering the name of the intent that the utterance is supposed to resolve to.</li>
+									</ol></li>
+								<li>Click <img src="img/test_button.png" alt="Test icon">.</li>
+								<li>Select <b>Intent</b>.
+								<li>Slide the <b>Batch</b> switch to ON.</li>
+								<li>Click <b>Load</b>.</li>
+								<li>Drag <code>batchtest1.csv</code> into the Load Batch dialog and click <b>Test</b>.</li>
+                            </ol>
+							<p>Take a look at the results and take note of anything that you find surprising.</p>
+                        </section>
+                        <hr>
+                        <section>
+                            <h2 id="section_4" role="button" style="text-align: left;"><img src="./img/32_4.png" alt="section 4" height="32" width="32" class="num_circ">Iteratively Test Your Intents</h2>
+							<p>At this point, you have done one round of testing. To make sure that you have a robust training corpus of utterances, you'll want to do several more rounds and make any necessary adjustments to your utterances as you go along.</p>
+							<p>As part of this, you'll want to get other people involved in training your bot since phrases you think of to match an intent will probably vary from what other people come up with.</p>
+
+                            <ol>
+                                <li>With the help of your instructor, find a test partner.</li>
+                                <li>Have your partner enter phrases of their own in the tester for <i>your bot</i> (3 phrases for each of the 3 intents). You'll do the same for your partner's bot. To use the tester:
+									<ol type="a">
+										<li>Click <img src="img/test_button.png" alt="the Test icon">.</li>
+										<li>Select <b>Bot</b>.</li>
+										<li>Type a phrase in the Message field and press Enter.</li>
+									</ol>
+								</li>
+								<li>Once your partner has finished entering phrases, open the bot's conversation logs by:
+									<ol type="a"><li>Clicking <img src="img/back-button.png" alt="the Back button"> to navigate back to the page that displays all of the Bots.</li>
+										<li>Within the tile for your bot, clicking <img src="img/options-menu.png" alt="the Options menu icon"> and selecting <b>Export Conversation Log</b>.</li>
+										<li>In the Export Bot dialog, selecting <b>Intent Conversation Log</b>.</li>
+									</ol></li>
+								<li>In the log, see what intents that your partner's utterances were assigned and see if they are what you would have expected.</li>
+                            </ol>
+							<p>Using the phrases your testing partner added, you can do some further augmentation of your corpus, retrain your bot, and test the results.</p>
+                            <ol>
+								<li>Go through the utterances and identify any that you think won't work, and replace them or make changes that you see fit.</li>
+                                <li>For each intent:
+									<ol type="a"><li>Copy 2 of the utterances created by your test partner to your clipboard.</li>
+										<li>Within the bot, select the intent.</li>
+										<li>Within the Examples area, paste the utterances.</li>
+										<li>Click <img src="img/train-button.png" alt="Train bot icon">.</li>
+										<li>Leave <b>Trainer Ht</b> selected and click <b>Submit</b>.
+									</ol></li>									
+								</li>
+								<li>Create a copy of <code>batchtest1.csv</code> and save it as <code>batchtest2.csv</code>.</li>
+								<li>For each intent, add the remaining utterance created by your test partner to <code>batchtest2.csv</code>.</li>
+								<li>Click <img src="img/test_button.png" alt="Test icon">.</li>
+								<li>Select <b>Intent</b>.
+								<li>Slide the <b>Batch</b> switch to ON.</li>
+								<li>Click <b>Load</b>.</li>
+								<li>Drag <code>batchtest2.csv</code> into the Load Batch dialog and click <b>Test</b>.</li>	
+								<li>Evaluate the results of the new test. 
+									<ul><li>Has the inclusion of new phrases helped in the intent resolution?</li>
+										<li>Are you getting better results?</li>
+										<li>Are you seeing obvious misclassifications?
+										<p class="note">We'll look at fine tuning these later in the lab.</p></li>
+									</ul> </li>
+								<li>With your partner, or perhaps a new partner, repeat the exercises in this section with three more utterances for each intent.</li>
+                            </ol>
+     						
+                        </section>
+                        <hr>
+                        <section>
+                            <h2 id="section_5" role="button" style="text-align: left;"><img src="./img/32_5.png" alt="section 5" height="32" width="32" class="num_circ">Train the Bot to Handle Spam</h2>
+							<p>Now let's spend some time on the question of spam or other misuse of the bot. Up to 40% of a bot's workload may have nothing to do with the bot's intended use, and the bot needs to be able to gracefully handle this.  Furthermore, training your bot to understand phrases that are outside of the use case has the benefit of helping it to disambiguate the intents it <i>is</i> supposed to handle.</p>
+							<ol>
+								<li>Test the bot with 10 random phrases such as “and she is buying a stairway to heaven”, “tell me a joke”, and “are you a lady bot” by doing the following:
+									<ol type="a">
+										<li>Clicking <img src="img/test_button.png" alt="Test icon">.</li>
+										<li>Selecting <b>Bot</b>.</li>
+										<li>Typing a phrase in the Message field and pressing Enter.
+										<p class="note">Repeat this step until you have entered 10 phrases.</p></li>
+									</ol>
+								</li>
+								<li>Open the conversation logs by:
+									<ol type="a"><li>Clicking <img src="img/back-button.png" alt="the Back button"> to navigate back to the page that displays all of the Bots.</li>
+										<li>Within the tile for your bot, clicking <img src="img/options-menu.png" alt="the Options menu icon"> and selecting <b>Export Conversation Log</b>.</li>
+										<li>In the Export Bot dialog, selecting <b>Intent Conversation Log</b>.</li>
+									</ol></li>
+								<li>In the log, see if any of the phrases are resolved to any of your intents.
+								<p class="note">Spoiler alert: some of them probably are. You'll need to train the bot to recognize phrases that are outside of the scope of the bot and deal with them appropriately.</li>
+							</ol>
+							<h4>The <code>unresolvedIntent</code> Intent</h4>
+							<p>To handle spam and other interactions for which the bot wasn't specifically designed, create a new intent called <code>unresolvedIntent</code>.</p> 
+							<ol>
+								<li>With your bot open, click <img src="img/left_nav_intents.png" alt="the Intents icon">.</li>
+								<li>Click <b>+ Intent</b>.</li>
+								<li>In the Name field type <code>unresolvedIntent</code>.</li>
+								<li>In the Examples area for the intent, enter 7 of the random utterances that you just evaluated in the log.</li>
+								<li>Click <img src="img/train-button.png" alt="Train bot icon"> and click <b>Submit</b>.</li>						
+								<li>In the most recent version of your <code>batchtest.csv</code> file, add the three remaining phrases and specify <code>unresolvedIntent</code> as the intent.</li>
+								<li>Click <img src="img/test_button.png" alt="Test icon">.</li>
+								<li>Select <b>Intent</b>.
+								<li>Slide the <b>Batch</b> switch to ON.</li>
+								<li>Click <b>Load</b>.</li>
+								<li>Drag your batchtest file into the Load Batch dialog and click <b>Test</b>.</li>	
+								<li>Evaluate your test results.</li>
+								<li>Try testing with the other training model by:
+									<ol type="a">
+										<li>Clicking <img src="img/train-button.png" alt="the Train bot icon"> again, selecting the other Intent Training model (probably <b>Trainer Tm</b>, and clicking <b>Submit</b>.</li>
+										<li>Clicking <img src="img/test_button.png" alt="Test icon">.</li>
+										<li>Selecting <b>Intent</b>.
+										<li>Sliding the <b>Batch</b> switch to ON.</li>
+										<li>Clicking <b>Load</b>.</li>
+										<li>Dragging your batchtest file into the Load Batch dialog and clicking <b>Test</b>.</li>	
+									</ol></li>
+								<li>Compare the results with your previous results.</li>
+							</ol>
+							<p><b>Now, for good measure, do additional testing with your test partner:</b></p>
+							<ol>
+								<li>Have your partner enter 10 random phrases into the tester for your bot.</li>
+								<li>Open the conversation logs to see what intents the phrases resolved to.</li>
+								<li>Open your bot, and select the <code>unresolvedIntent</code> intent.</li>
+								<li>Repeat steps 4-14 from the previous procedure.</li>
+							</ol>
+
+	                   </section>
+                        <hr>
+                        <section>
+                            <h2 id="section_6" role="button" style="text-align: left;"><img src="./img/32_6.png" alt="section 6" height="32" width="32" class="num_circ">Manually Improve the Bot</h2>
+							<p>In the presentation previous to this lab you learned of a number of techniques to improve your bot intents.  Based on those lessons look at how you might improve some of the intent resolution.  For example, you could:</p>
+							<ul>
+								<li>Emphasize specific key phrases.</li>
+								<li>Repeat key utterances with some slight variations.</li>
+								<li>Check where you think utterances could apply to different intents.</li>
+								<li>try out some ideas and rerun your tests to see if that helps.</li>
+							</ul>
+							
+							<p>In parallel with applying above techniques, you'll probably want to run and evaluate quality reports.</p>
+							<p>To run a quality report:</p>
+							<ol>
+								<li>With your bot open, click <img src="img/quality_icon.png" alt="the Quality icon">.</li>
+								<li>Click <b>Run Report</b>.</li>
+							</ol>
+							<p>When you run a quality report it performs a random 80:20 split of utterances, using 80% subset to train with and 20% to test with. Since the split is random, the test results may differ every time you run the report.</p>
+						
+							<p>Besides obvious problems such as misclassifications, here are some things to look out for in quality reports:</p>
+							<ul>
+								<li>Which of your phrases are resolving to <code>unresolvedIntent</code>. This gives you a way of checking that what comes back as unresolved <i>is</i> in fact a phrase which should be handled by a generic catch-all intent.
+								<p class="note">To find out, click the <b>History</b> tab and do a search for matches to <code>unresolvedIntent</code>, like the one shown in this screenshot:</p>
+								<br>
+								<img src="img/history-unresolved-intent-70.png" alt="screenshot showing the History screen of a quality report. A filter is defined (Top Intent Name, is equal to, unresolvedIntent). The Customer Message column has several entries, of which 'Do you like cheese' is selected. The Intent Data column shows three intents, the first of which is 'unresolvedIntent', which has a win margin of 30% and confidence level of 54%."></br>
+								</li>
+								<li>Which of your phrases are resolving to the correct intent, but with a narrow win margin? Such phrases may need work.
+								<p class="note">To investigate, do a search with the filter set to <b>Win Margin</b>, the operator set to <b>Is Less Than</b>, and the value set to a low percentage, such as 10% (as shown in this screenshot):</p>
+								<br>
+								<img src="img/history-resolution-of-intent-70.png" alt="screenshot showing the History screen of a quality report. A filter is defined (Win Margin Name, Is Less Than, 10%). The Customer Message column has several entries, of which 'I want to complain' is selected. The Intent Data column shows three intents, the first of which is 'Open Franchise', which has a win margin of 2.3% and confidence level of 22%."></br>
+								</li>
+							</ul>
+							
+							
+							<h3>Notes</h3>
+							<ul>
+								<li>Don’t worry about any misclassifactions involving <code>OrderFlowers</code>, because we won’t add its training utterances until the next lab.</li>
+								<li>At the time of writing this lab, the History feature only works against input through the Bot Conversation tester, not the intent or batch tester. This means that you might have to manually enter some of your phrases in the Bot Conversation tester.</li>
+								<li>Since quality reports do an 80:20 split between training and tester, some of the data you would normally use to train an intent will not be used as training material in the context of the report, which could result in misclassifications. For such misclassifications, you need to determine if they are simply a result of the way quality reports work or whether they are real and you need to add additional utterances.</li>
+								<li>You may find some misclassification but decide that, if it resolves to a low percentage, it is acceptable.</li>
+							</ul>
+							
+
+
+
+                        </section>
+                        <hr>
+                        <section>
+                            <h2 id="next" role="button" style="text-align: left;"><img src="./img/32_next.png" alt="next step" height="32" width="32" class="num_circ">Next Lab</h2>
+                            <ul>
+								<li><a href="bots-hol_qna.html">Lab 2: QnA</li>
+							</ul>
+                        </section>
+                        <hr>
+						<blockquote><h5><a href="../index.html">Back to the Index Page</a></h5></blockquote>
+
+                    </article>
+                </div>
+                <br class="clearfloat">
+            </div>
+        </div>
+        <!--close main--> 
+        <!--end content-->
+        <div class="footer-container ">
+            <div style="max-width: 994px; padding:10px 0 0 17px;">
+                <footer class="footer-list">
+                    <ul>
+                        <li> <a href="https://www.oracle.com/corporate/index.html" target="_blank">About Oracle</a> </li>
+                        <li> <a href="https://www.oracle.com/us/corporate/contact/index.html" target="_blank">Contact Us</a> </li>
+                        <li> <a href="https://www.oracle.com/us/legal/index.html" target="_blank">Legal Notices</a> </li>
+                        <li> <a href="https://www.oracle.com/us/legal/terms/index.html" target="_blank">Terms of Use</a> </li>
+                        <li> <a href="https://www.oracle.com/us/legal/privacy/index.html" target="_blank">Your Privacy Rights</a> </li>
+                        <li><a href="https://www.oracle.com/pls/topic/lookup?ctx=cpyr&id=en">Copyright © 2018, Oracle and/or its affiliates. All rights reserved.</a></li>
+                    </ul>
+                </footer>
+            </div>
+            <script type="text/javascript" src="https://www.oracleimg.com/us/assets/metrics/ora_docs.js"></script>
+        </div>
+    </body>
+</html>

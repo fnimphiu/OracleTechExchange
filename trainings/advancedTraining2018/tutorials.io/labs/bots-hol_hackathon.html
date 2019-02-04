@@ -1,0 +1,152 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <!-- Part number: Ennnnn-01 -->
+        <!-- Published date: Month Year -->
+        <!-- Template date: 10/18/17 -->
+        <meta content="text/html; charset=utf-8" http-equiv="content-type">
+        <title>Oracle Intelligent Bots Advanced Training - Lab 11 (Hackathon)</title>
+        <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+        <meta name="robots" content="INDEX, FOLLOW">
+        <meta name="description" content="Put the description of the tutorial here.">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <link rel="stylesheet" href="css/normalize.min.css">
+        <link rel="stylesheet" href="css/font-awesome.min.css">
+        <link rel="stylesheet" href="css/obe-lite.css">
+        <script src="js/jquery-1.11.0.min.js"></script>
+        <script src="js/jquery-ui-1.10.4.custom.js"></script>
+        <script src="js/jquery.tocify.jd.js"></script>
+        <script src="js/leftnav.js"></script>
+    </head>
+    <body>
+        <header>
+            <div class="w1024" style="min-height:55px; display:block;"> <a href="https://docs.oracle.com" class="oracle-logo">
+              <img src="./img/oracle_doc_logo.png" alt="Oracle Documentation" style="max-width: none;" height="22" width="236"></a>
+            </div>
+        </header>
+        <!--end header-->
+
+        <div id="content">
+<blockquote><h4><a href="../index.html">Back to the Index Page</a></h4></blockquote>
+
+            <h1><img src="./img/obe_tag.png" align="middle" alt="Oracle by Example branding">Oracle Intelligent Bots Advanced Training -  Lab 11 (Hackathon)</h1>
+            <div class="w1024" style="clear:both; position:relative; margin-top:40px;">
+                <div class="navbackwide border-right"><!-- --></div>
+                <div id="shownav" title="Show Navigation" tabindex="0"><span class="fa fa-list"></span></div>
+                <div id="sidebar"><!-- -->
+                    <div class="left-nav-tut"><!-- -->
+                        <div id="hidenavw" title="Hide Navigation" tabindex="0"><span class="fa fa-close"></span></div>
+                        <div  id="navbar" class="left-nav-w"><!-- -->
+                            <div id="toc" class="tocify"><!-- --></div>
+                        </div>
+                    </div>
+                </div>
+                <div id="bookContainer">
+                    <article>
+						<p>Now that we've reached the end of the training, we want to give you the opportunity to put into practice what you've learned over the last couple of days.</p>
+						<p>You can start with the bot flow to track orders, which is not implemented in any of the versions of the bot that we have provided. So, building this flow track order flow is all up to you. We'll contribute the requirement specification and the help of the presenters in the room.</p>
+						
+						<!--
+
+This hands-on does not require a specific JavaScript IDE and you are free to choose what you like the best. In previous hands-on you learned to use local debugging of custom components, which certainly is a skill to use for the hackathon
+
+-->
+
+                        <section>
+                            <h2><img src="./img/32_begin.png" alt="section 0" height="32" width="32" class="num_circ">Prerequisites</h2>
+							<ul>
+								<li>A JavaScript IDE</li>
+								<li>Your clone of <code>advt24hrsflowers_bot11</code>.</li>
+							</ul>
+  
+                        </section>
+						<hr>
+
+                        <!-- ========================================================================================================================= -->
+                        <section>
+                            <h2 id="section_1" role="button" style="text-align: left;"><img src="./img/32_1.png" alt="section 1" height="32" width="32" class="num_circ">Requirement Spec for the Track Order Flow</h2>
+
+							<p>All orders that users enter to the system are saved in a storage collection in Oracle Anonymous Mobile Cloud Service. The 24hrsflowers bot has an order tracking function that allows users to see the current status of an order and to cancel it, even if the status is not in "delivered" or "active".</p>
+							<p>You probably have already noticed the presence of the Track Order Status item in the main menu:</p>
+							<img src="img/hackathon-menu.png" alt="screenshot of the bot with a welcome message and showing the main menu, including the Track Order Status item">
+							<p>In addition, the order tracking function should be accessible through natural language input like "I want to check the status of my order 24hrsflwrs-1532669587639".</p>
+							<p>All submitted orders should be stored in the <code>24hrsflowersOrders</code> storage collection in AMCe. The order entries should be saved with the object ID being the order number. You need to be able to access an order and display relevant information to the user. </p>
+							<img src="img/hackathon-storage.png" alt="screenshot showing the 24hrsflowersOrders storage collection in the AMCe UI.">
+							
+							<p>Here's an example of a JSON object that is returned from the storage collection:
+<pre>{
+   "order": {
+        "orderId": "24hrsflwrs-1532669587639",
+        "orderStatus": "delivered",
+        "productName": "Roses",
+        "pricePerUnit": 5,
+        "orderQuantity": 12,
+        "discountPercent": 0
+    },
+    "payment": {
+        "paymentDetails": "AMEX, 1234567"
+    },
+    "delivery": {
+        "deliveryType": "overnight",
+        "deliveryCost": 10
+    },
+    "recipient": {
+        "recipientName": "Nic",
+        "recipientAddress": "Home Address",
+        "recipientMobile": "223344"
+    },
+    "card": {
+        "cardSenderName": "Frank",
+        "cardMessage": "Happy Valentine Day"
+    }
+}</pre>
+									<p>The user should be able to change an existing order, which would mean being directed to human agent support. For the hackathon, it is enough to navigate the user to a state designed for handling human agent interaction. You don't need to implement the human agent interaction. The state can merely display a message.</p>
+									<p>Users should also be able to cancel an order if the status of the order isn't "delivered". "Active" orders that are cancelled should be removed from the Oracle Mobile Cloud 24hrsflowersOrders storage collection.</p>
+									<p>At the end of the track order flow, the bot should confirm the user action and ask whether users want to check the status of another order. When the users decline, they should be directed to the <code>orderWhatIsNext</code> state.</p>
+							
+
+                        </section>
+                        <hr>
+                        <section>
+                            <h2 id="section_2" role="button" style="text-align: left;"><img src="./img/32_2.png" alt="section 2" height="32" width="32" class="num_circ">Implementation Hints</h2>
+							<p>Obviously there is no way around building a custom component for this. To help get you started, your custom component service contains a custom component skeleton for this. See the custom component service's <code>is/component/order/TrackOrder.js</code> file.</p>
+							<p>You can change the content of the file as you need. It's yours. Also, it is your design decision what the custom component handles, how it handles it, and what is defined in OBotML in the dialog flow. For the dialog flow, the choice of bot system components and the use of Apache FreeMarker expressions and directives is completely yours. </p>
+</p>
+                        </section>
+                        <hr>
+                        <section>
+                            <h2 id="section_3" role="button" style="text-align: left;"><img src="./img/32_3.png" alt="section 3" height="32" width="32" class="num_circ">Getting Started</h2>
+							<p>If you don't already have a clone of <code>advt24horsflowers_bot11</code>, create one:</p>
+							<ul><li>On the main Bots page in your instance, locate the tile for the <code>advt24horsflowers_bot11</code>, click <img src="img/options-menu.png" alt="the Options menu icon">, select <b>Clone</b>, and name the clone <code><i>&lt;YourUniqueInitials&gt;</i>_24horsflowers_bot11</code>.</li>
+							</ul>
+  						
+						<p>Good luck!</p>
+                        </section>
+                        <hr>
+						<blockquote><h5><a href="../index.html">Back to the Index Page</a></h5></blockquote>
+ 
+
+                    </article>
+                </div>
+                <br class="clearfloat">
+            </div>
+        </div>
+        <!--close main--> 
+        <!--end content-->
+        <div class="footer-container ">
+            <div style="max-width: 994px; padding:10px 0 0 17px;">
+                <footer class="footer-list">
+                    <ul>
+                        <li> <a href="https://www.oracle.com/corporate/index.html" target="_blank">About Oracle</a> </li>
+                        <li> <a href="https://www.oracle.com/us/corporate/contact/index.html" target="_blank">Contact Us</a> </li>
+                        <li> <a href="https://www.oracle.com/us/legal/index.html" target="_blank">Legal Notices</a> </li>
+                        <li> <a href="https://www.oracle.com/us/legal/terms/index.html" target="_blank">Terms of Use</a> </li>
+                        <li> <a href="https://www.oracle.com/us/legal/privacy/index.html" target="_blank">Your Privacy Rights</a> </li>
+                        <li><a href="https://www.oracle.com/pls/topic/lookup?ctx=cpyr&id=en">Copyright © 2018, Oracle and/or its affiliates. All rights reserved.</a></li>
+                    </ul>
+                </footer>
+            </div>
+            <script type="text/javascript" src="https://www.oracleimg.com/us/assets/metrics/ora_docs.js"></script>
+        </div>
+    </body>
+</html>

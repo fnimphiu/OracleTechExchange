@@ -1,0 +1,365 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <!-- Part number: Ennnnn-01 -->
+        <!-- Published date: Month Year -->
+        <!-- Template date: 10/18/17 -->
+        <meta content="text/html; charset=utf-8" http-equiv="content-type">
+        <title>Oracle Intelligent Bots Advanced Training - Lab 2 (QnA)</title>
+        <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+        <meta name="robots" content="INDEX, FOLLOW">
+        <meta name="description" content="Put the description of the tutorial here.">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <link rel="stylesheet" href="css/normalize.min.css">
+        <link rel="stylesheet" href="css/font-awesome.min.css">
+        <link rel="stylesheet" href="css/obe-lite.css">
+        <script src="js/jquery-1.11.0.min.js"></script>
+        <script src="js/jquery-ui-1.10.4.custom.js"></script>
+        <script src="js/jquery.tocify.jd.js"></script>
+        <script src="js/leftnav.js"></script>
+    </head>
+    <body>
+        <header>
+            <div class="w1024" style="min-height:55px; display:block;"> <a href="https://docs.oracle.com" class="oracle-logo">
+              <img src="./img/oracle_doc_logo.png" alt="Oracle Documentation" style="max-width: none;" height="22" width="236"></a>
+            </div>
+        </header>
+        <!--end header-->
+
+        <div id="content">
+<blockquote><h4><a href="../index.html">Back to the Index Page</a></h4></blockquote>
+
+            <h1><img src="./img/obe_tag.png" align="middle" alt="Oracle by Example branding">Oracle Intelligent Bots Advanced Training - Lab 2 (QnA)</h1>
+            <div class="w1024" style="clear:both; position:relative; margin-top:40px;">
+                <div class="navbackwide border-right"><!-- --></div>
+                <div id="shownav" title="Show Navigation" tabindex="0"><span class="fa fa-list"></span></div>
+                <div id="sidebar"><!-- -->
+                    <div class="left-nav-tut"><!-- -->
+                        <div id="hidenavw" title="Hide Navigation" tabindex="0"><span class="fa fa-close"></span></div>
+                        <div  id="navbar" class="left-nav-w"><!-- -->
+                            <div id="toc" class="tocify"><!-- --></div>
+                        </div>
+                    </div>
+                </div>
+                <div id="bookContainer">
+                    <article>
+						<p>As well as dealing with the transactions of ordering flowers, the 24hrsflowers bot will also attempt to answer common questions about looking after flowers, delivery and packaging.  Usually this would be handled by an FAQ page on a website or by a service agent.  As the builder of 24hrsflowers chatbot, you'd like to incorporate those existing FAQs into the bot.</p>
+						<p>In this lab we'll take a pre-populated FAQ document  and upload it into the bot. We'll then enable the QnA feature for the bot and fine tune the searching and display of the QnA.</p>
+
+
+                        <section>
+                            <h2><img src="./img/32_begin.png" alt="section 0" height="32" width="32" class="num_circ">Prerequisites</h2>
+							<ol>
+								<li>On the main Bots page in your instance, locate the tile for the <code>advt24hrsflowers_bot2</code>, click <img src="img/options-menu.png" alt="the Options menu icon">, select <b>Clone</b>, and name the clone <code><i>&lt;YourInitials&gt;</i>_24hrsflowers_bot2</code>.</li>
+								<li>Locate the tile for your clone of the bot  (using the Search field might help) and click it to open the bot.</li>							
+								<li>Download the <a href="../resources/qna/FlowersFAQ.csv">pre-populated QnA file</a>.</li>
+							</ol>
+  
+                        </section>
+
+                        <!-- ========================================================================================================================= -->
+                        <section>
+                            <h2 id="section_1" role="button" style="text-align: left;"><img src="./img/32_1.png" alt="section 1" height="32" width="32" class="num_circ">Upload and Enable the FAQ</h2>
+							<p>We'll now upload the FAQ document that we just downloaded into the bot and enable it within the conversation flow.  As you'll notice, it comes as a <code>.csv</code> file, which is the format that  Oracle Intelligent Bots currently requires.</i>).
+							</p>
+							<ol>
+								<li>In the left navigation of your bot, click <img src="img/left_nav_qna.png" alt="the Q&A icon">.</li>
+								<li>Click <b>+ Q&A</b>.</li>
+								<li>Click <b>+ Q&A Source</b>.</li>
+								<li>Set the language to <b>English</b>, name the source <code>FlowersQnA</code>, and drag the CSV file that you downloaded at the beginning of this lab into the dialog.</li>
+								<li>Click <b>Create</b>.</li>
+								<li>Train the bot (by clicking <img src="img/train-button.png" alt="the Train bot icon"> and making sure that <b>Q&A Training</b> option is checked for your bot).</li>
+							</ol>
+
+
+                        </section>
+                        <hr>
+                        <section>
+                            <h2 id="section_2" role="button" style="text-align: left;"><img src="./img/32_2.png" alt="section 2" height="32" width="32" class="num_circ">Test in the QnA Tester</h2>
+							<p>Having uploaded and trained the bot with your frequently asked questions, you will now test in the QnA tester. (The FAQ does not have to be enabled within the conversation flow to work in the tester.)
+							</p>
+							<ol>
+							<li>Click <img src="img/left_nav_qna.png" alt="the Q&A icon">.</li>
+								<li>Open the tester by clicking <img src="img/test_button.png" alt="the Test icon"> and clicking its <b>Q&A</b> tab.</li>
+								<li>In the tester, click the <b>Q&A</b> link.</li>
+								<li>Try the following or similar phrases.
+									<ol type="a">
+										<li>Can I track an order</li>
+										<li>How are the flowers delivered</li>
+										<li>What is the lifespan for tulips</li>
+										<li>Do you deliver to the UK</li>
+										<li>what if the person isn't at home for the delivery</li>									
+									</ol>
+										</li>						
+							</ol>
+							<p>In each of the above cases, you should see a response which is accurate for the question, even where the questions slightly vary from the ones included in the QnA source.</p>
+                        </section>
+                        <hr>
+                        <section>
+                            <h2 id="section_3" role="button" style="text-align: left;"><img src="./img/32_3.png" alt="section 3" height="32" width="32" class="num_circ">Add QnA to your Dialog Flow</h2>
+							<p>Having done some basic testing of your QnA functionality, you now want to add QnA to the dialog flow.</p>
+							<ol>
+								<li>Click <img src="img/left_nav_dialog.png" alt="the Flows icon">.</li>
+								<li>Locate the <code>getUserIntent</code> state in the flow.</li>
+								<li>Update the state by:
+									<ol type="a">
+										<li>Setting the value of <code>qnaEnable</code> to <code>true</code>.</li>
+										<li>Adding the following entry under <code>transitions: actions</code>:
+										<pre>qna: "qna"</pre>
+										<p class="note">The changes are highlighted in bold in the sample here:</p>								<pre>states:
+  getUserIntent:
+    component: "System.Intent"
+    properties:
+      variable: "iResult"
+      confidenceThreshold: 0.8
+      confidenceWinMargin: 0.0
+      <b>qnaEnable: true</b>            
+    transitions:
+      next: "showMenu"
+      actions: 
+        OrderFlowers: "startOrderFlowers"
+        TrackOrders: "startTrackOrders"
+        OpenFranchise: "startOpenFranchise"
+        FileComplaint: "startFileComplaint"
+        Welcome: "startWelcome"        
+        unresolvedIntent: "unresolvedState"
+        <b>qna: "qna"</b></pre></li>
+									</ol>								 
+</li>
+							<li>Add the <code>System.QnA</code> component by copying and pasting the following code to the end of the flow:
+							<pre><b>  qna:
+    component: "System.QnA"
+    transitions:
+      actions:
+        none: "unresolvedState"
+      next: "getUserIntent"</b></pre>
+	  <p class="note">This enables QnA in your dialog flow.</p>
+							</li>
+							<li>Now open the tester by clicking <img src="img/test_button.png" alt="the Test icon">, click the <b>Bot</b> link (not the <b>Q&A</b> link) and retest your bot with some of the phrases from part 2 of the lab above.</li>
+							</ol>
+							
+
+  						
+                        </section>
+                        <hr>
+                        <section>
+                            <h2 id="section_4" role="button" style="text-align: left;"><img src="./img/32_4.png" alt="section 4" height="32" width="32" class="num_circ">Add Synonyms </h2>
+							<p>In the previous exercise, you saw the QnA feature work on a basic level. Now let's try testing the QnA with more challenging phrases to see if it'll still respond with the correct answers and, if not, figure out how to tune it.</p>
+							<p>In this case, you know that many of the people using your bot are expert horticulturists. So it stands to reason they'll often use formal names for flowers when speaking to the bot.</p>
+							<p><b>Open the tester (by clicking <img src="img/test_button.png" alt="the Test icon">), and ask the following questions:</b></p>
+							<ul>
+								<li>What is the lifespan of the common sunflower</li>
+								<li>What is the lifespan of a carnation</li>
+							</Ul>
+							<p>In each case you should get back an answer which is specific to each of those flowers.</p>
+							<p><b>Now let's try using alternate names for those flowers.</b></p>							
+							<ul>
+								<li>what is the lifespan of a Helianthus</li>
+								<li>what is the lifespan of a Dianthus</li>
+							</ul>							
+
+							<p>In this case, the QnA is not returning the correct answers because Helianthus and Dianthus are not terms it has been trained with. You could update each question with an alternate question that includes these scientific names. However, since the terms could be used in other questions, a better option is to set up a synonym.</p>
+							<ol>
+								<li>Click <img src="img/left_nav_qna.png" alt="the Q&A icon"> and click <b>Language Config</b>.</li>
+								<li>Click <b>+ Config Entry</b>.</li>
+								<li>In the Add Language Config dialog, click the <b>Type</b> dropdown and select <b>Synonym</b>.</li>
+								<li>In the <b>Definition</b> field, enter <code>carnations</code> (and press Enter) and <code>dianthus</code> (and Press Enter). They should appear as two separate entries in the field.
+								<p class="note">This will define these two terms as synonyms of each other.</p></li>
+								<li>Click <b>Create</b>.</li>
+								<li>Train the bot (by clicking <img src="img/train-button.png" alt="the Train bot icon">).</li>
+								<li>Repeat steps 2-5 for <code>sunflowers</code> and <code>helianthus</code>.</li>
+								<li>In the tester (<img src="img/test_button.png" alt="the Test icon">), enter the phrase:
+								<p class="note"><code>what is the lifespan of a dianthus</code></p>
+								<p class="note">The response should include "carnation" in the text.</p></li>
+								<li>Now try <code>what is the lifespan of a helianthus</code>.
+								<p class="note">The response should mention sunflowers.</p></li>
+								<li>Now see what you get when you enter:
+								<p class="note"><code>is helianthus harmful to my dog</code></p></li>
+								<li>You may also want to try these:
+									<ol type="a">
+										<li><code>what is the lifespan of rosa</code></li>
+										<li><code>what is the lifespan of a Lilium</code></li>
+									</ol>
+									<p class="note">You should get responses for roses and lillies, respectively. Even though you haven't set up synonyms for these, the bot recognizes them through fuzzy matching.</p>
+									</li>
+							</ol>
+
+	                   </section>
+                        <hr>
+                        <section>
+                            <h2 id="section_5" role="button" style="text-align: left;"><img src="./img/32_5.png" alt="section 5" height="32" width="32" class="num_circ">Add Alternate Questions</h2>
+							<p>QnA is based on searching words and, as you might expect, users are likely to use words which don’t appear within the primary question and answer.  You can therefore add additional questions. In this section you'll add alternate questions to handle those cases.</p>
+							<p><b>In the tester, enter:</b></p>
+							<p><code>are any of the flowers dangerous to dogs</code></p>
+
+								</ul>
+<!--							<ul>
+								<li>In the tester, enter:
+								<p class="note"><code>are any of the flowers dangerous to dogs</code></p>
+</li>
+								</ul>-->
+								<p>Note that the response doesn't answer the question. The reason for this is that the question uses words such as “dangerous” and “dogs” rather than “harmful” and “pets”.  You could define synonyms, but let's try another approach and add an alternate question instead.</p>
+								<ol>
+									<li>Click <b>Data Sources</b> and click <b>View All Q&A</b>.</li>
+									<li>In the <b>Filter by question, answer, or source</b> field, enter <code>pets</code>, and click <b>Search</b>.</li>
+									<li>For each of the questions of the form “Are &lt;flowername&gt; harmful to pets”, click the <b>Edit</b> button:
+									<br>
+									<img src="img/add-alternate-question.png" alt="screenshot showing the Edit button within the 'Are Alstromeria harmful to pets?' entry."></li>
+									<li>In the dialog, and add an alternate question of the form “are &lt;flowername&gt; dangerous to dogs".
+									<br>
+									<img src="img/add-alternate-question2.png" alt="screenshot showing the Edit Question dialog. The 'Alternative' field is filled in with the question 'Are Alstromeria dangerous to dogs?' entry.">									</li>
+									<li>Click the <b>Close</b> button to return to the main QnA page.</li>
+									<li>Train the bot (by clicking <img src="img/train-button.png" alt="the Train bot icon">).</li>
+									<li>In the tester (<img src="img/test_button.png" alt="the Test icon">), enter the phrase:
+
+								<p class="note"><code>are any of the flowers dangerous to dogs</code></p>
+								<p class="note">Scroll through the answers. You may get a variety of responses, most of which should be relate to the question about whether flowers are harmful to pets.  However, you might also see a response which is NOT about pets.  Why might this be?</p></li>
+								</ol>
+
+
+
+
+                        </section>
+                        <hr>
+                        <section>
+                            <h2 id="section_7" role="button" style="text-align: left;"><img src="./img/32_7.png" alt="section 7" height="32" width="32" class="num_circ">Add Ignore Words</h2>
+
+							<p>In the previous test, when asking “are any of the flowers dangerous to dogs”, you may have gotten a response unrelated to pets, e.g. regarding whether the flowers arrive in water.  This is because the word “flower” is very prevalent in many other questions as well.</p>
+							<p>Taking this a step further, we can probably say that the word "flowers" is relevant for pretty much every question for an online store selling flowers. As a result, this word doesn't really add anything to the search quality. It may even be beneficial to have such words ignored in the search.</p>
+							<p>Let's add a few words to the ignore list:</p>
+							<ol>
+								<li>Click <img src="img/left_nav_qna.png" alt="the Q&A icon"> and click <b>Language Config</b>.</li>
+								<li>Click <b>+ Config Entry</b>.</li>
+								<li>In the Add Language Config dialog, click the <b>Type</b> dropdown and select <b>Ignore words</b>.</li>
+								<li>In the <b>Definition</b> field, enter <code>flowers</code> (and press Enter) and <code>24hrsflowers</code> (and Press Enter). They should appear as two separate entries in the field.</li>							<li>Click <b>Save</b>.</li>
+								<li>Train the bot (by clicking <img src="img/train-button.png" alt="the Train bot icon">).</li>
+								<li>In the tester (<img src="img/test_button.png" alt="the Test icon">), enter the phrase:
+								<p class="note"><code>are any of the flowers dangerous to dogs</code></p>
+								<p class="note">You should now find the bot returns the correct article since it is no longer matching against “flowers”.</p></li>								
+							</ol>
+
+
+                        </section>
+                        <hr>
+                        <section>
+                            <h2 id="section_8" role="button" style="text-align: left;"><img src="./img/32_8.png" alt="section 8" height="32" width="32" class="num_circ">Fine-tune the display of the QnA</h2>
+							<p>How your QnA is presented to the user is configurable in a number of ways.  Your next task will be to define those changes.</p>
+
+</p>
+                            <ol>
+                                <li>In the tester (<img src="img/test_button.png" alt="the Test icon">), enter the phrase:
+								<p class="note"><code>when will my order be delivered</code></p>
+								<p class="note">The bot responds by showing two possible options: TrackOrder and a QnA.</p><br>
+								<img src="img/bot-response.png" alt="A screenshot showing the response in the tester prompting the user to select between 'TrackOrder' and 'QnA'">
+								<br>
+								<p class="note">You might want to make this message more descriptive.</p></li>
+								<li>Click <img src="img/left_nav_dialog.png" alt="the Flows icon">.</li>
+								<li>Add the following property for the <code>getUserIntent</code> state:
+									<pre>      optionsPrompt: "${rb.IntentSelectListPrompt}"</pre>
+									<p class="note">The screenshot below shows where the line should be placed.</p>
+									<br>
+									<img src="img/optionsprompt_prop.png" alt="A screenshot showing the dialog flow editor with the above property appearing below the line 'qnaEnable; true' ">
+									<br>
+									<p>The next time that dialog appears, it will get its value from the resource bundle. We'll cover resource bundles in a subsequent lab.</p>
+									</li>
+									<li>You might also want to change the default string which says “view answers”.
+										<p class="note">Add the following right below the property you just added:</p>
+										<pre>      optionsQnaLabel: "${rb.mainIntentOptionsQnALabel}"</pre>
+										</li>
+									<li>Now change the default label for searching through the QnA.  
+										<p class="note">The current default is “Categories” as shown here.</p>
+										<br>
+										<img src="img/dialog_do-you-offer.png" alt="a screenshot of a dialog. There are buttons for 'View', 'More Answers', and 'Categories'">
+										<br>
+										<p class="note">At the bottom of the dialog flow, in the Qna state, add this code:</p>
+										<pre>    properties:
+      categoriesLabel: "${rb.qnaCategoriesLabel}"</pre>
+										<img src="dialog_qna-object.png" alt=""></li>
+                            </ol>
+                        </section>
+                        <hr>
+						                        <section>
+                            <h2 id="section_9" role="button" style="text-align: left;"><img src="./img/32_9.png" alt="section 9" height="32" width="32" class="num_circ">Fine-tune the routing of the QnA</h2>
+							<p>When a question is submitted by the user, we now know that this could be interpreted as an intent or a question.  There are a number of different options to allow you to decide how that is presented to the user.</p>
+							<p>Currently when you ask the question “when will my order be sent”, you get a response such as:</p>
+							<img src="img/dialog_track-or-faq.png" alt="a screenshot showing a dialog offering choices for 'TrackOrders' and 'Check out our FAQ'"><br>
+							<p>In this case, the intent is first in the list.  Now let’s assume you would rather direct the user to the FAQ first.</p>
+							<ol>
+                                <li>In the left navigation of your bot, click <img src="img/left_nav_settings.png" alt="the Settings icon">.</li>
+								<li>Select the <b>Q&A Routing Config</b> tab.</li>
+								<li>Scroll down to the Question Config section and add the word <code>when</code>.
+									<p class="note">This indicates that “when” is a word typically associated with QnA and hence will put QnA first in the dialog.</p></li>
+                                <li>In the tester (<img src="img/test_button.png" alt="the Test icon">), enter the phrase:
+								<p class="note"><code>when will my order be sent</code></p>
+								<p class="note">The FAQ should now appear first.</p>
+								</li>					
+							</ol>
+							<p>There are situations when you know that certain phrases apply a certain amount of urgency or authoritiveness to a user request, which indicates we should deal with the input as a specific intent rather than an FAQ. To accomplish this, we can define phrases or verbs for which the bot should then give weight to this being an intent.</p>
+							<ol>
+                                <li>In the tester (<img src="img/test_button.png" alt="the Test icon">), enter the phrase:
+								<p class="note"><code>Larry says when will my order be sent</code></p>
+								<p class="note">This should return the option to view the intent or the QnA.</p>							
+                                <li>In the left navigation of your bot, click <img src="img/left_nav_settings.png" alt="the Settings icon">.</li>
+								<li>Select the <b>Q&A Routing Config</b> tab.</li>
+								<li>In the Request Sentence Prefix field, add <code>Larry says</code>.</li>
+								<li>Rerun the test.
+								<p class="note">The response should show that the intent for tracking orders was resolved immediately rather than giving the option to choose QnA.</p>	
+								</li>
+							</ol>
+							<p>You will also notice that subtle changes in the sentence input can influence whether the bot will process the input as an intent or QnA.  This is related to the use of imperative verbs which act as a command and hence influence the bot to deal with the input as an intent.</p>
+							<ol>
+                                <li>In the tester (<img src="img/test_button.png" alt="the Test icon">), enter the phrase:
+								<p class="note"><code>when will my order be sent</code></p>
+								<p class="note">This could be an FAQ or intent.</p></li>							
+ 
+								<li>Now enter the phrase:
+								<p class="note"><code>explain when will my order be sent</code></p>
+								<p class="note">Because of the imperative ("explain"), the bot just responds to the intent.</p>
+								<img src="img/dialog_intent-response.png" alt="a screenshot of the bottom part of the tester. At the top of the screenshot is this 'Sorry. We work hard on tracking orders, but we are not quite there yet.' At the bottom is the user-entered phrase 'explain when will my order be sent'.">								
+								</li>
+								<li>Now let's run the following two phrases through the tester to see if there are any differences between them:
+								<p class="note"><code>advise on when will my order be sent</code></p>
+								<p class="note"><code>advice on when my order will be sent</code></p>						
+								<p class="note">The first sentence is an imperative ("advise") and the second isn't. So you can see how just a one-letter difference can have a big impact on how the phrases are handled.</p>								
+								</li>
+							</ol>
+
+														
+                        </section>
+                        <hr>						
+						
+                        <section>
+                            <h2 id="next" role="button" style="text-align: left;"><img src="./img/32_next.png" alt="next step" height="32" width="32" class="num_circ">Next Lab</h2>
+                            <ul>
+								<li><a href="bots-hol_dialog-flow-a.html">Lab 3a: Dialog Flow - Exploring the Flower Order Flow</li>
+							</ul>
+                        </section>
+
+                        <hr>
+						<blockquote><h5><a href="../index.html">Back to the Index Page</a></h5></blockquote>
+                    </article>
+                </div>
+                <br class="clearfloat">
+            </div>
+        </div>
+        <!--close main--> 
+        <!--end content-->
+        <div class="footer-container ">
+            <div style="max-width: 994px; padding:10px 0 0 17px;">
+                <footer class="footer-list">
+                    <ul>
+                        <li> <a href="https://www.oracle.com/corporate/index.html" target="_blank">About Oracle</a> </li>
+                        <li> <a href="https://www.oracle.com/us/corporate/contact/index.html" target="_blank">Contact Us</a> </li>
+                        <li> <a href="https://www.oracle.com/us/legal/index.html" target="_blank">Legal Notices</a> </li>
+                        <li> <a href="https://www.oracle.com/us/legal/terms/index.html" target="_blank">Terms of Use</a> </li>
+                        <li> <a href="https://www.oracle.com/us/legal/privacy/index.html" target="_blank">Your Privacy Rights</a> </li>
+                        <li><a href="https://www.oracle.com/pls/topic/lookup?ctx=cpyr&id=en">Copyright © 2018, Oracle and/or its affiliates. All rights reserved.</a></li>
+                    </ul>
+                </footer>
+            </div>
+            <script type="text/javascript" src="https://www.oracleimg.com/us/assets/metrics/ora_docs.js"></script>
+        </div>
+    </body>
+</html>
+<!--
+-->

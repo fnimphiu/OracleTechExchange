@@ -1,0 +1,264 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <!-- Part number: Ennnnn-01 -->
+        <!-- Published date: Month Year -->
+        <!-- Template date: 10/18/17 -->
+        <meta content="text/html; charset=utf-8" http-equiv="content-type">
+        <title>Oracle Intelligent Bots Advanced Training - Lab 5b (Implementing Custom Components)</title>
+        <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+        <meta name="robots" content="INDEX, FOLLOW">
+        <meta name="description" content="Put the description of the tutorial here.">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <link rel="stylesheet" href="css/normalize.min.css">
+        <link rel="stylesheet" href="css/font-awesome.min.css">
+        <link rel="stylesheet" href="css/obe-lite.css">
+        <script src="js/jquery-1.11.0.min.js"></script>
+        <script src="js/jquery-ui-1.10.4.custom.js"></script>
+        <script src="js/jquery.tocify.jd.js"></script>
+        <script src="js/leftnav.js"></script>
+    </head>
+    <body>
+        <header>
+            <div class="w1024" style="min-height:55px; display:block;"> <a href="https://docs.oracle.com" class="oracle-logo">
+              <img src="./img/oracle_doc_logo.png" alt="Oracle Documentation" style="max-width: none;" height="22" width="236"></a>
+            </div>
+        </header>
+        <!--end header-->
+
+        <div id="content">
+<blockquote><h4><a href="../index.html">Back to the Index Page</a></h4></blockquote>
+            <h1><img src="./img/obe_tag.png" align="middle" alt="Oracle by Example branding">Oracle Intelligent Bots Advanced Training - Lab 5b (Implementing Custom Components)</h1>
+            <div class="w1024" style="clear:both; position:relative; margin-top:40px;">
+                <div class="navbackwide border-right"><!-- --></div>
+                <div id="shownav" title="Show Navigation" tabindex="0"><span class="fa fa-list"></span></div>
+                <div id="sidebar"><!-- -->
+                    <div class="left-nav-tut"><!-- -->
+                        <div id="hidenavw" title="Hide Navigation" tabindex="0"><span class="fa fa-close"></span></div>
+                        <div  id="navbar" class="left-nav-w"><!-- -->
+                            <div id="toc" class="tocify"><!-- --></div>
+                        </div>
+                    </div>
+                </div>
+                <div id="bookContainer">
+                    <article>
+						<p>Rendering user interfaces in bots with data served from a custom component is a popular use case. In this lab, we'll substitute the mock data used to populate the flowers and bouquets menus in the 24hrsflowers bot with data provided from a custom component. </p>
+						<p>For this we'll:</p>
+						<ul>
+							<li>Change the dialog flow by adding a reference to a custom component.</li>
+							<li>Edit the custom component to add the missing logic.</li>
+						</ul>
+
+
+                        <section>
+                            <h2><img src="./img/32_begin.png" alt="section 0" height="32" width="32" class="num_circ">Prerequisites</h2>
+  
+							<ul>
+								<li>Completion of lab 5a.</li>
+								<li>A JavaScript IDE.</li>
+								<li>ngrok running on your system.</li>
+							</ul>
+                        </section>
+
+                        <!-- ========================================================================================================================= -->
+                        <section>
+                            <h2 id="section_1" role="button" style="text-align: left;"><img src="./img/32_1.png" alt="section 1" height="32" width="32" class="num_circ">Change the Dialog Flow</h2>
+							<p>In the last lab, we left the local custom code test tools container running in debug mode. We'll continue using this setting.</p>
+							<ol>
+								<li>If you closed your ngrok and AMCe custom code test tools sessions from the previous part of this lab, start them again:
+								<p class="note"><b>non-Windows</b>
+								<pre>./ngrok http 4000
+omce-ccc <i>&gt;path to your custom component service toolsConfig.json file&gt;</i>/toolsConfig.json --debug</pre></p>
+								<p class="note"><b>Windows</b></p>
+							<p class="note">Change directories to the <code>omce-tools</code> folder (which contains <code>omce-ccc.js</code>) and enter:
+								<pre>ngrok http 4000
+node omce-ccc.js <i>&gt;path to your custom component service toolsConfig.json file&gt;</i>/toolsConfig.json --debug</pre></p></li>
+<li>Go to the <code><i>&lt;YourInitials&gt;</i>_24hrsflowers_bot5</code> bot that you worked with in lab 5a and open it.</li>
+<li>Train the bot (by clicking <img src="img/train-button.png" alt="the Train bot icon">).</li>
+<li>Click <img src="img/left_nav_components.png" alt="the Components icon"> in the left navigation for the bot to open the Components page.
+<p class="note"><b>Reminder:</b> If you have restarted ngrok, you need to update the advt24hrsflowersComponents component service registration metadata field with the new hostname.</p></li>
+<li>Expand the <b>advt24hrsflowersComponents</b> list on the left.</li>
+<li>Select the <b>advt.24hrs.flowers.menuvariable.SetMenuVariable</b> menu entry.
+<br><img src="img/component-setmenuvariable.png" alt="screenshot showing advt.24hrs.flowers.menuvariable.SetMenuVariable selected and containing a menuVariable and menuType in its Properties list.">
+<p class="note">Notice that this component requires two parameters: the name of a variable to save the menu content to and a menu type (which is "flowers" or "bouquets", though those values are not shown on the screen).</p></li>
+<li>Click <img src="img/left_nav_dialog.png" alt="the Flows icon"> to open the dialog flow editor.</li>
+<li>Go to the <code>setFlowersMenuData</code> state.</li>
+<li>Replace the existing code with the code below:
+<pre>  setFlowersMenuData:
+    component: "advt.24hrs.flowers.menuvariable.SetMenuVariable"
+    properties:
+      menuType: "flowers"
+      menuVariable: "flowersMenu"
+    transitions:
+      next: "setBouquetsMenuData" 
+</pre></li>
+<li>Click the <b>Validate</b> link and correct any errors that are detected (most likely to be indenting glitches).</li>
+<li>Go to the <code>setBouquetsMenuData</code> state.</li>
+<li>Replace the existing code with the code below:
+<pre>  setBouquetsMenuData:
+    component: "advt.24hrs.flowers.menuvariable.SetMenuVariable"
+    properties:
+      menuType: "bouquets"
+      menuVariable: "bouquetsMenu"
+    transitions:
+      next: "checkFlowerBouquetEntity"</li>
+<li>Validate again.</li>
+							</ol>
+	
+<h3>What We Just Did</h3>
+<p>We have replaced the flowers and bouquets menu definitions with a reference to a custom component. The custom component, when invoked dynamically sets the flowers and bouquets menus to their respective variable.</p>
+<p>At this point we can't run the bot, because the <code>advt.24hrs.flowers.menuvariable.SetMenu</code> component lacks an implementation. We'll work on that next.</p>
+
+
+
+                        </section>
+                        <hr>
+                        <section>
+                            <h2 id="section_2" role="button" style="text-align: left;"><img src="./img/32_2.png" alt="section 2" height="32" width="32" class="num_circ">Implement the Custom Component</h2>
+							<p>In this section, we'll add implementation code that allows the component to save the flowers and bouquets menus in a context variable.</p>
+							<ol>
+								<li>Open your JavaScript IDE and open the <code><i>&lt;YourUniqueInitials&gt;</i>advt24hrsflowerscss</code> folder.</li>
+								<li>Expand <code>js/components/flowermenu/tovariable</code> and open <code>SetMenu.js</code>.</li>
+								<li>Notice the following line at the beginning of the file:
+								<pre>const menuItems= require('../data/FlowerService');</pre>
+								<p class="note">This line references the <code>FlowerService.js</code> file that holds the menu options for the flowers and the bouquets in this lab. The <code>FlowersService.js</code> file is what you would need to change if you wanted to query the menu data from a remote service. </p></li>
+								<li>Also notice the <code>menuType</code> variable definition.
+								<p class="note">The <code>menuType</code> definition reads its value from the component properties. The allowed property values are <code>"flowers"</code> and <code>"bouquets"</code>. Because the property is defined as mandatory in the metadata function of the custom component, there is no need to check for null values.</p></li>
+								<li>Position the mouse cursor in the space under the <code>conversation.logger()</code> statement and add the following three lines of code:
+								<pre>var menuArray = menuItems[menuType]();        
+conversation.variable(menuVariable,menuArray);
+conversation.keepTurn(true);</pre></li>
+								<li>Save the file.</li>
+								<li>Stop the local code container by by pressing <code>Ctrl-c</code> (Windows) or Option-c (Mac) in the terminal window.</li>
+								<li>Then start it again with the <code>omce-ccc --debug</code> command (for Windows, <code>node omce-ccc.js --debug</code>).</li>
+								<li>Go back to the bot in AMCe and open the tester (<img src="img/test_button.png" alt="the Test icon">).</li>
+								<li>Type <code>Hi</code> to start testing the component and follow the dialogs until you see either the Flowers or Bouquets menu.</li>
+								<li>Reset the tester.</li>
+								<li>Type <code>I'd like to order 12 red roses</code>.
+								<p class="note">This time no menu is shown. The change we made to have a custom component serve the menu data did not change the bot behavior.</p></li>
+								<li>Take 5-10 minutes to explore the custom component and the <code>FlowersService.js</code> file. Also, for practice, you may want to debug the working application to better understand what is going on and what is contained in the variable. </li>
+							</ol>
+							<h3>The Code Explained</h3>
+							<p>The custom component sets a JavaScript array back to the variable, the name of which has been passed as the value of the <code>menuVariable</code> property. The <code>menuType</code> property is set to <code>flowers</code> or <code>bouquets</code>. The following discusses the three code lines you added to make it work</p>
+							<ul>
+								<li><code>var menuArray = menuItems[menuType]();</code> - The <code>FlowersService.js</code> file is a Node module that exposes two functions as attributes: <code>flowers</code> and <code>bouquets</code>. To access the function based on the attribute name saved in a variable you use square brackets (<code>[]</code>). This is like saying "resolve the variable value and call the attribute with that name".</li>
+								<li><code>conversation.variable(menuVariable,menuArray);</code> - The <code>variable()</code> function exposed on the custom component SDK (conversation) reads from or writes to context variables. This line of code actually makes the flowers or bouquets menu data available to the context variable. </li>
+								<li><code>conversation.keepTurn(true);</code> - This line of code answers the question to what the user should do next. Setting <code>keepTurn</code> to <code>true</code> answers this question with "nothing". As the component only sets data, it doesn't require any user input until the dialog flow engine hits the next state. So having <code>keepTurn</code> set to <code>true</code> ensures that the dialog flow engine can get to the next state without waiting for any user input.</li>
+							</ul>
+
+                        </section>
+                        <hr>
+                        <section>
+                            <h2 id="section_3" role="button" style="text-align: left;"><img src="./img/32_3.png" alt="section 3" height="32" width="32" class="num_circ">Improve Bot Performance</h2>
+  						
+						<p>So far, both context variables (<code>flowersMenu</code> and <code>bouquetsMenu</code>) always get populated with data, even though only one of them will be used.</p>
+						<p>With a simple change in the dialog flow, we can reduce the number of calls to the custom component and the size of the payload that is exchanged between the bot and its components. The performance gain won't be huge for the 24hrsflowers bot. But the sum of many little things can have a big impact. So let's go for this little optimization.</p>
+						<ol>
+							<li>In the dialog flow, navigate to the <code>setRangeSize</code> state.</li>
+							<li>Change the <code>transitions next</code> setting of the <code>setRangeSize</code> state to <code>checkFlowerBouquetEntity</code> so it bypasses the two states that set the menu data below.<br>
+							<img src="img/components-setrangesize.png" alt="screenshot showing the the value of the 'transitions next' attribute of 'setRangeSize' being set to 'checkFlowerBouquetEntity'"></li>
+							<li>Next, navigate to the <code>setFlowersMenuData</code> state.</li>
+							<li>Cut the whole <code>setFlowersMenuData</code> state from its current location and paste it above the <code>orderFlowers</code> state.</li>
+							<li>Rename the <code>orderFlowers</code> state to <code>showFlowersMenu</code>.</li>
+							<li>Rename the <code>setFlowersMenuData</code> state <code>orderFlowers</code>.</li>
+							<li>Change the <code>transitions next</code> value of <code>orderFlowers</code>  to <code>"showFlowersMenu"</code>.
+							<p class="note">The dialog flow should look as shown in the image below.</p>
+							<img src="img/components-renamed-states.png" alt="screenshot showing the orderFlowers and showFlowersMenu (in that order) in the dialog flow. The 'transitions next' value of OrderFlowers has a value of showFlowersMenu"></li>
+							<!-- -->
+							<li>Next, navigate to the <code>setBouquetsMenuData</code> state.</li>
+							<li>Cut the whole <code>setBouquetsMenuData</code> state from its current location and paste it above the <code>orderBouquet</code> state.</li>
+							<li>Rename the <code>orderBouquet</code> state to <code>showBouquetsMenu</code>.</li>
+							<li>Rename the <code>setBouquetsMenuData</code> state <code>orderBouquet</code>.</li>
+							<li>Change the <code>transitions next</code> value of <code>orderBouquet</code>  to <code>"showBouquetsMenu"</code>.
+							<p class="note">The dialog flow should look as shown in the image below.</p>
+							<img src="img/components-renamed-states2.png" alt="screenshot showing the orderBouquet and showBouquetsMenu (in that order) in the dialog flow. The 'transitions next' value of OrderBouquet has a value of showBouquetsMenu"></li>
+							<li>Open the tester (<img src="img/test_button.png" alt="the Test icon">) and test the order flow for both flowers and bouquets.
+							<p class="note">Be sure you also test that entity slotting still does what it is supposed to do.</p></li>
+
+						</ol>
+						<h3>What We Just Did</h3>
+						<p>With some simple content adjustments, we have achieved a lot. We have:</p>
+						<ul>
+							<li>Reduced the number of calls to the custom component that populates the flowers and bouquets menus.</li>
+							<li>By not populating the menu variable that is not required for a given user order flow, reduced the size of the payload that is exchanged between the bot and custom components.</li>
+						</ul>
+					
+                        </section>
+                        <hr>
+                        <!--<section>
+                            <h2 id="section_4" role="button" style="text-align: left;"><img src="./img/32_4.png" alt="section 4" height="32" width="32" class="num_circ">Optimize the setMenu Custom Component</h2>
+							<p>As a final optimization, we'll add a new component property (<code>execute</code> that takes a Boolean variable as an argument and that can be used to suppress populating the menu variable in cases where the user query already contains information about the flower or bouquet to order.</p>
+							<p>The <code>execute</code> property should be optional and default to true.</p>
+							<ol>
+							<li>If not still open, open the <code>SetMenu.js</code> file in your JavaScript IDE.</li>
+							<li>Edit the <code>metadata:()</code> function and add a new property:
+							<pre>"execute": { "type": "boolean", "required": false }</pre>
+							
+							<li>Next, edit the <code>invoke:()</code> function and add the following code to read the property value if provided:
+							<pre>const execute = conversation.properties().execute? conversation.properties().execute : true;
+conversation.logger().info('advt.24hrs.flowers.menuvariable.SetMenu: component execute set to ' +execute );</pre></li>
+							<li>Now wrap the <code>menuArray</code> variable and the setting of the menu context variable in an <code>if</code> statement as shown in the image below:<br>
+							<img src="img/components-if.png" alt="screenshot showing an 'if (execute)' statement that wraps the menuArray variable declaration and the 'conversation.variable (menuVariable, menuArray)' statement."><p><b>PK note: also commented out conversation.keepTurn(true);</b></li>
+							<li>Save the file.</li>
+							<li>Stop the local code container by by pressing <code>Ctrl-c</code> (Windows) or Option-c (Mac) in the terminal window.</li>
+							<li>Restart the local container in debug mode: 
+<pre>omce-ccc <i>&gt;path to your custom component service toolsConfig.json file&gt;</i>/toolsConfig.json --debug</pre></li>
+							<li>In AMCe, go back to the bot and lick <img src="img/left_nav_components.png" alt="the Components icon"> in the left navigation to open the Components page.</li>
+							<li>Select the <b>advt24hrsflowersComponents</b> entry and click the <b>Reload</b> button.</li>
+							<li>After a successful reload, select the <code>advt.24hrs.flowers.menuvariable.SetMenuVariable</code> component to verify that the new execute property shows.</li>
+							<li>Click <img src="img/left_nav_dialog.png" alt="the Flows icon"> to open the dialog flow editor.</li>
+							<li>Navigate to the <code>orderFlowers</code> state.</li>
+							<li>Add the <code>execute</code> property and assign the following Apache FreeMarker expression as its value so that it resolves to <code>true</code> when the Bouquet entity is not yet contained in the <code>iResult</code> variable and <code>false</code> otherwise. Add the Apache FreeMarker expression in a single line.
+							<pre>&lt;#if iResult.value?has_content&gt;&lt;#if iResult.value.entityMatches.Flowers?has_content&gt;false&lt;#else&gt;true&lt;/#if&gt;&lt;#else&gt;true&lt;/#if&gt;</pre>
+							<p class="note">The <code>orderFlowers</code> state should look like this:</p><br>
+							<img src="img/components-fm1.png" alt="screenshot of the orderFlowers state that includes, under properties, the execute attribute with FreeMarker expression above as its value."></li>
+
+							<li>Navigate to the <code>orderBouquet</code> state.</li>
+							<li>Add the <code>execute</code> property and assign the following Apache FreeMarker expression as its value so that it resolves to <code>true</code> when the Bouquet entity is not yet contained in the <code>iResult</code> variable and <code>false</code> otherwise. Add the Apache FreeMarker expression in a single line.
+							<pre>&lt;#if iResult.value?has_content&gt;&lt;#if iResult.value.entityMatches.Bouquets?has_content&gt;false&lt;#else&gt;true&lt;/#if&gt;&lt;#else&gt;true&lt;/#if&gt;</pre>
+							<p class="note">The <code>orderBouquet</code> state should look like this:</p><br>
+							<img src="img/components-fm2.png" alt="screenshot of the orderFlowers state that includes, under properties, the execute attribute with FreeMarker expression above as its value."></li>
+							<li>Validate the dialog flow.</li>
+							<li>Open the tester (<img src="img/test_button.png" alt="the Test icon">) and test the bot.</li>
+							</ol>
+							<h3>What We Just Did</h3>
+							<ul>
+								<li>Added a custom component property that allows bot designers to conditionally skip querying menu data from the custom component.</li>
+								<li>In the dialog flow, used Apache Freemarker to determine whether the user query contains a value for the Flowers or Bouquets entity. If a value is found, then the <code>execute</code> property resolves <code>false</code>. If no value is found, the <code>execute</code> property is set to <code>true</code> for the menu data to be queried and set to the context variable.</li>
+							</ul>
+						</section>
+						<hr>-->
+
+                        <section>
+                            <h2 id="next" role="button" style="text-align: left;"><img src="./img/32_next.png" alt="next step" height="32" width="32" class="num_circ">Next Lab</h2>
+                            <ul>
+								<li><a href="bots-hol_custom-components-c.html">Lab 5c - Custom Components</li>
+							</ul>
+                        </section>
+                        <hr>
+						<blockquote><h5><a href="../index.html">Back to the Index Page</a></h5></blockquote>
+                    </article>
+                </div>
+                <br class="clearfloat">
+            </div>
+        </div>
+        <!--close main--> 
+        <!--end content-->
+        <div class="footer-container ">
+            <div style="max-width: 994px; padding:10px 0 0 17px;">
+                <footer class="footer-list">
+                    <ul>
+                        <li> <a href="https://www.oracle.com/corporate/index.html" target="_blank">About Oracle</a> </li>
+                        <li> <a href="https://www.oracle.com/us/corporate/contact/index.html" target="_blank">Contact Us</a> </li>
+                        <li> <a href="https://www.oracle.com/us/legal/index.html" target="_blank">Legal Notices</a> </li>
+                        <li> <a href="https://www.oracle.com/us/legal/terms/index.html" target="_blank">Terms of Use</a> </li>
+                        <li> <a href="https://www.oracle.com/us/legal/privacy/index.html" target="_blank">Your Privacy Rights</a> </li>
+                        <li><a href="https://www.oracle.com/pls/topic/lookup?ctx=cpyr&id=en">Copyright © 2018, Oracle and/or its affiliates. All rights reserved.</a></li>
+                    </ul>
+                </footer>
+            </div>
+            <script type="text/javascript" src="https://www.oracleimg.com/us/assets/metrics/ora_docs.js"></script>
+        </div>
+    </body>
+</html>
+

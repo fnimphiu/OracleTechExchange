@@ -1,0 +1,120 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <!-- Part number: Ennnnn-01 -->
+        <!-- Published date: Month Year -->
+        <!-- Template date: 10/18/17 -->
+        <meta content="text/html; charset=utf-8" http-equiv="content-type">
+        <title>Oracle Intelligent Bots Advanced Training - Workarounds and Troubleshooting</title>
+        <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+        <meta name="robots" content="INDEX, FOLLOW">
+        <meta name="description" content="Put the description of the tutorial here.">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <link rel="stylesheet" href="css/normalize.min.css">
+        <link rel="stylesheet" href="css/font-awesome.min.css">
+        <link rel="stylesheet" href="css/obe-lite.css">
+        <script src="js/jquery-1.11.0.min.js"></script>
+        <script src="js/jquery-ui-1.10.4.custom.js"></script>
+        <script src="js/jquery.tocify.jd.js"></script>
+        <script src="js/leftnav.js"></script>
+    </head>
+    <body>
+        <header>
+            <div class="w1024" style="min-height:55px; display:block;"> <a href="https://docs.oracle.com" class="oracle-logo">
+              <img src="./img/oracle_doc_logo.png" alt="Oracle Documentation" style="max-width: none;" height="22" width="236"></a>
+            </div>
+        </header>
+        <!--end header-->
+
+        <div id="content">
+<blockquote><h4><a href="../index.html">Back to the Index Page</a></h4></blockquote>
+
+            <h1><img src="./img/obe_tag.png" align="middle" alt="Oracle by Example branding">Oracle Intelligent Bots Advanced Training - Workarounds and Troubleshooting</h1>
+            <div class="w1024" style="clear:both; position:relative; margin-top:40px;">
+                <div class="navbackwide border-right"><!-- --></div>
+                <div id="shownav" title="Show Navigation" tabindex="0"><span class="fa fa-list"></span></div>
+                <div id="sidebar"><!-- -->
+                    <div class="left-nav-tut"><!-- -->
+                        <div id="hidenavw" title="Hide Navigation" tabindex="0"><span class="fa fa-close"></span></div>
+                        <div  id="navbar" class="left-nav-w"><!-- -->
+                            <div id="toc" class="tocify"><!-- --></div>
+                        </div>
+                    </div>
+                </div>
+                <div id="bookContainer">
+                    <article>
+						<p>This page collects workarounds and troubleshooting information.</p>
+
+                        <section>
+                            <!--<h2><img src="./img/32_begin.png" alt="section 0" height="32" width="32" class="num_circ">Prerequisites</h2>-->
+  
+                        </section>
+
+                        <!-- ========================================================================================================================= -->
+                        <section>
+                            <a name="ngrok"><h2 id="section_1" role="button" style="text-align: left;"><img src="./img/32_1.png" alt="section 1" height="32" width="32" class="num_circ">Can't Install ngrok on Windows</h2></a>
+							
+							<p>Depending on how your machine is configured, you might not be able to install ngrok. For example, Oracle's standard OBI image seems to block it for security reasons.</p>
+							<p>You can work around this using the Node localtunnel package. Like ngrok, the localtunnel package allows you to create a https:// URL for a local URL. You don’t need to subscribe anywhere. Each time you run the <code>lt</code> command, it creates a new host name. </p>
+							
+							<h3>Prerequisites for Setup</h3>
+							<ul>
+								<li>Have Node.js already installed.</li>
+								<li>Be outside of the Oracle network when installing (to avoid proxy issues).</li>
+							</ul>
+							
+							<h3>Installation and Verification</h3>
+
+							<ol>
+								<li>At the command line, enter:
+								<pre>npm install -g express-generator</pre></li>
+								<li>On your system, create a folder called <code>MySimpleTest</code>.</li>
+								<li>Open a command prompt and navigate to <code>MySimpleTest</code>.</li>
+								<li>Enter:
+								<pre>express</pre></li>
+								<li>Enter:
+								<pre>npm install</pre></li>
+								<li>Enter:
+								<pre>npm start</pre></li>
+								<li>In a web browser, enter the following:
+								<pre>localhost:3000</pre>
+								<p class="note">You should see the message "Welcome to Express".</p></li>
+								<li>Install  localtunnel as explained here at <a href="https://www.npmjs.com/package/localtunnel" target="_blank">https://www.npmjs.com/package/localtunnel</a>.</li>
+								<li>In the command prompt, enter:
+								<pre>lt --port 3000</pre>
+								<p class="note">It should return a URL.</p></li>
+								<li>Go back to the web browser and enter the URL that was just returned.
+								<p class="note">You should get the same welcome message that you did before.</p></li>
+							</ol>
+							<p class="note"><b>Important:</b> <i>Be sure to close the tunnel after finishing the lab.</i> You do so by pressing Ctrl-c.</p>
+																		
+
+                        </section>
+                        <hr>
+
+
+						<blockquote><h5><a href="../index.html">Back to the Index Page</a></h5></blockquote>
+						</article>
+                </div>
+                <br class="clearfloat">
+            </div>
+        </div>
+        <!--close main--> 
+        <!--end content-->
+        <div class="footer-container ">
+            <div style="max-width: 994px; padding:10px 0 0 17px;">
+                <footer class="footer-list">
+                    <ul>
+                        <li> <a href="https://www.oracle.com/corporate/index.html" target="_blank">About Oracle</a> </li>
+                        <li> <a href="https://www.oracle.com/us/corporate/contact/index.html" target="_blank">Contact Us</a> </li>
+                        <li> <a href="https://www.oracle.com/us/legal/index.html" target="_blank">Legal Notices</a> </li>
+                        <li> <a href="https://www.oracle.com/us/legal/terms/index.html" target="_blank">Terms of Use</a> </li>
+                        <li> <a href="https://www.oracle.com/us/legal/privacy/index.html" target="_blank">Your Privacy Rights</a> </li>
+                        <li><a href="https://www.oracle.com/pls/topic/lookup?ctx=cpyr&id=en">Copyright © 2018, Oracle and/or its affiliates. All rights reserved.</a></li>
+                    </ul>
+                </footer>
+            </div>
+            <script type="text/javascript" src="https://www.oracleimg.com/us/assets/metrics/ora_docs.js"></script>
+        </div>
+    </body>
+</html>

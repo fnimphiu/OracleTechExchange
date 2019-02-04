@@ -1,0 +1,19 @@
+          actions:
+            - label: "${rb.ordBouquetsMenuPrevButton}"
+              visible: 
+                expression: "<#if orderMenuRangeIndex?number &gt;= orderMenuRangeSize?number>true<#else>false</#if>"
+              type: "postback"
+              keyword: 
+              payload: 
+                action: "prevRange"  
+                variables: 
+                  orderMenuRangeIndex: "${orderMenuRangeIndex?number - orderMenuRangeSize?number}"
+            - label: "${rb.ordBouquetsMenuNextButton}"
+              visible: 
+                expression: "<#if (orderMenuRangeIndex?number + orderMenuRangeSize?number) &lt;= bouquetsMenu.value?size  && orderMenuRangeSize?number &lt; bouquetsMenu.value?size>true<#else>false</#if>"   
+              type: "postback"
+              keyword: 
+              payload: 
+                action: "nextRange"  
+                variables: 
+                  orderMenuRangeIndex: "${orderMenuRangeIndex?number + orderMenuRangeSize?number}"

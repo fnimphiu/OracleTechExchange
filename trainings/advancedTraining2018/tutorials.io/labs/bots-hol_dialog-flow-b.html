@@ -1,0 +1,451 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <!-- Part number: Ennnnn-01 -->
+        <!-- Published date: Month Year -->
+        <!-- Template date: 10/18/17 -->
+        <meta content="text/html; charset=utf-8" http-equiv="content-type">
+        <title>Oracle Intelligent Bots Advanced Training - Lab 3b (Dialog Flow - Using the Common Response Component)</title>
+        <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+        <meta name="robots" content="INDEX, FOLLOW">
+        <meta name="description" content="Put the description of the tutorial here.">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <link rel="stylesheet" href="css/normalize.min.css">
+        <link rel="stylesheet" href="css/font-awesome.min.css">
+        <link rel="stylesheet" href="css/obe-lite.css">
+        <script src="js/jquery-1.11.0.min.js"></script>
+        <script src="js/jquery-ui-1.10.4.custom.js"></script>
+        <script src="js/jquery.tocify.jd.js"></script>
+        <script src="js/leftnav.js"></script>
+    </head>
+    <body>
+        <header>
+            <div class="w1024" style="min-height:55px; display:block;"> <a href="https://docs.oracle.com" class="oracle-logo">
+              <img src="./img/oracle_doc_logo.png" alt="Oracle Documentation" style="max-width: none;" height="22" width="236"></a>
+            </div>
+        </header>
+        <!--end header-->
+
+        <div id="content">
+<blockquote><h4><a href="../index.html">Back to the Index Page</a></h4></blockquote>
+
+            <h1><img src="./img/obe_tag.png" align="middle" alt="Oracle by Example branding">Oracle Intelligent Bots Advanced Training - Lab 3b (Dialog Flow - Using the Common Response Component)</h1>
+            <div class="w1024" style="clear:both; position:relative; margin-top:40px;">
+                <div class="navbackwide border-right"><!-- --></div>
+                <div id="shownav" title="Show Navigation" tabindex="0"><span class="fa fa-list"></span></div>
+                <div id="sidebar"><!-- -->
+                    <div class="left-nav-tut"><!-- -->
+                        <div id="hidenavw" title="Hide Navigation" tabindex="0"><span class="fa fa-close"></span></div>
+                        <div  id="navbar" class="left-nav-w"><!-- -->
+                            <div id="toc" class="tocify"><!-- --></div>
+                        </div>
+                    </div>
+                </div>
+                <div id="bookContainer">
+                    <article>
+						<p>This is the second part of a two-part lab on the dialog flow feature.</p>
+						<p>In the previous lab, we interacted with menus that were simple lists. In this lab, we'll create a richer user experience for the main menu and the flower and bouquet menus. We'll use the Common Response component (CR component), which is a powerful widget that allows you design complex bot interactions. </p>
+                        <section>
+                            <h2><img src="./img/32_begin.png" alt="section 0" height="32" width="32" class="num_circ">Prerequisites</h2>
+							<ul>
+								<li>Complete <a href="bots-hol_dialog-flow-a.html">Lab 3a</a>.</li>
+							</ul>
+  
+                        </section>
+						<hr>
+
+
+                        <!-- ========================================================================================================================= -->
+                        <section>
+                            <h2 id="section_1" role="button" style="text-align: left;"><img src="./img/32_1.png" alt="section 1" height="32" width="32" class="num_circ">Use Apache FreeMarker to Generate Order Numbers</h2>
+						     <p>Before we get into setting up CR components, we'll change the bot so that it provides a unique order number for each order. </p>
+							<p>As it currently stands, the value for order number is static (<code>24hrsflwrs-1234567</code>). Let's change it so that it is unique for every order. It will take the form <code>24hrsflwrs-&lt;unique_number&gt;</code>.</p>
+							<ol>
+								<li>In the bot you worked with in the last lab (<code><i>&lt;YourInitials&gt;</i>_24hrsflowers_bot3</code>), click <img src="img/left_nav_dialog.png" alt="the Flows icon"> to open the dialog flow editor.</li>
+								<li>Locate the <code>startOrderFlowers</code> state in the flow.</li>
+								<li>Change the value of the <code>value</code> attribute to <code>"24hrsflwrs-${.now?long}"</code></li>
+								<li>Train the bot (by clicking <img src="img/train-button.png" alt="the Train bot icon">).</li>
+							</ol>
+							<p>Now, every time you make an order the order number will be based on the current date and time in milliseconds.</p>
+							 
+
+                        </section>
+                        <hr>
+                        <section>
+                            <hr>
+                            <h2 id="section_2" role="button" style="text-align: left;"><img src="./img/32_2.png" alt="section 2" height="32" width="32" class="num_circ">Create Mock Data for the Menus</h2>
+							
+							<p>So far, the Flowers and Bouquet menus read the strings for their display labels from their respective entities. For this they use an expression like <code>${bouquetName.type.enumValues}</code> to reference a context variable of the entity type.</p>
+							<p>In preparation for displaying a richer UI, we'll create mock data in the dialog flow. Mock data enables you to build and test your bot while a custom component developer works on providing you access to real data. In a later lab, we'll see how easy the switch from mock data to live data can be.</p>
+							<h3>Create States for the Menus</h3>
+							<ol>
+								<li>Click <img src="img/left_nav_dialog.png" alt="the Flows icon"> to open the dialog flow editor.</li>
+								<li>Create two new context variables of type string called <code>flowersMenu</code> and <code>bouquetsMenu</code> and insert them below the <code>  #OrderFlowers variables</code> comment:
+								<pre>    flowersMenu: "string"
+    bouquetsMenu: "string"</pre>
+								<br>
+								<img src="img/flowers-menu_dialog-flow.png" alt="Screenshot showing the location of the two new variables in the dialog flow."><br></li>		<li>Navigate to the <code>endOrderFlowers</code> state and add the two new variables to the end of the <code>variableList</code> attribute.
+								<br><img src="img/flowers-vars-in-endOrderFlowers.png" alt="screenshot showing the variables added to the variableList attribute"><br></li>
+								<li>Create a state from template by:
+								<ol type="a"><li>Scrolling back to the top of the dialog flow, clicking the <b>+ Components</b> button, clicking <b>Variables</b>, and clicking <b>Set variable</b>. </li>
+								<li>From the Insert After dropdown, selecting <b>startOrderFlowers</b>.</li>
+								<li>Making sure the <b>Remove Comments</b> toggle is set to ON.</li>
+								<li>Changing the state name from <code>setVariable</code> to <code>setFlowersMenuData</code>.</li>
+								<li>Clicking <b>Apply</b>.</li>
+								</ol></li>
+								<li>Repeat step 4, except 
+								<ol type="a">
+									<li>From the Insert After dropdown, select <b>setFlowersMenuData</b>.</li>				
+									<li>Replace <code>setVariable</code> with <code>setBouquetsMenuData</code>.</li>
+								</ol>
+							<p>Next we'll adjust those states, including the adding of the mock menu data.</p>
+							<h3>Prepare the Flowers Menu</h3>
+							<p>Let's start with the <code>setFlowersMenuData</code> state.</p>
+							<ol>
+								<li>Scroll to the <code>startOrderFlowers</code> state.</li>
+								<li>Change the value of the <code>next:</code> transition to <code>"setFlowersMenuData"</code></li>
+								<li>Go to the <code>setFlowersMenuData</code> state.</li>
+								<li>Edit the <code>System.SetVariable</code> component and set the <code>variable</code> attribute to <code>"flowersMenu"</code>.</li>
+								<li>Set the cursor to the right of the <code>value</code> attribute and create a new line.</li>
+								<li>Open <a href="../resources/dialog-flow-b/Flower-Images.txt" target="_blank">Flower-Images.txt</a>, copy its contents, and paste them to the line you just created under the <code>value</code> attribute.
+								<p class="note">This content is an array containing the mock data for the Flowers menu.</p>
+								<p class="note">The pasted content should be aligned like in this screenshot:</p>
+								<img src="img/setflowersmenudata.png" alt="A screenshot of the top part of the setFlowersMenuData state showing how the hyphenated values that were pasted into the dialog flow have the same indentation as 'value'."><br></li>
+								<li>Add the following transition at the very bottom of the state (right below where you just pasted the menu data):
+<pre>    transitions:
+      next: "setBouquetsMenuData"</pre><br>
+	  <p class="note">Here's how it aligns in the dialog flow editor:</p>
+	  <br><img src="img/transition-setBouquetsMenuData.png" alt"Screenshot showing the pasted transition just below the previously pasted code. The 'transition' line is indented 4 spaces."><br></li>
+	  </ol>
+							<h3>Prepare the Bouquets Menu</h3>
+							<p>Now we'll do the same for the <code>setBouquetsMenuData</code> state.</p>
+							<ol>
+								<li>Go to the <code>setBouquetsMenuData</code> state.</li>
+								<li>In the <code>setBouquetsMenuData</code> state's <code>System.SetVariable</code> component, set value of the <code>variable</code> attribute to <code>"bouquetsMenu"</code>.</li>						
+								<li>Set the cursor to the right of the <code>value</code> attribute and create a new line.</li>
+								<li>Open <a href="../resources/dialog-flow-b/Bouquets-Images.txt" target="_blank">Bouquets-Images.txt</a>, copy its contents, and paste them to the line you just created under the <code>value</code> attribute.</li>
+								<li>Add the following transition to the state:
+								<pre>    transitions:
+      next: "checkFlowerBouquetEntity"</pre></li>								
+							</ol>	
+							<h3>Where We Are Now</h3>
+<p>
+After configuring these changes, you should still be able to run your bot like before by typing <code>hi</code> and then selecting the <b>Order Flowers</b> menu option. There isn't any visual change yet, since we haven't yet hooked up these new structures to the user interface. That's what we'll do next.</p>
+<p>
+<h3>What We Just Did</h3>
+<ul><li>We used an Apache FreeMarker expression in the definition of the <code>flowersMenu</code> and the <code>bouquetsMenu</code> to define an array of data. Each element in the array is an object of four attributes: <code>title</code>, <code>description</code>, <code>image</code>, <code>price</code>.</li></ul>
+
+<h3>Troubleshooting</h3>
+<p>If you see any validation errors, or if the bot refuses to run anymore, check the following:</p>
+<ul>
+<li>Each indent is 2 characters long. Make sure your pasted content is really indented with a number of spaces that is divisible by 2.</li>
+<li>In each state, the <code>transitions</code> attribute must align with the <code>component </code>attribute (indented 4 spaces from the left margin).</li>
+<li>If the navigation behavior is different than before, check the values you have given to the <code>transition</code> attributes' <code>next</code> elements.</li>
+</ul>
+
+<p><b>Tip of the trade:</b> If you want to force a save, briefly click in the address bar of your browser. Clicking outside the page triggers the auto-save function. We recommend doing this frequently to avoid accidental loss of your work. </p>
+
+
+					
+                        </section>
+                        <hr>
+                        <section>
+                            <h2 id="section_3" role="button" style="text-align: left;"><img src="./img/32_3.png" alt="section 3" height="32" width="32" class="num_circ">Build the Rich Flowers Menu</h2>
+
+							<p>In this part of the lab, we are going use the Common Response component (CR component) to improve the flowers menu that is rendered by the <code>orderFlowers</code> state. We'll start by generating some scaffolding for the component from a template and then fill in the details.</p>	
+							<p><b>Note:</b> We're going to be adding snippets incrementally here, so the flow will be temporarily invalid at various points. So it's best to hold off on validating until you complete this section.</p>
+							<ol>
+								<li>Scroll to the top of the dialog flow, click the <b>+ Components</b> button, click <b>User Interface</b>, and select <b>Common response - card</b>. </li>
+								<li>From the Insert After dropdown, select <b>orderFlowers</b>.</li>
+								<li>Make sure the <b>Remove Comments</b> toggle is set to ON.</li></li>
+								<li>Click <b>Apply</b>.</li>
+								<li>In the dialog flow editor, replace the CR component code with the following. 
+								<p class="name">Of particular note is <code>text</code> response item that we are adding and which was not part of the component template.</p>
+<pre>  cardResponse:
+    component: "System.CommonResponse"
+    properties:
+      processUserMessage: true
+      translate:
+      metadata: 
+        responseItems:         
+        - type: "text" 
+          text: ""
+        - type: "cards"
+          cardLayout: "vertical"
+          cards:
+          - title: "Card title"
+            description: "Card description"
+            imageUrl: " "
+            iteratorVariable: 
+            rangeStart:
+            rangeSize:
+            actions: 
+            - label: "Postback action"
+              type: "postback"
+              payload: 
+                action: "someAction"  
+                variables: 
+                  user.someVariable: "someValue" 
+    transitions:  
+   </pre></li>
+							<li>Within the <code>properties</code> attribute, add the following two properties:
+							<pre>      variable: "flowersName"
+      nlpResultVariable: "iResult"</pre></li>
+							<li>Set the value of the <code>text</code> attribute of the first response item (<code>type: "text"</code>) to a value of <code>"${rb.orderFlowersMenuPrompt}"</code>.
+							<br><img src="img/text-response-item1.png" alt="screenshot showing the location of the line that needs to be modified. It is the third line under 'responseItems:'."></li>
+							<li>Set the value of the <code>iteratorVariable</code> attribute to <code>"flowersMenu"</code> (and be sure to include the quotation marks (<code>""</code>).
+							<p class="note">This is the variable that holds the mock data for the Flowers menu.</p></li>
+							<li>Change the value of <code>title</code> attribute from <code>"Card title"</code> to <code>"${flowersMenu.title}"</code>.</li>
+							<li>Change the value of the <code>description</code> attribute from <code>"Card description"</code> to <code>"${flowersMenu.description}"</code></li>
+							<li>Set the value of the <code>imageUrl</code> attribute to <code>"${advtImagesHost.value}${flowersMenu.image}"</code></li>
+							<li>Change the value of the <code>action</code> attribute that is nested under <code>payload</code> from <code>"someAction"</code> to <code>"copyValueAction"</code>.</li>
+							<li>Change <code>user.someVariable</code> to <code>flowersName</code>.</li>
+							<li>Change the value of <code>flowersName</code> from <code>"someValue"</code> to <code>"${flowersMenu.title}"</code>.</li>
+							<li>At the same level as <code>flowersName</code>, add another variable:
+							<pre>                  flowerCost: "${flowersMenu.price}"</pre></li>
+							<li>Change the value of the <code>label</code> attribute from <code>"Postback action"</code> to: 
+							<pre>"Buy for ${flowersMenu.price} USD"</pre></li>
+							<li>At the bottom of the <code>cardResponse</code> state, add the following actions:
+<pre>      actions:
+        copyValueAction: "setFlowerNameToOrderProductName"
+        textReceived: "orderFlowers"</pre>
+		<p class="note"></p>The <code>actions</code> attribute must be indented 2 spaces more than the <code>transitions</code> attribute and the actions themselves need to be indented a further two spaces.</p> </li>
+		<li>Comment out or remove the existing <code>orderFlowers</code> state.</li>
+		<li>Rename the <code>cardResponse</code> state to <code>orderFlowers</code>.</li>
+
+							</ol>
+							<p>Here's what the new <code>orderFlowers</code> state should look like:</p>
+							<pre>
+  orderFlowers:
+    component: "System.CommonResponse"
+    properties:
+      variable: "flowersName"
+      nlpResultVariable: "iResult"
+      processUserMessage: true
+      translate:
+      metadata: 
+        responseItems:         
+        - type: "text" 
+          text: "${rb.orderFlowersMenuPrompt}"
+        - type: "cards"
+          cardLayout: "vertical"
+          cards:
+          - title: "${flowersMenu.title}"
+            description: "${flowersMenu.description}"
+            imageUrl: "${advtImagesHost.value}${flowersMenu.image}"
+            iteratorVariable: "flowersMenu"
+            rangeStart:
+            rangeSize:
+            actions:
+            - label: "Buy for ${flowersMenu.price} USD"
+              type: "postback"
+              payload: 
+                action: "copyValueAction"  
+                variables: 
+                  flowersName: "${flowersMenu.title}"
+                  flowerCost: "${flowersMenu.price}"                 
+    transitions:
+      actions:
+        copyValueAction: "setFlowerNameToOrderProductName"
+        textReceived: "orderFlowers"</pre>
+		
+							<h3>What We Just Did</h3>
+							<p>That was a lot of coding! To review, we have:</p>
+							<ul>
+								<li>Created a new dialog state using a CR component.</li>
+								<li>Set the value of the the card response iterator attribute to the variable that holds the mock data (<code>flowersMenu</code>).</li>
+								<li>Set card property values to reference the iterator, which is referenced using the same name the context variable has.</li>
+								<li>To preserve the previous behavior of the <code>orderFlowers</code> state, added the <code>variable</code> and the <code>nlpResultVariable</code> attributes to the CR component. This ensures that entity slotting will work with the CR component.</li>
+								<li>To handle the case in which users type text instead of selecting an action from the card menu, added the <code>textReceived</code> action to the <code>transitions</code> section. The <code>textreceived</code> transition is followed when users type into the message field instead of selecting from the menu options.
+								<p class="note">As we want users to select from the menu, the <code>textReceived</code> action loops them back to the start of the orderFlowers state to give them another chance to use the menu.</p></li>
+							</ul>
+
+
+						
+                        </section>
+                        <hr>
+                        <section>
+                            <h2 id="section_4" role="button" style="text-align: left;"><img src="./img/32_4.png" alt="section 4" height="32" width="32" class="num_circ">Test the New Flowers Menu</h2>
+							
+							<ol>
+								<li>In the tester (<img src="img/test_button.png" alt="the Test icon">), start by entering <code>Hi</code>.
+								<p class="note">(This is the flow inexperienced users are likely to follow.)</p></li>
+								<li>When you get to the Flowers menu, make a selection.</li>
+								<li>When you get to the question of how many flowers you want to buy, press the tester's <b>Reset</b> button.</li>
+								<li>Test again, but this time follow this sequence:
+								<ol type="a"><li>Enter <code>Hi</code>.</li>
+								<li>Continue to the Flowers menu, but <i>don't</i> make a selection.</li>
+								<li>Type <code>I'd like to buy red roses</code> into the <b>Message</b> field.
+								<p class="note">Instead of being presented with a sequence of menus, you should be immediately asked how many flowers you want to buy. This demonstrates that entity slotting is working.</p></li></ol>
+								</li>
+							</ol>
+							<h3>Troubleshooting</h3>
+							<ul>
+							<li>If the menu isn't successfully rendered and the tester window shows an error complaining about an unexpected angle bracket (<code>&lt;</code>), you may have not set the <code>flowersMenu</code> context variable properly.
+							<p class="note">For example, if the <code>next</code> transition on the <code>startOrderFlowers</code> state isn't set correctly, the <code>flowersMenus</code> variable doesn't get populated.</p>
+							<p class="note">Another reason could be that you configured the <code>flowersName</code> variable to the iterator propery instead of <code>flowersMenu</code></p></li>
+							<li>If you keep getting QnA results when trying to test intents and would like to temporarily suppress them, you can add the following property into the given <code>System.Intent</code> component (in this case, <code>getUserIntent</code>) within the <code>properties</code> element.
+							<pre>qnaSkipIfIntentFound: true</pre></li>
+							</ul>
+							<p><b>Note:</b> In case you're wondering why the CR component's <code>imageUrl</code> attribute uses <code>${advtImagesHost.value}</code> as the first expression, it's because this lab has the flower images saved in Application Container Cloud Service (ACCS). We parameterized the host URL in case different trainings use different hosts. </p>
+							
+	                   </section>
+                        <hr>
+                        <section>
+                            <h2 id="section_5" role="button" style="text-align: left;"><img src="./img/32_5.png" alt="section 5" height="32" width="32" class="num_circ">Build the Rich Bouquets Menu</h2>
+							<p>While playing with the bot you may have recognized that it's either the Flowers or the Bouquets menu that is shown, depending on what message you enter. For this to work right, both menus have to have the same data structure. In this part of the lab, we'll create the Bouquets menu, which more or less is a variant of the Flowers menu you created before</p>
+							<ol>
+								<li>Scroll to the top of the dialog flow, click the <b>+ Components</b> button, click <b>User Interface</b>, and select <b>Common response - card</b>. </li>
+								<li>From the Insert After dropdown, select <b>orderBouquet</b>.</li>
+								<li>Make sure the <b>Remove Comments</b> toggle is set to ON.</li>
+								<li>Click <b>Apply</b>.</li>
+								<li>In the dialog flow editor, edit the CR component configuration so the state looks like the following. 
+								<p class="name">Again, note the <code>text</code> response item that we are adding. It is not created by default.</p>
+<pre>  cardResponse:
+    component: "System.CommonResponse"
+    properties:
+      processUserMessage: true
+      translate:
+      metadata: 
+        responseItems:         
+        - type: "text" 
+          text: ""
+        - type: "cards"
+          cardLayout: "vertical"
+          cards:
+          - title: "Card title"
+            description: "Card description"
+            imageUrl: ""
+            iteratorVariable: 
+            rangeStart:
+            rangeSize:
+            actions: 
+            - label: "Postback action"
+              type: "postback"
+              keyword: 
+              payload: 
+                action: "someAction"  
+                variables: 
+                  user.someVariable: "someValue" 
+          transitions:</pre>
+</pre>
+							<li>Within the <code>properties</code> attribute, add the following two properties:
+							<pre>      variable: "bouquetName"
+      nlpResultVariable: "iResult"</pre></li>
+							<li>Set the value of the <code>text</code> attribute of the first response item (<code>type: "text"</code>) to a value of <code>"${rb.orderBouquetMenuPrompt}"</code>.
+							<br><img src="img/cards-response-item2.png" alt="screenshot showing the location of the line that needs to be modified. It is the third line under 'responseItems:'."></li>
+							<li>Set the value of the <code>iteratorVariable</code> attribute to <code>"bouquetsMenu"</code> (the variable that holds the mock data for the Bouquets menu).</li>
+							<li>Change the value of <code>title</code> attribute from <code>"Card title"</code> to <code>"${bouquetsMenu.title}"</code>.</li>
+							<li>Change the value of the <code>description</code> attribute from <code>"Card description"</code> to <code>"${bouquetsMenu.description}"</code></li>
+							<li>Set the value of the <code>imageUrl</code> attribute to <code>"${advtImagesHost.value}${bouquetsMenu.image}"</code></li>
+							<li>Change the value of the <code>action</code> attribute that is nested under <code>payload</code> from <code>"someAction"</code> to <code>"copyValueAction"</code>.</li>
+							<li>Change <code>user.someVariable</code> to <code>bouquetName</code>.</li>
+							<li>Change the value of <code>bouquetName</code> from <code>"someValue"</code> to <code>"${bouquetsMenu.title}"</code>.</li>
+							<li>At the same level as <code>bouquetName</code>, add another variable:
+							<pre>                  flowerCost: "${bouquetsMenu.price}"</pre></li>
+							<li>Change the value of the <code>label</code> attribute from <code>"Postback action"</code> to: 
+							<pre>"Buy for ${bouquetsMenu.price} USD"</pre></li>
+							<li>At the bottom of the <code>cardResponse</code> state, add the following actions:
+<pre>      actions:
+        copyValueAction: "setBouquetNameToOrderProductName"
+        textReceived: "orderBouquet"</pre>
+		<p class="note"></p>The <code>actions</code> attribute must be indented 2 spaces more than the <code>transitions</code> attribute and the actions themselves need to be indented a further two spaces.</p> </li>
+		<li>Comment out or remove the existing <code>orderBouquet</code> state.</li>
+		<li>Rename the <code>cardResponse</code> state to <code>orderBouquet</code>.</li>
+
+								</ol>
+<p>This is how the <code>orderBouquet</code> state should look.</p>
+<pre>  orderBouquet:    
+    component: "System.CommonResponse"
+    properties:
+      variable: "bouquetName"
+      nlpResultVariable: "iResult"
+      processUserMessage: true
+      translate:
+      metadata: 
+        responseItems:         
+        - type: "text" 
+          text: "${rb.orderBouquetMenuPrompt}"
+        - type: "cards" 
+          cardLayout: "vertical"
+          cards:
+          - title: "${bouquetsMenu.title}"
+            description: "${bouquetsMenu.description}"
+            imageUrl: "${advtImagesHost.value}${bouquetsMenu.image}"
+            iteratorVariable: "bouquetsMenu"
+            rangeStart:
+            rangeSize:
+            actions: 
+            - label: "Buy for ${bouquetsMenu.price} USD"
+              type: "postback"
+              keyword: 
+              payload: 
+                action: "copyValueAction"  
+                variables: 
+                  bouquetName: "${bouquetsMenu.title}" 
+                  flowerCost: "${bouquetsMenu.price}"
+    transitions: 
+      actions:
+        copyValueAction: "setBouquetNameToOrderProductName"
+        textReceived: "orderBouquet"</pre>
+                        </section>
+                        <hr>
+
+                        <section>
+                            <h2 id="section_6" role="button" style="text-align: left;"><img src="./img/32_6.png" alt="section 6" height="32" width="32" class="num_circ">Test the New Bouquets Menu</h2>
+							
+							<ol>
+								<li>In the tester (<img src="img/test_button.png" alt="the Test icon">), start by entering <code>Hi</code>.</li>
+								<li>Select <b>Order Flowers</b> and then choose the bouquet option.
+								<p class="note">You should be prompted for how many you want to order.</p></li>
+								<li>Click the tester's <b>Reset</b> button.</li>
+								<li>Test again, but this time follow this sequence:
+								<ol type="a"><li>Enter <code>Hi</code>.</li>
+								<li>Continue to the Flowers menu, but <i>don't</i> make a selection.</li>
+								<li>Type <code>I want to buy a box of tulips</code> into the <b>Message</b> field.
+								<p class="note">With entity slotting working you should immediately be asked how many boxes of tulips you'd like to order without having to traverse the full Flowers menu.</p></li>
+								
+							</ol></li>
+							</ol>
+							<h3>One More Thing</h3>
+							<p>Here's a feature we haven't tried out yet.</p>
+							<ol>
+								<li>In the tester, click <b>Reset</b>.</li>
+								<li>Change the value of the CR component's <code>cardLayout</code> attribute <code>vertical</code> to <code>horizontal</code>.</li>
+								<li>In the tester, type <code>Hi</code> and observe the difference.</li>
+							</ol>
+
+							                        </section>
+                        <hr>
+                        <section>
+                            <h2 id="next" role="button" style="text-align: left;"><img src="./img/32_next.png" alt="next step" height="32" width="32" class="num_circ">Next Lab</h2>
+                            <ul>
+								<li><a href="bots-hol_pagination.html">Lab 4: Dialog Flow - Adding Pagination</li>
+							</ul>
+                        </section>
+                        <hr>
+						<blockquote><h5><a href="../index.html">Back to the Index Page</a></h5></blockquote>
+                    </article>
+                </div>
+                <br class="clearfloat">
+            </div>
+        </div>
+        <!--close main--> 
+        <!--end content-->
+        <div class="footer-container ">
+            <div style="max-width: 994px; padding:10px 0 0 17px;">
+                <footer class="footer-list">
+                    <ul>
+                        <li> <a href="https://www.oracle.com/corporate/index.html" target="_blank">About Oracle</a> </li>
+                        <li> <a href="https://www.oracle.com/us/corporate/contact/index.html" target="_blank">Contact Us</a> </li>
+                        <li> <a href="https://www.oracle.com/us/legal/index.html" target="_blank">Legal Notices</a> </li>
+                        <li> <a href="https://www.oracle.com/us/legal/terms/index.html" target="_blank">Terms of Use</a> </li>
+                        <li> <a href="https://www.oracle.com/us/legal/privacy/index.html" target="_blank">Your Privacy Rights</a> </li>
+                        <li><a href="https://www.oracle.com/pls/topic/lookup?ctx=cpyr&id=en">Copyright © 2018, Oracle and/or its affiliates. All rights reserved.</a></li>
+                    </ul>
+                </footer>
+            </div>
+            <script type="text/javascript" src="https://www.oracleimg.com/us/assets/metrics/ora_docs.js"></script>
+        </div>
+    </body>
+</html>
