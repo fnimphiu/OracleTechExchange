@@ -1,0 +1,1 @@
+This is an image of the Apache FreeMarker expression in the DeliveryAddress entity's Prompt for Extraction field.
