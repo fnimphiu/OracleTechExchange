@@ -119,10 +119,10 @@
                             <li style="text-align:justify">Ensure the <b>Insert After</b> select list is set to <b>unresolved</b>, so that the new component state gets added to the end of the file</li>
                             <li style="text-align:justify">Switch the <b>Remove Comments</b> toggle to on.</li>
                             <li style="text-align:justify">Click <b>Apply</b></li>
-                            <li style="text-align:justify">Change the name of the newly added component state from <b>textResponse</b> to <b>orderPizza</b></li>
+                            <li style="text-align:justify">Change the name of the added dialog flow state from <b>textResponse</b> to <b>orderPizza</b></li>
                             <li style="text-align:justify">Change the <b>orderPizza</b> state so it looks like shown in the image below.
                                 <br>
-                                <br><img src="img/orderPizza_1.png" alt="orderPizza state" /> </li>
+                                <br><figure><img src="img/orderPizza_1.png" alt="orderPizza state"></figure> </li>
                             <br>
                             <li style="text-align:justify">Next, edit component properties shown in the table below. Make sure you add the values including the surrounding double quotes.
                                 <br>
@@ -134,7 +134,7 @@
                                     </tr>
                                     <tr>
                                         <td scope="row">variable</td>
-                                        <td>"pizaType"</td>
+                                        <td>"pizzaType"</td>
                                     </tr>
                                     <tr>
                                         <td scope="row">nlpResultVariable</td>
@@ -142,7 +142,7 @@
                                     </tr>
                                     <tr>
                                         <td scope="row">text</td>
-                                        <td>"What pizza type do you like"</td>
+                                        <td>"What pizza type do you like?"</td>
                                     </tr>
                                 </table>
                                 <br>
@@ -156,10 +156,10 @@
                             <li style="text-align:justify">Ensure the <b>Insert After</b> select list is set to <b>orderPizza</b>, so that the new component state gets added to the end of the file</li>
                             <li style="text-align:justify">Ensure the <b>Remove Comments</b> toggle is switched on.</li>
                             <li style="text-align:justify">Click <b>Apply</b></li>
-                            <li style="text-align:justify">Change the name of the newly added component state from <b>textResponse</b> to <b>askSize</b></li>
+                            <li style="text-align:justify">Change the name of the added dialog flow state from <b>textResponse</b> to <b>askSize</b></li>
                             <li style="text-align:justify">Change the <b>askSize</b> state so it looks like shown in the image below.
                                 <br>
-                                <br><img src="img/askSize_1.png" alt="askSize state" /> </li>
+                                <br><figure><img src="img/askSize_1.png" alt="askSize state"></figure></li>
                             <br>
                             <li style="text-align:justify">Next, edit component properties shown in the table below. Make sure you add the values including the surrounding double quotes.
                                 <br>
@@ -171,7 +171,7 @@
                                     </tr>
                                     <tr>
                                         <td scope="row">variable</td>
-                                        <td>"pizaSize"</td>
+                                        <td>"pizzaSize"</td>
                                     </tr>
                                     <tr>
                                         <td scope="row">nlpResultVariable</td>
@@ -194,15 +194,17 @@
                             <li style="text-align:justify">Ensure the <b>Remove Comments</b> toggle is switched on.</li>
                             <li style="text-align:justify">Click <b>Apply</b></li>
                             <li style="text-align:justify">Change the state name from <b>output</b> to <b>confirmOrder</b></li>
-                            <li style="text-align:justify">Edit the confirmOrder state so it looks like shown in the image below
-                                <br>
-                                <br> <img src="img/confirmOrder_1.png" alt="confirmOrder state" />
-                                <br> </li>
+                            <li style="text-align:justify">Add the following string to the <b>text</b> property (including the quotes): <br><br><i>"Your order of a ${pizzaSize.value?lower_case} ${pizzaType.value?capitalize} pizza is on its way"</i></li>
+                            <li style="text-align:justify">Add a <b>transitions</b> element as shown in the image below.
+                            <br>
+                                <figure><img src="img/confirmOrder_1.png" alt="confirmOrder state"></figure>
+                            
+                            </li>
                         </ol>
                         <br>
                         <p style="text-align:justify"><b>What you just did:</b> In this section you actually created a complete bot conversation flow using to Common Response component states and one output component state. Using the <i>transitions</i> directives you specified the states to navigate to once a valid data input is provided for one of the two input states. The <i>confirmOrder</i> state actually ends with a return transition, which basically means that the user-bot conversation is ended. </p>
                         <p style="text-align:justify"><b>Note:</b>The confirmation message contains two Apache FreeMarker expressions "?lower_case" and "?capitalize". Apache Freemarker is an open source template language that can be used in Oracle Digital Assistant to e.g. format text messages. In this pizza example, the message values for pizza type and size are read from the entity. The pizza type value is defined in all upper case in the entity, while the pizza size is defined with a capitalized first letter. Both entity values actually look odd when displayed to a user in a message. Using Apache Freemarker, the entity values are formatted such that the pizza type starts with an uppercase letter, followed by all lowercase letters, and the pizza size is printed in all lowercase.</p>
-                        <br>
+                        
                         <h3>Testing</h3>
                         <ol>
                             <li style="text-align:justify">Before you can test the bot, ensue your edits are valid and well formatted. For this, press the <b>Validate</b> link on top of the dialog flow editor. (<img alt="Validate link" src="img/validateLink.png" height="20" />)</li>
@@ -230,7 +232,7 @@
                             <li style="text-align:justify">Set the <b>Insert After</b> select field to <b>orderPizza</b></li>
                             <li style="text-align:justify">Ensure the <b>Remove Comments</b> toggle is switched on</li>
                             <li style="text-align:justify">Press the <b>Apply</b> button</li>
-                            <li style="text-align:justify"><b>Delete</b> the <b>pizzaOrder</b> state. The <i>textResponse</i> state should be placed right under the <i># TUTORIAL START</i> comment as shown in the image below:
+                            <li style="text-align:justify"><b>Delete</b> the <b>orderPizza</b> state so that the <i>textResponse</i> state shows directly beneath the <i># TUTORIAL START</i> comment, as shown in the image below:
                                 <br>
                                 <figure><img src="img/textResponse_1.png" alt="textResonse state"></figure>
                             </li>
@@ -238,11 +240,11 @@
                             <li style="text-align:justify">Set the <b>variable</b> property to <b>"pizzaType"</b></li>
                             <li style="text-align:justify">Set the <b>nlpResultVariable</b> property to <b>"iResult"</b></li>
                             <li style="text-align:justify">Remove the <b>autoNumberPostbackActions</b> and <b>translate properties</b></li>
-                            <li style="text-align:justify">The <b>responseItems:</b> code element contains two text responses (indicated by the <i>type: "text"</i> key:value pair). <b>Remove</b> the first text response by removing the block of code that is highlighted in the image below.
+                            <li style="text-align:justify">The <b>responseItems</b> element contains two text responses. <b>Remove</b> the first text response by deleting the block of code that is highlighted in the image below.
                                 <figure><img src="img/removeBlockOfCode_1.png" alt="Block of code to remove"></figure>
                             </li>
-                            <li style="text-align:justify">Edit the second (the remaining) text response item to look as shown in the image below
-                                <figure><img src="img/pizzatypeListOfValues_1.png" alt="text response with action items"></figure>
+                            <li style="text-align:justify">Edit the remaining text response item to look as shown in the image below
+                                <figure><img src="img/orderPizza_5.png" alt="text response with action items"></figure>
                             </li>
                             <li style="text-align:justify">Click the <b>Validate</b> link on top of the dialog flow editor. If there are any formatting errors, fix them before you progress</li>
                         </ol>
