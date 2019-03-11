@@ -687,9 +687,14 @@
                         <h3>Adding a card layout to the UI rendered for the composite bag entity</h3>
                         <p style="text-align:justify">Using the <code>System.CommonResponse</code> component with a composite bag entity allows you to create the same user interface you created before using individual entities. In this part of the hands-on you will copy-and-paste code to the pizzaOrder state that during testing renders pizza types as cards.</p>
                         <ol>
-                            <li style="text-align:justify">Edit the <b>orderPizza</b> state and add an additional card response item. The <code>System.CommonResponse</code> items should look as shown in the image below:<br>
+                            <li style="text-align:justify">Edit the <b>visible</b> property of the text response item as shown highlighted in the image below. This setting excludes the pizza type from rendering as a text list-of-values.
                             <br>
-                            <b>Note: to save you from typing, please find the OBotML code to copy-and-paste into your <i>orderPizza</i> state. Just ensure the formatting is as in above image. </b><br>
+                                <figure><img src="img/orderPizza_10.png" alt="Visible property setting to exlude 'Type'"></figure>
+                            <br></li>
+                            <li style="text-align:justify">Edit the <b>orderPizza</b> state and add an additional card response item. The <code>System.CommonResponse</code> items should look as shown in the image below:<br>
+                                <figure><img src="img/orderPizza_9.png" alt="Using card layout in orderPizza state"></figure>
+                            <br>
+                                <b>Note:</b> to save you from typing, please find the OBotML code to copy-and-paste into your <i>orderPizza</i> state. Just ensure the formatting is as in above image. <br>
                             <pre>
 - type: "cards"
   cardLayout: "horizontal"
@@ -709,17 +714,29 @@
      pizza: "${enumValue}"    
                             </pre></li>
                         </ol>
-                        <section>
-                            <!-- Include the More Information section only in a standalone tutorial or in the final lab or tutorial in a series (not in a learning path) -->
-                            <h2 id="more_info" role="button" style="text-align: left;"><img src="img/32_more.png" alt="more information" height="32" width="32" class="num_circ">Want to Learn More?</h2>
-                            <ul>
-                                <li><a href=".html" target="_blank">More information link here</a></li>
-                                <li><a href=".html" target="_blank">More information link here</a></li>
-                                <li><a href=".html" target="_blank">More information link here</a></li>
-                                <li><a href=".html" target="_blank">More information link here</a></li>
-                            </ul>
-                        </section>
-                        <hr>
+                        <p style="text-align:justify"><b>What you just did:</b> The <code>System.CommonResponse</code> component allows you to create arbitrary complex visual bot responses. For this you can mix response item types to be conditionally displayed, or displayed together. In this part of the tutorial, you added a cards response item to the <code>System.CommonResponse</code> component in the <i>pizzaOrder</i> state that is displayed for the <i>Type</i> composite bag entity item only. So the pizza type is not prompted for twice, you excluded the <i>Type</i> bag item from the text response item so it does not render as a text list-of-values.</p>
+                        
+                    <h3>Testing</h3>
+                        <ol>
+                            <li style="text-align:justify">Open the embedded conversation tester (<img alt="conversation tester" src="img/testerIcon.png" height="25" />)</li>
+                            <li style="text-align:justify">Reset the conversation tester if required</li>
+                            <li style="text-align:justify">Type <b>I like to order pizza</b> into the <b>Message</b> field and press the enter-key</li>
+                            <li style="text-align:justify">The list of pizzas is displayed in a horizontal card layout. Click the <b>Order Now</b> button on the <b>CHEESE BASIC</b> card to order a cheese pizza</li>
+                            <li style="text-align:justify">You are then prompted for a pizza size. Select <b>Large</b> as the pizza size</li>
+                            <li style="text-align:justify">When prompted for the toppings, type <b>2</b>.</li>
+                            <li style="text-align:justify">When prompted for the delivery address, type <b>Home</b></li>
+                            <li style="text-align:justify">The confirmation message should print as before, just showing <i>Basic Cheese</i> as the pizza type instead of Pepperoni.</li>
+                            <li style="text-align:justify"><b>Reset</b> the tetser</li>
+                            <li style="text-align:justify">Next, type <b>I like to order a large pizza pepperoni</b> into the <b>Message</b> field. Pause for a second and answer the following question: <i>What is your expectation to happen?</i></li>
+                            <li style="text-align:justify">Press the enter-key to see if your expectation is met. What you should see is that the conversation does not render the cards and also does not prompt you for the pizza size. Instead you are prompted for selecting the toppings. This behavior is caused by the <i>nlpResultVariable</i> of the <code>System.CommonResponse</code> component that is set to the <i>iResult</i> variable</li>
+                            <li style="text-align:justify"><b>Reset</b> the tester</li>
+                            <li style="text-align:justify">Type <b>I like to order pizza</b> into the <b>Message</b> field and press the enter-key</li>
+                            <li style="text-align:justify">When prompted to select a pizza type (cards), type <i>Hmm, I like a large pizza pepperoni with mushrooms</i>. Pause for a second and, again, answer the question for what your expectation is.</li>
+                            <li style="text-align:justify">Press the enter-key</li>
+                            <li style="text-align:justify">The pizza bot should ask your for the delivery address (which hopefully was what you had expected).  </li>                                                                                    
+                        </ol>
+                        <p style="text-align:justify"><b>Note:</b> Composite bag entities support out-of-order message extraction, which basically means that if a user provides information that is required by a composite bag item, though he wasn't prompted to provide the information yet, then it is automatically extracted from the user message. This is one of the benefits you are getting from using composize bag entities.</p>
+                       
                 </article>
             </div>
             <br class="clearfloat">
