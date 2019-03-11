@@ -58,7 +58,6 @@
                             <br>
                             March 2019, Oracle Digital Assistant version 19.1.3<br>
                         </span></p>
-
                     <section>
                         <h2><img src="img/32_begin.png" alt="section 0" height="32" width="32" class="num_circ">Before You Begin</h2>
                         <h3>Background</h3>
@@ -198,17 +197,17 @@
                             <li style="text-align:justify">Ensure the <b>Remove Comments</b> toggle is switched on.</li>
                             <li style="text-align:justify">Click <b>Apply</b></li>
                             <li style="text-align:justify">Change the state name from <b>output</b> to <b>confirmOrder</b></li>
-                            <li style="text-align:justify">Add the following string to the <b>text</b> property (including the quotes): <br><br><i>"Your order of a ${pizzaSize.value?lower_case} ${pizzaType.value?capitalize} pizza is on its way"</i></li>
+                            <li style="text-align:justify">Add the following string to the <b>text</b> property (including the quotes):
+                                <br>
+                                <br><i>"Your order of a ${pizzaSize.value?lower_case} ${pizzaType.value?capitalize} pizza is on its way"</i></li>
                             <li style="text-align:justify">Add a <b>transitions</b> element as shown in the image below.
                                 <br>
                                 <figure><img src="img/confirmOrder_1.png" alt="confirmOrder state"></figure>
-
                             </li>
                         </ol>
                         <br>
                         <p style="text-align:justify"><b>What you just did:</b> In this section you actually created a complete bot conversation flow using to Common Response component states and one output component state. Using the <i>transitions</i> directives you specified the states to navigate to once a valid data input is provided for one of the two input states. The <i>confirmOrder</i> state actually ends with a return transition, which basically means that the user-bot conversation is ended. </p>
                         <p style="text-align:justify"><b>Note:</b>The confirmation message contains two Apache FreeMarker expressions "?lower_case" and "?capitalize". Apache Freemarker is an open source template language that can be used in Oracle Digital Assistant to e.g. format text messages. In this pizza example, the message values for pizza type and size are read from the entity. The pizza type value is defined in all upper case in the entity, while the pizza size is defined with a capitalized first letter. Both entity values actually look odd when displayed to a user in a message. Using Apache Freemarker, the entity values are formatted such that the pizza type starts with an uppercase letter, followed by all lowercase letters, and the pizza size is printed in all lowercase.</p>
-
                         <h3>Testing</h3>
                         <ol>
                             <li style="text-align:justify">Before you can test the bot, ensue your edits are valid and well formatted. For this, press the <b>Validate</b> link on top of the dialog flow editor. (<img alt="Validate link" src="img/validateLink.png" height="20" />)</li>
@@ -229,11 +228,11 @@
                         <p style="text-align:justify">While your pizza bot is working, the user experience can be improved. Instead of displaying prompts for the user to provide the pizza type and pizza size values, displaying a list of values makes for a much better user experince. Using the <code>System.CommonResponse</code> component, building list of values is easy. </p>
                         <h3>Displaying a list-of-values response for the orderPizza state</h3>
                         <p style="text-align:justify">There are two options you have to create a list of values for the orderPizza and the askSize states: re-create or modify. To experience both approaches, you will
-
                             <ul>
                                 <li style="text-align:justify">Create a list of values for the <b>orderPizza</b> state by re-building the state using the component templates option in the dialog flow editor</li>
                                 <li style="text-align:justify">Modify the <b>askSize</b> state definition to extend the current text response with a choice of values</li>
-                            </ul><br>
+                            </ul>
+                            <br>
                             <ol>
                                 <li style="text-align:justify">Back in the dialog flow editor, press the components template button (<img alt="+ Components" src="img/plusComponents.png" height="25" />)</li>
                                 <li style="text-align:justify">In the opened dialog, select the <b>User Interface</b> option (<img alt="User Interface option" src="img/userInterface.png" height="25" />)</li>
@@ -300,8 +299,8 @@
                         <li style="text-align:justify">Edit the askSize state so it looks like in the image below. The changes you need to apply are highlighted in the image
                             <figure><img src="img/askSize_2.png" alt="ask size state with changed content"></figure>
                         </li>
-                        <li style="text-align:justify">Press the <b>Validate</b> button to ensure correct indenting of the added configuration.<br>
-                            <b>Note</b> If you experience an error you don't see how to resolve, try the debugger (<img alt="debugger icon" src="img/debugger.png" height="20" />)</li>
+                        <li style="text-align:justify">Press the <b>Validate</b> button to ensure correct indenting of the added configuration.
+                            <br> <b>Note</b> If you experience an error you don't see how to resolve, try the debugger (<img alt="debugger icon" src="img/debugger.png" height="20" />)</li>
                     </ol>
                     <p style="text-align:justify"><b>What you just did:</b> You extended the <code>System.CommonResponse</code> component in the askSize state with <i>actions</i>. Because the <i>PizzaSize</i> entity too is a value list entity, you could read the list of values from the entity type context variable (<code>pizzaSize.type.enumValues</code>)</p>
                     <h3>Testing</h3>
@@ -329,16 +328,19 @@
                         <li style="text-align:justify"><b>Close</b> the tester window by clicking on the 'X' icon</li>
                     </ol>
                     <h3>Using keywords to access list items</h3>
-                    <p style="text-align:justify">Both states, the <b>orderPizza</b> and the <b>askSize</b> states have a list of actions with an yet empty <b>keyword</b> property. Keywords allow you to define shortcuts that users can type into the message field to select an action (a list item). You can define a single word as a value, or a sequence of words concatenated with a comma. E.g. keyword: "l,L,grand,max" to provide a list of options for selecting a <i>large</i> size for a pizza. <br><br>
-                        However in this tutorial, the list of values is dynamically created from the list of values provided by the <i>PizzaType</i> and <i>PizzaSize</i> entities. This means that keywors also need to be generated dynamically. Let's create keywords for the <i>askSize</i> state</p>
+                    <p style="text-align:justify">Both states, the <b>orderPizza</b> and the <b>askSize</b> states have a list of actions with an yet empty <b>keyword</b> property. Keywords allow you to define shortcuts that users can type into the message field to select an action (a list item). You can define a single word as a value, or a sequence of words concatenated with a comma. E.g. keyword: "l,L,grand,max" to provide a list of options for selecting a <i>large</i> size for a pizza.
+                        <br>
+                        <br> However in this tutorial, the list of values is dynamically created from the list of values provided by the <i>PizzaType</i> and <i>PizzaSize</i> entities. This means that keywors also need to be generated dynamically. Let's create keywords for the <i>askSize</i> state</p>
                     <ol>
                         <li style="text-align:justify">Navigate to the <b>askSize</b> state</li>
-                        <li style="text-align:justify">Add the following value to the <b>keyword:</b> property<br><br>
-                            "${enumValue[0]?upper_case},${(enumValue?index)+1}"
-                        </li>
-                        <li style="text-align:justify">Change the <b>label:</b> property to<br><br>
-                            "(${enumValue[0]?upper_case})${enumValue?keep_after(enumValue[0])}" <br><br>
-                            The <b>askSize</b> state should now look like shown in the image below
+                        <li style="text-align:justify">Add the following value to the <b>keyword:</b> property
+                            <br>
+                            <br> "${enumValue[0]?upper_case},${(enumValue?index)+1}" </li>
+                        <li style="text-align:justify">Change the <b>label:</b> property to
+                            <br>
+                            <br> "(${enumValue[0]?upper_case})${enumValue?keep_after(enumValue[0])}"
+                            <br>
+                            <br> The <b>askSize</b> state should now look like shown in the image below
                             <figure><img src="img/askSize_3.png" alt="keyword proprty in CR component"></figure>
                         </li>
                         <li style="text-align:justify">Click the <b>Validate</b> button to ensure correct formatting and indenting</li>
@@ -349,8 +351,11 @@
                         <li style="text-align:justify">Open the embedded conversation tester</li>
                         <li style="text-align:justify">In the Message field, type "I like to order pizza"</li>
                         <li style="text-align:justify">Select a pizza type from the displayed list, e.g. Meat Lover</li>
-                        <li style="text-align:justify">You are prompted for selecting a pizza size. Notice the different look of the list labels<br><br>
-                        <figure><img src="img/askSize_4.png" alt="list item labels showing leading character in brackets"></figure></li>                            
+                        <li style="text-align:justify">You are prompted for selecting a pizza size. Notice the different look of the list labels
+                            <br>
+                            <br>
+                            <figure><img src="img/askSize_4.png" alt="list item labels showing leading character in brackets"></figure>
+                        </li>
                         <li style="text-align:justify"> Instead of selecting a value from the list, type e.g. <b>L</b> and press enter. You should see a confirmation for a large pizza "Meat Lover"</li>
                         <li style="text-align:justify">Reset the converation</li>
                         <li style="text-align:justify">In the Message field, type "I like to order pizza"</li>
@@ -363,7 +368,7 @@
                     <section>
                         <h2 id="section_4" role="button" style="text-align: left;"><img src="img/32_4.png" alt="section 4" height="32" width="32" class="num_circ">Creating a Card Layout</h2>
                         <p style="text-align:justify">Some messengers, like Facebook and the Oracle Digital Assistant Client SDK for JavaScript, suport rich user interface layouts. A common layout type is the card layout, which when aligned horizontal displays as a carousel. Next you will change the <i>orderPizza</i> state to render pizza types in cards with images.</p>
-                        <h3>Displaying a pizza menu as cards</h3>
+                        <h3>Displaying the pizza menu as cards</h3>
                         <ol>
                             <li style="text-align:justify">Create a new line under the <b>states:</b> element in the dialog flow</li>
                             <li style="text-align:justify">Open the <a href="files/pizza_menu.txt" target="_blank">pizza_menu.txt file</a> and copy its content to the clipboard</li>
@@ -384,8 +389,8 @@
                                 <figure><img src="img/orderPizza_2.png" alt="orderPizza state with cards"></figure>
                             </li>
                             <li style="text-align:justify">Press the <b>Validate</b> button to ensure the component state to be valid</li>
-                            <li style="text-align:justify">Further edit the <b>pizzaOrder</b> state with instructions and values from the table below<br>   
-                                                                                                                                                                                 
+                            <li style="text-align:justify">Further edit the <b>pizzaOrder</b> state with instructions and values from the table below
+                                <br>
                                 <table style="text-align:justify" summary="pizza order state changes">
                                     <tr>
                                         <th scope="col">Property</th>
@@ -396,74 +401,75 @@
                                         <td scope="row">variable</td>
                                         <td></td>
                                         <td>Create <b>variable</b> property in a new row below the <i>processuserMessage</i> property</td>
-                            </tr>
-                            <tr>
-                                <td scope="row">variable</td>
-                                <td>"pizzaType"</td>
-                                <td></td>
-                            </tr>
-                            <tr>
-                                <td scope="row">nlpResultVariable</td>
-                                <td></td>
-                                <td>Create property in a new row below the <i>variable</i> property</td>
-                            </tr>
-                            <tr>
-                                <td scope="row">nlpResultVariable</td>
-                                <td>"iResult"</td>
-                                <td></td>
-                            </tr>
-                            <tr>
-                                <td scope="row">cardLayout</td>
-                                <td>"horizontal"</td>
-                                <td></td>
-                            </tr>
-                            <tr>
-                                <td scope="row">iteratorVariable</td>
-                                <td>"pizzaType.type.enumValues"</td>
-                                <td></td>
-                            </tr>
-                            <tr>
-                                <td scope="row">title</td>
-                                <td>${enumValue}</td>
-                                <td></td>
-                            </tr>
-                            <tr>
-                                <td scope="row">description</td>
-                                <td>"${pizzaCardInfo.value[enumValue].description}"</td>
-                                <td></td>
-                            </tr>
-                            <tr>
-                                <td scope="row">imageUrl</td>
-                                <td>"${pizzaCardInfo.value[enumValue].image}"</td>
-                                <td></td>
-                            </tr>
-                            <tr>
-                                <td scope="row">cardUrl</td>
-                                <td></td>
-                                <td>Delete property</td>
-                            </tr>
-                            <tr>
-                                <td scope="row">payLoad:>action:</td>
-                                <td>"selectPizza"</td>
-                                <td></td>
-                            </tr>
-                            <tr>
-                                <td scope="row">label</td>
-                                <td>"Order ${enumValue?capitalize}"</td>
-                                <td></td>
-                            </tr>
-                            <tr>
-                                <td scope="row">user.someVariable</td>
-                                <td></td>
-                                <td>Change name to <i>pizzaType</i></td>
-                            </tr>
-                            <tr>
-                                <td scope="row">pizzaType</td>
-                                <td>"${enumValue}"</td>
-                                <td> </td>
-                            </tr>
-                            </table><br><br>
-                                The <b>orderPizza</b> state should now look as shown in the image below<br><br>
+                                    </tr>
+                                    <tr>
+                                        <td scope="row">variable</td>
+                                        <td>"pizzaType"</td>
+                                        <td></td>
+                                    </tr>
+                                    <tr>
+                                        <td scope="row">nlpResultVariable</td>
+                                        <td></td>
+                                        <td>Create property in a new row below the <i>variable</i> property</td>
+                                    </tr>
+                                    <tr>
+                                        <td scope="row">nlpResultVariable</td>
+                                        <td>"iResult"</td>
+                                        <td></td>
+                                    </tr>
+                                    <tr>
+                                        <td scope="row">cardLayout</td>
+                                        <td>"horizontal"</td>
+                                        <td></td>
+                                    </tr>
+                                    <tr>
+                                        <td scope="row">iteratorVariable</td>
+                                        <td>"pizzaType.type.enumValues"</td>
+                                        <td></td>
+                                    </tr>
+                                    <tr>
+                                        <td scope="row">title</td>
+                                        <td>${enumValue}</td>
+                                        <td></td>
+                                    </tr>
+                                    <tr>
+                                        <td scope="row">description</td>
+                                        <td>"${pizzaCardInfo.value[enumValue].description}"</td>
+                                        <td></td>
+                                    </tr>
+                                    <tr>
+                                        <td scope="row">imageUrl</td>
+                                        <td>"${pizzaCardInfo.value[enumValue].image}"</td>
+                                        <td></td>
+                                    </tr>
+                                    <tr>
+                                        <td scope="row">cardUrl</td>
+                                        <td></td>
+                                        <td>Delete property</td>
+                                    </tr>
+                                    <tr>
+                                        <td scope="row">payLoad:>action:</td>
+                                        <td>"selectPizza"</td>
+                                        <td></td>
+                                    </tr>
+                                    <tr>
+                                        <td scope="row">label</td>
+                                        <td>"Order ${enumValue?capitalize}"</td>
+                                        <td></td>
+                                    </tr>
+                                    <tr>
+                                        <td scope="row">user.someVariable</td>
+                                        <td></td>
+                                        <td>Change name to <i>pizzaType</i></td>
+                                    </tr>
+                                    <tr>
+                                        <td scope="row">pizzaType</td>
+                                        <td>"${enumValue}"</td>
+                                        <td> </td>
+                                    </tr>
+                                </table>
+                                <br> The <b>orderPizza</b> state should now look as shown in the image below
+                                <br>
                                 <figure><img src="img/orderPizza_2_2.png" alt="Edited orderPizza state"></figure>
                             </li>
                             <li style="text-align:justify">Edit the <b>transitions:</b> element so it looks as shown in the image below
@@ -478,7 +484,7 @@
                             <br>
                             <br>The <i>LoadPizzaCardInfo</i> state you copied from the provided pizza_menu.txt file uses Apache FreeMarker expressions to build a pizza menu object. In a production usecase, this object would be queried from a remote service by a custom component and then saved into a context variable.
                             <br>
-                            <br>As before, the card layout uses an iterator (the enum values of the PizzaType entity) to print the individual cards. The pizza names are used as a key name in the pizza menu object (pizzaCardInfo) to retrieve the image URL and description. 
+                            <br>As before, the card layout uses an iterator (the enum values of the PizzaType entity) to print the individual cards. The pizza names are used as a key name in the pizza menu object (pizzaCardInfo) to retrieve the image URL and description.
                             <br>
                             <br>The <i>actions</i> element defines the buttons to be placed on a card. In the tutorial, each card is rendered with a single button to order the displayed pizza. Pressing the button updates the <i>pizzaType</i> variable with the name of the pizza. At the same time, the <i>selectPizza</i> custom action is followed. The <i>selectPizza</i> custom action is mapped to the <i>askSize</i> state, so navigation continues to asking for the pizza size.</p>
                         <p style="text-align:justify"><b>Why the <i>next</i> transition is set to the same value as the <i>selectPizza</i> transition:</b> The <i>selectPizza</i> action transition is followed when a user clicks the button on a card. However, if the initial user message contained the name of the pizza to order, in which case natural language processing extracts it, then the <i>next</i> transition is followed. Keep in mind that selecting a button may result in a diferent dialog flow, which is why it is good to define a separate action transition.</p>
@@ -497,15 +503,38 @@
                             <li style="text-align:justify">Notice that the card layout with the pizzas does not show and you are directly asked to select a pizza size. This is because of the <i>variable</i> and <i>nlpResultVariable</i> properties you set on the <code>System.CommonResponse</code> component</li>
                         </ol>
                     </section>
-                        <h3>Adding keyword support for cards</h3>
-                        <p style="text-align:justify">When working with card layouts, it is not the card you select for an action, but one of the buttons on the card. In this tutorial, each card has a single button to select a pizza type for ordering. Following the next steps, you will implement keyword support for the <i>orderPizza</i> state's card layout.</p>
-                        
+                    <h3>Adding keyword support for cards</h3>
+                    <p style="text-align:justify">When working with card layouts, it is not the card you select for an action, but one of the buttons on the card. In this tutorial, each card has a single button to select a pizza type for ordering. Following the next steps, you will implement keyword support for the <i>orderPizza</i> state's card layout.</p>
+                    <ol>
+                        <li style="text-align:justify">Replace the <b>label</b> property value in the <i>orderPizza</i> state with the following expression
+                            <br>
+                            "Order (${enumValue[0]?upper_case}${enumValue[1]?upper_case})${enumValue?keep_after(enumValue[1])}"
+                        </li>
+                        <li style="text-align:justify">Edit the <b>keyword:</b> element in the <b>actions</b> element, adding the following expression string as a value
+                            <br> "${enumValue[0]?upper_case}${enumValue[1]?upper_case}"
+                            <br> </li>
+                        <li style="text-align:justify">Open the embedded tester</li>
+                        <li style="text-align:justify">Type <i>I like to order pizza</i> into the message field and press the enter-key. The pizza menu should display as shown in the image below.
+                            <br>
+                            <figure><img src="img/cardLayoutWithKeywordTesting.png" alt="Pizza menu with keyword selection highlighted"></figure>
+                            <br>
+                        </li>
+                        <li style="text-align:justify">Note the (CH) in the "Order (CH)EESE BASIC" card button label</li>
+                        <li style="text-align:justify">Type <b>ch</b> into the message field to order a cheese pizza</li>
+                        <li style="text-align:justify">Press the enter-key</li>
+                        <li style="text-align:justify">Select <b>large</b> as the pizza size when prompted for it. The bot should confirm your order of a large cheese pizza</li>
+                        <li style="text-align:justify">Reset the tester</li>
+                        <li style="text-align:justify">Type <i>I like to order pizza</i> into the message field and press the enter-key</li>
+                        <li style="text-align:justify">With the CHEESE BASIC pizza card displayed, type <b>pe</b> into the message field and press the enter-key</li>
+                        <li style="text-align:justify">Type <b>l</b> into the message field when asked for the pizza size and press the enter-key. The bot should confirm your order of a large pizza Pepperoni</li>
+                        <li style="text-align:justify">Reset and close the tester</li>
+                    </ol>
+                    <p style="text-align:justify"><b>Note:</b> There are two observations with this latest practice. Firstly, the keyword uses two letters to make a pizza selection. This is because two pizzas, pepperoni and premium, start with a "P" as the first character. So a single letter keyword does not work. Secondly, the keyword selection does work even if a card is not displayed. There is, however, a constrain to the last statement. If you use page ranging to limit the number of card rendered at a time (some messengers like Facebook require this), then only those cards can be accessed through keywords that are within the current range.</p>
                     <hr>
                     <section>
                         <h2 id="section_5" role="button" style="text-align: left;"><img src="img/32_5.png" alt="section 5" height="32" width="32" class="num_circ">Working with Composite Bag Entities</h2>
                         <p style="text-align:justify">Composite bag entities are explained in the <a href="../compositeBag_032019/E95689_01.html" target="_blank">"Using Composite Bag Entities for Real-World Entity Extraction"</a> tutorial. In the following you learn how to build user interfaces and prompts for content of composite bag entites usin the <code>Sytsem.CommonResponse</code> component.</p>
-                        <p style="text-align:justify">
-                            When working with composite bag entities you have a choice of how to render the user interface</p>
+                        <p style="text-align:justify"> When working with composite bag entities you have a choice of how to render the user interface</p>
                         <ul>
                             <li style="text-align:justify">The <code>System.ResolveEntities</code> system component renders user interfaces for composite bag entities as prompts or list-of-values without requiring any programming. Ease of use definitively is the benefit of the <code>System.ResolveEntities</code> component.</li>
                             <li style="text-align:justify">The <code>System.CommonResponse</code> component can also render user interfaces for the composite bag entities, but may need additional configuration. The benefit of using the <code>System.CommonResponse</code> component is that the user interface it renders is customizable, as you will experience in this part of the tutorial.</li>
@@ -515,60 +544,182 @@
                         <ol>
                             <li style="text-align:justify">Open the entiy panel (<img alt="entity icon" src="img/entity.png" height="25" />)</li>
                             <li style="text-align:justify">Select the <b>Pizza</b> entity</li>
-                            <li style="text-align:justify">Notice the <b>Bag Items</b> section that contains the following items: <i>Type</i>,<i>Size</i>,<i>Toppings</i>, <i>CheeseType</i>, <i>NoToppings</i>, <i>Location</i> and <i>LocationText</i>. <br>Each item in the bag is either an entity or a variable. When a composite bag entity gets resolved at runtime, then all bag items are getting resolved at once with no exra dialog flow states to define. </li>
+                            <li style="text-align:justify">Notice the <b>Bag Items</b> section that contains the following items: <i>Type</i>,<i>Size</i>,<i>Toppings</i>, <i>CheeseType</i>, <i>NoToppings</i>, <i>Location</i> and <i>LocationText</i>.
+                                <br>Each item in the bag is either an entity or a variable. When a composite bag entity gets resolved at runtime, then all bag items are getting resolved at once with no exra dialog flow states to define. </li>
                             <li style="text-align:justify">Select the <b>Type</b> entity bag item and click on the <b>pencil</b> icon (<img alt="Edit icon" src="./img/pencilIcon.png" height="25" />)</li>
-                            <li style="text-align:justify">Scroll down the opened panel and notice the properties you can set. A lot of properties, including prompts and range size, which normally are set as property on a component, are configured in the entity.</li>
+                            <li style="text-align:justify">Scroll down the opened panel and notice the properties you can set. A lot of properties, including prompts, validation rules and range size, which normally are set as property on a component, are configured in the entity and will be picked up by the component at runtime.</li>
                             <li style="text-align:justify">Click the <b>Close</b> button in the upper right corner to return to the composite bag entity panel</li>
-                            <li style="text-align:justify">Select the dialog flow menu icon (<img alt="Dialog flow icon" src="./img/dialogEditor.png" height="25" />) to return to the dialog flow editor.</li>
                         </ol>
+                        <h3>Preparing the intent resolution</h3>
+                        <p>Though this tutorial is all about the common response component, it is important to also ensure enity extraction through natural language processing continues working when using the <i>Pizza</i> composite bag entity.</p>
+                        <ol>
+                            <li style="text-align:justify">Select the Intent menu option in the menu to the left (<img alt="Intent icon" src="img/intent.png" height="25" />)</li>
+                            <li style="text-align:justify">Remove the <b>PizzaSize</b> and <b>PizzaType</b> entities from the <b>Intent Entities</b> list by clicking on the 'x' icons</li>
+                            <li style="text-align:justify">Press the <b>+ Entity</b> button</li>
+                            <li style="text-align:justify">Scroll the opened list of entities down to the <b>Pizza</b> entty and select it.<br>
+                                <figure><img src="img/selectEntitiesDialog.png" alt="Select intent dialog"></figure>
+                                <br>
+                            <li style="text-align:justify">Click the <b>Train button in the header to train the model</b></li>
+
+                            <li style="text-align:justify">Select the <b>Try It Out!</b> link to open the integrated intent tester</li>
+                            <li style="text-align:justify">Type <b>I like to order a large pizza pepperoni</b> into the <b>Message</b> field and press the <b>Send</b> button</li>
+                            <li>Notice that the <i>PizzaType</i> and <i>PizzaSize</i> entities are resolved within the composite gab entity as well as stand alone.</li>
+                            <li style="text-align:justify">Close the intent tester by pressing the xlose button (<b>'X'</b>)</li>
+                        </ol>
+                        <p style="text-align:justify"><b>What you just did:</b>
+                            For natural languages processing to extract entity values from user input messages, you needed to associate the <i>Pizza</i> composite bag entity with the <i>OrderPizza</i> intent. Note that there is no need to associate all the individual entities of a composite bag entity with the intent.</p>
                         <h3>Preparing the dialog flow</h3>
-                        <p style="text-align:justify">A benefit of using composite bag entities is that you don't need to create that many dialog flow states anymore. Instead of the two dislog flow states you used so far for asking users for the pizza type and pizza size, you now only need one for all of the bag items you have seen in the Pizza composite bag entity</p>
                         <ol>
-                            <li style="text-align:justify">...</li>
+                            <li style="text-align:justify">Select the dialog flow builder menu item (<img alt="Dialog flow menu item" src="img/dialogEditor.png" height="25" />)</li>
+                            <li style="text-align:justify">Delete the <b>orderPizza</b> and the <b>askSize</b> states.</li>
                         </ol>
+                        <p style="text-align:justify"><b>What you just did:</b> A composite bag entity doesn't require dialog flow states to be defined for each of its contained entities. The <code>System.CommponResponse component</code> generates all user interaction prompts and lists needed.</p>
+                    </section>
+                    <hr>
+                    <h3>Creating the orderPizza state</h3>
+                    <ol>
+                        <li style="text-align:justify">Still in the dialog flow, press the <b>+ Components</b> button (<img alt="Component template button" src="img/plusComponents.png" height="20" />)</li>
+                        <li style="text-align:justify">Select the <b>User Interface</b> category</li>
+                        <li style="text-align:justify">Select the <b>Common response - composite bag</b> template</li>
+                        <li style="text-align:justify">Set the <b>Insert After</b> select list to <b>unresolved</b>.</li>
+                        <li style="text-align:justify">Enable he <b>Remove Comments</b> toggle.</li>
+                        <li style="text-align:justify">change the name of the added dialog flow state from <b>resolveCompositeBag</b> to <b>orderPizza</b>.</li>
+                        <li style="text-align:justify">Remove the following properties that are advanced and that are not discussed in this tutorial:
+
+                            <table style="text-align:justify" summary="This table shows items to remive from the common response component">
+                                <tr>
+                                    <th scope="col">Properties to delete</th>
+                                </tr>
+                                <tr>
+                                    <td scope="row">maxPrompts</td>
+                                </tr>
+                                <tr>
+                                    <td scope="row">cancelPolicy</td>
+                                </tr>
+                                <tr>
+                                    <td scope="row">transitionAfterMatch</td>
+                                </tr>
+                                <tr>
+                                    <td scope="row">autoNumberPostbackActions</td>
+                                </tr>
+                                <tr>
+                                    <td scope="row">translate</td>
+                                </tr>
+                            </table>
+                        </li>
+                        <li style="text-align:justify">In <b>globalActions</b>, delete the <b>Cancel</b> postback action so the <i>globalActions</i> configuration looks as in the image below
+                            <br>
+                            <figure><img src="img/orderPizza_6.png" alt="orderPizza state with changed globalActions settings"></figure>
+                            <br>
+                        </li>
+                        <li style="text-align:justify">Change the <b>transitions</b> section to look as shown in the image below
+                            <br>
+                            <figure><img src="img/orderPizza_7.png" alt="Changed transition section"></figure>
+                            <br>
+                        </li>
+                        <li style="text-align:justify">Edit the following properties with the values (incuding quotes) shown in the table below
+                            <br>
+                            <table style="text-align:justify" summary="Properties to edit">
+                                <tr>
+                                    <th scope="col">Property</th>
+                                    <th scope="col">Value</th>
+                                </tr>
+                                <tr>
+                                    <td scope="row">value</td>
+                                    <td>pizza</td>
+                                </tr>
+                                <tr>
+                                    <td scope="row">nlpResultVariable</td>
+                                    <td>"iResult"</td>
+                                </tr>
+                            </table>
+                            <br>
+                        </li>
+                        <li style="text-align:justify">Edit the <b>metadata</b> property so it looks as in the image below. Specifically notice the highlighted change in the action variables.
+                            <br>
+                            <figure><img src="img/orderPizza_8.png" alt="Changes to test item response"></figure>
+                            <br>
+                        </li>
+                        <li style="text-align:justify">Change the <b>confirmOrder</b> state's text message from ...
+                            <br>
+                            <figure><img src="img/confirmOrder_2.png" alt="confirmOrder state - old settingfs"></figure>
+                            <br>
+                            to ...
+                            <br>
+                            <figure><img src="img/confirmOrder_3.png" alt="confirmOrder state - new settings"></figure>
+                            <br>
+                            <b>Note:</b> to save you from typing, below is the complete dialog flow state for you to copy-and-paste. Just ensure the formatting to be like in the image above
+                            <br>
+                            <pre>
+  confirmOrder:
+    component: "System.Output"
+    properties:
+      text: |-
+            Your order of a ${pizza.value.Size?lower_case} ${pizza.value.Type?capitalize} pizza with ${pizza.value.Toppings[0]} is on its way.
+            We deliver wihin 30 minutes to '${pizza.value.LocationText}'
+      translate:
+    transitions:
+      return: "done"
+                            </pre>
+                            <br>
+                        </li>
+                    </ol>
+                        <p style="text-align:justify"><b>What you just did:</b> In this part of the tutorial you did create a dialog flow state that uses the <code>System.CommonResponse</code> component to resolve the <i>Pizza</i> composite bag entity. The component template contains most of the configurations so that the only change required is setting the values for the <i>variable</i> and the <i>nlpResultVariable</i> properties, as well as the change of the name of the variable to update when a user selects an item (a pizza type or pizza size) from the list.<br><br>
+                        The <i>orderConfirmation</i> state needed to be changed because the user provided order information is saved in the <i>pizza</i> variable and no longer in the variables created for each pizza type.</p>
+
                         <h3>Testing</h3>
-                        <p style="text-align:justify">...</p>
-                    </section>
-                    <hr>
-                    <section>
-                        <h2 id="section_6" role="button" style="text-align: left;"><img src="img/32_6.png" alt="section 6" height="32" width="32" class="num_circ">Step Title</h2>
                         <ol>
-                            <li>...</li>
+                            <li style="text-align:justify">Open the embedded conversation tester (<img alt="conversation tester" src="img/testerIcon.png" height="25" />)</li>
+                            <li style="text-align:justify">Reset the conversation tester if required</li>
+                            <li style="text-align:justify">Type <b>I like to order pizza</b> into the <b>Message</b> field and press the enter-key</li>
+                            <li style="text-align:justify">In the displayed list of pizzas, select <b>PEPPERONI</b></li>
+                            <li style="text-align:justify">You are then prompted for a pizza size. Select <b>Large</b> as the pizza size</li>
+                            <li style="text-align:justify">When prompted for the toppings, type <b>2</b>.</li>
+                            <li style="text-align:justify">When prompted for the delivery address, type <b>Home</b></li>.
+                            <li style="text-align:justify">The confirmation message displayed in the tester should look as shown in the image below:
+                            <br>
+                                <figure><img src="img/confirmOrder_4.png" alt="Order confirmation"></figure>
+                            <br>
+                            </li>
+                            <li style="text-align:justify">Reset and close the conversation tester.</li>
                         </ol>
-                    </section>
-                    <hr>
-                    <section>
-                        <h2 id="section_7" role="button" style="text-align: left;"><img src="img/32_7.png" alt="section 7" height="32" width="32" class="num_circ">Step Title</h2>
+                        <p><b>Observation to point out:</b> Using the <code>System.CommonResponse</code> component with a composite bag entity does not require bot designers to setup dialo flow states for each entity contained in the composite entity. Instead a single state, <i>orderPizza</i> in this sample, is sufficient.</p>
+                        <h3>Adding a card layout to the UI rendered for the composite bag entity</h3>
+                        <p style="text-align:justify">Using the <code>System.CommonResponse</code> component with a composite bag entity allows you to create the same user interface you created before using individual entities. In this part of the hands-on you will copy-and-paste code to the pizzaOrder state that during testing renders pizza types as cards.</p>
                         <ol>
-                            <li>...</li>
+                            <li style="text-align:justify">Edit the <b>orderPizza</b> state and add an additional card response item. The <code>System.CommonResponse</code> items should look as shown in the image below:<br>
+                            <br>
+                            <b>Note: to save you from typing, please find the OBotML code to copy-and-paste into your <i>orderPizza</i> state. Just ensure the formatting is as in above image. </b><br>
+                            <pre>
+- type: "cards"
+  cardLayout: "horizontal"
+  visible:
+  entitiesToResolve:
+    include: "Type"
+  cards:
+  - title: "${enumValue}"
+    description: "<#if pizzaCardInfo.value[enumValue]?has_content>${pizzaCardInfo.value[enumValue].description}</#if>"
+    imageUrl: "<#if pizzaCardInfo.value[enumValue]?has_content>${pizzaCardInfo.value[enumValue].image}</#if>"
+    iteratorVariable: "system.entityToResolve.value.enumValues"
+    actions:
+    - label: "Order Now"
+    type: "postback"
+    payload:
+     variables:
+     pizza: "${enumValue}"    
+                            </pre></li>
                         </ol>
-                    </section>
-                    <hr>
-                    <section>
-                        <h2 id="section_8" role="button" style="text-align: left;"><img src="img/32_8.png" alt="section 8" height="32" width="32" class="num_circ">Step Title</h2>
-                        <ol>
-                            <li>...</li>
-                        </ol>
-                    </section>
-                    <hr>
-                    <section>
-                        <!-- Include the Next section only in a lab series or tutorial series -->
-                        <!-- Don't include this section if you plan to use the tutorials in a learning path -->
-                        <h2 id="next" role="button" style="text-align: left;"><img src="img/32_next.png" alt="next step" height="32" width="32" class="num_circ">Next Tutorial</h2>
-                        <p style="text-align:justify"><span lang="EN-US">...</span></p>
-                    </section>
-                    <hr>
-                    <section>
-                        <!-- Include the More Information section only in a standalone tutorial or in the final lab or tutorial in a series (not in a learning path) -->
-                        <h2 id="more_info" role="button" style="text-align: left;"><img src="img/32_more.png" alt="more information" height="32" width="32" class="num_circ">Want to Learn More?</h2>
-                        <ul>
-                            <li><a href=".html" target="_blank">More information link here</a></li>
-                            <li><a href=".html" target="_blank">More information link here</a></li>
-                            <li><a href=".html" target="_blank">More information link here</a></li>
-                            <li><a href=".html" target="_blank">More information link here</a></li>
-                        </ul>
-                    </section>
-                    <hr>
+                        <section>
+                            <!-- Include the More Information section only in a standalone tutorial or in the final lab or tutorial in a series (not in a learning path) -->
+                            <h2 id="more_info" role="button" style="text-align: left;"><img src="img/32_more.png" alt="more information" height="32" width="32" class="num_circ">Want to Learn More?</h2>
+                            <ul>
+                                <li><a href=".html" target="_blank">More information link here</a></li>
+                                <li><a href=".html" target="_blank">More information link here</a></li>
+                                <li><a href=".html" target="_blank">More information link here</a></li>
+                                <li><a href=".html" target="_blank">More information link here</a></li>
+                            </ul>
+                        </section>
+                        <hr>
                 </article>
             </div>
             <br class="clearfloat">
