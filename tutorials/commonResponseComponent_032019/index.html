@@ -62,109 +62,132 @@
                         <h2><img src="img/32_begin.png" alt="section 0" height="32" width="32" class="num_circ">Before You Begin</h2>
                         <h3>Background</h3>
                         <p style="text-align:justify"><span lang="EN-US">
-                                Skills in Oracle Digital Assistant use components to render bot responses and to prompts users. The <code>System.CommonResponse</code> component allows bot designers to create a set of user interfaces that range from simple text boxes to lists and card layouts to composite responses that include rich media and images. In this tutorial you learn how to build user interfaces with the <code>System.CommonResponse</code> component that display data from context variables in a dialog flow and that update context variables with the user provided selection or user typed text. As a follow-up to the <a href="../compositeBag_032019/E95689_01.html" target="_blank">"Using Composite Bag Entities for Real-World Entity Extraction"</a> tutorial released earlier, you learn how to use the <code>System.CommonResponse</code> component to render and prompt for content of a composite bag entity.
-                                <h3>What you need</h3>
-                                <ul>
-                                    <li style="text-align:justify">You need Oracle Digital Assistant version 19.1.3 or later to follow the hands-on instructions in this tutorial. Oracle Digital Assistant is available as a paid- and in a trial subscription. If you don't have access to Oracle Digital Assistant yet, visit the <a href="https://cloud.oracle.com/digital-assistant" alt="Oracle Digital Asisstant home page link"><b>Oracle Digital Assistant</b></a> website </li>
-                                    <li style="text-align:justify">Download the Oracle Digital Assistant starter skill bot from here: <a href="files/CRCTutorialSkill(1.0).zip" alt="download link for skill bot"><b>CRCTutorialSkill (zip)</b></a> </li>
-                                </ul>
+                                Skills in Oracle Digital Assistant reference components in their dialog flow states to display bot responses and prompt for user input. The <code>System.CommonResponse</code> component is a powerful and flexible component that allows bot designers to create different types of user interfaces, such as: simple text boxes, value lists, card layouts, and complex answers that return media and image content.</p>
+                        <p style="text-align:justify"><span lang="EN-US">In this tutorial you'll learn how to build user interfaces with the <code>System.CommonResponse</code> component that display data stored in dialog flow variables and that update dialog flow variables with user input. </p>
+                        <p style="text-align:justify">
+                            As an extension of the <a href="../compositeBag_032019/E95689_01.html" target="_blank"><b>"Using Composite Bag Entities for Real-World Entity Extraction"</b></a> tutorial, you'll learn how to display and handle content of composite bag entities using the <code>System.CommonResponse</code> component.
+                            <h3>What you need to run this tutorial</h3>
+                            <ul>
+                                <li style="text-align:justify">For this tutorial, you need access to an instance of Oracle Digital Assistant Version 19.1.3 or later. Oracle Digital Assistant is available for trial and as a paid subscription. If you do not have access to Oracle Digital Assistant, visit the <a href="https://cloud.oracle.com/digital-assistant" alt="Oracle Digital Asisstant home page link"><b>Oracle Digital Assistant</b></a> website </li>
+                                <li style="text-align:justify"><b>Download</b> the Oracle Digital Assistant starter skill bot from here: <a href="files/CRCTutorialSkill(1.0).zip" alt="download link for skill bot"><b>CRCTutorialSkill (zip)</b></a> </li>
+                            </ul>
                     </section>
                     <!-- ========================================================================================================================= -->
                     <section>
                         <hr>
                         <h2 id="section_1" role="button" style="text-align: left;"><img src="img/32_1.png" alt="Getting Ready" height="32" width="32" class="num_circ">Getting Ready</h2>
-                        <p style="text-align:justify"><span lang="EN-US">The use case for this hands-on tutorial is a pizza bot that handles orders for pizza and pasta. For you to be able to focus on building bot responses with the Common Response component, the starter skillbot you downloaded contains pre-defined intents and entities.</span></p>
-                        <h3>Importing the starter skill bot</h3>
+                        <p style="text-align:justify"><span lang="EN-US">The use case in this tutorial is a pizza bot. The starter skill you downloaded for this tutorial contains intents and entities, as well as a starter dialog flow.</span></p>
+                        <h3>Importing the starter skill to an Oracle Digital Assistant</h3>
+                        <p style="text-align:justify">If you work in your own Oracle Digital Assistant instance, then you import the starter skill and use it for the tuorial. In a shared trainings environment, the starter skill most like exists already. In this case you need to clone it before you can run the tutorial.</p>
                         <ol>
-                            <li style="text-align:justify">Open the Oracle Digital Assistant home dashboard by pointing your browser to <b>&lt;your instance url&gt;/botsui</b></li>
-                            <li style="text-align:justify">Select the menu icon located at the top of the page next to the "Oracle Digital Asisstant" label (<img src="img/hamburger.png" alt="menu icon">) </li>
-                            <li style="text-align:justify">Select the <b>Skills</b> option from the "Development" category
+                            <li style="text-align:justify">Open the Oracle Digital Assistant browser based dashboard by pointing your browser to <b>&lt;your instance url&gt;/botsui</b>.</li>
+                            <li style="text-align:justify">Select the menu icon at the top-left of the page next to the "Oracle Digital Asisstant" label (<img src="img/hamburger.png" alt="menu icon">). </li>
+                            <li style="text-align:justify">Select the <b>Skills</b> option in the <b>Development</b> category.
                                 <br>
                                 <figure><img src="img/image_001.png" alt="Main Menu"></figure>
                             </li>
-                            <li style="text-align:justify">Select the menu icon from the top of the page to close the menu(<img src="img/hamburger.png" alt="menu icon">)</li>
-                            <li style="text-align:justify">Click the <b>Import Skills</b> button located on the top right (<img src="img/importSkillButton.png" height="25" alt="import skill button">)</li>
-                            <li style="text-align:justify">On your computer, <b>browse</b> to the location that you saved the dowloaded <b>CRCTutorialSkill(1.0).zip to</b></li>
-                            <li style="text-align:justify">Select the CRCTutorialSkill(1.0).zip file and click <b>Open</b> to upload and install the starter skill bot</li>
-                            <li style="text-align:justify">Locate the <b>CRC Tutorial Skill</b> and open it by clicking on the CRC Tutorial Skill tile
+                            <li style="text-align:justify">Again, <b>click</b> on the menu icon at the top-left of the page to close the menu (<img src="img/hamburger.png" alt="menu icon">).</li>
+                            <li style="text-align:justify">Click the <b>Import Skills</b> button on the top right (<img src="img/importSkillButton.png" height="25" alt="import skill button">).</li>
+                            <li style="text-align:justify">On your computer, <b>browse</b> to the location you saved the dowloaded <b>CRCTutorialSkill(1.0).zip</b> file to.</li>
+                            <li style="text-align:justify">Select the CRCTutorialSkill(1.0).zip file and click <b>Open</b> to upload and install the starter skill bot.</li>
+                            <li style="text-align:justify">Locate the <b>CRC Tutorial Skill</b> and open it by clicking on the CRC Tutorial Skill tile.
                                 <br>
-                                <br><b>Note:</b> If you cannot find the CRC Tutorial Skill starter skill, then try and use the filter field above the "New Skill" tile. </li>
+                                <br><b>Note:</b> If you cannot find the <i>CRC Tutorial Skill</i> starter skill, then try and use the filter field above the <i>New Skill</i> tile to find it. </li>
                         </ol>
-                        <h3>Exploring the starter skill bot</h3>
+                        <h3>Cloning the starter skill</h3>
+                        <p style="text-align:justify">If you are running this tutorial in an environment that is shared with other users, like in a training, you will need to <b>clone the skill</b> before you can use it. The reason is that you can only import a skill with a specific name once. So, if you work in a shared environment, then ...</p>
                         <ol>
-                            <li style="text-align:justify">If not open already, open the intent builder by selecting the Intents menu icon (<img src="img/intentBuilderIcon.png" height="25" alt="intent builder icon">) </li>
-                            <li style="text-align:justify">There are two intents created for you. The <b>Welcome</b> intent allows users who are not familiar with how to use the bot to be directed to a menu state. The <b>OrderPizza</b> state resolves pizza orders from free input text messages using naural language processing (NLP). For this, the intent has two entities associated with it: <b>PizzaType</b> and <b>PizzaSize</b>. Note that both intents have example utterances defined, which allow you to train the model and, if required, fine tune the bot's understanding.</li>
-                            <li style="text-align:justify">Before you can try the intent model and its natural language processing, you need to train the skillbot. For this, click the <b>Train</b> link on the upper right (<img alt="train button" src="img/trainLink.png" height="20" />)</li>
-                            <li style="text-align:justify">In the opened dialog, keep the default settings and press the <b>Submit</b>button. Training the model may take a second or two.</li>
-                            <li style="text-align:justify">Now you are ready for testing the intent model. For this, click the <b>Try It Out!</b> link in the upper right corner to test the intent model</li>
-                            <li style="text-align:justify">Type <i>I like to order a large pizza pepperoni</i> into the <b>Message</b> and press the <b>Send</b> key.</li>
-                            <li style="text-align:justify">Notice that the intent tester indicates the <i>OrderPizza</i> intent with a probabily of 100% and that bot entities could be exracted from the input message.</li>
-                            <li style="text-align:justify">Press the <b>Reset</b> botton in the header of the tester and type <i>Gimme a pizza supreme</i>. Again notice the returned confidence level for the PizzaOrder intent. This time however only one of the two entities could be extracted from the input message. So for this user message, the bot conversation flow would need to ask for the pizza size to order.</li>
-                            <li style="text-align:justify">Close the intent tester by clicking the close button (<img alt="close button" src="img/closeButton.png" height="25" />)</li>
-                            <li style="text-align:justify">Select the entity icon from the menu (<img alt="entity icon" src="img/entity.png" height="25" />)</li>
-                            <li style="text-align:justify">Notice the pre-defined entities for size, crust, toppings etc. that each describe an item in a pizza order. The <b>Pizza</b> entity is a composite bag entity that groups individual entities to a logical until, like a business domain object. The composite bag entity is used in the advanced section of this tutorial.</li>
-                            <li style="text-align:justify">Next, open the dialog flow editor (<img alt="dialog flow editor icon" src="img/dialogEditor.png" height="25" />). As you can see, an intent state and a state to handle unresolved intents has been created for you already. Now its up to you to complete the pizza order dialog flow.</li>
+                            <li style="text-align:justify">Open the Oracle Digital Assistant browser based dashboard by pointing your browser to <b>&lt;your instance url&gt;/botsui</b>.</li>
+                            <li style="text-align:justify">Select the menu icon at the top-left of the page next to the "Oracle Digital Asisstant" label (<img src="img/hamburger.png" alt="menu icon">). </li>
+                            <li style="text-align:justify">Select the <b>Skills</b> option in the <b>Development</b> category.
+                                <br>
+                                <figure><img src="img/image_001.png" alt="Main Menu"></figure>
+                            </li>
+                            <li style="text-align:justify">Again, <b>click</b> on the menu icon at the top-left of the page to close the menu (<img src="img/hamburger.png" alt="menu icon">).
+                                <li style="text-align:justify">If you cannot spot the <i>'CRC Tutorial Skill'</i> starter skill, then try and use the filter field above the <i>'New Skill'</i> tile to find it. If still you cannot find it, import the skill as explained in the previous section.</li>
+                                <li style="text-align:justify">To clone a skill, select the menu icon on the <b>CRC Tutorial Skill</b> tile and select the <b>Clone</b> menu item as shown in the image below.
+                                    <br>
+                                    <figure><img src="img/skillCloning_1.png" alt="Cloning a skill"></figure>
+                                    <br> </li>
+                                <li style="text-align:justify">In the opened dialog, provide a display name with your initials in it (e.g. "FN_CRC Tutorial Skill").</li>
+                                <li style="text-align:justify">Optionally, provide a description.</li>
+                                <li style="text-align:justify">Create the clone and open it to start the tutorial.</li>
+                        </ol>
+                        <h3>Exploring the starter skill</h3>
+                        <ol>
+                            <li style="text-align:justify">If not open already, <b>open the intent builder</b> by selecting the Intents menu icon (<img src="img/intentBuilderIcon.png" height="25" alt="intent builder icon">).</li>
+                            <li style="text-align:justify">There are two intents created for you: <b>Welcome</b> and <b>OrderPizza</b>. The 'OrderPizza' state resolves pizza orders from user input messages using natural language processing (NLP). For this, the intent has two entities configured: <b>PizzaType</b> and <b>PizzaSize</b>.</li>
+                            <li style="text-align:justify">To train the skill, click the <b>Train</b> link in the upper right part of the header(<img alt="train button" src="img/trainLink.png" height="20" />).</li>
+                            <li style="text-align:justify">In the opened dialog, keep the default settings and press the <b>Submit</b> button. Training the model may take a second or two.</li>
+                            <li style="text-align:justify">To test the intent model, click the <b>Try It Out!</b> link in the upper right corner.</li>
+                            <li style="text-align:justify">Type <i>'I like to order a large pizza pepperoni'</i> (without quotes) into the <b>Message</b> field and press the <b>Send</b> key.</li>
+                            <li style="text-align:justify">Note that the intent tester indicates the <i>'OrderPizza'</i> intent with a probabily of 100% and that both entities, <i>'PizzaType'</i> and <i>'PizzaSize'</i> could extract their values from the user input.</li>
+                            <li style="text-align:justify">Press the <b>Reset</b> botton in the tester header and type <i>'Gimme a pizza supreme'</i> (without quotes).</li>
+                            <li style="text-align:justify"> Note that the returned confidence level for the <i>'PizzaOrder'</i> intent. This time, however, only one of the two entities could be extracted from the user message, so that the bot dialog flow would need to explicitly ask for the pizza size to order.</li>
+                            <li style="text-align:justify"><b>Close the intent tester</b> by clicking the close button (<img alt="close button" src="img/closeButton.png" height="25" />).</li>
+                            <li style="text-align:justify"><b>Select</b> the entity icon from the menu (<img alt="entity icon" src="img/entity.png" height="25" />).</li>
+                            <li style="text-align:justify">Notice the <i>'CheeseType'</i>, <i>'NoToppings'</i>, <i>'PizzaCrust'</i>, <i>'PizzaSize'</i>, <i>'PizzaToppings'</i> and <i>'PizzaType'</i> entities that contribute the information required for a pizza order. The <b>'Pizza'</b> entity is a composite bag entity that groups individual entities to a logical until, like a business domain object. The <i>'Pizza'</i> composite bag entity is used at the end of this tutorial.</li>
+                            <li style="text-align:justify">Next, <b>open the dialog flow editor</b> (<img alt="dialog flow editor icon" src="img/dialogEditor.png" height="25" />). Note the existing dialog flow states to handle the user intents and unresolved intents.</li>
+                            <li style="text-align:justify">And now it is your turn to complete the pizza order flow using the <code>System.CommonResponse</code> component.</li>
                         </ol>
                     </section>
                     <hr>
                     <section>
-                        <h2 id="section_2" role="button" style="text-align: left;"><img src="img/32_2.png" alt="Building your first Common Response component" height="32" width="32" class="num_circ">Building a Simple Text Prompt</h2>
-                        <p style="text-align:justify">Starting simple, in the hands-on instructions in this section your are creating a text input field to take the order for a pizza. In a second field you are then asking for information about the pizza size</p>
+                        <h2 id="section_2" role="button" style="text-align: left;"><img src="img/32_2.png" alt="Building your first Common Response component" height="32" width="32" class="num_circ">Building A Conversation Using Text Prompts</h2>
+                        <p style="text-align:justify">In this section you'll create a bot-user conversation that uses text prompts for the user to name a pizza type and the pizza size. Both text prompts are built using the <code>System.CommonResponse</code> component. To print the user choice, you create a confirmation dialog flow state that uses the <code>System.Output</code> component.</p>
                         <h3>Creating the orderPizza state</h3>
                         <ol>
-                            <li style="text-align:justify">In the dialog flow editor, press the green <b>+ Component</b> button on top (<img alt="+ component button" src="img/plusComponents.png" height="25" />) of the editor</li>
-                            <li style="text-align:justify">In the opened dialog, select the <b>User Interface</b> tile (<img alt="user interface tile" src="img/userInterface.png" height="25" />)</li>
-                            <li style="text-align:justify">In the <b>User Interface</b> dialog, select the <b>Common response - text</b> template link.</li>
-                            <li style="text-align:justify">Ensure the <b>Insert After</b> select list is set to <b>unresolved</b>, so that the new component state gets added to the end of the file</li>
-                            <li style="text-align:justify">Switch the <b>Remove Comments</b> toggle to on.</li>
-                            <li style="text-align:justify">Click <b>Apply</b></li>
-                            <li style="text-align:justify">Change the name of the added dialog flow state from <b>textResponse</b> to <b>orderPizza</b></li>
+                            <li style="text-align:justify">In the dialog flow editor, press the green <b>+ Component</b> button on top of the editor window (<img alt="+ component button" src="img/plusComponents.png" height="20" />).</li>
+                            <li style="text-align:justify">In the opened popup dialog, select the <b>User Interface</b> category (<img alt="user interface tile" src="img/userInterface.png" height="25" />).</li>
+                            <li style="text-align:justify">In the <b>User Interface</b> dialog, select the <b>Common response - text</b> menu entry.</li>
+                            <li style="text-align:justify">Ensure the <b>Insert After</b> select list is set to <b>unresolved</b>, so the new component dialog flow state gets added to the end of the file.</li>
+                            <li style="text-align:justify">Switch the <b>Remove Comments</b> toggle to on so the template content is added without its comments.</li>
+                            <li style="text-align:justify">Click <b>Apply</b> to close the popup dialog.</li>
+                            <li style="text-align:justify">Change the name of the added dialog flow state from <b>textResponse</b> to <b>orderPizza.</b></li>
                             <li style="text-align:justify">Change the <b>orderPizza</b> state so it looks like shown in the image below.
                                 <br>
                                 <br>
                                 <figure><img src="img/orderPizza_1.png" alt="orderPizza state"></figure>
                             </li>
-                            <br>
-                            <li style="text-align:justify">Next, edit component properties shown in the table below. Make sure you add the values including the surrounding double quotes.
-                                <br>
-                                <br>
-                                <table summary="This table show the properties that need to be changed in the Common Response component">
-                                    <tr>
-                                        <th scope="col">Property</th>
-                                        <th scope="col">Value</th>
-                                    </tr>
-                                    <tr>
-                                        <td scope="row">variable</td>
-                                        <td>"pizzaType"</td>
-                                    </tr>
-                                    <tr>
-                                        <td scope="row">nlpResultVariable</td>
-                                        <td>"iResult"</td>
-                                    </tr>
-                                    <tr>
-                                        <td scope="row">text</td>
-                                        <td>"What pizza type do you like?"</td>
-                                    </tr>
-                                </table>
-                                <br>
-                            </li>
                         </ol>
+                        <p style="text-align:justify"><b>Note: </b> The table below explains the properties you set on the <code>System.CommonResponse</code> component
+                            <br>
+                            <table class="body-table" style="text-align:justify" summary="This table ...">
+                                <tr>
+                                    <th scope="col">Property</th>
+                                    <th scope="col">Use</th>
+                                </tr>
+                                <tr>
+                                    <td scope="row">variable</td>
+                                    <td>Value references the dialog flow variable that is updated with the user input</td>
+                                </tr>
+                                <tr>
+                                    <td scope="row">nlpResultvariable</td>
+                                    <td>References a dialog flow variable of type nlpresult (iResult in this tutorial). The variable reference is used to suppress component rendering if the pizzaType infromation could be extracted from natural language processing.</td>
+                                </tr>
+                                <tr>
+                                    <td scope="row">processUserMessage</td>
+                                    <td>If set to true, then the <code>System.CommonResponse</code> component displays as an input component. If set to false, the component behaves like an output component.</td>
+                                </tr>
+                            </table>
+                        </p>
+                        <br>
                         <h3>Creating the askSize state</h3>
                         <ol>
-                            <li style="text-align:justify">again, press the green <b>+ Component</b> button on top (<img alt="+ component button" src="img/plusComponents.png" height="25" />) of the dialog flow editor</li>
-                            <li style="text-align:justify">In the opened dialog, select the <b>User Interface</b> tile (<img alt="user interface tile" src="img/userInterface.png" height="25" />)</li>
-                            <li style="text-align:justify">In the <b>User Interface</b> dialog, select the <b>Common response - text</b> template link.</li>
-                            <li style="text-align:justify">Ensure the <b>Insert After</b> select list is set to <b>orderPizza</b>, so that the new component state gets added to the end of the file</li>
-                            <li style="text-align:justify">Ensure the <b>Remove Comments</b> toggle is switched on.</li>
-                            <li style="text-align:justify">Click <b>Apply</b></li>
-                            <li style="text-align:justify">Change the name of the added dialog flow state from <b>textResponse</b> to <b>askSize</b></li>
+                            <li style="text-align:justify">Press the green <b>+ Component</b> button on top (<img alt="+ component button" src="img/plusComponents.png" height="20" />) of the dialog flow editor.</li>
+                            <li style="text-align:justify">In the opened dialog, select the <b>User Interface</b> category (<img alt="user interface tile" src="img/userInterface.png" height="25" />).</li>
+                            <li style="text-align:justify">In the <b>User Interface</b> dialog, select the <b>Common response - text</b> menu item.</li>
+                            <li style="text-align:justify">Ensure the <b>Insert After</b> select list is set to <b>orderPizza</b>.</li>
+                            <li style="text-align:justify">Ensure the <b>Remove Comments</b> toggle to be switched on.</li>
+                            <li style="text-align:justify">Click <b>Apply</b>.</li>
+                            <li style="text-align:justify">Change the name of the added dialog flow state from <b>textResponse</b> to <b>askSize</b>.</li>
                             <li style="text-align:justify">Change the <b>askSize</b> state so it looks like shown in the image below.
                                 <br>
                                 <br>
                                 <figure><img src="img/askSize_1.png" alt="askSize state"></figure>
                             </li>
                             <br>
-                            <li style="text-align:justify">Next, edit component properties shown in the table below. Make sure you add the values including the surrounding double quotes.
+                            <li style="text-align:justify">Edit the component properties as shown in the table below.
                                 <br>
                                 <br>
                                 <table summary="This table show the properties that need to be changed in the Common Response component">
@@ -182,21 +205,20 @@
                                     </tr>
                                     <tr>
                                         <td scope="row">text</td>
-                                        <td>"What size of pizza would you like?"</td>
+                                        <td>"What size of pizza do you like?"</td>
                                     </tr>
                                 </table>
-                                <br>
-                            </li>
+                                <br> </li>
                         </ol>
                         <h3>Creating the confirmOrder state</h3>
                         <ol>
-                            <li style="text-align:justify">One last time (at least for now), press the green <b>+ Component</b> button on top (<img alt="+ component button" src="img/plusComponents.png" height="25" />) of the dialog flow editor</li>
-                            <li style="text-align:justify">In the opened dialog, select the <b>User Interface</b> tile (<img alt="user interface tile" src="img/userInterface.png" height="25" />)</li>
-                            <li style="text-align:justify">In the <b>User Interface</b> dialog, select the <b>Output</b> template link.</li>
-                            <li style="text-align:justify">Ensure the <b>Insert After</b> select list is set to <b>askSize</b>, so that the new component state gets added to the end of the file</li>
+                            <li style="text-align:justify">One last time (at least for now), press the green <b>+ Component</b> button on top (<img alt="+ component button" src="img/plusComponents.png" height="20" />) of the dialog flow editor.</li>
+                            <li style="text-align:justify">In the opened dialog, select the <b>User Interface</b> category (<img alt="user interface tile" src="img/userInterface.png" height="25" />).</li>
+                            <li style="text-align:justify">In the <b>User Interface</b> dialog, select the <b>Output</b> menu item.</li>
+                            <li style="text-align:justify">Ensure the <b>Insert After</b> select list is set to <b>askSize</b>.</li>
                             <li style="text-align:justify">Ensure the <b>Remove Comments</b> toggle is switched on.</li>
-                            <li style="text-align:justify">Click <b>Apply</b></li>
-                            <li style="text-align:justify">Change the state name from <b>output</b> to <b>confirmOrder</b></li>
+                            <li style="text-align:justify">Click <b>Apply</b>.</li>
+                            <li style="text-align:justify">Change the added dialog flow state name from <b>output</b> to <b>confirmOrder</b></li>
                             <li style="text-align:justify">Add the following string to the <b>text</b> property (including the quotes):
                                 <br>
                                 <br><i>"Your order of a ${pizzaSize.value?lower_case} ${pizzaType.value?capitalize} pizza is on its way"</i></li>
@@ -206,190 +228,189 @@
                             </li>
                         </ol>
                         <br>
-                        <p style="text-align:justify"><b>What you just did:</b> In this section you actually created a complete bot conversation flow using to Common Response component states and one output component state. Using the <i>transitions</i> directives you specified the states to navigate to once a valid data input is provided for one of the two input states. The <i>confirmOrder</i> state actually ends with a return transition, which basically means that the user-bot conversation is ended. </p>
-                        <p style="text-align:justify"><b>Note:</b>The confirmation message contains two Apache FreeMarker expressions "?lower_case" and "?capitalize". Apache Freemarker is an open source template language that can be used in Oracle Digital Assistant to e.g. format text messages. In this pizza example, the message values for pizza type and size are read from the entity. The pizza type value is defined in all upper case in the entity, while the pizza size is defined with a capitalized first letter. Both entity values actually look odd when displayed to a user in a message. Using Apache Freemarker, the entity values are formatted such that the pizza type starts with an uppercase letter, followed by all lowercase letters, and the pizza size is printed in all lowercase.</p>
+                        <p style="text-align:justify"><b>Note: </b>The confirmation message contains two Apache FreeMarker expressions "?lower_case" and "?capitalize". Apache Freemarker is an open source template language that can be used in Oracle Digital Assistant to e.g. format text messages. In this pizza example, the message values for pizza type and size are read from the entity. The pizza type value is defined all upper case in the entity, while the pizza size is defined with a capitalized first letter. </p>
+                        <p style="text-align:justify">Both entity values would appear odd when displayed to a user. Using Apache Freemarker, the entity values are formatted such that the pizza type starts with an uppercase letter, followed by all lowercase letters, and the pizza size is printed in all lowercase.</p>
+                        <p style="text-align:justify"><b>Note: </b> You could also have used the <code>System.CommonResponse</code> component in the <i>'confirmOrder'</i> state to confirm the pizza order. However, given that you ony needed to print a text message as a confirmation, using the <code>System.Output</code> component is the best choice. Only because the <code>System.CommonResponse</code> component can build any user interface, it doe snot mean it has to be used.</p>
                         <h3>Testing</h3>
                         <ol>
-                            <li style="text-align:justify">Before you can test the bot, ensue your edits are valid and well formatted. For this, press the <b>Validate</b> link on top of the dialog flow editor. (<img alt="Validate link" src="img/validateLink.png" height="20" />)</li>
-                            <br> <b>Note: </b>If you see any validation error, you can hover the mouse over the red error marker on the left margin to learn about the issue. Most likely you got the indenting of elements wrong. The dialog flow editor requires each indenting to be exactly two blanks. So counting from the left margin, the first two blanks point to the state name, the next two blanks (blanks 3 and 4)then point to the component, properties and transitions elements. The next 2 indents then point to child elements of the prperties and the transitions elements.
-                            <br>
-                            <li style="text-align:justify">For testing the conversation flow, press the embedded conversation tester icon (<img alt="Embedded conversation tester icon" src="img/testerIcon.png" height="20" />) in the menu bar to the left.</li>
-                            <li style="text-align:justify">In the <b>Message</b> field type <i>I like to order pizza</i> and press the <b>enter-key</b> on your keyboard</li>
-                            <li style="text-align:justify">When prompted for specifying a pizza type, enter <b>pepperoni</b> into the <i>Message</i> field and press the enter-key</li>
-                            <li style="text-align:justify">When prompted to enter a pizza size, type <b>large</b> into the message field and press the enter-key on your keyboard</li>
-                            <li style="text-align:justify">You should see a confirmation message <i>Confirming your order of a large Pepperoni pizza</i> acknowledging the ordered pizza</li>
-                            <li style="text-align:justify">Click the "Reset" link on the top right of the embedded tester</li>
-                            <li style="text-align:justify">Then, close the embedded conversation tester by clicking the 'X' on the upper right (<img alt="Close icon" src="img/closeButton.png" height="25" />)</li>
+                            <li style="text-align:justify">Before you can test the pizza order skill, ensue your edits are valid and well formatted. For this, press the <b>Validate</b> link on top of the dialog flow editor. (<img alt="Validate link" src="img/validateLink.png" height="20" />)
+                                <br>
+                                <br> <b>Note: </b>If you see any validation errors, hover the mouse over the red error marker on the left margin to learn about the cause. Most likely it is that you got the indenting of elements wrong. The dialog flow editor requires each indenting to be exactly two blank characters. So, counting from the left margin, the first two blanks point to the state name, the next two blanks (blanks 3 and 4)then point to the component, properties and transitions elements. The next 2 indents then point to child elements of the prperties and the transitions elements.</li>
+                            <li style="text-align:justify">To test the conversation flow, press the embedded conversation tester icon (<img alt="Embedded conversation tester icon" src="img/testerIcon.png" height="20" />) in the menu bar to the left.</li>
+                            <li style="text-align:justify">In the <b>Message</b> field type <i>I like to order pizza</i> and press the <b>enter-key</b> on your keyboard.</li>
+                            <li style="text-align:justify">When prompted for specifying a pizza type, enter <b>pepperoni</b> into the <i>Message</i> field and press the enter-key.</li>
+                            <li style="text-align:justify">When prompted to enter a pizza size, type <b>large</b> into the message field and press the enter-key on your keyboard.</li>
+                            <li style="text-align:justify">You should see a confirmation message <i>Confirming your order of a large Pepperoni pizza</i>.</li>
+                            <li style="text-align:justify">Click the <b>Reset</b> link on the top right of the embedded tester</li>
+                            <li style="text-align:justify">Then, close the embedded conversation tester by clicking the 'X' located in the upper right part of the header(<img alt="Close icon" src="img/closeButton.png" height="25" />)</li>
                         </ol>
                     </section>
                     <hr>
                     <section>
-                        <h2 id="section_3" role="button" style="text-align: left;"><img src="img/32_3.png" alt="section 3" height="32" width="32" class="num_circ">Building a List-Of-Values</h2>
-                        <p style="text-align:justify">While your pizza bot is working, the user experience can be improved. Instead of displaying prompts for the user to provide the pizza type and pizza size values, displaying a list of values makes for a much better user experince. Using the <code>System.CommonResponse</code> component, building list of values is easy. </p>
-                        <h3>Displaying a list-of-values response for the orderPizza state</h3>
-                        <p style="text-align:justify">There are two options you have to create a list of values for the orderPizza and the askSize states: re-create or modify. To experience both approaches, you will
-                            <ul>
-                                <li style="text-align:justify">Create a list of values for the <b>orderPizza</b> state by re-building the state using the component templates option in the dialog flow editor</li>
-                                <li style="text-align:justify">Modify the <b>askSize</b> state definition to extend the current text response with a choice of values</li>
-                            </ul>
-                            <br>
+                        <h2 id="section_3" role="button" style="text-align: left;"><img src="img/32_3.png" alt="section 3" height="32" width="32" class="num_circ">Building Select Lists</h2>
+                        <p style="text-align:justify">Though your pizza bot works, the user experience needs some improvement. So, instead of displaying input prompts to the user for providing the pizza type and pizza size information, in this part of the tutorial you are going to display list-of-values instead. Good for you to know that the <code>System.CommonResponse</code> component makes the creation of list-of-values easy.</p>
+                        <p style="text-align:justify">To build list of values with the <code>System.CommonResponse</code> component, you can start from scratch using the dialog flow builder component templates, or modify the existng text prompt. In the following you are doing both: For the <i>orderPizza</i> dialog flow state you will use the component template, while for the <i>askSize</i> state you are going to extend the component definition with a list.</p>
+                        <h3>Displaying a list-of-values for the orderPizza state</h3>
+                        <p style="text-align:justify">
                             <ol>
-                                <li style="text-align:justify">Back in the dialog flow editor, press the components template button (<img alt="+ Components" src="img/plusComponents.png" height="25" />)</li>
-                                <li style="text-align:justify">In the opened dialog, select the <b>User Interface</b> option (<img alt="User Interface option" src="img/userInterface.png" height="25" />)</li>
-                                <li style="text-align:justify">Select the <b>Common response - text</b> link</li>
-                                <li style="text-align:justify">Set the <b>Insert After</b> select field to <b>orderPizza</b></li>
-                                <li style="text-align:justify">Ensure the <b>Remove Comments</b> toggle is switched on</li>
-                                <li style="text-align:justify">Press the <b>Apply</b> button</li>
-                                <li style="text-align:justify"><b>Delete</b> the <b>orderPizza</b> state so that the <i>textResponse</i> state shows directly beneath the <i># TUTORIAL START</i> comment, as shown in the image below:
+                                <li style="text-align:justify">In the dialog flow editor, press the components template button (<img alt="+ Components" src="img/plusComponents.png" height="25" />).</li>
+                                <li style="text-align:justify">In the opened popup dialog, select the <b>User Interface</b> category (<img alt="User Interface option" src="img/userInterface.png" height="25" />).</li>
+                                <li style="text-align:justify">Select the <b>Common response - text</b> link.</li>
+                                <li style="text-align:justify">Set the <b>Insert After</b> select field to <b>orderPizza</b>.</li>
+                                <li style="text-align:justify">Ensure the <b>Remove Comments</b> toggle is switched on.</li>
+                                <li style="text-align:justify">Press the <b>Apply</b> button.</li>
+                                <li style="text-align:justify"><b>Delete</b> the <b>orderPizza</b> state so that the <i>textResponse</i> state shows directly under the <i># TUTORIAL START</i> comment (as shown in the image below):
                                     <br>
                                     <figure><img src="img/textResponse_1.png" alt="textResonse state"></figure>
                                 </li>
-                                <li style="text-align:justify">Rename the <b>textResponse</b> state name to <b>orderPizza</b></li>
-                                <li style="text-align:justify">Set the <b>variable</b> property to <b>"pizzaType"</b></li>
-                                <li style="text-align:justify">Set the <b>nlpResultVariable</b> property to <b>"iResult"</b></li>
-                                <li style="text-align:justify">Remove the <b>autoNumberPostbackActions</b> and <b>translate properties</b></li>
+                                <li style="text-align:justify">Rename the <b>textResponse</b> state name to <b>orderPizza</b>.</li>
+                                <li style="text-align:justify">Set the <b>variable</b> property to <b>"pizzaType"</b>.</li>
+                                <li style="text-align:justify">Set the <b>nlpResultVariable</b> property to <b>"iResult"</b>.</li>
+                                <li style="text-align:justify">Remove the <b>autoNumberPostbackActions</b> and <b>translate properties</b>.</li>
                                 <li style="text-align:justify">The <b>responseItems</b> element contains two text responses. <b>Remove</b> the first text response by deleting the block of code that is highlighted in the image below.
                                     <figure><img src="img/removeBlockOfCode_1.png" alt="Block of code to remove"></figure>
                                 </li>
-                                <li style="text-align:justify">Edit the remaining text response item to look as shown in the image below
+                                <li style="text-align:justify">Edit the remaining text response item to look as shown in the image below.
                                     <figure><img src="img/orderPizza_5.png" alt="text response with action items"></figure>
                                 </li>
-                                <li style="text-align:justify">Click the <b>Validate</b> link on top of the dialog flow editor. If there are any formatting errors, fix them before you progress</li>
+                                <li style="text-align:justify">Click the <b>Validate</b> link on top of the dialog flow editor. If there are any formatting errors, fix them before you progress.</li>
                             </ol>
                             <p style="text-align:justify"><b>What you just did:</b> Using the <code>System.CommonResponse</code>component, a list of values is created by adding action items to a text response. The following table explains the properties you set and what their values actually do.</p>
                             <table class="body-table" summary="This table shows the response item action properties and explains their values" style="text-align:justify">
                                 <tr>
                                     <th scope="col">Property</th>
-                                    <th scope="col">Value</th>
+                                    <th scope="col">Use</th>
                                 </tr>
                                 <tr>
                                     <td scope="row">iteratorVariable</td>
-                                    <td>Action items can be stamped from an iterator. The <i>PizzaType</i> entoty is a value list entity, which means that a list of values can be accessed through the <i>pizzaType</i>entity type context variable</td>
+                                    <td>List items can be created (stamped) from an iterator. The <i>PizzaType</i> entity is of type <i>value list</i>, which means that it has a list of values defined that can be accessed through the <i>pizzaType</i> dialog flow variable.</td>
                                 </tr>
                                 <tr>
                                     <td scope="row">label</td>
-                                    <td>When data is read from a entity list, then the current stamped item is accssed through <i>${enumValue}</i>. Because the entity value for pizza type is all upperase, an Apache FreeMarker expression <i>?capitalize</i> is used to create a user-friendly message format</td>
+                                    <td>When the list data is read from a value-list entity, then the currently stamped item is accssed through the <i>${enumValue}</i> expression. An Apache FreeMarker expression <i>?capitalize</i> is used to create a user-friendly message format form the all-uppercase pizza type names in the entity.</td>
                                 </tr>
                                 <tr>
                                     <td scope="row">variables</td>
-                                    <td>Postback actions can update one or many variables when a user select a list item. In the pizza bot example there is only one context variable <i>pizzaType</i> that needs to be updated. The string <i>pizzaType: "${enumValue}"</i> assigns the current iterator value to the context variable. So when a user e.g. selects the "Pepperoni" list item, a value of PEPPERONI is saved in the context variable.</td>
+                                    <td>List item actions (postback actions) can update one or many variables when a user taps on an item in the list. In the pizza skill, there is only one dialog flow variable <i>pizzaType</i> that needs to be updated. The string <i>pizzaType: "${enumValue}"</i> assigns the current iterator value to the variable. So if, for example, a user taps on the "Pepperoni" list item, the value 'PEPPERONI' is saved to the dialog flow variable.</td>
                                 </tr>
                             </table>
                             <h3>Testing</h3>
-                            <p style="text-align:justify">Before building the list-of-values for the askSize state, lets have a quick test of the pizza type list-of-values.</p>
+                            <p style="text-align:justify">Before building the list-of-values for the <i>askSize state</i>, let's have a quick test of the <i>orderPizza</i> list-of-values.</p>
                             <ol>
-                                <li style="text-align:justify">Open the embedded conversation tester (<img alt="embedded tester icon" src="img/testerIcon.png" height="25" />)</li>
-                                <li style="text-align:justify">If needed, click the <b>Reset</b> link located in the header (<img alt="reset icon" src="img/resetLink.png" height="25" />) </li>
-                                <li style="text-align:justify">In the <b>Message</b> field, type <i>"I like to order pizza"</i></li>
-                                <li style="text-align:justify">As a result you should see the following list response:
-                                    <br>
-                                    <figure><img src="img/crcListResponse_1.png" alt="Response showing a list"></figure>
-                                </li>
-                                <li style="text-align:justify">Select a pizza from the list, e.g. <i>Meat Lover</i></li>
-                                <li style="text-align:justify">When prompted for a pizza size, <b>type</b> <i>large</i> and press the enter-key</li>
-                                <li style="text-align:justify">You should see a confirmation message containing the selected pizza type and pizza size you entered</li>
-                                <li style="text-align:justify"><b>Reset</b> the conversation in the conversation tester</li>
-                                <li style="text-align:justify"><b>Close</b> the tester window by clicking on the 'X' icon</li>
+                                <li style="text-align:justify">Open the embedded conversation tester (<img alt="embedded tester icon" src="img/testerIcon.png" height="25" />).</li>
+                                <li style="text-align:justify">If needed, click the <b>Reset</b> link located in the header (<img alt="reset icon" src="img/resetLink.png" height="25" />). </li>
+                                <li style="text-align:justify">In the <b>Message</b> field, type <i>"I like to order pizza".</i>
+                                    <li style="text-align:justify">You should see the following response:
+                                        <br>
+                                        <figure><img src="img/crcListResponse_1.png" alt="Response showing a list"></figure>
+                                    </li>
+                                    <li style="text-align:justify"><b>Select a pizza</b> from the list, e.g. <i>Meat Lover.</i></li>
+                                    <li style="text-align:justify">When prompted for a pizza size, <b>type</b> <i>large</i> and press the enter-key.</li>
+                                    <li style="text-align:justify">You should see a confirmation message containing the selected pizza type and pizza size you entered</li>
+                                    <li style="text-align:justify"><b>Reset</b> the conversation in the conversation tester.</li>
+                                    <li style="text-align:justify"><b>Close</b> the tester window by clicking on the 'X' icon.</li>
                             </ol>
+                            <p style="text-align:justify"><b>Note: </b>Skill users can also use the Message field of the tester to type the pizza type value. The list-of-values is only an additonal, more user-friendly, option to provide user input.</p>
                     </section>
-                    <h3>Displaying a list-of-values response for the askSize state</h3>
-                    <p style="text-align:justify">The askSize state currently renders as a prompt response. In this section you are extending the prompt response to show a list-of-values instead.</p>
+                    <h3>Displaying a list-of-values for the askSize state</h3>
+                    <p style="text-align:justify">At current, the <i>askSize</i> state renders as an input prompt. In this section you are extending the prompt response to also show a list-of-values.</p>
                     <ol>
-                        <li style="text-align:justify">If not still open, <b>open</b> the dialog flow editor and navigate to the <b>askSize</b> state</li>
-                        <li style="text-align:justify">Edit the askSize state so it looks like in the image below. The changes you need to apply are highlighted in the image
+                        <li style="text-align:justify">If not still open, <b>open</b> the dialog flow editor and navigate to the <b>askSize</b> state.</li>
+                        <li style="text-align:justify">Edit the askSize state so it looks like in the image below. The changes you need to apply are highlighted in the image.
                             <figure><img src="img/askSize_2.png" alt="ask size state with changed content"></figure>
                         </li>
-                        <li style="text-align:justify">Press the <b>Validate</b> button to ensure correct indenting of the added configuration.
-                            <br> <b>Note</b> If you experience an error you don't see how to resolve, try the debugger (<img alt="debugger icon" src="img/debugger.png" height="20" />)</li>
-                    </ol>
-                    <p style="text-align:justify"><b>What you just did:</b> You extended the <code>System.CommonResponse</code> component in the askSize state with <i>actions</i>. Because the <i>PizzaSize</i> entity too is a value list entity, you could read the list of values from the entity type context variable (<code>pizzaSize.type.enumValues</code>)</p>
+                        <li style="text-align:justify">Press the <b>Validate</b> button to ensure correct indenting of the added configuration. </ol>
+                    <p style="text-align:justify"><b>What you just did:</b> You extended the <code>System.CommonResponse</code> component in the <i>'askSize'</i> state with a list of values defined in the <i>actions</i> configuration. The <i>PizzaSize</i> entity too is of type 'value list', so that the list of values can be read from the <i>pizzaSize</i> dialog flow variable. (<code>pizzaSize.type.enumValues</code>)</p>
                     <h3>Testing</h3>
                     <ol>
-                        <li style="text-align:justify">Open the embedded conversation tester (<img alt="embedded tester icon" src="img/testerIcon.png" height="25" />)</li>
-                        <li style="text-align:justify">In the <b>Message</b> field, type <i>"I like to order pizza"</i></li>
-                        <li style="text-align:justify">Select a pizza type from the displayed list, e.g. <i>Meat Lover</i></li>
-                        <li style="text-align:justify">You are then prompted for selecting a pizza size. So select one of the values from the list</li>
-                        <li style="text-align:justify">You should see a confirmation message containing the selected pizza type and pizza size
+                        <li style="text-align:justify">Open the embedded conversation tester (<img alt="embedded tester icon" src="img/testerIcon.png" height="25" />).</li>
+                        <li style="text-align:justify">In the <b>Message</b> field, type <i>"I like to order pizza"</i>.</li>
+                        <li style="text-align:justify">Select a pizza type from the displayed list, e.g. <i>Meat Lover</i>.</li>
+                        <li style="text-align:justify">You are then prompted for selecting a pizza size. Select one of the values from the list.</li>
+                        <li style="text-align:justify">You should see a confirmation message containing the selected pizza type and pizza size.
                             <br> </li>
-                        <li style="text-align:justify"><b>Reset</b> the conversation in the conversation tester</li>
-                        <li style="text-align:justify">In the <b>Message</b> field, type <i>"I like to order pizza with pepperoni"</i>
+                        <li style="text-align:justify"><b>Reset</b> the conversation.</li>
+                        <li style="text-align:justify">In the <b>Message</b> field, type <i>"I like to order pizza with pepperoni" and press the enter-key.</i></li>
+                        <li style="text-align:justify">You should be prompted for providing a pizza size.
                             <br>
-                            <br><b>Note: </b>You are prompted for selecting a pizza size instead of selecting a pizza type first. The reason for the pizza type menu not displaying is that the information is extracted from the user message using NLP. This actually works because of he nlpResultVariable property of the <code>System.CommonResponse</code> component that you set to "iResult", which is a context variable of type "nlpresult" that is filled by the <code>System.Intent</code> component with entity values found in the user message.
-                        <li style="text-align:justify">Instead of selecting a pizza size, <b>type</b><i>"Hmm, I like a large pizza"</i>. You should see a response similar to the response shown in the image below:
-                            <br>
-                            <figure><img src="img/tester_1.png" alt="Conversation response for NLP and entity extraction"></figure>
-                            <br><b>Note:</b>The <i>variable</i> property of the <code>System.CommonResponse</code> component of the askSize state references a context variable of type "PizzaSize". So any value that you provide when prompted for a pizza size is validated against the entity. The text message you provided when asked for the pizza size actually contaned a valid size and thus the value got extracted.
-                        </li>
-                        <li style="text-align:justify"><b>Reset</b> the conversation in the conversation tester</li>
-                        <li style="text-align:justify">As a last test, type <i>"I like to order a pizza"</i> into the message field and press the enter-key</li>
-                        <li style="text-align:justify">When prompted for selecting a pizza, <b>type</b><i>"salad"</i>
-                            <br> <b>Note:</b> Again, the provided value is validate against the list of pizzas in the entity. Since salad is not a valid entity type, the list of pizza is displayed again. </li>
-                        <li style="text-align:justify"><b>Reset</b> the conversation in the conversation tester</li>
-                        <li style="text-align:justify"><b>Close</b> the tester window by clicking on the 'X' icon</li>
+                            <br><b>Note: </b>You get prompted for selecting a pizza size instead of selecting a pizza type first because the <i>pizzaType</i> information is extracted from the user message using NLP. This actually works because of the <i>nlpResultVariable</i> property of the <code>System.CommonResponse</code> component that you have set to "iResult".
+                            <li style="text-align:justify">Instead of selecting a pizza size, <b>type</b><i>"Hmm, I like a large pizza"</i>.</li>
+                            <li style="text-align:justify">You should see a response similar to the response shown in the image below:
+                                <br>
+                                <figure><img src="img/tester_1.png" alt="Conversation response for NLP and entity extraction"></figure>
+                                <br><b>Note:</b> The <i>variable</i> property of the <code>System.CommonResponse</code> component of the <i>askSize</i> state references a dialog flow variable of type "PizzaSize". Any value that you provide when prompted for a pizza size is validated against the entity. The text message <i>'Hmm, I like a large pizza'</i> contains a valid size information (large) and thus the value gets extracted.</li>
+                            <li style="text-align:justify"><b>Reset</b> the conversation in the conversation tester.</li>
+                            <li style="text-align:justify">As a last test, type <i>"I like to order a pizza"</i> into the message field and press the enter-key.</li>
+                            <li style="text-align:justify">When prompted for selecting a pizza, <b>type</b><i>"salad"</i>
+                                <br>
+                                <br> <b>Note:</b> Again, the provided value is validate against the list of pizzas in the entity. Since salad is not a valid entity type, the list of pizza is displayed again.</li><br>
+                            <li style="text-align:justify"><b>Reset</b> the conversation in the conversation tester.</li>
+                            <li style="text-align:justify"><b>Close</b> the tester window by clicking on the 'X' icon.</li>
                     </ol>
-                    <h3>Using keywords to access list items</h3>
-                    <p style="text-align:justify">Both states, the <b>orderPizza</b> and the <b>askSize</b> states have a list of actions with an yet empty <b>keyword</b> property. Keywords allow you to define shortcuts that users can type into the message field to select an action (a list item). You can define a single word as a value, or a sequence of words concatenated with a comma. E.g. keyword: "l,L,grand,max" to provide a list of options for selecting a <i>large</i> size for a pizza.
+                    <h3>Using keywords to select list items</h3>
+                    <p style="text-align:justify">Both dialog flow states, <b>orderPizza</b> and <b>askSize</b>, use stamped actions to render the list items. The action definition contains a <b>keyword</b> property, that has an empty value assigned. Keywords allow you to define shortcuts that users can type into the message field to select an action (a list item). You can define a keyword or a sequence of keywords concatenated with a comma. E.g. keyword: "l,L,grand,max" to provide shortcuts that select a <i>large</i> size for a pizza.
                         <br>
-                        <br> However in this tutorial, the list of values is dynamically created from the list of values provided by the <i>PizzaType</i> and <i>PizzaSize</i> entities. This means that keywors also need to be generated dynamically. Let's create keywords for the <i>askSize</i> state</p>
+                        <br>In this tutorial, the value list is dynamically created from values provided by the <i>PizzaType</i> and <i>PizzaSize</i> entities. This means that keywords need to be generated from the list-of-values content. Next, you are creating keywords for the <i>askSize</i> state</p>
                     <ol>
-                        <li style="text-align:justify">Navigate to the <b>askSize</b> state</li>
-                        <li style="text-align:justify">Add the following value to the <b>keyword:</b> property
+                        <li style="text-align:justify">Navigate to the <b>askSize</b> state.</li>
+                        <li style="text-align:justify">Add the following string as a value to the <b>keyword:</b> property:
+                            <br><br>
+                            <code>"${enumValue[0]?upper_case},${(enumValue?index)+1}" </code></li>
+                        <li style="text-align:justify">Change the <b>label:</b> property value to:
                             <br>
-                            <br> "${enumValue[0]?upper_case},${(enumValue?index)+1}" </li>
-                        <li style="text-align:justify">Change the <b>label:</b> property to
-                            <br>
-                            <br> "(${enumValue[0]?upper_case})${enumValue?keep_after(enumValue[0])}"
-                            <br>
-                            <br> The <b>askSize</b> state should now look like shown in the image below
+                            <br> <code>"(${enumValue[0]?upper_case})${enumValue?keep_after(enumValue[0])}"</code>
+                            <br></li>
+<li style="text-align:justify">The <b>askSize</b> state should now look like shown in the image below
                             <figure><img src="img/askSize_3.png" alt="keyword proprty in CR component"></figure>
                         </li>
-                        <li style="text-align:justify">Click the <b>Validate</b> button to ensure correct formatting and indenting</li>
+                        <li style="text-align:justify">Click the <b>Validate</b> button to ensure correct formatting and indenting.</li>
                     </ol>
-                    <p style="text-align:justify"><b>What you just did:</b> In this part of the tutorial, you define keywords for the value list of the <i>askSize</i> state. Because the value list is generated dynamically, you used Apache Freemarker expressions to define keywords as "L" or "l", as well as a numeric value, which matches the position of the item in the list (e.g. 1 for "Large", 2 for "Medium") </p>
+                    <p style="text-align:justify"><b>What you just did:</b> You used Apache Freemarker expressions to define keywords as the first letter of the pizza size value (e.g. "L" or "l" for "Large"), as well as a numeric value, which matches the position of the item in the list (e.g. 1 for "Large", 2 for "Medium") </p>
                     <h3>Testing</h3>
                     <ol>
-                        <li style="text-align:justify">Open the embedded conversation tester</li>
-                        <li style="text-align:justify">In the Message field, type "I like to order pizza"</li>
-                        <li style="text-align:justify">Select a pizza type from the displayed list, e.g. Meat Lover</li>
-                        <li style="text-align:justify">You are prompted for selecting a pizza size. Notice the different look of the list labels
+                        <li style="text-align:justify">Open the embedded conversation tester.</li>
+                        <li style="text-align:justify">In the Message field, type <i>I like to order pizza.</i>.</li>
+                        <li style="text-align:justify">Select a pizza type from the displayed list, e.g. Meat Lover.</li>
+                        <li style="text-align:justify">You are prompted for selecting a pizza size. Notice the different look of the list labels.
                             <br>
                             <br>
                             <figure><img src="img/askSize_4.png" alt="list item labels showing leading character in brackets"></figure>
                         </li>
-                        <li style="text-align:justify"> Instead of selecting a value from the list, type e.g. <b>L</b> and press enter. You should see a confirmation for a large pizza "Meat Lover"</li>
-                        <li style="text-align:justify">Reset the converation</li>
-                        <li style="text-align:justify">In the Message field, type "I like to order pizza"</li>
-                        <li style="text-align:justify">Select a pizza type from the displayed list</li>
-                        <li style="text-align:justify">When asked for a size, type the numeric value 2. You should see a message confirming that you ordered a medium size pizza</li>
-                        <li style="text-align:justify">Reset and close the embedded conversation tester</li>
+                        <li style="text-align:justify"> Instead of selecting a value from the list, type e.g. <b>L</b> and press enter. You should see a confirmation for a large pizza "Meat Lover".</li>
+                        <li style="text-align:justify"><b>Reset</b> the converation.</li>
+                        <li style="text-align:justify">In the Message field, type <i>I like to order pizza</i>.</li>
+                        <li style="text-align:justify">Select a pizza type from the displayed list.</li>
+                        <li style="text-align:justify">When asked for a size, type the numeric value 2. You should see a message confirming that you ordered a medium size pizza.</li>
+                        <li style="text-align:justify"><b>Reset and close</b> the embedded conversation tester</li>
                     </ol>
-                    <p style="text-align:justify"><b>On your own:</b> Now that you added keyword support for the askSize state, do the same for the orderPizza state.</p>
+                <h3>On your own</h3>
+                <p style="text-align:justify">You added keyword support for the <i>askSize</i> dialog flow state. It is now on you to do the same for the <i>orderPizza</i> state. This,  however, comes with a challenge. The list-of-values in the <i>orderPizza</i> state continues values with the same initial letter. So, to create a unqiue shortcut, your implementation should use the first two characters of a pizza type name as the keyword.</p>
+                <p style="text-align:justify">This should not take more that <b>10 minutes</b> for you to build.</p>
                     <hr>
                     <section>
                         <h2 id="section_4" role="button" style="text-align: left;"><img src="img/32_4.png" alt="section 4" height="32" width="32" class="num_circ">Creating a Card Layout</h2>
-                        <p style="text-align:justify">Some messengers, like Facebook and the Oracle Digital Assistant Client SDK for JavaScript, suport rich user interface layouts. A common layout type is the card layout, which when aligned horizontal displays as a carousel. Next you will change the <i>orderPizza</i> state to render pizza types in cards with images.</p>
-                        <h3>Displaying the pizza menu as cards</h3>
+                        <p style="text-align:justify">Messengers like Facebook and the Oracle Digital Assistant Client SDK for JavaScript, support rich user interface components. A popular layout with these messengers is the cards layout. Cards layouts can print ards vertically, or horizontally as a carousel of cards. In this part of the tutorial will change the <i>orderPizza</i> state to render pizza types using cards with images.</p>
+                        <h3>Displaying pizzas in cards</h3>
                         <ol>
-                            <li style="text-align:justify">Create a new line under the <b>states:</b> element in the dialog flow</li>
-                            <li style="text-align:justify">Open the <a href="files/pizza_menu.txt" target="_blank">pizza_menu.txt file</a> and copy its content to the clipboard</li>
-                            <li style="text-align:justify">Paste the content into the dialog flow and align it so it looks like shown in the image below.
+                            <li style="text-align:justify"><b>Create a new line</b> under the <b>states:</b> element in the dialog flow.</li>
+                            <li style="text-align:justify">Open the <a href="files/pizza_menu.txt" target="_blank">pizza_menu.txt file</a> and <b>copy its content to the clipboard</b>.</li>
+                            <li style="text-align:justify">Paste the content into the dialog flow and <b>align</b> it so it looks like shown in the image below.
                                 <br>
-                                <br> <b>Note: each indent is exactly two blank characters</b>
+                                <br> <b>Note:</b> Each indent is exactly two blank characters.
                                 <figure><img src="img/loadPizzacardInfo.png" alt="state loading the pizza menu"></figure>
                             </li>
-                            <li style="text-align:justify">When done, press the <b>Validate</b> button to ensure your dialog flow is well formatted after adding the code from the file.</li>
-                            <li style="text-align:justify">Delete the <b>orderPizza state</b></li>
-                            <li style="text-align:justify">Place the mouse cursor under the <i># TUTORIAL START</i> comment</li>
-                            <li style="text-align:justify">Scroll to he top of the dialog flow builder and <b>click</b> the <b>+ Components</b> button (<img alt="+ components" src="img/plusComponents.png" height="20" />)</li>
-                            <li style="text-align:justify">In the component template dialog, select <b>User Interface</b> and then <b>Common response - card</b></li>
-                            <li style="text-align:justify">Set the <b>Insert After</b> list value to <b>unresolved</b></li>
-                            <li style="text-align:justify">Ensure the <b>Remove Comments</b> toggle is enabled abd <b>press apply</b></li>
+                            <li style="text-align:justify">Press the <b>Validate</b> button to ensure your dialog flow is well formatted after adding the code from the file.</li>
+                            <li style="text-align:justify"><b>Delete</b> the <b>orderPizza</b> state.</li>                            
+                            <li style="text-align:justify">Scroll to he top of the dialog flow builder and <b>click</b> the <b>+ Components</b> button (<img alt="+ components" src="img/plusComponents.png" height="20" />).</li>
+                            <li style="text-align:justify">In the component template popup dialog, select the <b>User Interface</b> category and then the <b>Common response - card</b> menu item.</li>
+                            <li style="text-align:justify">Set the <b>Insert After</b> list value to <b>unresolved</b>.</li>
+                            <li style="text-align:justify">Ensure the <b>Remove Comments</b> toggle is enabled abd press <b>Apply</b>.</li>
                             <li style="text-align:justify">Rename the <b>cardResponse</b> state name to <b>orderPizza</b></li>
-                            <li style="text-align:justify">This tutorial does not need all of the <code>System.CommonResponse</code> component properties. Change the <i>orderPizza</i> state so it looks as shown in the image below .
+                            <li style="text-align:justify">This tutorial does not need all of the <code>System.CommonResponse</code> component properties. <b>Edit</b> the <i>orderPizza</i> state so it looks as shown in the image below .
                                 <figure><img src="img/orderPizza_2.png" alt="orderPizza state with cards"></figure>
                             </li>
-                            <li style="text-align:justify">Press the <b>Validate</b> button to ensure the component state to be valid</li>
-                            <li style="text-align:justify">Further edit the <b>pizzaOrder</b> state with instructions and values from the table below
+                            <li style="text-align:justify">Press the <b>Validate</b> button to ensure the component state to be valid.</li>
+                            <li style="text-align:justify">Edit the <b>pizzaOrder</b> state following the instructions in the table below. The image below the table provides you with a visual clues of how ths should look in the end.
                                 <br>
                                 <table style="text-align:justify" summary="pizza order state changes">
                                     <tr>
@@ -398,9 +419,9 @@
                                         <th scope="col">Action</th>
                                     </tr>
                                     <tr>
-                                        <td scope="row">variable</td>
+                                        <td scope="row"></td>
                                         <td></td>
-                                        <td>Create <b>variable</b> property in a new row below the <i>processuserMessage</i> property</td>
+                                        <td>Create the <b>variable</b> property below the <i>processuserMessage</i> property.</td>
                                     </tr>
                                     <tr>
                                         <td scope="row">variable</td>
@@ -408,9 +429,9 @@
                                         <td></td>
                                     </tr>
                                     <tr>
-                                        <td scope="row">nlpResultVariable</td>
+                                        <td scope="row"></td>
                                         <td></td>
-                                        <td>Create property in a new row below the <i>variable</i> property</td>
+                                        <td>Create the <b>nlpResultVariable</b> property below the <i>variable</i> property.</td>
                                     </tr>
                                     <tr>
                                         <td scope="row">nlpResultVariable</td>
@@ -429,7 +450,7 @@
                                     </tr>
                                     <tr>
                                         <td scope="row">title</td>
-                                        <td>${enumValue}</td>
+                                        <td>"${enumValue}"</td>
                                         <td></td>
                                     </tr>
                                     <tr>
@@ -448,9 +469,9 @@
                                         <td>Delete property</td>
                                     </tr>
                                     <tr>
-                                        <td scope="row">payLoad:>action:</td>
+                                        <td scope="row">payLoad-->action</td>
                                         <td>"selectPizza"</td>
-                                        <td></td>
+                                        <td>Set <i>action</i> property in <i>payload</i> element to "select'Pizza"</td>
                                     </tr>
                                     <tr>
                                         <td scope="row">label</td>
@@ -460,7 +481,7 @@
                                     <tr>
                                         <td scope="row">user.someVariable</td>
                                         <td></td>
-                                        <td>Change name to <i>pizzaType</i></td>
+                                        <td>Change name to <b>pizzaType</b></td>
                                     </tr>
                                     <tr>
                                         <td scope="row">pizzaType</td>
@@ -468,124 +489,121 @@
                                         <td> </td>
                                     </tr>
                                 </table>
-                                <br> The <b>orderPizza</b> state should now look as shown in the image below
+                                <br> The <b>orderPizza</b> state should now look as shown in the image below.
                                 <br>
                                 <figure><img src="img/orderPizza_2_2.png" alt="Edited orderPizza state"></figure>
                             </li>
-                            <li style="text-align:justify">Edit the <b>transitions:</b> element so it looks as shown in the image below
+                            <li style="text-align:justify">Edit the <b>transitions:</b> element so it looks as shown in the image below.
                                 <figure><img src="img/orderPizza_3.png" alt="transitions with new 'actions' element"></figure>
                             </li>
-                            <li style="text-align:justify">With all these changes, the orderPizza state should now look like shown in the image below
+                            <li style="text-align:justify">With all these changes, the orderPizza state should now look like shown in the image below.
                                 <figure><img src="img/orderPizza_4.png" alt="orderPizza state"></figure>
                             </li>
                             <li style="text-align:justify">Press the <b>Validate</b> button to ensure all formatting and indenting is still valid.</li>
                         </ol>
-                        <p style="text-align:justify"><b>What you just did: </b> In this section, you did change the bot response rendered by the <code>System.CommonResponse</code> component from a list layout to a card layout.
+                        <p style="text-align:justify"><b>What you just did: </b> In this section, you changed the bot response rendered by the <code>System.CommonResponse</code> component from a list type to a cards layout.
                             <br>
-                            <br>The <i>LoadPizzaCardInfo</i> state you copied from the provided pizza_menu.txt file uses Apache FreeMarker expressions to build a pizza menu object. In a production usecase, this object would be queried from a remote service by a custom component and then saved into a context variable.
+                            <br>The "LoadPizzaCardInfo" state you copied from the provided pizza_menu.txt file uses Apache FreeMarker expressions to build a pizza menu object. In a production system, this object would be queried from a remote service using a custom component and then saved into a dialog flow variable.
                             <br>
                             <br>As before, the card layout uses an iterator (the enum values of the PizzaType entity) to print the individual cards. The pizza names are used as a key name in the pizza menu object (pizzaCardInfo) to retrieve the image URL and description.
                             <br>
                             <br>The <i>actions</i> element defines the buttons to be placed on a card. In the tutorial, each card is rendered with a single button to order the displayed pizza. Pressing the button updates the <i>pizzaType</i> variable with the name of the pizza. At the same time, the <i>selectPizza</i> custom action is followed. The <i>selectPizza</i> custom action is mapped to the <i>askSize</i> state, so navigation continues to asking for the pizza size.</p>
-                        <p style="text-align:justify"><b>Why the <i>next</i> transition is set to the same value as the <i>selectPizza</i> transition:</b> The <i>selectPizza</i> action transition is followed when a user clicks the button on a card. However, if the initial user message contained the name of the pizza to order, in which case natural language processing extracts it, then the <i>next</i> transition is followed. Keep in mind that selecting a button may result in a diferent dialog flow, which is why it is good to define a separate action transition.</p>
+                        <p style="text-align:justify"><b>Why is the "next" transition set to the same dialog flow state as the "selectPizza" transition?</b> The <i>selectPizza</i> action transition is followed when a user clicks the button on a card. However, if the initial user message contained the name of the pizza to order, in which case natural language processing extracts it, then the <i>next</i> transition is followed. Selecting a button action may result in a diferent dialog flow state to be visited, which is why it is good practice to define a separate action transition for it.</p>
                         <h3>Testing</h3>
                         <ol>
-                            <li style="text-align:justify">Open the embedded tester (<img alt="embedded tester" src="img/testerIcon.png" height="20" />)</li>
-                            <li style="text-align:justify">Reset the conversation if needed</li>
-                            <li style="text-align:justify"><b>Type</b> <i>Hi</i> into the <b>Message</b> field and press the enter key</li>
-                            <li style="text-align:justify">Use the avigation arrow displayed on the right side of the card to navigate to the second pizza</li>
-                            <li style="text-align:justify">Press the order button</li>
+                            <li style="text-align:justify">Open the embedded tester (<img alt="embedded tester" src="img/testerIcon.png" height="20" />).</li>
+                            <li style="text-align:justify">Reset the conversation if needed.</li>
+                            <li style="text-align:justify"><b>Type</b> <i>I like to order pizza</i> into the <b>Message</b> field and press the enter key</li>
+                            <li style="text-align:justify">Use the <b>navigation arrow</b> displayed on the right side of the card to navigate to the second pizza.</li>
+                            <li style="text-align:justify">Press the <b>Order</b> button</li>
                             <li style="text-align:justify">Select a pizza size. You should see a conversation history similar to the one shown in the image below
                                 <figure><img src="img/cardLayoutTesting.png" alt="Card layout testing"></figure>
                             </li>
-                            <li style="text-align:justify">Reset the conversation (<img alt="Reset icon" src="img/resetLink.png" height="25" />)</li>
-                            <li style="text-align:justify">Type <i>I like to order a pepperoni pizza</i> into the <b>Message</b> field and press the <i>enter key</i></li>
-                            <li style="text-align:justify">Notice that the card layout with the pizzas does not show and you are directly asked to select a pizza size. This is because of the <i>variable</i> and <i>nlpResultVariable</i> properties you set on the <code>System.CommonResponse</code> component</li>
+                            <li style="text-align:justify">Reset the conversation (<img alt="Reset icon" src="img/resetLink.png" height="25" />).</li>
+                            <li style="text-align:justify">Type <i>I like to order a pepperoni pizza</i> into the <b>Message</b> field and press the <i>enter-key</i>.</li>
+                            <li style="text-align:justify">Notice that the card layout with the pizzas does not show and you are directly asked for the pizza size. This is because of the <i>variable</i> and <i>nlpResultVariable</i> properties you set on the <code>System.CommonResponse</code> component.</li>
+                            <li style="text-align:justify"><b>Reset</b> the conversation and close the embedded conversation tester.</li>
                         </ol>
                     </section>
-                    <h3>Adding keyword support for cards</h3>
-                    <p style="text-align:justify">When working with card layouts, it is not the card you select for an action, but one of the buttons on the card. In this tutorial, each card has a single button to select a pizza type for ordering. Following the next steps, you will implement keyword support for the <i>orderPizza</i> state's card layout.</p>
+                    <h3>Adding keyword support to the cards</h3>
+                    <p style="text-align:justify">When working with card layouts, it is not the card you select to perform a selection, but the button(s) displayed on a card. In this tutorial, each card displays a single button for ordering the displayed pizza. Following the next steps, you will implement keyword support for buttons in the cards.</p>
                     <ol>
-                        <li style="text-align:justify">Replace the <b>label</b> property value in the <i>orderPizza</i> state with the following expression
-                            <br>
-                            "Order (${enumValue[0]?upper_case}${enumValue[1]?upper_case})${enumValue?keep_after(enumValue[1])}"
-                        </li>
-                        <li style="text-align:justify">Edit the <b>keyword:</b> element in the <b>actions</b> element, adding the following expression string as a value
-                            <br> "${enumValue[0]?upper_case}${enumValue[1]?upper_case}"
+                        <li style="text-align:justify">In the <i>orderPizza</i> dialog flow state, replace the <b>label</b> property value contained in metadata --> cards --> actions with the following string:
+                            <p style="text-align:left"><code>"Order (${enumValue[0]?upper_case}${enumValue[1]?upper_case})${enumValue?keep_after(enumValue[1])}"</code></p></li>
+                        <li style="text-align:justify">Edit the <b>keyword:</b> property below and assign the following expression string as a value:
+                            <br><br> <code>"${enumValue[0]?upper_case}${enumValue[1]?upper_case}</code>"
                             <br> </li>
-                        <li style="text-align:justify">Open the embedded tester</li>
+                        <li style="text-align:justify">The card actions configuration should look similar to the highlighted section in the image below:
+                        <br>
+                            <figure><img src="img/orderPizza_11.png" alt="Card layout with keywords"></figure>
+                        </li>
+                        <li style="text-align:justify">Open the embedded tester.</li>
                         <li style="text-align:justify">Type <i>I like to order pizza</i> into the message field and press the enter-key. The pizza menu should display as shown in the image below.
                             <br>
                             <figure><img src="img/cardLayoutWithKeywordTesting.png" alt="Pizza menu with keyword selection highlighted"></figure>
-                            <br>
-                        </li>
-                        <li style="text-align:justify">Note the (CH) in the "Order (CH)EESE BASIC" card button label</li>
-                        <li style="text-align:justify">Type <b>ch</b> into the message field to order a cheese pizza</li>
-                        <li style="text-align:justify">Press the enter-key</li>
-                        <li style="text-align:justify">Select <b>large</b> as the pizza size when prompted for it. The bot should confirm your order of a large cheese pizza</li>
-                        <li style="text-align:justify">Reset the tester</li>
-                        <li style="text-align:justify">Type <i>I like to order pizza</i> into the message field and press the enter-key</li>
-                        <li style="text-align:justify">With the CHEESE BASIC pizza card displayed, type <b>pe</b> into the message field and press the enter-key</li>
-                        <li style="text-align:justify">Type <b>l</b> into the message field when asked for the pizza size and press the enter-key. The bot should confirm your order of a large pizza Pepperoni</li>
-                        <li style="text-align:justify">Reset and close the tester</li>
+                            <br> </li>
+                        <li style="text-align:justify">Note the (CH) in the "Order (CH)EESE BASIC" card button label.</li>
+                        <li style="text-align:justify">Type <b>ch</b> into the message field to order a cheese pizza.</li>
+                        <li style="text-align:justify">Press the enter-key.</li>
+                        <li style="text-align:justify">Select <b>large</b> as the pizza size when prompted for it. The bot should confirm your order of a large cheese pizza.</li>
+                        <li style="text-align:justify">Reset the tester.</li>
+                        <li style="text-align:justify">Type <i>I like to order pizza</i> into the message field and press the enter-key.</li>
+                        <li style="text-align:justify">With the CHEESE BASIC pizza card displayed, type <b>pe</b> into the message field and press the enter-key.</li>
+                        <li style="text-align:justify">Type <b>l</b> into the message field when asked for the pizza size and press the enter-key. The bot should confirm your order of a large pizza Pepperoni.</li>
+                        <li style="text-align:justify">Reset and close the tester.</li>
                     </ol>
-                    <p style="text-align:justify"><b>Note:</b> There are two observations with this latest practice. Firstly, the keyword uses two letters to make a pizza selection. This is because two pizzas, pepperoni and premium, start with a "P" as the first character. So a single letter keyword does not work. Secondly, the keyword selection does work even if a card is not displayed. There is, however, a constrain to the last statement. If you use page ranging to limit the number of card rendered at a time (some messengers like Facebook require this), then only those cards can be accessed through keywords that are within the current range.</p>
+                    <p style="text-align:justify"><b>Note:</b> There are two observations with this latest exercise. Firstly, the keyword uses two letters to make a pizza selection. This is because two pizzas, pepperoni and premium, start with a "P" as the first character. So a single letter keyword does not work. Secondly, the keyword selection does work even if a card is not displayed. Note, however, that if you use page ranging to reduce the number of cards rendered at a time (some messengers like Facebook require this), then only those cards can be accessed with a keyword shortcut that are within the current page range.</p>
                     <hr>
                     <section>
                         <h2 id="section_5" role="button" style="text-align: left;"><img src="img/32_5.png" alt="section 5" height="32" width="32" class="num_circ">Working with Composite Bag Entities</h2>
-                        <p style="text-align:justify">Composite bag entities are explained in the <a href="../compositeBag_032019/E95689_01.html" target="_blank">"Using Composite Bag Entities for Real-World Entity Extraction"</a> tutorial. In the following you learn how to build user interfaces and prompts for content of composite bag entites usin the <code>Sytsem.CommonResponse</code> component.</p>
-                        <p style="text-align:justify"> When working with composite bag entities you have a choice of how to render the user interface</p>
-                        <ul>
-                            <li style="text-align:justify">The <code>System.ResolveEntities</code> system component renders user interfaces for composite bag entities as prompts or list-of-values without requiring any programming. Ease of use definitively is the benefit of the <code>System.ResolveEntities</code> component.</li>
-                            <li style="text-align:justify">The <code>System.CommonResponse</code> component can also render user interfaces for the composite bag entities, but may need additional configuration. The benefit of using the <code>System.CommonResponse</code> component is that the user interface it renders is customizable, as you will experience in this part of the tutorial.</li>
-                        </ul>
+                        <p style="text-align:justify">Composite bag entities are explained in the <a href="../compositeBag_032019/E95689_01.html" target="_blank">"Using Composite Bag Entities for Real-World Entity Extraction"</a> tutorial. In the following you will learn how to use the <code>Sytsem.CommonResponse</code> component to build user interfaces for dialog flow variables that are of a composite bag entity type.</p>
+                        
                         <h3>Exploring the composite bag entity</h3>
-                        <p style="text-align:justify">The starter skill for this tutorial provides a <b>Pizza</b> composite bag entity that from here on you will in your pizza bot. Let's explore the Pizza composite bag entity for you to better understand what you are going to do next.</p>
+                        <p style="text-align:justify">The starter skill for this tutorial provides a <b>Pizza</b> composite bag entity that from here on you will use in your pizza bot. So let's explore the <i>Pizza</i> composite bag entity before starting to build a UI for it.</p>
                         <ol>
-                            <li style="text-align:justify">Open the entiy panel (<img alt="entity icon" src="img/entity.png" height="25" />)</li>
-                            <li style="text-align:justify">Select the <b>Pizza</b> entity</li>
-                            <li style="text-align:justify">Notice the <b>Bag Items</b> section that contains the following items: <i>Type</i>,<i>Size</i>,<i>Toppings</i>, <i>CheeseType</i>, <i>NoToppings</i>, <i>Location</i> and <i>LocationText</i>.
-                                <br>Each item in the bag is either an entity or a variable. When a composite bag entity gets resolved at runtime, then all bag items are getting resolved at once with no exra dialog flow states to define. </li>
+                            <li style="text-align:justify">Open the entiy panel (<img alt="entity icon" src="img/entity.png" height="25" />).</li>
+                            <li style="text-align:justify">Select the <b>Pizza</b> entity.</li>
+                            <li style="text-align:justify">Notice the <b>Bag Items</b> section that contains the following items: <i>Type</i>,<i>Size</i>,<i>Toppings</i>, <i>CheeseType</i>, <i>NoToppings</i>, <i>Location</i> and <i>LocationText.</i>
+                                <br><br><b>Note: </b>Each item in the bag is either an entity or a variable. When a composite bag entity gets resolved at runtime, then all bag items are getting resolved at once with no extra dialog flow states needed to be defined.</li>
                             <li style="text-align:justify">Select the <b>Type</b> entity bag item and click on the <b>pencil</b> icon (<img alt="Edit icon" src="./img/pencilIcon.png" height="25" />)</li>
-                            <li style="text-align:justify">Scroll down the opened panel and notice the properties you can set. A lot of properties, including prompts, validation rules and range size, which normally are set as property on a component, are configured in the entity and will be picked up by the component at runtime.</li>
-                            <li style="text-align:justify">Click the <b>Close</b> button in the upper right corner to return to the composite bag entity panel</li>
+                            <li style="text-align:justify">Browse the opened panel and notice the properties you can set. A lot the properties, like prompts, validation rules and range size, that you normally set as property on a component, are configured in the entity and will be picked up by the component at runtime.</li>
+                            <li style="text-align:justify">Click the <b>Close</b> button in the upper right corner to return to the composite bag entity panel.</li>
                         </ol>
-                        <h3>Preparing the intent resolution</h3>
-                        <p>Though this tutorial is all about the common response component, it is important to also ensure enity extraction through natural language processing continues working when using the <i>Pizza</i> composite bag entity.</p>
+                        <h3>Configuring the OrderPizza intent</h3>
+                        <p>Though this tutorial is all about the common response component, it is important to make sure that entity extraction with natural language processing continues working when using the <i>Pizza</i> composite bag entity.</p>
                         <ol>
-                            <li style="text-align:justify">Select the Intent menu option in the menu to the left (<img alt="Intent icon" src="img/intent.png" height="25" />)</li>
-                            <li style="text-align:justify">Remove the <b>PizzaSize</b> and <b>PizzaType</b> entities from the <b>Intent Entities</b> list by clicking on the 'x' icons</li>
-                            <li style="text-align:justify">Press the <b>+ Entity</b> button</li>
-                            <li style="text-align:justify">Scroll the opened list of entities down to the <b>Pizza</b> entty and select it.<br>
+                            <li style="text-align:justify">Select the Intent menu option in the menu to the left (<img alt="Intent icon" src="img/intent.png" height="25" />).</li>
+                            <li style="text-align:justify">Remove the <b>PizzaSize</b> and <b>PizzaType</b> entities from the <b>Intent Entities</b> list by clicking on the 'x' icon to their right.</li>
+                            <li style="text-align:justify">Press the <b>+ Entity</b> button.</li>
+                            <li style="text-align:justify">Scroll the opened list of entities until you find the <b>Pizza</b> entity.
+                                <br>
                                 <figure><img src="img/selectEntitiesDialog.png" alt="Select intent dialog"></figure>
                                 <br>
-                            <li style="text-align:justify">Click the <b>Train button in the header to train the model</b></li>
-
-                            <li style="text-align:justify">Select the <b>Try It Out!</b> link to open the integrated intent tester</li>
-                            <li style="text-align:justify">Type <b>I like to order a large pizza pepperoni</b> into the <b>Message</b> field and press the <b>Send</b> button</li>
-                            <li>Notice that the <i>PizzaType</i> and <i>PizzaSize</i> entities are resolved within the composite gab entity as well as stand alone.</li>
-                            <li style="text-align:justify">Close the intent tester by pressing the xlose button (<b>'X'</b>)</li>
+                                <li style="text-align:justify">Select the <b>Pizza</b> entity.</li>
+                                <li style="text-align:justify">Click the <b>Train button in the header to train the model</b></li>
+                                <li style="text-align:justify">Select the <b>Try It Out!</b> link to open the integrated intent tester</li>
+                                <li style="text-align:justify">Type <b>I like to order a large pizza pepperoni</b> into the <b>Message</b> field and press the <b>Send</b> button.</li>
+                                <li>Notice that the <i>PizzaType</i> and <i>PizzaSize</i> entities are resolved within the composite gab entity as well as stand alone.</li>
+                                <li style="text-align:justify">Close the intent tester by pressing the close button (<b>'X'</b>).</li>
                         </ol>
-                        <p style="text-align:justify"><b>What you just did:</b>
-                            For natural languages processing to extract entity values from user input messages, you needed to associate the <i>Pizza</i> composite bag entity with the <i>OrderPizza</i> intent. Note that there is no need to associate all the individual entities of a composite bag entity with the intent.</p>
+                        <p style="text-align:justify"><b>What you just did:</b> For natural languages processing to extract entity values from user input messages, you needed to associate the <i>Pizza</i> composite bag entity with the <i>OrderPizza</i> intent. Note that there is no need to associate all the individual entities of a composite bag entity with the intent.</p>
                         <h3>Preparing the dialog flow</h3>
                         <ol>
-                            <li style="text-align:justify">Select the dialog flow builder menu item (<img alt="Dialog flow menu item" src="img/dialogEditor.png" height="25" />)</li>
-                            <li style="text-align:justify">Delete the <b>orderPizza</b> and the <b>askSize</b> states.</li>
+                            <li style="text-align:justify">Select the dialog flow builder menu item (<img alt="Dialog flow menu item" src="img/dialogEditor.png" height="25" />).</li>
+                            <li style="text-align:justify">Delete the <b>orderPizza</b> and the <b>askSize</b> dialog flow states.</li>
                         </ol>
-                        <p style="text-align:justify"><b>What you just did:</b> A composite bag entity doesn't require dialog flow states to be defined for each of its contained entities. The <code>System.CommponResponse component</code> generates all user interaction prompts and lists needed.</p>
+                        <p style="text-align:justify"><b>What you just did:</b> Composite bag entities don't require dialog flow states to be defined for each of its bag items. The <code>System.CommponResponse component</code> will auto-generate the all required flows.</p>
                     </section>
                     <hr>
                     <h3>Creating the orderPizza state</h3>
                     <ol>
-                        <li style="text-align:justify">Still in the dialog flow, press the <b>+ Components</b> button (<img alt="Component template button" src="img/plusComponents.png" height="20" />)</li>
-                        <li style="text-align:justify">Select the <b>User Interface</b> category</li>
-                        <li style="text-align:justify">Select the <b>Common response - composite bag</b> template</li>
+                        <li style="text-align:justify">Still in the dialog flow, press the <b>+ Components</b> button (<img alt="Component template button" src="img/plusComponents.png" height="20" />).</li>
+                        <li style="text-align:justify">Select the <b>User Interface</b> category.</li>
+                        <li style="text-align:justify">Select the <b>Common response - composite bag</b> menu item.</li>
                         <li style="text-align:justify">Set the <b>Insert After</b> select list to <b>unresolved</b>.</li>
-                        <li style="text-align:justify">Enable he <b>Remove Comments</b> toggle.</li>
-                        <li style="text-align:justify">change the name of the added dialog flow state from <b>resolveCompositeBag</b> to <b>orderPizza</b>.</li>
-                        <li style="text-align:justify">Remove the following properties that are advanced and that are not discussed in this tutorial:
-
+                        <li style="text-align:justify">Ensure the <b>Remove Comments</b> toggle is enabled.</li>
+                        <li style="text-align:justify">Change the name of the added dialog flow state from <b>resolveCompositeBag</b> to <b>orderPizza</b>.</li>
+                        <li style="text-align:justify">Remove the following properties not used in this tutorial:
                             <table style="text-align:justify" summary="This table shows items to remive from the common response component">
                                 <tr>
                                     <th scope="col">Properties to delete</th>
@@ -606,18 +624,17 @@
                                     <td scope="row">translate</td>
                                 </tr>
                             </table>
+                            <br>
                         </li>
-                        <li style="text-align:justify">In <b>globalActions</b>, delete the <b>Cancel</b> postback action so the <i>globalActions</i> configuration looks as in the image below
+                        <li style="text-align:justify">In the <b>globalActions</b> component section, delete the <b>Cancel</b> postback action. The <i>globalActions</i> configuration should look as shown in the image below:
                             <br>
                             <figure><img src="img/orderPizza_6.png" alt="orderPizza state with changed globalActions settings"></figure>
-                            <br>
-                        </li>
-                        <li style="text-align:justify">Change the <b>transitions</b> section to look as shown in the image below
+                            <br> </li>
+                        <li style="text-align:justify">Change the <b>transitions</b> section to look as shown in the image below:
                             <br>
                             <figure><img src="img/orderPizza_7.png" alt="Changed transition section"></figure>
-                            <br>
-                        </li>
-                        <li style="text-align:justify">Edit the following properties with the values (incuding quotes) shown in the table below
+                            <br> </li>
+                        <li style="text-align:justify">Edit the following properties with the values (incuding quotes) shown in the table below:
                             <br>
                             <table style="text-align:justify" summary="Properties to edit">
                                 <tr>
@@ -633,24 +650,19 @@
                                     <td>"iResult"</td>
                                 </tr>
                             </table>
-                            <br>
-                        </li>
+                            <br> </li>
                         <li style="text-align:justify">Edit the <b>metadata</b> property so it looks as in the image below. Specifically notice the highlighted change in the action variables.
                             <br>
                             <figure><img src="img/orderPizza_8.png" alt="Changes to test item response"></figure>
-                            <br>
-                        </li>
+                            <br> </li>
                         <li style="text-align:justify">Change the <b>confirmOrder</b> state's text message from ...
                             <br>
                             <figure><img src="img/confirmOrder_2.png" alt="confirmOrder state - old settingfs"></figure>
-                            <br>
-                            to ...
+                            <br> to ...
                             <br>
                             <figure><img src="img/confirmOrder_3.png" alt="confirmOrder state - new settings"></figure>
-                            <br>
-                            <b>Note:</b> to save you from typing, below is the complete dialog flow state for you to copy-and-paste. Just ensure the formatting to be like in the image above
-                            <br>
-                            <pre>
+                            <br> <b>Note:</b> To save you from typing, below is the complete dialog flow state for you to copy-and-paste. Just ensure the indenting to look like in the image above
+                            <br> <pre>
   confirmOrder:
     component: "System.Output"
     properties:
@@ -661,41 +673,39 @@
     transitions:
       return: "done"
                             </pre>
-                            <br>
-                        </li>
+                            <br> </li>
                     </ol>
-                        <p style="text-align:justify"><b>What you just did:</b> In this part of the tutorial you did create a dialog flow state that uses the <code>System.CommonResponse</code> component to resolve the <i>Pizza</i> composite bag entity. The component template contains most of the configurations so that the only change required is setting the values for the <i>variable</i> and the <i>nlpResultVariable</i> properties, as well as the change of the name of the variable to update when a user selects an item (a pizza type or pizza size) from the list.<br><br>
-                        The <i>orderConfirmation</i> state needed to be changed because the user provided order information is saved in the <i>pizza</i> variable and no longer in the variables created for each pizza type.</p>
-
-                        <h3>Testing</h3>
-                        <ol>
-                            <li style="text-align:justify">Open the embedded conversation tester (<img alt="conversation tester" src="img/testerIcon.png" height="25" />)</li>
-                            <li style="text-align:justify">Reset the conversation tester if required</li>
-                            <li style="text-align:justify">Type <b>I like to order pizza</b> into the <b>Message</b> field and press the enter-key</li>
-                            <li style="text-align:justify">In the displayed list of pizzas, select <b>PEPPERONI</b></li>
-                            <li style="text-align:justify">You are then prompted for a pizza size. Select <b>Large</b> as the pizza size</li>
-                            <li style="text-align:justify">When prompted for the toppings, type <b>2</b>.</li>
-                            <li style="text-align:justify">When prompted for the delivery address, type <b>Home</b></li>.
-                            <li style="text-align:justify">The confirmation message displayed in the tester should look as shown in the image below:
+                    <p style="text-align:justify"><b>What you just did:</b> In this part of the tutorial you created a dialog flow state to resolve the <i>Pizza</i> composite bag entity. </p>
+                        <p style="text-align:justify">The component template contains most of the configurations so that the only change required was to set the values for the <i>variable</i> and the <i>nlpResultVariable</i> properties, as well as the the name of the variable to update when a user selects an item (a pizza type or pizza size) from the list.</p>
+                <p style="text-align:justify">The <i>orderConfirmation</i> state needed to be changed because the user provided order information is saved in the <i>pizza</i> variable and no longer in the variables created for each pizza type.</p>
+                    <h3>Testing</h3>
+                    <ol>
+                        <li style="text-align:justify">Open the embedded conversation tester (<img alt="conversation tester" src="img/testerIcon.png" height="25" />).</li>
+                        <li style="text-align:justify">Reset the conversation tester if required.</li>
+                        <li style="text-align:justify">Type <b>I like to order pizza</b> into the <b>Message</b> field and press the enter-key.</li>
+                        <li style="text-align:justify">In the displayed list of pizzas, select <b>PEPPERONI</b>.</li>
+                        <li style="text-align:justify">You are then prompted for a pizza size. Select <b>Large</b> as the pizza size.</li>
+                        <li style="text-align:justify">When prompted for the toppings, type <b>2</b>.</li>
+                        <li style="text-align:justify">When prompted for the delivery address, type <b>Home</b>.</li>
+                        <li style="text-align:justify">The confirmation message displayed in the tester should look as shown in the image below:
                             <br>
-                                <figure><img src="img/confirmOrder_4.png" alt="Order confirmation"></figure>
+                            <figure><img src="img/confirmOrder_4.png" alt="Order confirmation"></figure>
+                            <br> </li>
+                        <li style="text-align:justify"><b>Reset and close</b> the conversation tester.</li>
+                    </ol>
+        
+                    <h3>Adding a card layout to the UI rendered for the composite bag entity</h3>
+                    <p style="text-align:justify">Using the <code>System.CommonResponse</code> component with a composite bag entity allows you to create the same user interface you created before using individual entities. In this part of the hands-on you will add code to the pizzaOrder state that renders pizzas in a card layout.</p>
+                    <ol>
+                        <li style="text-align:justify">Edit the <b>visible</b> property of the text response item as shown highlighted in the image below. This setting excludes the pizza type from rendering as a text list-of-values.
                             <br>
-                            </li>
-                            <li style="text-align:justify">Reset and close the conversation tester.</li>
-                        </ol>
-                        <p><b>Observation to point out:</b> Using the <code>System.CommonResponse</code> component with a composite bag entity does not require bot designers to setup dialo flow states for each entity contained in the composite entity. Instead a single state, <i>orderPizza</i> in this sample, is sufficient.</p>
-                        <h3>Adding a card layout to the UI rendered for the composite bag entity</h3>
-                        <p style="text-align:justify">Using the <code>System.CommonResponse</code> component with a composite bag entity allows you to create the same user interface you created before using individual entities. In this part of the hands-on you will copy-and-paste code to the pizzaOrder state that during testing renders pizza types as cards.</p>
-                        <ol>
-                            <li style="text-align:justify">Edit the <b>visible</b> property of the text response item as shown highlighted in the image below. This setting excludes the pizza type from rendering as a text list-of-values.
+                            <figure><img src="img/orderPizza_10.png" alt="Visible property setting to exlude 'Type'"></figure>
+                            <br> </li>
+                        <li style="text-align:justify">Edit the <b>orderPizza</b> state and add an additional card response item (the code is provided after the image below). The <code>System.CommonResponse</code> items should look as shown in the image below:
                             <br>
-                                <figure><img src="img/orderPizza_10.png" alt="Visible property setting to exlude 'Type'"></figure>
-                            <br></li>
-                            <li style="text-align:justify">Edit the <b>orderPizza</b> state and add an additional card response item. The <code>System.CommonResponse</code> items should look as shown in the image below:<br>
-                                <figure><img src="img/orderPizza_9.png" alt="Using card layout in orderPizza state"></figure>
-                            <br>
-                                <b>Note:</b> to save you from typing, please find the OBotML code to copy-and-paste into your <i>orderPizza</i> state. Just ensure the formatting is as in above image. <br>
-                            <pre>
+                            <figure><img src="img/orderPizza_9.png" alt="Using card layout in orderPizza state"></figure>
+                            <br> <b>Note:</b> to save you from typing, please find the OBotML code to copy-and-paste into your <i>orderPizza</i> state. Just ensure the formatting is as in above image.
+                            <br> <pre>
 - type: "cards"
   cardLayout: "horizontal"
   visible:
@@ -712,35 +722,40 @@
     payload:
      variables:
      pizza: "${enumValue}"    
-                            </pre></li>
-                        </ol>
-                        <p style="text-align:justify"><b>What you just did:</b> The <code>System.CommonResponse</code> component allows you to create arbitrary complex visual bot responses. For this you can mix response item types to be conditionally displayed, or displayed together. In this part of the tutorial, you added a cards response item to the <code>System.CommonResponse</code> component in the <i>pizzaOrder</i> state that is displayed for the <i>Type</i> composite bag entity item only. So the pizza type is not prompted for twice, you excluded the <i>Type</i> bag item from the text response item so it does not render as a text list-of-values.</p>
-                        
+                            </pre> </li>
+                    </ol>
+                    <p style="text-align:justify"><b>What you just did:</b> The <code>System.CommonResponse</code> component allows you to create arbitrary complex visual bot responses. For this you can mix response item types to be conditionally displayed, or displayed together. In this part of the tutorial, you added a cards response item to the <code>System.CommonResponse</code> component in the <i>pizzaOrder</i> state that is displayed for the <i>Type</i> composite bag entity item only. The <i>Type</i> bag item is excluded from the text response so it does not also render as a text list-of-values.</p>
                     <h3>Testing</h3>
-                        <ol>
-                            <li style="text-align:justify">Open the embedded conversation tester (<img alt="conversation tester" src="img/testerIcon.png" height="25" />)</li>
-                            <li style="text-align:justify">Reset the conversation tester if required</li>
-                            <li style="text-align:justify">Type <b>I like to order pizza</b> into the <b>Message</b> field and press the enter-key</li>
-                            <li style="text-align:justify">The list of pizzas is displayed in a horizontal card layout. Click the <b>Order Now</b> button on the <b>CHEESE BASIC</b> card to order a cheese pizza</li>
-                            <li style="text-align:justify">You are then prompted for a pizza size. Select <b>Large</b> as the pizza size</li>
-                            <li style="text-align:justify">When prompted for the toppings, type <b>2</b>.</li>
-                            <li style="text-align:justify">When prompted for the delivery address, type <b>Home</b></li>
-                            <li style="text-align:justify">The confirmation message should print as before, just showing <i>Basic Cheese</i> as the pizza type instead of Pepperoni.</li>
-                            <li style="text-align:justify"><b>Reset</b> the tetser</li>
-                            <li style="text-align:justify">Next, type <b>I like to order a large pizza pepperoni</b> into the <b>Message</b> field. Pause for a second and answer the following question: <i>What is your expectation to happen?</i></li>
-                            <li style="text-align:justify">Press the enter-key to see if your expectation is met. What you should see is that the conversation does not render the cards and also does not prompt you for the pizza size. Instead you are prompted for selecting the toppings. This behavior is caused by the <i>nlpResultVariable</i> of the <code>System.CommonResponse</code> component that is set to the <i>iResult</i> variable</li>
-                            <li style="text-align:justify"><b>Reset</b> the tester</li>
-                            <li style="text-align:justify">Type <b>I like to order pizza</b> into the <b>Message</b> field and press the enter-key</li>
-                            <li style="text-align:justify">When prompted to select a pizza type (cards), type <i>Hmm, I like a large pizza pepperoni with mushrooms</i>. Pause for a second and, again, answer the question for what your expectation is.</li>
-                            <li style="text-align:justify">Press the enter-key</li>
-                            <li style="text-align:justify">The pizza bot should ask your for the delivery address (which hopefully was what you had expected).  </li>                                                                                    
-                        </ol>
-                        <p style="text-align:justify"><b>Note:</b> Composite bag entities support out-of-order message extraction, which basically means that if a user provides information that is required by a composite bag item, though he wasn't prompted to provide the information yet, then it is automatically extracted from the user message. This is one of the benefits you are getting from using composize bag entities.</p>
-                       
+                    <ol>
+                        <li style="text-align:justify">Open the embedded conversation tester (<img alt="conversation tester" src="img/testerIcon.png" height="25" />).</li>
+                        <li style="text-align:justify">Reset the conversation tester if required.</li>
+                        <li style="text-align:justify">Type <b>I like to order pizza</b> into the <b>Message</b> field and press the enter-key.</li>
+                        <li style="text-align:justify">The list of pizzas is displayed in a horizontal card layout. Click the <b>Order Now</b> button on the <b>CHEESE BASIC</b> card to order a cheese pizza.</li>
+                        <li style="text-align:justify">You are then prompted for a pizza size. Select <b>Large</b> as the pizza size.</li>
+                        <li style="text-align:justify">When prompted for the toppings, type <b>2</b>.</li>
+                        <li style="text-align:justify">When prompted for the delivery address, type <b>Home</b>.</li>
+                        <li style="text-align:justify">The confirmation message should print as before, just showing <i>Basic Cheese</i> as the pizza type instead of Pepperoni.</li>
+                        <li style="text-align:justify"><b>Reset</b> the tester.</li>
+                        <li style="text-align:justify">Next, type <b>I like to order a large pizza pepperoni</b> into the <b>Message</b> field. Pause for a second and answer the following question: <i>What is your expectation for what will happen?</i></li>
+                        <li style="text-align:justify"><b>Press</b> the enter-key to see if your expectation is met. 
+                            <br><br>What you should see is that the conversation does not render the cards and also does not prompt you for the pizza size. Instead you are prompted for selecting the toppings. This behavior is caused by the <i>nlpResultVariable</i> of the <code>System.CommonResponse</code> component that is set to the <i>iResult</i> variable.</li>
+                        <li style="text-align:justify"><b>Reset</b> the tester.</li>
+                        <li style="text-align:justify">Type <b>I like to order pizza</b> into the <b>Message</b> field and press the enter-key.</li>
+                        <li style="text-align:justify">When prompted to select a pizza type (cards), type <i>Hmm, I like a large pizza pepperoni with mushrooms</i>.</li>
+                        <li style="text-align:justify"><b>Pause</b> for a second and, again, answer the question about your expectation.</li>
+                        <li style="text-align:justify">Press the enter-key</li>
+                        <li style="text-align:justify">The pizza bot should ask your for the delivery address (which hopefully is what you had expected). </li>
+                    </ol>
+                    <p style="text-align:justify"><b>Note:</b> Composite bag entities support out-of-order message extraction, which means that if a user provides information that is required by a composite bag item, though he wasn't prompted to provide the information yet, then it is automatically extracted from the user message. This is one of the benefits you are getting from using composize bag entities.</p>
+                <hr>
+                <section>
+                    <h2 id="section_2" role="button" style="text-align: left;"><img src="img/32_6.png" alt="..." height="32" width="32" class="num_circ">Summary</h2>
+                    <p style="text-align:justify">The <code>System.CommonResponse</code> component is a powerful system component that bot designers can use to build simple and complext bot responses. This tutorial provided a basic overview of the <code>System.CommonResponse</code> component that gets you started in your chatbot UI development. The dialog flow component templates contain pre-defined dialog flow configurations you can use as starters. The component templates also provide comments for each <code>System.CommonResponse</code> component property for you to learn about and try. </p>
+                    <p style="text-align:justify">Though the <code>System.CommonResponse</code> component is powerful, it does not mean that it is the only tool in your box. As you used the <code>System.Output</code> component to confiem the ordered pizza, you should also spend some time exploring the other user interface components in Oracle Digital Assistant.</p>
+                </section>
                 </article>
             </div>
-            <br class="clearfloat">
-        </div>
+            <br class="clearfloat"> </div>
     </div>
     <!--close main-->
     <!--end content-->
@@ -766,8 +781,7 @@
         <div id="obe_dialog" class="modal-content">
             <div class="modal-header">
                 <a href="#" class="close"> <span class="close">&times;</span> </a>
-                <h1>Associated Learning Paths</h1>
-            </div>
+                <h1>Associated Learning Paths</h1> </div>
             <div id="dialog-content"> </div>
             <div id="dialog-close" class="closeBtn">
                 <a href="#" class="close2">
