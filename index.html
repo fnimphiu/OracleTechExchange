@@ -27,10 +27,7 @@
 </head>
 
 <body>
-    <p><br>
-    </p>
-    <p><br>
-    </p>
+
     <p><br>
     </p>
     <header>
@@ -40,7 +37,7 @@
     <div id="content">
         <h1><img src="img/obe_tag.png" alt="Oracle by Example branding" align="middle">
             <meta charset="utf-8">
-            Oracle TechExchange - Oracle Digital Assistant Tutorials and Hands-on<br>
+            Learning Oracle Digital Assistant<br>
         </h1>
         <div class="w1024" style="clear:both; position:relative;
         margin-top:40px;">
@@ -62,41 +59,234 @@
                 </div>
             </div>
             <div id="bookContainer">
-                <article>                    
+                <article>
                     <p class="MsoNormal" style="text-align:justify">
                         <!--StartFragment-->
                     </p>
-                    <br>
-                    <br>
-                    <h1>Tutorials</h1><br>
+                    <p style="text-align:justify">This page brings together resrouces for delivery and uptake of Oracle Digital Assistant. This material is a complete end-to-end leanring library including product features and best practices for developing chatbot skills and digital assistants.</p>
+                    <p>This material can be used as self-paced learning or for delivery to customers, partners and your own development teams.</p>
                     <section>
-                        <h2><img src="img/32_begin.png" alt="section 0" class="num_circ" width="32" height="32">Using
-                            Composite Bag Entities for Real-World Entity Extraction<br>
+                        <h2><img src="img/32_begin.png" alt="section 0" class="num_circ" width="32" height="32">Complete End-To-End Training<br>
                         </h2>
-                        <p><span style="mso-ansi-language:EN-US" lang="EN-US"><b>Tutorial
+                        <p style="text-align:justify">The following section lists the complete end-to-end training.</p>
 
-                                    by Grant Ronald</b><b>, Oracle</b><br>
-                                March 2019, Oracle Digital Assistant version 19.1.3<br>
-                                <br>
+                        <h3>Overview</h3>
+                        <p>This section givens a complete overview of the features of the platform and serves as a primer for thos who are new to ODA and are looking for a broad understanding of what it does.</p>
+                        <p>It then includes presentations on understanding the challenges of conversational project and how to design conversations.</p>
 
-                            </span>
-                            <p style="text-align:justify">In this tutorial, you're working with a skill for ordering pizzas that has a basic dialog flow definition along with some intents and entities for extracting values for the pizza order, delivery address, and delivery location. By adding a composite bag entity to these building blocks, you can create a pizza skill that allows spontaneous, real-world interactions without having to implement custom code or write a complex and lengthy dialog flow definition. How and when the composite bag sets the values for these entities depends on the circumstance. When customers change their orders midway through the conversation, for example, the skill can gracefully update the previously extracted value and continue on without forcing them to begin their orders all over again. The skill can prompt for values when they're not included in the customer input and can validate this input as well, sending context-specific error messages when it's incorrect.<br>
-                            </p>
-                            <p><b><a href="tutorials/compositeBag_032019/E95689_01.html">Tutorial: Composite Bag Entities</a></b><br>
-                            </p>
-                            <ul>
-                            </ul>
+                        <ul>
+                            <li><a href="trainings/completetraining/02/02_01_ODA_Overview_0319.pdf">Oracle Digital Assistant Overview</a></li>
+
+                            <li><a href="trainings/completetraining/02/02_02_PlanningStage_0319.pdf">Planning and managing a conversational project</a></li>
+
+                            <li><a href="trainings/completetraining/02/02_03_Introduction_Conversational_Design_0319.pdf">An introduction to conversational design</a></li>
+
+                            <li><a href="trainings/completetraining/02/02_04_ConversationalUX_0319.pdf">Conversational UX tips and tricks</a></li>
+
+                        </ul>
+
+                        <h3>Developing Skills</h3>
+                        <p>This materail covers the core skills of building skills including the basics of domain knowledge, how best to train your model, QnA, expression in dialog flows and visual components in the conversation channel.</p>
+
+                        <ul>
+                            <li><a href="trainings/completetraining/03/03_01_Domain Knowledge_0319.pdf">Domain knowledge for building conversational interfaces</a>
+
+
+                                <p><i><a href="trainings/completetraining/03/">Building a simple skill and digital assistant end-to-end hands on tutorial (Coming soon)</a></i></p>
+                            </li>
+
+                            <li><a href="trainings/completetraining/03/03_02_Training Your Model_0319.pdf">Best practices in training your model</a>
+                                
+                                <p><i><a href="">Training your model hands on tutorial (Coming soon)</a></i></p>
+                            </li>
+
+
+                            <li><a href="trainings/completetraining/03/03_03_Q&A_0319.pdf">Implementing QnA</a></li>
+
+
+                            <li><a href="trainings/completetraining/03/03_04_Dialog_Flow.pdf">Building a conversational dialog flow</a></li>
+
+                            <li><a href="trainings/completetraining/03/03_05_Apache_FreeMarker_0319.pdf">Using ApacheFreemarker to build richer conversations</a></li>
+
+                            <li><a href="trainings/completetraining/03/03_06_Composite_Bag_Entities_0319.pdf">Real world entity extraction with composite bag</a>
+
+
+                                <p><i><a href="https://docs.oracle.com/en/cloud/paas/digital-assistant/tutorial-entities/index.html">Composite bag hands on tutorial</a></i></p>
+                            </li>
+
+                            <li><a href="trainings/completetraining/03/03_07_SystemResolveEntities_0319.pdf">Resolving entity values with system.ResolveEntities</a></li>
+
+                            <li><a href="trainings/completetraining/03/03_08-Common_Response_Component_0319.pdf">Rich UI with the common response component</a>
+
+                                <p><i><a href="trainings/completetraining/03/">Common response component hands on tutorial (Coming soon)</a></i></p>
+                            </li>
+
+                            <li><a href="trainings/completetraining/03/03_09_Common_Response_with_compositeBagEntity_0319.pdf">Using the common response component with composite bag</a></li>
+
+                            <li><a href="trainings/completetraining/03/03_10_Advanced_Common_Response_Component_Topics_0319.pdf">Advanced common response component</a></li>
+
+
+
+
+                        </ul>
+
+                        <h3>Backend Integration</h3>
+
+                        <p>Integrating with backend services as a key feature of a digital assistant and this is achieved through custom components. Furthermore, custom components can be used to programmatically render responses back to the user via the channel.</p>
+                        <ul>
+                            <li><a href="trainings/completetraining/04/04_01_Custom_Components_Overview_0319.pdf">An overview of custom components</a></li>
+
+                            <li><a href="trainings/completetraining/04/04_02_Custom_Components_Development_0319.pdf">How to develop custom components</a></li>
+
+                            <li><a href="trainings/completetraining/04/04_03_Custom_Components_SDK_0319.pdf">Custom component SDK</a></li>
+
+                            <li><a href="trainings/completetraining/04/04_04_Custom_Component_Design_0319.pdf">Design practices for custom components</a></li>
+
+                            <li><a href="trainings/completetraining/04/04_05_Custom_Components_Debugging_0319.pdf">Local debugging of custom components</a></li>
+
+                            <li><a href="trainings/completetraining/04/04_06_Custom_Component_Development_with_Mobile_Hub.pdf">Developing custom components with Oracle Mobile Hub</a></li>
+
+                        </ul>
+
+                        <h3>Design Practices</h3>
+
+                        <p>This section introduces best practice designs for error handling,</p>
+                        <ul>
+                            <li><a href="trainings/completetraining/05/05_01_Design_Practice_Error_Handling_0319.pdf">Error handling</a></li>
+
+                            <li><a href="trainings/completetraining/05/05_02_Design_Practice_Unlocking_Users_0319.pdf">Preventing users becoming locked in an input loop</a></li>
+
+                            <li><a href="trainings/completetraining/05/05_03_Design_Practice_Out_of_Order_Message_Handling_0319.pdf">Handling out of order messages</a></li>
+
+
+
+                        </ul>
+
+
+
+                        <h3>Digital Assistant</h3>
+                        <p>The digital assistant provide the conatiner in which skills can be assembled. It also takes responsibility for routing user requests to the correct skills.</p>
+                        <ul>
+                            <li><a href="trainings/completetraining/06/06_01_Routing_0319.pdf">How the digital assistant routes requests to skills</a>
+
+
+                                <p><i><a href="trainings/completetraining/06">Digital assitant hands on tutorial (Coming soon)</a></i></p>
+                            </li>
+
+
+                        </ul>
+
+                        <h3>Other Features of ODA</h3>
+                        <p>Oracle Digital Assistant provides a range of feature to augment the functionality of skills inlcuding integration with other technologies.</p>
+                        <ul>
+                            <li><a href="trainings/completetraining/07/07_01_Agent_Integration_0319.pdf">Handing off to a human via Service Cloud</a>
+
+
+                                <p><i><a href="https://fnimphiu.github.io/OracleTechExchange/tutorials/agentintegration_012019/index.html">Agent hand off hands on tutorial</a></i></p>
+                            </li>
+
+                            <li><a href="trainings/completetraining/07/07_02_Instant_Apps_0319.pdf">Rich data via instant apps</a></li>
+
+                            <li><a href="trainings/completetraining/07/07_03_Webview_Component_0319.pdf">Integrating Webview within a conversation</a>
+
+                            </li>
+
+
+                        </ul>
+
+                        <h3>Channels Support</h3>
+                        <p>Users interact with skills and digital assistants through channels such as web pages, Facebook Messenger or other channels.</p>
+                        <ul>
+                            <li><a href="trainings/completetraining/08/08_01_Built_in_Channels 0319.pdf">The built-in channels in ODA</a>
+                                <p><i><a href="trainings/completetraining/08/">Web channel hands on tutorial (Coming soon)</a></i></p>
+                                <p><i><a href="trainings/completetraining/08/">Facebook Messenger hands on tutorial (Coming soon)</a></i></p>
+                            </li>
+
+                            <li><a href="trainings/completetraining/08/08_02_Webhook_0319.pdf">Understanding webhooks</a>
+
+                            </li>
+                            <li><a href="trainings/completetraining/08/08_03_Application_Initiated_Conversation_0319.pdf">Application initiated conversations</a>
+
+                            </li>
+                        </ul>
+
+                        <h3>Language Support</h3>
+                        <p>You can build skill that can communicate with users in the native language of the user</p>
+                        <ul>
+                            <li><a href="trainings/completetraining/09/09-01_multi_language_support.pdf">Building multi-language skils</a>
+
+                            </li>
+
+
+                        </ul>
+
+
+
+                        <h3>Security</h3>
+                        <p>Security for your digital assistant includes not only understanding how your skill authenticates and authorises users, but also information must be regarded as secure.</p>
+
+                        <ul>
+                            <li><a href="">Security for Oracle Digital Assistant</a>
+
+
+                            </li>
+
+
+                        </ul>
+
+                        <h3>Insights and Analytics</h3>
+                        <p>Getting an insight into how you digital assistant and skills are performaning is a key factor for both developers and the business.</p>
+                        <ul>
+                            <li><a href="trainings/completetraining/11/11_01_Bots_Insights_0319.pdf">Understanding insights</a>
+
+
+                                <p><i><a href="">Investigating your digital assistant performance through insights hands on tutorial (Coming soon)</a></i></p>
+                            </li>
+
+
+                        </ul>
+                        <ul>
+                        </ul>
                     </section>
                     <section>
-                        <h2><img src="img/32_begin.png" alt="section 1" class="num_circ" width="32" height="32">Agent
-                            Integration<br>
+                        <h2><img src="img/32_begin.png" alt="section 1" class="num_circ" width="32" height="32">Tutorials<br>
                         </h2>
-                        <p><span style="mso-ansi-language:EN-US" lang="EN-US"><b>Tutorial
-
-                                    by Abhay Bhavsar</b><b>, Oracle</b><br>
-                                January 2019, Oracle Digital Assistant version 18.4.3<br>
-                                <br>
+                        <p><span style="mso-ansi-language:EN-US" lang="EN-US">
+                                Here is the full list of Oracle Digital Assistant hands on labs. Each labs is self contained and if required includes a starter skill or digital assistant.<br>
                             </span>
+                            <h3>Building a Simple End-to-End Skill</h3>
+                            <p style="text-align:justify">This tutorial is ideal for beginners or those new to ODA as it takes you end to end from building intents, entities, dialog flow then exposing it through a channel.&nbsp; <br>
+                            </p>
+                            <p><b><a href="">Tutorial: Building a simple end to end skill (Coming soon)</a></b><br>
+                            </p>
+
+                            <h3>Best Practices for Training Your Model</h3>
+                            <p style="text-align:justify">Training you model to understand language is as much an art as a science. However, to build a well functionaing language model you need to follow a number of best practices.&nbsp; <br>
+                            </p>
+
+                            <p><b><a href="tutorials/BestPracticeIntents_050319/index.html">Tutorial: Best practices for training your model</a></b><br>
+                            </p>
+
+                            <h3>Real World Entity Extraction with Composite Bag</h3>
+                            <p style="text-align:justify">In this tutorial you will explore the power of the composite bag in Oracle Digital Assistant which will allow you to build powerful entity extraction conversations including validation and eror handling of entity extraction.&nbsp; <br>
+                            </p>
+                            <p><b><a href="https://docs.oracle.com/en/cloud/paas/digital-assistant/tutorial-entities/index.html">Tutorial: Real world entity extraction</a></b><br>
+                            </p>
+
+                            <h3>Building a Rich User Experience with Common Response Component</h3>
+                            <p style="text-align:justify">In this tutorial you will learn how to build rich visual components to enhance the user experience.&nbsp; <br>
+                            </p>
+                            <p><b><a href="">Tutorial: Building a rich user experience with common response component (Coming soon)</a></b><br>
+                            </p>
+
+                            <h3>Deploying Your Digital Assistant Through a Channel</h3>
+                            <p style="text-align:justify">Two tutorials that step you through deploying your digital assistant through a Web page or Facebook Messenger. &nbsp; <br>
+                            </p>
+                            <p><b><a href="">Tutorial: Deploying a digital assistant through a Web page (Coming soon)</a></b><br>
+                            </p>
+                            <p><b><a href="">Tutorial: Deploying a digital assistant through Facebook Messenger (Coming soon)</a></b><br>
+                            </p>
+                            <h3>Human Agent Integration</h3>
                             <p style="text-align:justify">In this tutorial you learn how to add live agent
                                 chat functionality to an Oracle Digital Assistant bot
                                 conversation using the Live Chat of Oracle Service
@@ -106,10 +296,18 @@
                             </p>
                             <p><b><a href="tutorials/agentintegration_012019/index.html">Tutorial: Human Agent Integration</a></b><br>
                             </p>
-                            <ul>
-                            </ul>
                     </section>
-                    <h1>Trainings</h1><br>
+
+
+                    <h1>Videos</h1>
+                    <section>
+                        <h2 id="section_2" role="button" style="text-align: left;"><img src="img/32_begin.png" alt="section 0" class="num_circ" width="32" height="32">Video Tutorials</h2>
+                        <p style="text-align:justify">Sometimes it is better to show a quick demo of something than to explain it a thousand times. Click the link below to navigate to our video tutorial page.<br><br>
+
+                            <a href="videos/index.html" alt="Video tutorials" target="_blank"><b>Oracle Digital Assistant Video Tutorials</b></a>
+
+                        </p>
+                    </section>
 
                     <section>
                         <h2><img src="img/32_begin.png" alt="section 0" class="num_circ" width="32" height="32">Advanced Training 2018<br></h2>
@@ -152,26 +350,9 @@
 
                             </span>
                     </section>
-                    <section>
-                        <h2><img src="img/32_begin.png" alt="section 0" class="num_circ" width="32" height="32">(Coming Soon) Oracle Digital Assistant - The Complete Training<br></h2>
-                        <p><span style="mso-ansi-language:EN-US" lang="EN-US">
-                                The "Oracle Digital Assistant - The Complete Training" course is work in progress. It combines introductory and advanced training topics in a single training class. Stay tuned as we are going to release the content here as soon as it becomes available.
-                            </span><br><br><span>
-                            </span>
-                        </p>
-                    </section>
 
-                    <h1>Videos</h1>
-                    <section>
-                        <h2 id="section_2" role="button" style="text-align: left;"><img src="img/32_begin.png" alt="section 0" class="num_circ" width="32" height="32">Video Tutorials</h2>
-                       <p style="text-align:justify">Sometimes it is better to show a quick demo of something than to explain it a thousand times. Click the link below to navigate to our video tutorial page.<br><br>
-                    
-                    <a href="videos/index.html" alt="Video tutorials" target="_blank"><b>Oracle Digital Assistant Video Tutorials</b></a>
-                         
-                    </p>
-                    </section>
-                     
-                
+
+
                     <!-- ========================================================================================================================= --><br>
                     <!--StartFragment-->
                     <!--EndFragment--><br>
