@@ -61,85 +61,48 @@
                             <br>
                             March 2019, Oracle Digital Assistant version 19.1.3<br>
                         </span></p>
-                    <p class="MsoNormal" style="text-align:justify"><span style="mso-ansi-language:EN-US" lang="EN-US"><br>                        
-                        You use custom components in Oracle Digital Assistant to integrate custom logic and backend service calls into a bot conversation. Custom components are developed in JavaScript and deployed as REST services using <a href="https://nodejs.org/en/" target="_blank"><b>Node.js.</b>A custom component REST service, which from here on we refer to as <i>"component service"</i> can host one or many custom components. In thi sregards, custom component services are similar to e.g. Java libraries.</a> 
+                    <p style="text-align:justify">Custom components are reusable units of custom code that are added to skills in Oracle Digital Assistant to be executed at runtime in the context of a user-bot conversation. From a bot design perspective, there is only little difference between a custom component you build and system components provided by Oracle Digital Assistant.</p>
+                    <p style="text-align:justify">
+                            Integrating remote backend systems to a chatbot conversation is the most common usecase for developers to build custom components in Oracle Digital Assistant. You develop custom components using JavaScript and <a href="https://nodejs.org/en/" target="_blank"><b>Node.js</b></a>. To deploy custom components to Oracle Digital Assistant, you host them in Node.js REST services.
                         </span></p>
+                    <p style="text-align:justify">In this tutorial you will learn how to build custom components for deployment to Oracle Digital Assistant local Node container. Node containers in Oracle Digital Assistant are local to a skill and are deployed in a compressed file containing the custom component code along with a Node dependency file that is exected upon deployment to load and install dependent Node modules.</p>
                     <section>
                         <h2><img src="img/32_begin.png" alt="section 0" height="32" width="32" class="num_circ">Before You Begin</h2>
-                        <p class="MsoNormal" style="text-align:justify"><span style="mso-ansi-language:EN-US" lang="EN-US"> Upon completion of this tutorial, you developed a custom component that adds currency conversion to bot conversations. The custom component service will be developed using the Oracle Node.js Bots SDK, which you then use to deploy the component service in a skill in the local node container. </span></p>
-                        <h3>Background</h3>
-                        <p class="MsoNormal" style="text-align:justify"><span style="mso-ansi-language:EN-US" lang="EN-US"></span></p>
-                        <p class="MsoNormal" style="text-align:justify"><span style="mso-ansi-language:EN-US" lang="EN-US">This is an example of an optional image in the Background section.</span> </p>
-                        <figure><img src="img/sample-arch-image.png" alt="Description of sample-arch-image.png follows">
-                            <figcaption><a href="files/sample-arch-image.txt">Description of the illustration [filename]</a></figcaption>
-                        </figure>
+                        <p style="text-align:justify">Upon completion of this tutorial, you created a custom component that integrate currency conversion functionality to a bot conversation. You learn</p>
+                            <ul>
+                                <li style="text-align:justify">How to start a new custom component service project using the Oracle Bots Node.js SDK.</li>
+                                <li>How to define the custom component's name, input parameters and returned actions.</li>
+                                <li style="text-align:justify">How to perform logging at runtime.</li>
+                                <li style="text-align:justify">How to invoke remote REST services.</li>
+                                <li style="text-align:justify">How to deploy custom component services to skills in Oracle Digital Assistant.</li>
+                            </ul>
+                        
+                       
                         <h3>What Do You Need?</h3>
+                        <p>This tutorial is for developers that are familiar with JavaScript and Node.js development. To complete this tutorial, the following prerequites must be met</p>
                         <ul>
-                            <li>...</li>
-                            <li>...</li>
+                            <li>You need to have access to Oracle Digital Assistant</li>
+                            <li>You need a JavaScript IDE installed. as an example, this tutorial uses Microsoft Visual Studio code in the screen shots. If you feel comfortable using a text editor, then this is fine too.
+                                </li>
+                            <li style="text-align:justify">You must have <a href="https://nodejs.org/en/" target="_blank"><b>Node.js</b></a> and Node Package Manager (NPM) installed</li>
                         </ul>
                     </section>
+                
                     <!-- ========================================================================================================================= -->
                     <section>
                         <hr>
-                        <h2 id="section_1" role="button" style="text-align: left;"><img src="img/32_1.png" alt="section 1" height="32" width="32" class="num_circ">Step Title</h2>
-                        <p class="MsoNormal" style="text-align:justify"><span style="mso-ansi-language:EN-US" lang="EN-US">This is an unnumbered paragraph before a procedure.</span></p>
-                        <ol>
-                            <li>...</li>
-                            <li>...</li>
-                            <li>...</li>
-                            <ul>
-                                <li>Do not use alpha substeps.</li>
-                                <li>...</li>
-                                <li>...</li>
-                            </ul>
-                            <li>...
-                                <figure><img src="img/sample-image-1.png" alt="Description of sample-image-1.png follows">
-                                    <figcaption><a href="files/sample-image-1.txt">Description of the illustration [filename]</a></figcaption>
-                                </figure>
-                                <p class="MsoNormal" style="text-align:justify"><span style="mso-ansi-language:EN-US" lang="EN-US">This is a subsequent paragraph in a step.</span></p>
-                            </li>
-                            <li>This is a code listing example: <pre>first line of code
-second line of code
-  indented line of code
-code flush left again</pre>
-                                <p class="MsoNormal" style="text-align:justify"><span
-                                                                                      style="mso-ansi-language:EN-US" lang="EN-US">This is a command-line session example:</span></p> <pre># <strong>reboot</strong>
-The system is going down for reboot NOW!</pre>
-                                <p class="MsoNormal" style="text-align:justify"><span
-                                                                                      style="mso-ansi-language:EN-US" lang="EN-US">This is an example of a link to a <a href="files/inline-code-example.txt" target="_blank">code listing</a> in a separate file that's included with the OBE. </span></p></li>
-                            <li>This is an example of a table:
-                                <table summary="This table demonstrates the use of table, th, tr, and td elements to define a simple table.">
-                                    <tr>
-                                        <th scope="col">Column Heading 1</th>
-                                        <th scope="col">Column Heading 2</th>
-                                    </tr>
-                                    <tr>
-                                        <td scope="row">Row 1</td>
-                                        <td>Text</td>
-                                    </tr>
-                                    <tr>
-                                        <td scope="row">Row 2</td>
-                                        <td>Text</td>
-                                    </tr>
-                                    <tr>
-                                        <td scope="row">Row 3</td>
-                                        <td>Text</td>
-                                    </tr>
-                                </table>
-                            </li>
-                        </ol>
+                        <h2 id="section_1" role="button" style="text-align: left;"><img src="img/32_1.png" alt="section 1" height="32" width="32" class="num_circ">Installing the Oracle Bots Node.js SDK</h2>
+                        <p style="text-align:justify">...</p>
+                        
                     </section>
                     <hr>
                     <section>
                         <h2 id="section_2" role="button" style="text-align: left;"><img src="img/32_2.png" alt="section 2" height="32" width="32" class="num_circ">Step Title</h2>
-                        <p class="MsoNormal" style="text-align:justify"><span
-                                                                              style="mso-ansi-language:EN-US" lang="EN-US">This is an example of a single-step section, including a code example. For single-step sections, use <code>&lt;code&gt;</code> rather than <code>&lt;pre&gt;</code> for inline code examples.</span></p>
-                        <p class="MsoNormal" style="text-align:justify"><span
-                                                                              style="mso-ansi-language:EN-US" lang="EN-US"><code>first line of code <br>
-                                second line of code <br>
-                                &nbsp;&nbsp;indented line of code<br>
-                            code flush left again</code></span></p>
+                        <p class="MsoNormal" style="text-align:justify"><span style="mso-ansi-language:EN-US" lang="EN-US">This is an example of a single-step section, including a code example. For single-step sections, use <code>&lt;code&gt;</code> rather than <code>&lt;pre&gt;</code> for inline code examples.</span></p>
+                        <p class="MsoNormal" style="text-align:justify"><span style="mso-ansi-language:EN-US" lang="EN-US"><code>first line of code <br>
+                                    second line of code <br>
+                                    &nbsp;&nbsp;indented line of code<br>
+                                    code flush left again</code></span></p>
                     </section>
                     <hr>
                     <section>
@@ -189,8 +152,7 @@ The system is going down for reboot NOW!</pre>
                         <!-- Include the Next section only in a lab series or tutorial series -->
                         <!-- Don't include this section if you plan to use the tutorials in a learning path -->
                         <h2 id="next" role="button" style="text-align: left;"><img src="img/32_next.png" alt="next step" height="32" width="32" class="num_circ">Next Tutorial</h2>
-                        <p class="MsoNormal" style="text-align:justify"><span
-                                                                              style="mso-ansi-language:EN-US" lang="EN-US">...</span></p>
+                        <p class="MsoNormal" style="text-align:justify"><span style="mso-ansi-language:EN-US" lang="EN-US">...</span></p>
                     </section>
                     <hr>
                     <section>
@@ -203,9 +165,11 @@ The system is going down for reboot NOW!</pre>
                             <li><a href=".html" target="_blank">More information link here</a></li>
                         </ul>
                     </section>
-                    <hr> </article>
+                    <hr>
+                </article>
             </div>
-            <br class="clearfloat"> </div>
+            <br class="clearfloat">
+        </div>
     </div>
     <!--close main-->
     <!--end content-->
@@ -231,7 +195,8 @@ The system is going down for reboot NOW!</pre>
         <div id="obe_dialog" class="modal-content">
             <div class="modal-header">
                 <a href="#" class="close"> <span class="close">&times;</span> </a>
-                <h1>Associated Learning Paths</h1> </div>
+                <h1>Associated Learning Paths</h1>
+            </div>
             <div id="dialog-content"> </div>
             <div id="dialog-close" class="closeBtn">
                 <a href="#" class="close2">
