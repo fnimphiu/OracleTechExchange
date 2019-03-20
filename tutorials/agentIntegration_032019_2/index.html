@@ -1,0 +1,611 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta http-equiv="content-type" content="text/html; charset=utf-8">
+    <!-- Part number: Ennnnn-01 -->
+    <!-- Published date: Month Year -->
+    <!-- Template date: October 15, 2018 -->
+    <!-- Put the content ID of this OBE between the empty quotation marks for 'content' below -->
+    <meta name="contentid" content="">
+    <!-- The title below is displayed on the browser tab, in search results, and in  history. It can be longer than the tutorial title in the <h1> element, below.-->
+    <!-- Use an imperative verb in the title. -->
+    <title>Integrate Oracle Digital Assistant with Oracle Service Cloud Live
+      Chat - Tutorial 2 of 2</title>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <meta name="robots" content="INDEX, FOLLOW">
+    <meta name="description" content="Put the description of the tutorial here.">
+    <meta name="description" content="Put the description of the tutorial here.">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="css/normalize.min.css">
+    <link rel="stylesheet" href="css/font-awesome.min.css">
+    <link rel="stylesheet" href="css/obe-lite.css">
+    <script src="js/jquery-1.11.0.min.js"></script>
+    <script src="js/jquery-ui-1.10.4.custom.js"></script>
+    <script src="js/jquery.tocify.jd.js"></script>
+    <script src="js/leftnav.js"></script>
+    <style id="body-id">
+        body {
+            margin: 20px;
+            padding: 5px;        
+        }   
+    </style>
+  </head>
+  <body>
+    <header>
+      <div class="w1024" style="min-height:55px; display:block;"> <a target="_blank" href="https://docs.oracle.com" target="_blank"
+          class="oracle-logo">
+          <img src="img/oracle_doc_logo.png" alt="Oracle Documentation" style="max-width: none;"
+            height="22"
+            width="236"></a>
+      </div>
+    </header>
+    <!--end header-->
+    <div id="content">
+      <h1><img src="img/obe_tag.png" alt="Oracle by Example branding" align="middle">Integrate
+        Oracle Digital Assistant with Oracle Service Cloud Live Chat - Tutorial 2 of 2</h1>
+      <div class="w1024" style="clear:both; position:relative; margin-top:40px;">
+        <div class="navbackwide border-right"><!-- --></div>
+        <div id="shownav" title="Show Navigation" tabindex="0"><span class="fa fa-list"></span></div>
+        <div id="sidebar"><!-- -->
+          <div class="left-nav-tut"><!-- -->
+            <div id="hidenavw" title="Hide Navigation" tabindex="0"><span class="fa fa-close"></span></div>
+            <div id="navbar" class="left-nav-w"><!-- -->
+              <div id="toc" class="tocify"><!-- --></div>
+            </div>
+          </div>
+        </div>
+        <div id="bookContainer">
+          <article>
+            <p>
+              <!--StartFragment--> </p>
+            <p class="MsoNormal" style="text-align:justify">
+              <!--StartFragment--> </p>
+            <p class="MsoNormal" style="text-align:justify"><span style="mso-ansi-language:EN-US"
+                lang="EN-US">This
+                is the second tutorial among a set of 2 tutorials. Please ensure you have completed the tutorial 1 before you start this. This tutorial expects that you are aware of the basic live chat integration between Oracle Digital Assistant and Oracle Service Cloud. This would be quite an interesting experience so let’s get started!<o:p></o:p></span></p>
+            <p class="MsoNormal" style="text-align:justify"><!--EndFragment--> </p>
+            <p><!--EndFragment--><br>
+            </p>
+            <p><b>Here’s the scenario for this tutorial:</b></p>
+            <!--StartFragment-->
+            <p class="MsoNormal" style="text-align:justify"><span style="mso-ansi-language:EN-US"
+                lang="EN-US">You
+                run a pizza store and provide online services to order a pizza
+                through various channels including a digital assistant on your
+                web site and Facebook Messenger. When you transfer a customer from a skil to a live agent you would want some basic information along with some specific details to be sent to the human agent. This saves time and reduces the time it takes for the agent to help the customer.<o:p></o:p></span></p>
+            <p class="MsoNormal" style="text-align:justify"><span style="mso-ansi-language:EN-US"
+                lang="EN-US">You
+                have a live chat on your web site and also help customers over a
+                call but most of the customers prefer that the conversations you
+                had with the bot be carried over to the CSR without customer
+                having to repeat the issue again. As part of the tutorial you
+                build this service so that bot conversations are transferred to
+                the CSR when the bot handoff to the live person. <o:p></o:p></span></p>
+            <!--EndFragment-->
+            <p>Here is what you need to do:</p>
+            <ul>
+              <li>Use the skill that you created in Tutorial 1 that is already configured with a service cloud integration.</li>
+              <li>Configure the Service Cloud to support context to be passed over through primary and custom fields exposed through the interface.</li>
+              <li>Pass custom properties from the skill to the service cloud through the OBotML code.</li>
+              <li>Test the skill.</li>
+            </ul>
+            <section>
+              <h2><img src="img/32_begin.png" alt="section 0" class="num_circ" height="32"
+                  width="32">Before
+                You Begin</h2>
+              <h3>What Do You Need?</h3>
+              <p>To complete this tutorial, you need:</p>
+              <p>
+                <!--StartFragment--> </p>
+              <p><!--EndFragment--> </p>
+              <ul>
+                <li><span style="mso-ansi-language:EN-US" lang="EN-US">Access to
+                    Oracle Digital Assistant Cloud instance.<br>
+                  </span>
+                  <ul>
+                  </ul>
+                </li>
+                <li><span style="mso-ansi-language:EN-US" lang="EN-US"><span style="mso-list:Ignore"><span
+                        style="font:7.0pt &quot;Times New Roman&quot;"></span></span></span><span
+                    style="mso-ansi-language:EN-US"
+                    lang="EN-US">Access
+                    to Oracle Service Cloud instance.</span></li>
+                <li><span style="mso-ansi-language:EN-US" lang="EN-US"></span><span
+                    style="mso-ansi-language:EN-US"
+                    lang="EN-US">Oracle
+                    Service Cloud web based agent interface.</span></li>
+                <li><span style="mso-ansi-language:EN-US" lang="EN-US"></span><span
+                    style="mso-ansi-language:EN-US"
+                    lang="EN-US">Oracle
+                    Service Cloud windows client for configuring the Service
+                    Cloud chat service.</span></li>
+              </ul>
+            </section>
+            <!-- ========================================================================================================================= --><br>
+          <article>
+            <section>
+              <h2><img src="img/32_begin.png" alt="section 0" class="num_circ" height="32"
+                  width="32">Tutorial 2: Passing user context from Oracle Digital Assistant integration with Oracle Service Cloud live chat & routing to custom queue. </h2>
+              <p>
+                <!--StartFragment--> </p>
+              <p><!--EndFragment--> </p>
+              <p> </p>
+              <h2>Problem Statement</h2>
+              <p>Note that in the tutorial 1 the skill does not provide specific information about the customer issue like product name or order no to the agent. Also the message is always sent to the <span style="color: #0433ff;">Default Chat Queue </span>of the Oracle Service Cloud. Consider that your customer wants to
+                distinguish messages coming from the digital assistant skill
+                from those that are coming from the web site live chat. </p>
+              <p>Why would that be required? </p>
+              <h2>Justification </h2>
+              <p>Generally the customer would already have an existing customer
+                service team who is managing the live chat on their web site.
+                Generally the conversations on the web site start with a
+                greeting message from the agent asking “How may I help you?”. </p>
+              <p>But in a digital assistant conversation the user might have
+                already discussed a few things with the assistant and would like
+                to take the conversation ahead. The digital assistant sends the
+                entire context of the conversation over to the agent so that the
+                conversation could continue on the live chat. </p>
+              <p>In this advanced tutorial we will configure a new user “<span style="color: #0433ff;">botuser</span>”
+                on the service cloud and a new custom queue “<span style="color: #0433ff;">bot-queue</span>”.
+                We will then set up rules in service cloud to ensure that
+                messages coming from the digital assistant are directed to this
+                queue. </p>
+              <p>Let’s dive in. </p>
+              <p></p>
+            </section>
+              <hr>
+            <section>
+              <h2 id="section_1" role="button" style="text-align: left;"><img src="img/32_1.png"
+                  alt="section 1"
+                  class="num_circ"
+                  height="32"
+                  width="32">Configure Custom Properties</h2>
+              <ol>
+                <li>Install Service Cloud Windows client on your windows machine
+                  by visiting the launch page of your Oracle Service Cloud page.
+                  
+                  <a target="_blank" href="https://solo-financial-1.rightnowdemo.com/cgi-bin/solo_financial_1.cfg/php/admin/launch.php">https://solo-financial-1.rightnowdemo.com/cgi-bin/solo_financial_1.cfg/php/admin/launch.php</a> </li> <img src="img/image058.png" alt="A" style="width: 100%; height: 100%;">&nbsp;
+                <li>Click on Install Oracle Service Cloud button. This would download the client and start the installation.</li>
+                &nbsp;
+                <li>This will open up the Oracle Service Cloud Login window. You
+                  can also search for rightnow on your windows search field and
+                  click on Oracle Service Cloud.</li>
+                <img src="img/image060.png" alt="A" style="width: 100%; height: 100%;">&nbsp;
+                
+                <li>Login to your Service Cloud Instance using an Admin account
+                  e.g. Admin2. Click on File - Options - View Options.</li>
+                <img src="img/image061.png" alt="A" style="width: 100%; height: 100%;">&nbsp;
+                <li>From the View Options menu choose the Default Color Scheme.</li>
+                <img src="img/image062.png" alt="A" style="width: 100%; height: 100%;">&nbsp;
+                  <li>There are 3 ways context could be passed onto the service cloud agent.</li>
+                <img src="img/three-ways-context.png" alt="A" style="width: 100%; height: 100%;">&nbsp;
+                <li>Go to the Settings of your skill and enable conversation logging as shown in the figure below.</li>
+                <img src="img/enable-skill-conversation.png" alt="A" style="width: 415px; height: 415px;">&nbsp;
+                
+                <li>Locate Interface name from your Oracle Service Cloud instance. Enter the following URL in your browser and login using service cloud credentials. Ensure you replace the service cloud correctly to point to your service cloud instance.
+                    <br><a target="_blank" href="https://solo-financial-1.rightnowdemo.com/services/rest/connect/v1.3/siteInterfaces">https://solo-financial-1.rightnowdemo.com/services/rest/connect/v1.3/siteInterfaces</a>
+                   
+                
+                  <img src="img/show-interface-name.png" alt="A" style="width: 100%; height: 100%;">
+                </li>
+                <li>Locate Product ID from your Oracle Service Cloud instance. Enter the following URL in your browser and login using service cloud credentials. Ensure you replace the service cloud correctly to point to your service cloud instance.
+                    <br><a target="_blank" href="https://solo-financial-1.rightnowdemo.com/services/rest/connect/v1.3/serviceProducts">https://solo-financial-1.rightnowdemo.com/services/rest/connect/v1.3/serviceProducts</a>
+                  
+                
+                  <img src="img/show-product-id.png" alt="A" style="width: 100%; height: 100%;">
+                </li>
+                  <li>Go to the dialog flow and locate the variables section at the top of the flow. Add the myCustomProps variable into the context section as highlighted below. This is of type map.</li>
+                  <span
+                    style="mso-bidi-font-family:Calibri;mso-bidi-theme-font:
+minor-latin"></span><strong></strong>
+                  <pre style="margin-left: 40px;">
+  metadata:
+    platformVersion: "1.1"
+  main: true
+  name: "CrcPizzaBot_AB"
+  context:
+    variables:
+      iResult: "nlpresult"
+      <strong>myCustomProps: "map"</strong>
+  #
+  #...
+  # other flow states - skipped for breavity
+  #
+  <strong>
+  setupCustomProps:
+    component: "System.SetVariable"
+    properties:
+      variable: "myCustomProps"
+      value:
+        customerInformation: 
+          interfaceID:
+            name: "solo_financial_1" #Your Service Cloud interface name.
+          productID:
+            id: 178 #Valid Product ID.
+    transitions: {}
+    </strong>
+    
+  agentInitiation:
+    component: "System.AgentInitiation"
+    properties:
+      agentChannel: "ServiceCloudIntegration"
+      agentActions: "OrderPizza"
+      nlpResultVariable: "iResult"
+      waitingMessage: "Let me connect you with our Customer Service Agents who can further assist you!"
+      resumedMessage: "Please wait as find we find the best representative to help you"
+      <strong>customProperties: "${myCustomProps.value}"</strong>
+    transitions:
+      actions:
+        accepted: "agentConversation"
+        rejected: "reject"
+        OrderPizza: "OrderPizza"
+</pre></span>
+    
+                
+              
+              <li>Look at the following properties obtained from the SOAP URL for your service cloud instance to understand how iterface name and product id is defined. Ensure you point to the your service cloud instance.<br>Search for ChatCustomerInformation section in the response to find details.</li>
+              <a target="_blank" href="https://solo-financial-1.rightnowdemo.com/services/soap/connect/chat_soap?wsdl=server">https://solo-financial-1.rightnowdemo.com/services/soap/connect/chat_soap?wsdl=server</a>
+                <img src="img/primary-fields.png" alt="A" style="width: 100%; height: 100%;">&nbsp;
+                
+                <li>Login to Oracle Service Cloud using the windows desktop client. Go to Configuration - Database - Custom Fields. Add 2 fields <span style="color: #0433ff;">intent, vipstatus</span> in the Incident table as shown below.<br><br>
+              Question: Why incident table?<br><br>
+              Answer: When a chat request is submitted from the skill to the Oracle Service Cloud it automatically created an incident and appropriate primary and custom fields get populated from the custom properties defined in the skill into the corresponding incident fields. 
+                </li><br>
+                <img src="img/incident-table.png" alt="A" style="width: 100%; height: 100%;"><br>
+                <li>By clicking the New icon on the menu, create 2 fields intent and vipstatus. Note the data type, lenght and the default value.</li>
+                <img src="img/intent-field.png" alt="A" style="width: 100%; height: 100%;"><br>
+                <img src="img/vipstatus-field.png" alt="A" style="width: 100%; height: 100%;"><br>
+                <li>For both the custom fields check the display checkbox as shown below. This will ensure that the custom field is available to the chat session.</li>
+                <img src="img/display-on-chat.png" alt="A" style="width: 100%; height: 100%;"><br>
+              <li>Access the incident table using the following URL for your service cloud instance and verify that the custom fields are created in the incident table.
+                    <br><a target="_blank" href="https://solo-financial-1.rightnowdemo.com/services/rest/connect/v1.3/queryResults/?query=select%20CustomFields.c.*%20from%20Incidents%20where%20(CustomFields.c.intent%20IS%20NOT%20NULL%20AND%20CustomFields.c.vipstatus%20is%20NOT%20NULL)">https://solo-financial-1.rightnowdemo.com/services/rest/connect/v1.3/queryResults/?query=select%20CustomFields.c.*%20from%20Incidents%20where%20(CustomFields.c.intent%20IS%20NOT%20NULL%20AND%20CustomFields.c.vipstatus%20is%20NOT%20NULL)</a>
+                    
+                  
+                
+                  <img src="img/custom-fields-listing.png" alt="A" style="width: 100%; height: 100%;">
+                  Note that the fields intent and vipstatus created are available now.
+                </li>  
+                
+                <li>Now go to the dialog flow and locate the <span style="color: #0433ff;">setupCustomProps</span> state and add the custom fields <span style="color: #0433ff;">intent and vipstatus</span> to the custom properties. For this lab we will assign values <span style="color: #0433ff;">Order</span> and <span style="color: #0433ff;">GOLD</span> to these fields, respectively.</li>
+                  <span
+                    style="mso-bidi-font-family:Calibri;mso-bidi-theme-font:
+minor-latin"></span><strong></strong>
+                  <pre style="margin-left: 40px;">
+ 
+  setupCustomProps:
+    component: "System.SetVariable"
+    properties:
+      variable: "myCustomProps"
+      value:
+        customerInformation: 
+          interfaceID:
+            name: "solo_financial_1" #Your Service Cloud interface name.
+          productID:
+            id: 178 #Valid Product ID.
+          <strong>
+        customFields:
+          - name: c$intent
+            dataType: "STRING"
+            dataValue:
+              stringValue: "Order"
+          - name: c$vipstatus
+            dataType: "STRING"
+            dataValue:
+              stringValue: "GOLD"
+          </strong>
+    transitions: {}
+</pre></span>
+                <li>Go to the Skills Tester in Oracle Digital Assistant user interface now. Type the following sentence and click on submit. Accept the chat in the Oracle Service Cloud AgentWeb application. Ensure you are logged in and are ready for Unrestricted chat.</li>
+              <span style="color: #0433ff;"> I would like to chat with a human</span><br><br>
+                <img src="img/custom-chat.png" alt="A" style="width: 100%; height: 100%;"><br>
+                <img src="img/custom-chat-data.png" alt="A" style="width: 100%; height: 100%;">
+              
+             
+              <li>Notice that the product id passed maps to a correct product name and is displayed in the Oracle Service Cloud incident screen.</li>
+              <img src="img/custom-chat-product.png" alt="A" style="width: 100%; height: 100%;">
+              <li>Great! You are able to pass the primary attributes to the live agent. Now in the next section lets see how we could configure Oracle Service Cloud to transfer a live chat request to a custom queue rather than a default queue using custom fields intent and vipstatus that we just configured in the OBotML.
+              </ol>
+              <br>
+            </section>
+            <section>
+              <h2 id="section_5" role="button" style="text-align: left;"><img src="img/32_2.png"
+                  alt="section 5"
+                  class="num_circ"
+                  height="32"
+                  width="32">Configure Custom Queue</h2>
+              <ol>
+                <li>From the Navigation pane, select <span style="color: #0433ff;">Configuration</span>.
+                  Go to <span style="color: #0433ff;"> Customizable</span> <span
+                    style="color: #0433ff;">Menus</span>
+                  and click on <span style="color: #0433ff;">Chat Queues</span>.
+                  Notice that there is Default Chat Queue. This is where your
+                  messages go by default.</li>
+                <img src="img/image063.png" alt="A" style="width: 100%; height: 100%;">&nbsp;
+                <li>Click on the <span style="color: #0433ff;">New</span>
+                  button on the <span style="color: #0433ff;">Home</span>
+                  Ribbon of your Service Cloud Client. Add a new chat queue
+                  called <span style="color: #0433ff;">bot-queue</span>. Note
+                  that you can name this as per your naming conventions. Just a
+                  make note of this custom chat queue name.</li>
+                <img src="img/image064.png" alt="A" style="width: 100%; height: 100%;">&nbsp;
+                <li>From the <span style="color: #0433ff;">Configuration</span>
+                  select <span style="color: #0433ff;">Profiles</span> from <span
+                    style="color: #0433ff;">Staff
+                    Management</span> menu. This will open a <span style="color: #0433ff;">Profiles</span>
+                  tab on the right side of the window. You will create a new
+                  profile and associate this with a new user that you would
+                  create. You will then associate this newly created profile
+                  with the new queue <span style="color: #0433ff;">bot-queue</span>
+                  that you just created. Don’t worry, we will do this very
+                  carefully step by step.</li>
+                <img src="img/image065.png" alt="A" style="width: 100%; height: 100%;">&nbsp;
+                <li>Create a new profile by clicking on the New button on the
+                  Home ribbon. Give it a name that you can easily remember e.g.
+                  <span style="color: #0433ff;">bot-profile</span>. Click on <span
+                    style="color: #0433ff;">Save</span>
+                  button.</li>
+                <img src="img/image066.png" alt="A" style="width: 100%; height: 100%;">&nbsp;
+                <li>Now configure the interfaces to ensure this profile has
+                  access to the browser and desktop based user interface. Click
+                  on <span style="color: #0433ff;">Interfaces</span> button on
+                  the <span style="color: #0433ff;">Home</span> ribbon if not
+                  already selected and go to <span style="color: #0433ff;">Agent
+                    Desktop Add-in</span>s tab for this new profile <span style="color: #0433ff;">bot-profile</span>
+                  that you just created. Click on the checkboxes as shown below. If you do not see any options under Agent Desktop Add-ins or you wish to use the web agent only then you can skip this step.</li>
+                <img src="img/image067.png" alt="A" style="width: 100%; height: 100%;">&nbsp;
+                <li>Similarly select the <span style="color: #0433ff;">Agent
+                    Browser UI Extensions</span> and select the options as shown
+                  below. If you see no options you can skip this step.</li>
+                <img src="img/image068.png" alt="A" style="width: 100%; height: 100%;">&nbsp;
+                <li>Click on <span style="color: #0433ff;">Customizable
+                    Navigation Sets</span> and the <span style="color: #0433ff;">Access</span>
+                  checkbox as shown in the image below. Click on the <span style="color: #0433ff;">Navigation
+                    Set</span> icon in front of your interface. Select <span style="color: #0433ff;">Admin
+                    Nav Set</span> or any available navigation set suited for
+                  administrators.</li>
+                <img src="img/image070.png" alt="A" style="width: 100%; height: 100%;">&nbsp;
+                <li>Click on <span style="color: #0433ff;">Permissions</span>
+                  button on the Home ribbon. Click on <span style="color: #0433ff;">
+                    Administration</span> tab and click on <span style="color: #0433ff;">Select
+                    All</span>. Uncheck <span style="color: #0433ff;">SSO Login</span><span style="color: #0433ff;">(SAML 2.0)</span>.</li>
+                  <li>Ensure that the <span style="color: #0433ff;">Chat Agent Permissions</span> are also selected by clickin on <span style="color: #0433ff;">Select All</span> for that section.</li>   
+                  
+                <img src="img/image071.png" alt="A" style="width: 100%; height: 100%;">&nbsp;
+                <li>Click on <span style="color: #0433ff;">Permissions</span>
+                  button on the <span style="color: #0433ff;">Home</span>
+                  ribbon. Click on <span style="color: #0433ff;"> Service</span>
+                  tab and click on all the available <span style="color: #0433ff;">Select
+                    All </span> checkboxes. Go to all the sections and check <span style="color: #0433ff;">Select All</span> checkboxes.</li>
+                <img src="img/image073.png" alt="A" style="width: 100%; height: 100%;">&nbsp;
+                <li>Scroll down below on the <span style="color: #0433ff;">Service</span>
+                  tab and select the chat queue <span style="color: #0433ff;">bot-queue</span>
+                  from the list. Ensure that after selecting the queue you click
+                  on the + button otherwise the queue will not get added to this
+                  profile. <span style="color: #0433ff;">If you miss this step
+                    your messages would not get delivered to the bot-queue</span>.
+                  <br>
+                  Under Chat Agent Statues section select the <span style="color: #0433ff;">Available
+                    – Unrestricted</span> option. This will ensure that when you
+                  login using a user <span style="color: #0433ff;">botuser</span>
+                  that we will create next the service cloud chat window would
+                  automatically be set to wait for new incoming chat requests
+                  from the bot.</li>
+                <img src="img/image074.png" alt="A" style="width: 100%; height: 100%;">&nbsp;
+                <li>Here is a quick view of the chat configuration. Ensure you have unchecked the <span style="color: #0433ff;">Pull Chat</span>
+                    option and selected <span style="color: #0433ff;">Strict Priority Pull Policy </span>as shown in the figure below.</li>
+                <img src="img/pull-chat.png" alt="A" style="width: 100%; height: 100%;">
+                <li>Click on <span style="color: #0433ff;">Save and Close.</span>
+                  You will find this button on the <span style="color: #0433ff;">
+                    Home</span> ribbon next to <span style="color: #0433ff;">Save</span>.</li>
+                &nbsp;
+                <li>Access the profiles screen. Click on <span style="color: #0433ff;">Refresh</span>
+                  button on the <span style="color: #0433ff;">Home</span>
+                  ribbon and ensure you locate <span style="color: #0433ff;">bot-queue</span>
+                  in the list. Note that in your case the <span style="color: #0433ff;">#Accounts</span>
+                  column will display<span style="color: #0433ff;"> 0 </span>since
+                  you have not created a new user named <span style="color: #0433ff;">botuser</span>
+                  and have not associated it with this profile yet. Let’s do
+                  that now.</li>
+                <img src="img/image075.png" alt="A" style="width: 100%; height: 100%;">&nbsp;
+                <li>Now click on <span style="color: #0433ff;">Staff Accounts
+                    by Profile</span>. Click on the <span style="color: #0433ff;">New</span>
+                  button on the <span style="color: #0433ff;">Home</span>
+                  ribbon now.</li>
+                <img src="img/image076.png" alt="A" style="width: 100%; height: 100%;">&nbsp;
+                <li>Enter Login User Name as <span style="color: #0433ff;">botuser</span>.
+                  Provide a First Name, last Name and ensure you <u><strong>uncheck</strong></u>
+                  the box <span style="color: #0433ff;">Password</span> <span
+                    style="color: #0433ff;">Expires</span>.
+                  Select Default Currency and Default Country.</li>
+                <img src="img/image077.png" alt="A" style="width: 100%; height: 100%;">&nbsp;
+                <li>Click on <span style="color: #0433ff;">Profile</span>
+                  Search icon and select your newly created profile e.g. <span
+                    style="color: #0433ff;">bot-profile</span>.</li>
+                <img src="img/image078.png" alt="A" style="width: 100%; height: 100%;">&nbsp;
+                <li>Similarly search for group and select the Admin group.</li>
+                <img src="img/image079.png" alt="A" style="width: 100%; height: 100%;">&nbsp;
+                <li>Click on <span style="color: #0433ff;">Save</span> button
+                  after ensuring that the profile is selected and password
+                  expires in unchecked. Note that on saving it is going to
+                  prompt you to set up a password. </li>
+                <img src="img/image080.png" alt="A" style="width: 100%; height: 100%;">&nbsp;
+                <li>Enter a suitable password e.g. <span style="color: #0433ff;">Welcome1!</span></li>
+                <img src="img/image081.png" alt="A" style="width: 100%; height: 100%;">&nbsp;
+                <li>You have now associated a user <span style="color: #0433ff;">botuser</span>
+                  with a profile <span style="color: #0433ff;"> bot-profile</span>
+                  that is assigned to a new queue <span style="color: #0433ff;">bot-queu</span>e.
+                  Go to <span style="color: #0433ff;"> Profiles</span> and
+                  click on <span style="color: #0433ff;">Refresh</span>. Select
+                  <span style="color: #0433ff;">bot-profile</span> and you will
+                  see the <span style="color: #0433ff;">botuser</span> has been
+                  assigned this profile.</li>
+                <img src="img/image082.png" alt="A" style="width: 100%; height: 100%;">&nbsp;
+                <li>Now let’s begin setting up a rule so that messages received
+                  from digital assistant skill are diverted to this queue. Now
+                  how do we differentiate the messages coming from the digital
+                  assistant as opposed to the web site live chat? While there
+                  could be a no. of ways to achieve it we are going to use the custom fields intent and vipstatus that we are passing as custom properties from the skill.</li>
+                <li>This is just a recall of the dialog flow OBotML where you have setup custom properties. There is no action required on this again. This is jut a recap of the custom properties. For this lab we have assigned values <span style="color: #0433ff;">Order</span> and <span style="color: #0433ff;">GOLD</span> to these fields, respectively.</li>
+                  <span
+                    style="mso-bidi-font-family:Calibri;mso-bidi-theme-font:
+minor-latin"></span><strong></strong>
+                  <pre style="margin-left: 40px;">
+ 
+  setupCustomProps:
+    component: "System.SetVariable"
+    properties:
+      variable: "myCustomProps"
+      value:
+        customerInformation: 
+          interfaceID:
+            name: "solo_financial_1" #Your Service Cloud interface name.
+          productID:
+            id: 178 #Valid Product ID.
+          <strong>
+        customFields:
+          - name: c$intent
+            dataType: "STRING"
+            dataValue:
+              stringValue: "Order"
+          - name: c$vipstatus
+            dataType: "STRING"
+            dataValue:
+              stringValue: "GOLD"
+          </strong>
+    transitions: {}
+</pre></span>
+                <li>Now goto the desktop client and click on <span style="color: #0433ff;">Site Configuration</span>. Under <span style="color: #0433ff;">Site Configuration</span>
+                  select <span style="color: #0433ff;">Rules</span>. <br>
+                  IMPORTANT: Click on <span style="color: #0433ff;">Chat</span>
+                  button on the Home ribbon to ensure you are looking at <span
+                    style="color: #0433ff;">Chat
+                    Rules</span>.</li>
+                <img src="img/image087.png" alt="A" style="width: 100%; height: 100%;">&nbsp;
+                <li>Click on the <span style="color: #0433ff;">Edit</span>
+                  button on the <span style="color: #0433ff;">Home</span>
+                  ribbon to ensure you are in edit mode.</li>
+                <img src="img/image088.png" alt="A" style="width: 100%; height: 100%;">&nbsp;
+                <li>Expand the <span style="color: #0433ff;">States--&gt;01.Initial
+                    </span>rules structure and right click to open a context
+                  menu. Click on <span style="color: #0433ff;">New Rule</span>.</li>
+                <img src="img/image089.png" alt="A" style="width: 100%; height: 100%;">&nbsp;
+                <li>Provide a rule name e.g. <span style="color: #0433ff;">bot-queue-rule</span>
+                    with some description. Click on <span style="color: #0433ff;">Add IF Condition Based On</span>. Select <span style="color: #0433ff;">Incident - intent</span>. Choose an equal operator and type value <span style="color: #0433ff;">Order</span> in the text field below.</li>
+                <img src="img/chat-rule-if.png" alt="A" style="width: 100%; height: 100%;">&nbsp;
+                <li>Similarly add another condition for <span style="color: #0433ff;">vipstatus = GOLD</span>.</li>
+                <li>Click on <span style="color: #0433ff;">Add Action - Then</span> and select <span style="color: #0433ff;">Chat Queue ID</span>. This will add a <span style="color: #0433ff;">Then</span> section to the rule. Click on <span style="color: #0433ff;">Assign Chat Queue</span> and selet <span style="color: #0433ff;">bot-queue</span>.</li>
+                <img src="img/chat-rule-then.png" alt="A" style="width: 100%; height: 100%;">
+                
+                <br>
+                <li>Click on <span style="color: #0433ff;">Save</span> button. You will find this below the <span style="color: #0433ff;">Then</span> section, scroll down if required.</li><br>
+                <li>After <span style="color: #0433ff;">Save</span>, the <span style="color: #0433ff;">Compile</span> and <span style="color: #0433ff;">Activate</span> buttons would get enabled, click on them one after the other. This will activate your rule.</li><br>
+                <img src="img/save-compile-activate.png" alt="A" style="width: 100%; height: 100%;"><br><br>
+                <li>Your Service Cloud custom queue configuration is complete.</li><br>
+
+              <h5>What you just did:</h5>
+              •&nbsp;&nbsp;&nbsp; You created a custom queue called <span style="color: #0433ff;">bot-queue</span>.<br>
+              •&nbsp;&nbsp;&nbsp; You created a profile called bot-profile. You
+              associated the bot-profile with <span style="color: #0433ff;">bot-queue</span>.<br>
+              •&nbsp;&nbsp;&nbsp; You created a user called <span style="color: #0433ff;">botuser</span>.
+              You associated the <span style="color: #0433ff;">bot-profile</span>
+              with this user.<br>
+              •&nbsp;&nbsp;&nbsp; You created a Chat Rule called <span style="color: #0433ff;">bot-queue-rule</span>,
+              added a condition to move messages received in the default queue
+              to the <span style="color: #0433ff;">bot-queue </span>when the
+              contact of the connecting user matches <span style="color: #0433ff;">botcontact@smartly.com</span><br>
+              <br>
+              <h5> What’s Next:</h5>
+              •&nbsp;&nbsp;&nbsp; Now let’s go back to the Oracle Digital
+                Assistant skill and test the skill and the live chat integration again. This time we would want to see whether the message gets routed to the default queue or the newly created and configured <span style="color: #0433ff;">bot-queue</span>.
+              <br>
+                </ol>
+              <br>
+            </section>
+            <hr>
+            <section>
+              <h2 id="section_5" role="button" style="text-align: left;"><img src="img/32_5.png"
+                  alt="section 5"
+                  class="num_circ"
+                  height="32"
+                  width="32">Final test from the Oracle Digital Assistant Skill</h2>
+              <ol>
+                
+                <li>If you are already logged in, log out of the Service Cloud Client using the logout button on the top right menu icon.</li>
+                <img src="img/image097.png" alt="A" style="width: 100%; height: 100%;">&nbsp;
+                <li>Login as <span style="color: #0433ff;">botuser</span> with
+                  the password you have set up e.g. Welcome1!</li>
+                <img src="img/image098.png" alt="A" style="width: 100%; height: 100%;">&nbsp;
+                <li>This will show you the same service cloud web agent
+                  interface.</li>
+                <li>Run the skill in the tester now. Enter <span style="color: #0433ff;">Order a medium pizza</span>.</li>
+                <img src="img/order-pizza.png" alt="A" style="width: 100%; height: 100%;">&nbsp;
+                  <li>Click on <span style="color: #0433ff;">Order</span> button to order any pizza. Specify your location and complete the order.</li>
+                  <li>Now without resetting the conversation type <span style="color: #0433ff;">I would like to chat with a human</span>. This will initiate a convesation with Oracle Service Cloud live chat. <br><br>It might be a good idea to open both the windows side by side so that you can see both conversations together. See screen shot below. <br><br>You will notice that the a popup shows up on the service cloud chat window with queue name as bot-queue rather then Default queue. This means you have set up th service cloud configuration successfully.</li>
+                <img src="img/live-chat.png" alt="A" style="width: 100%; height: 100%;"><br><br>
+                <li>Also you will notice that the existing conversation has been carried over to the service cloud chat window.</li>
+                <img src="img/conversation-history.png" alt="A" style="width: 100%; height: 100%;">
+                <li>You can now continue exchanging messages between the user and the live chat window.</li>
+                </ol>
+              <br>
+              &nbsp;<br>
+              <br>
+          </section>
+          <section>
+              <h2 id="section_conclusion" role="button" style="text-align: left;"><img src="img/32_5.png"
+                  alt="section 5"
+                  class="num_circ"
+                  height="32"
+                  width="32">Conclusion</h2>
+              <p class="MsoNormal"><span style="mso-bidi-font-family:Calibri;mso-bidi-theme-font:
+minor-latin">Congratulations!<br><br>
+              You have successfully completed tutorial 2. You have been able to send context from the skill to the live agent and also direct messages to a custom queue.<br><o:p></o:p></span></p>
+              <br>
+              </section>
+            
+          </article>
+        </div>
+        <br class="clearfloat">
+      </div>
+    </div>
+    <!--close main-->
+    <!--end content-->
+    <div class="footer-container ">
+      <div style="max-width: 994px; padding:10px 0 0 17px;">
+        <footer class="footer-list">
+          <ul>
+            <li> <a target="_blank" href="https://www.oracle.com/corporate/index.html" target="_blank">About
+                Oracle</a> </li>
+            <li> <a target="_blank" href="https://www.oracle.com/us/corporate/contact/index.html"
+                target="_blank">Contact
+                Us</a> </li>
+            <li> <a target="_blank" href="https://www.oracle.com/us/legal/index.html" target="_blank">Legal
+                Notices</a> </li>
+            <li> <a target="_blank" href="https://www.oracle.com/us/legal/terms/index.html" target="_blank">Terms
+                of Use</a> </li>
+            <li> <a target="_blank" href="https://www.oracle.com/us/legal/privacy/index.html" target="_blank">Your
+                Privacy Rights</a> </li>
+            <li> <a target="_blank" href="https://www.oracle.com/pls/topic/lookup?ctx=cpyr&amp;id=en">Copyright
+                © 2018, Oracle and/or its affiliates. All rights reserved.</a></li>
+          </ul>
+        </footer>
+      </div>
+      <script type="text/javascript" src="https://www.oracleimg.com/us/assets/metrics/ora_docs.js"></script>
+    </div>
+    <!-- OBE Dialog Box code 10/15/2018 -->
+    <!-- DO NOT ALTER THE CODE BELOW   -->
+    <div id="lpModal" class="modal">
+      <!-- Modal hdr and body -->
+      <div id="obe_dialog" class="modal-content">
+        <div class="modal-header"> <a target="_blank" href="#" class="close"> <span class="close">×</span>
+          </a>
+          <h1>Associated Learning Paths</h1>
+        </div>
+        <div id="dialog-content"> </div>
+        <div id="dialog-close" class="closeBtn"> <a target="_blank" href="#" class="close2">
+            <p class="close2"> <span>&nbsp;&nbsp;View&nbsp;&nbsp;</span> </p>
+          </a> </div>
+      </div>
+    </div>
+    <!-- END OBE Dialog Box code -->
+  </body>
+</html>

@@ -1,0 +1,133 @@
+# dialog.yaml 
+
+#--------------------Section I ----- 4.3 ---------------------#
+# 1 Create a LiveChat Intent
+
+Intent:
+    component: "System.Intent"
+    properties:
+      variable: "iResult"
+    transitions:
+      actions:
+        LiveChat: "setupProfileFirstName"
+        unresolvedIntent: "Unresolved"
+        OrderPasta: "OrderPasta"
+        ShowMenu: "ShowMenu"
+        OrderPizza: "OrderPizza" 
+
+#--------------------Section I ----- 4.4 ---------------------#
+# 2 Service Cloud Live Chat Integration
+  setupProfileFirstName:
+    component: "System.SetVariable"
+    properties:
+      variable: "profile.firstName"
+      value: "Abhay"
+    transitions: {}
+  setupProfileLastName:
+    component: "System.SetVariable"
+    properties:
+      variable: "profile.lastName"
+      value: "Bhavsar"
+    transitions: {}
+  setupProfileEmail:
+    component: "System.SetVariable"
+    properties:
+      value: "abhay.bhavsar@oracle.com"
+      variable: "profile.email"
+    transitions: {}
+    
+  agentInitiation:
+    component: "System.AgentInitiation"
+    properties:
+      agentChannel: "ServiceCloudIntegration"
+      agentActions: "OrderPizza"
+      nlpResultVariable: "iResult"
+      waitingMessage: "Let me connect you with our Customer Service Agents who can further assist you!"
+    transitions:
+      actions:
+        accepted: "agentConversation"
+        rejected: "reject"
+        OrderPizza: "OrderPizza"
+        
+  agentConversation:
+    component: "System.AgentConversation"
+    properties:
+      agentChannel: " ServiceCloudIntegration "
+      nlpResultVariable: "iResult"
+      exitKeywords: "bye, bye, good night, end, quit"
+      conclusionMessage: "Have a nice day."
+    transitions:
+      next: "endPrompt"
+        
+  endPrompt:  
+    component: "System.Output"
+    properties:
+      text: "Connecting you back to the Bot.."
+      keepTurn: true
+    transitions:
+      next: "OrderPizza"
+      
+  reject:
+    component: "System.Output"
+    properties:
+      text: "Sorry, looks like our Agents are currently not available! We'll call you back ASAP"
+    transitions:
+      return: "done"
+
+#-------------SECTION I --- 5.2 -----------------------------------------------#
+metadata:
+  platformVersion: "1.1"
+main: true
+name: "CrcPizzaBot_Starter"
+context:
+  variables:
+    iResult: "nlpresult"
+    pizzas: "string"
+    dummy: "string"
+    orderedPizza: "string"
+    orderedPizzaImage: "string"
+    pizzaSize: "PizzaSize"
+    location: "string"
+    cardsRangeStart: "int"
+    autoNumberPostbackActions: "boolean"
+    textOnly: "boolean"
+    
+#defaultTransitions:
+#  error: "DefaultErrorHandler"
+#  actions:
+#    system.outOfOrderMessage: "HandleOutOfOrderMessage"
+
+
+#-------------SECTION I --- 5.10 -----------------------------------------------#
+agentInitiation:
+    component: "System.AgentInitiation"
+    properties:
+      agentChannel: "ServiceCloudIntegration"
+      agentActions: "OrderPizza"
+      nlpResultVariable: "iResult"
+      waitingMessage: "Let me connect you with our Customer Service Agents who can further assist you!"
+      resumedMessage: "Please wait, somebody would be there with you shortly."
+    transitions:
+      actions:
+        accepted: "agentConversation"
+        rejected: "reject"
+        OrderPizza: "OrderPizza"
+
+
+#-------------SECTION II --- 5.2 -----------------------------------------------#
+setupProfileEmail:
+    component: "System.SetVariable"
+    properties:
+      value: "abhay.bhavsar@oracle.com"
+      variable: "profile.email"
+    transitions: {}
+
+
+
+#-------------SECTION II --- 5.3 -----------------------------------------------#
+setupProfileEmail:
+    component: "System.SetVariable"
+    properties:
+      value: "botcontact@smartly.com"
+      variable: "profile.email"
+    transitions: {}

@@ -1,0 +1,92 @@
+#metadata: information about the flow
+#  platformVersion: the version of the bots platform that this flow was written to work with 
+metadata:
+  platformVersion: 1.0
+main: true
+name: PizzaSkill
+#context: Define the variables which will used throughout the dialog flow here.
+context:
+  variables:
+    iResult: "nlpresult"
+    pizza: "PizzaBag"
+    
+states:
+
+  intent:
+    component: "System.Intent"
+    properties:
+      variable: "iResult"
+      optionsPrompt: "Do you want to"      
+    transitions:
+      actions:
+        OrderPizza: "startOrderPizza"
+        WelcomePizza: "startWelcome"
+        unresolvedIntent: "startUnresolved"        
+
+  startOrderPizza:
+    component: "System.Output"
+    properties:
+      text: "ok lets get that order sorted"
+      keepTurn: true
+    transitions: {}
+    
+  resolveEntities:
+    component: "System.ResolveEntities"
+    properties:
+      variable: "pizza"
+      nlpResultVariable: "iResult"      
+      maxPrompts: 3
+      cancelPolicy: "immediate"        
+    transitions:
+      actions:
+        cancel: "maxError"
+        next: "setPizzaDough"
+
+
+  setPizzaDough:
+    component: "System.SetVariable"
+    properties:
+      variable: "pizza.PizzaDough"
+      # value set for the variable.
+      value: "${pizza.value.PizzaDough?has_content?then(pizza.value.PizzaDough,'regular')}"
+
+
+
+  showPizzaOrder:
+    component: "System.Output"
+    properties:
+      text: "Ok so we are getting you a ${pizza.value.PizzaSize} ${pizza.value.PizzaTopping} at ${pizza.value.DeliveryTime.date?long?number_to_time?string('HH:mm')}.  This will be on our ${pizza.value.PizzaDough} base "
+    transitions: 
+      return : "showPizzaOrder"
+
+
+
+  startWelcome:
+    component: "System.Output"
+    properties:
+      text: "Hey there - welcome to our online Pizza bot!"
+    transitions:
+      return: "startWelcome"
+      
+  startUnresolved:
+    component: "System.Output"
+    properties:
+      text: "Ok lets sort out that pizza for you!"
+      keepTurn: false
+    transitions:
+      return: "startUnresolved"      
+
+  maxError:
+    component: "System.Output"
+    properties:
+      text: "OK lets connect you with someone to help"
+    transitions:
+      return: "maxError"
+
+
+  helpState:
+    component: "System.Output"
+    properties:
+      text: "I am the pizza bot here to help you!!"
+    transitions:
+      return: "helpState"
