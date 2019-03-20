@@ -172,7 +172,7 @@
 							
 							<h3>Explicit Routing Example</h3>
 							<ul>
-								<li>Click <img src="img/test_button.png" alt="the Digital Assistant Tester icon">, click <b>Reset</b>,  type <u>ask retail skill what's my balance</u> into the <b>Message</b> field, and press Enter.
+								<li>Click <img src="img/test_button.png" alt="the Digital Assistant Tester icon">, click <b>Reset</b>,  type <u>ask Fin Skill what's my balance</u> into the <b>Message</b> field, and press Enter.
 								<figure><img src="img/screenshot_tester-explicit-rule.png" alt="Screenshot that is described in the surrounding text"></figure>
 								<p>Notice in the <b>Rules</b> how explicit invocation takes precedence over other potential skill matches (even though those skills had very high confidence scores).</p>
 								</li>
@@ -235,26 +235,7 @@
 								<figure><img src="img/screenshot_tester-pinning.png" alt="Screenshot that is described in the surrounding text"></figure>
 								<p>Notice that this time the Candidate Flow (intent) CancelPizza was invoked by the routing engine, even though other skills were above the threshold values. This is because extra weight is given to results within the current skill.</p></li>
 							</ol>
-							<h3>Set Confidence Thresholds to Change Routing Behavior</h3>
-							<ul>
-								<li>Click <img src="img/test_button.png" alt="the Digital Assistant Tester icon">, click <b>Reset</b>,  type <u>Can you cancel my pie</u> into the <b>Message</b> field, and press Enter.
-								<p>Your results should look like this:</p>
-								<figure><img src="img/screenshot_tester-candidate-skills.png" alt="Screenshot that is described in the surrounding text"></figure>
-</li>
-							</ul>
-							<p>Let’s change the threshold setting for candidate skills to see what effect this has on the conversation.</p>
 							
-							<ol>
-								<li>Close the tester.</li>
-								<li>Click <img src="img/left_nav_settings.png" alt="the Settings icon"> and select the <b>Configurations</b> tab.
-								<figure><img src="img/screenshot_tester-threshold.png" alt="Screenshot that is described in the surrounding text"></figure></li>
-								<li>Change the <b>Candidate Skills Confidence Threshold</b> value to <code>0.9</code>.</li>
-								<li>Click <img src="img/test_button.png" alt="the Digital Assistant Tester icon">, click <b>Reset</b>,  type <u>Can you cancel my pie</u> into the <b>Message</b> field, and press Enter.
-								<p>This time you should see very different results:</p><figure><img src="img/screenshot_tester-canceled.png" alt="Screenshot that is described in the surrounding text"></figure>
-								<p>Notice now how the DA went immediately to the order cancellation in the pizza skill.</p></li>
-								<li><b>IMPORTANT:</b> Change the <b>Candidate Skills Confidence Threshold</b> back to <code>0.4</code>.
-								<p>Now that you can see the impact that this setting has, it's best to return its value to a more realistic level.</li>
-							</ol>
 							
 
                         </section>
