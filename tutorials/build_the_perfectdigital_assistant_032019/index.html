@@ -1,0 +1,800 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <!-- Part number: Ennnnn-01 -->
+        <!-- Published date: Month Year -->
+        <!-- Template date: October 15, 2018 -->
+        <!-- Put the content ID of this OBE between the empty quotation marks for 'content' below -->
+        <meta name="contentid" content="">
+        <meta content="text/html; charset=utf-8" http-equiv="content-type">
+        <!-- The title below is displayed on the browser tab, in search results, and in  history. It can be longer than the tutorial title in the <h1> element, below.-->
+		<!-- Use an imperative verb in the title. -->
+        <title>Oracle Digital Assistant: Build the Perfect Digital Assistant for Your Business</title>
+        <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+        <meta name="robots" content="INDEX, FOLLOW">
+        <meta name="description" content="Put the description of the tutorial here.">
+        <meta name="description" content="Put the description of the tutorial here.">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <link rel="stylesheet" href="css/normalize.min.css">
+        <link rel="stylesheet" href="css/font-awesome.min.css">
+        <link rel="stylesheet" href="css/obe-lite.css">
+        <script src="js/jquery-1.11.0.min.js"></script>
+        <script src="js/jquery-ui-1.10.4.custom.js"></script>
+        <script src="js/jquery.tocify.jd.js"></script>
+        <script src="js/leftnav.js"></script>
+    </head>
+    <body>
+        <header>
+            <div class="w1024" style="min-height:55px; display:block;"> <a href="https://docs.oracle.com" class="oracle-logo">
+              <img src="img/oracle_doc_logo.png" alt="Oracle Documentation" style="max-width: none;" height="22" width="236"></a>
+            </div>
+        </header>
+        <!--end header-->
+
+        <div id="content">
+
+
+			<h1><img src="img/obe_tag.png" align="middle" alt="Oracle by Example branding">Build the Perfect Digital Assistant for Your Business</h1>
+            <div class="w1024" style="clear:both; position:relative; margin-top:40px;">
+                <div class="navbackwide border-right"><!-- --></div>
+                <div id="shownav" title="Show Navigation" tabindex="0"><span class="fa fa-list"></span></div>
+                <div id="sidebar"><!-- -->
+                    <div class="left-nav-tut"><!-- -->
+                        <div id="hidenavw" title="Hide Navigation" tabindex="0"><span class="fa fa-close"></span></div>
+                        <div  id="navbar" class="left-nav-w"><!-- -->
+                            <div id="toc" class="tocify"><!-- --></div>
+                        </div>
+                    </div>
+                </div>
+                <div id="bookContainer">
+                    <article>
+					<p>In this lab, you'll learn how to work with skills and digital assistants in Oracle Digital Assistant.  </p>
+					<ul>
+						<li>A <b>skill</b> is an individual chatbot that is focused on a specific set of capabilities (e.g. helping customers order food from a specific restaurant).</li>
+						<li>A <b>digital assistant</b> is a master chatbot containing multiple specialized skills. When a user engages with the digital assistant, the digital assistant evaluates the user input and routes the conversation to the appropriate skill. You can populate your digital assistant with skills from the Skill Store and with skills you have designed yourself.</li>
+					</ul>
+					<p><b>Here’s the scenario for this lab:</b></p> 
+					<p>You’re part of a project team building a digital assistant to allow your customers to better engage with the various businesses in a major shopping centre. </p>
+					<p>This is the early stage of building the digital assistant and currently it supports use cases for a bank and a major retail store.  The next stage of the project is to add a skill to support the new pizzeria that is opening up.</p>
+					<p>Here is what you need to do:</p>
+					<ul>
+						<li>Complete the pizza skill ensuring it can handle complex requests for personalizing your pizza.</li>
+						<li>Add this skill to the shopping centre digital assistant.</li>
+						<li>Expose this digital assistant on the shopping centre's website for easy access.</li>
+					</ul>
+	                        <section>
+                            <h2><img src="img/32_begin.png" alt="section 0" height="32" width="32" class="num_circ">Before You Begin</h2>
+                            <h3>What Do You Need?</h3>
+							
+                            <p>To complete this lab, you need:</p>
+							<ul>
+								<li>These files:
+									<ul>
+										<li><a href="files/PizzaSkill_starter.zip">PizzaSkill_starter.zip</a>.</li>
+										<li><a href="files/ODA_HOL2019.zip">ODA_HOL2019.zip</a>.</li>
+										<li><a href="files/PizzaSkill_BotML.json">PizzaSkill_BotML.json</a>.</li>
+									</ul>
+									<p>Go ahead and download them now.</p>
+								</li>
+								<li>Node.js (<a href="https://nodejs.org/en/download/" target="_blank">https://nodejs.org/en/download/</a>).
+								<p>This is required in order to host the sample shopping centre website on your machine.  You can install this now or wait until you get to the Channels section at the end the lab.</p></li>
+								<li>The ODA Client samples for JavaScript v19.1.3.0.							
+								<p>To get them, navigate to <a href="http://bit.ly/amcedownloads" target="_blank">http://bit.ly/amcedownloads</a>, accept the Oracle Technology Network license agreement, scroll down to the ODA Client SDKS section, and then download <b>bots-client-sdk-js-samples-19.1.3.0.zip</b>.
+								<figure><img src="img/oda-sample-download.png" alt="screenshot showing the ODA Client SDKs section of a web page. It contains a table with 6 items. The sixth row, which contains a download for bots-client-sdk-js-samples-19.1.3.0.zip is circled in red."></figure></li>
+
+							<li>An Oracle Digital Assistant (ODA) cloud instance. You can get one using either of the following approaches:<br><br>
+								<ul>
+								<li><a href="#trial">Option A - Setting up a trial instance</a>.
+								<p>By having your own instance, you can continue this lab after the event and even build your own digital assistant.</p>
+                                    <p>Though it will not cost you any money to complete the lab using this option, you may need a credit card to sign up.</p></li><br><span style="color: #0433ff;"><b>OR</b></span><br><br>
+								<li><a href="#shared-instance">Option B - Using the shared instance</a> that has been provisioned for this event.
+								<p>If you select this option, you can dig into the lab with less setup time.</p>
+								<p>This instance will be used by other participants in the hands-on lab.</p></li>
+							</ul>
+							</ul>
+							
+							<h3><a name="trial">Option A: Set Up a Trial Instance</a></h3>
+							<h4>Get an Oracle Cloud Account</h4>
+							<p>Before you can get a trial ODA instance, you need to get an Oracle Cloud account:</p>
+							<ol>
+								<li>Go to <a href="http://oracle.com/oow19LON" target="_blank">http://oracle.com/oow19LON</a>.</li>
+								<!--<li>Click <b>Try for Free</b>.</li>-->
+								<li>Fill in the Account Details section. Among the details you'll need to enter are the following:
+									<ul>
+										<li>A <b>Cloud Account Name</b>.</li>
+										<li>The <b>Default Data Region</b>, which determines where your services will be hosted. Select North America or EMEA.</li>
+										<li>A valid email address.
+											<p>Instructions about signing in to your new cloud account are sent to this address.</p>
+											<p>If your email address is already associated with a cloud account, then you can click the link to get all your accounts associated with your email address.</p></li>							
+									</ul>
+								</li>
+								<li>In the Verification Code section, enter the phone number of your mobile phone and click <b>Request Code</b>.
+								<p>A verification code will be sent to this number.</p></li>
+								<li>In the <b>Verification Code</b> field, enter the number that is sent to your phone and click <b>Verify</b>.</li>
+								<li>In the Credit Card Details section, click <b>Add Payment Method</b> and fill in the requested address and credit card details.
+								<p>After successful finishing the payment information, you should see a <b>Your credit card has been successfully validated</b> message:</p>
+								<figure><img src="img/credit-card-verification.png" alt="screenshot showing the Credit Card Details page which contains the message 'Your credit card has been successfully validated'"></figure></p></li>
+								<li>In the <b>Terms & Condition</b> section, review the terms and conditions and click <b>Complete</b> to accept them.
+								<p>At this point, the account creation process is started and should be complete within 15 minutes. You will get a confirmation screen something like this:</p>
+							<figure><img src="img/signup-confirmation.png" alt="A screenshot of a web page with the message 'Thank you for signing up for Oracle Cloud'"></figure></li>
+							<li>Check your email account for the welcome email from Oracle Cloud.</li>
+							<li>Open the email and click the <b>Get Started with Oracle Cloud</b> in the email.
+							<figure><img src="img/access-email.png" alt="screenshot of the section of welcome email that contains a box entitled 'Access Details for My Service' and a 'Get Started with Oracle Cloud' button."></figure></li>
+							<li>On the web page that is opened, enter the username and  temporary password and click the <b>Sign In</b> button.
+							<figure><img src="img/signin-page.png" alt="screenshot of the Oracle Cloud sign-in web page"></figure></li>
+							<li>As prompted, change your password.
+							</li>
+							</ol>
+							<p>At this point, you are in your cloud account and are ready to provision an ODA instance.</p>
+							<h4>Provision an Oracle Digital Assistant Instance</h4>
+							<ol>
+								<li>Click on hamburger menu on top left, navigate to the last, choose <b>Administration</b> and click on <b>My Services Dashboard</b>.<figure><img src="img/My-Services-Dashboard-path.png" alt="Screenshot of the main page after loggin in."></figure></li>
+                                <li>In the My Services Dashboard, click Create Instance.<figure><img src="img/create-instance.png" alt="Screenshot of the My Service dashboard. There are buttons for Guided Journey, Create Instance, Account Management, and Customize Dashboard."></figure></li>
+								<li>Select the <b>All Services</b> tab and click the <b>Create</b> button on the Digital Assistant tile.<figure><img src="img/create-instance2.png" alt="Screenshot of the Create Instance page. There are tabs for Featured Services and All Services. All Services is selected. There are tiles for 4 services, the 3rd of which is Atonomous Digital Assistant."></figure></li>
+								<li>On the next screen that appears, click <b>Create Instance</b>.<figure><img src="img/create-instance-button.png" alt="Screenshot of the Create Instance page."></figure></li>
+								<li>Fill in the <b>Instance Name</b>, <b> Region </b>, check the option "I have special instructions from Oracle" field and enter <b>Placement tag</b> value as provided by your instructor. Leave the other fields with their default values, and click <b>Next</b>.<figure><img src="img/CreateInstance-step1.png" alt="Screenshot of the Create Instance page, enter your details here."></figure></li>
+								<li>On the Confirm page, click <b>Create</b>.<figure><img src="img/create-instance-step2-confirmation-page.png" alt="Screenshot of the Create Instance confirmation page"></figure>
+								<p>Within a few minutes your service should be created. On the Instances page, you can check the progress in the <b>Status</b> field.</p>
+								<figure><img src="img/creating-service.png" alt="screenshot showing the Instances page, which includes a Status field and the value 'Creating service...'."></figure>
+								<p>If it takes more than a few minutes to finish, try refreshing the page in the browser.</p>
+								</li>
+								<li>Once the instance is created, click <img src="img/options-menu.png" alt="the menu icon"> and select <b>Digital Assistant UI Designer</b>.
+								<figure><img src="img/select-da-designer.png" alt="screenshot showing a panel for a Digital Assistant instance. On the right side of the panel is an options menu, which is selected, showing options for Digital Assistant UI Designer, Add Tags, and Delete."></figure>
+								<p>A new browser tab will be opened with the Digital Assistant Designer UI.</p>
+								<figure><img src="img/da-ui.png" alt="a screenshot showing the home page of Oracle Digital Assistant"></figure></li>
+							
+						</ol>
+							<h4>Import the Starter Skill and Digital Assistant to Your Instance</h4>
+							<p>Now let's prepare our demo environment by setting up the starter pizza skill and  starter shopping centre digital assistant.</p>
+							<p><b>Import the Pizza Skill:</b></p>
+							<ol>
+								<li>With the Oracle Digital Assistant UI open in your browser, click <img src="img/hamburger.png" alt="main menu icon"> to open the side menu.</li>
+								<li>Click <b>Development</b> and select <b>Skills</b>.</li>
+								<li>Click <img src="img/hamburger.png" alt="main menu icon"> again to collapse the side menu.</li>
+								<li>Import the skill by clicking the <b>Import Skill</b> button that is highlighted in red in the screenshot below.
+								<figure><img src="img/import-skill.png" alt="a screenshot of the Skills page. In the top navigation bar of the page there are buttons for Instant Apps and Import Skill."></figure></li>
+								<li>Navigate to PizzaSkill_starter.zip on your system and click <b>Open</b>.</li>
+								<li>In the skills dashboard, select the <b>PizzaSkill</b> tile to open the skill designer.</li>
+							</ol>
+							<p><b>Import the Starter Digital Assistant</b></p>
+							<ol>
+								<li>With the ODA UI open in your browser, click <img src="img/hamburger.png" alt="main menu icon"> to open the side menu.</li>
+								<li>Click <b>Development</b> and select <b>Digital Assistants</b>.</li>
+								<li>Click <img src="img/hamburger.png" alt="main menu icon"> again to collapse the side menu.</li>					<li>Click <b>Import Digital Assistant</b>.</li>
+								<li>Navigate to <code>ODA_HOL2019.zip</code> on your system and click <b>Open</b>.</li>
+								<li>In the Digital Assistants dashboard, select the  <b>ODA_HOL2019</b> tile to open the DA designer.
+								<p>If you cannot spot the ODA_HOL2019 DA, type <code>ODA_HOL2019</code> into the Filter field located above the New Digital Assistant tile.</p></li>	
+							</ol>
+							<p>By importing the ODA_HOL2019 DA, you have added a digital assistant and two skills to your instance:</p>
+							<ul>
+								<li><b>ODA_HOL_2019</b> (digital assistant)</li>
+								<li><b>RetailBot</b> (skill)</li>
+								<li><b>FinancialBot</b> (skill)</li>
+							</ul>
+							<p>You are now ready for the main part of the lab. Skip ahead to the <a href="#pizza-skill">Design the Pizza Skill</a> section.</p>
+
+
+
+							<h3><a name="shared-instance">Option B: Use the Shared Instance</a></h3>
+							<h4>Log In to the Shared Instance</h4>
+							<ol>
+								<li>In your browser, navigate to <a href="http://bit.ly/DAOOW2019" target="_blank">http://bit.ly/DAOOW2019</a>.</li>
+								<li>Log in to the instance using the credentials provided by your lab instructor.</li>
+							</ol>
+							<p>After successfully logging in, you will land on the ODA home page.</p>
+							<h4>Clone Copies of the Starter Skill and Digital Assistant</h4>
+							<p>In this lab, a starter skill and a starter digital assistant are provided for you. Before you get to work, you need to create your own copies.</p>
+							<p><b>Clone the Starter Skill</b></p>
+							<ol>
+								<li>With the Oracle Digital Assistant UI open in your browser, click <img src="img/hamburger.png" alt="main menu icon"> to open the side menu.</li>
+								<li>Click <b>Development</b> and select <b>Skills</b>.</li>
+								<li>Click <img src="img/hamburger.png" alt="main menu icon"> again to collapse the side menu.</li>
+								<li>In the skills dashboard, find the tile for <b>PizzaSkill</b>.</li>
+								<li>Click PizzaSkill's Options menu (<img src="img/options-menu.png" alt="menu icon">) and select <b>Clone</b>.
+								<figure><img src="img/clone-skill.png" alt="screenshot showing the Skills page in ODA. There is a tile for New Skill and a tile for PizzaSkill. Within the tile for PizzaSkill, the Options menu is selected, and it shows menu items for Edit, New Version, Clone, etc."></figure></li>
+								<li>In the <b>Create Clone</b> dialog, enter a value for <b>Display Name</b> using the form <code><i>&lt;your_initials&gt;</i>_PizzaSkill</code>.
+								<p>For example, if your initials are AB, you'd name the skill <b>AB_PizzaSkill</b>.</p></li> 
+								<li>Click <b>Clone</b>.</li>
+								<li>On the Skills dashboard page, select <code><i>&lt;your_initials&gt;</i>_PizzaSkill</code> to open it up in the designer.
+							</ol>
+							<p><b>Clone the Starter Digital Assistant</b></p>
+							<ol>
+								<li>Click <img src="img/hamburger.png" alt="main menu icon"> to open the side menu.</li>
+								<li>Click <b>Development</b> and select <b>Digital Assistants</b>.</li>
+								<li>Click <img src="img/hamburger.png" alt="main menu icon"> again to collapse the side menu.</li>
+								<li>In the skills dashboard, find the tile for <b>ODA_HOL2019</b>, open its  Options menu (<img src="img/options-menu.png" alt="menu icon">), and select <b>Clone</b>.
+								</li>
+								<li>In the <b>Create Clone</b> dialog, enter a value for <b>Display Name</b> using the form <code><i>&lt;your_initials&gt;</i>_ODA_HOL2019</code>.
+								<p>For example, if your initials are AB, you'd name the skill <b>AB_ODA_HOL2019</b>.</p></li> 
+								<li>Click <b>Clone</b>.</li>
+								<li>On the Digital Assistants dashboard page, select <code><i>&lt;your_initials&gt;</i>_ODA_HOL2019</code> to open it up in the designer.
+							</ol>
+
+
+
+                        </section>
+
+                        <!-- ========================================================================================================================= -->
+                        <section>
+                            <hr>
+                            <h2 id="section_1" role="button" style="text-align: left;"><img src="img/32_1.png" alt="section 1" height="32" width="32" class="num_circ"><a name="pizza-skill">Design the Pizza Skill</a></h2>
+							<p>In this part of the lab, we'll complete development of the Pizza Skill that has been started for us. After familiarizing ourselves with the starter skill, we'll:</p>
+							<ul>
+								<li>Create a composite bag entity to consolidate existing entities which represent the different variable elements of the pizza (size, topping, delivery time etc) and make it easier to manage entities from the dialog flow.</li>
+								<li>Add logic to the skill's dialog flow to manage the pizza ordering process.</li>
+								<li>Train and test the skill.</li>
+								<li>Publish the skill so that it can be used in a digital assistant.</li>
+							</ul>
+							
+							<h3>Explore and Test the Skill</h3>
+							<p>The conversational AI use case you are working with is a skill for ordering pizza. To familiarize yourself with the designer and the skill itself, try it out by following these steps:</p>
+<ol>
+								<li>In ODA, click <img src="img/hamburger.png" alt="main menu icon"> to open the side menu.</li>
+								<li>Click <b>Development</b> and select <b>Skills</b>.</li>
+								<li>Click <img src="img/hamburger.png" alt="main menu icon"> again to collapse the side menu.</li>
+								<li>In the skills dashboard, select your copy of <b>PizzaSkill</b>.</li>
+								<li>In the left navigation for the designer, select <img src="img/left_nav_intents.png" alt="the Intents icon">.</li>
+								<li>Click the <b>OrderPizza</b> intent and quickly observe the utterances.</li>
+								<li>In the left navigation for the designer, select <img src="img/left_nav_entities.png" alt="the Entities icon">.</li>
+								<li>Select the <b>PizzaDough</b> entity and look at the way that it is configured.</li>
+								<li>Repeat the above step for <b>PizzaSize</b> and <b>PizzaTopping</b>.</li>
+								<li>Locate the <b>Train button</b> (<img src="img/train-button.png" alt="Train bot icon">) on the right side of the page, click it, click <b>Submit</b>, and then wait a few seconds for the training to complete.</li>
+								<li>Find the Skill Tester icon (<img src="img/test_button.png" alt="the Skill Tester icon">) in the bottom of the skill's left navigation bar and click it.</li>
+								<li>In the tester's <b>Message</b> field, type <u>I want to order pizza</u>, click <b>Send</b>, and note the skill's response.
+								<p>For now it's just a static response. It will become more dynamic once we add logic to the dialog flow.</p></li>
+								<li>Click the <b>Reset</b> button at the top of the tester window and then close the tester.</li></ol>
+								
+								<h3>Add a Composite Bag Entity</h3>
+								<p>When a customer orders a pizza, details such as toppings, size, and crust need to be specified.  In PizzaSkill, each of these variables is represented by an entity.</p>
+								<p>The challenge for any chatbot is that the user can include varying subsets of the required information in their initial input. For example, one person might specify the size and topping, but not the type of crust. And another person might specify only the crust. In each case, the skill should recognize any entities supplied in the original input, and prompt for those that are not.</p>
+								<p>In this step, we’ll create a composite bag entity, which is a special entity that automatically recognizes and prompts for the appropriate entities for a pizza order. In addition to our custom entities (PizzaSize, PizzaTopping, PizzaDough), we'll include a system entity for DeliveryTime.</p>
+								<h4>Create the Composite Bag Entity:</h4>
+								<ol>
+									<li>Select <img src="img/left_nav_entities.png" alt="the Entities icon"> and click <img src="img/add-entity.png" alt="the Add Entity button"> to create a new entity.</li>
+									<li>In the <b>Name</b> field, change the value to <code>PizzaBag</code>.</li>
+									<li>In the Configuration section, in the Type dropdown, select <b>Composite Bag</b>.
+									<figure><img src="img/select-composite-bag.png" alt="Screenshot showing the Configuration section of the page for the PizzaBag entity. The Type dropdown menu is opened, showing options for Derived, Value List, Entity List, Regular Expression, and Composite Bag."></figure></li>
+								
+								</ol>
+								<h4>Add Bag Items for the PizzaSize, PizzaTopping, PizzaDough, and DeliveryTime Entities</h4>
+
+								<ol>
+									<li>Click <img src="img/bag-item-button.png" alt="Add Bag Item button">.</li>								<li>On the Add Bag Item page, fill in the following values:
+									<ul>
+										<li><b>Name:</b> <code>PizzaSize</code></li>
+										<li><b>Type:</b> <code>Entity</code></li>
+										<li><b>Entity Name:</b> <code>PizzaSize</code> (If prompted in a popup, select <b>Overwrite</b>.)</li>
+										<li><b>Maximum User Input Attempts:</b> <code>4</code></li>										<li><b>Error Message:</b> <code>Sorry, '${system.entityToResolve.value.userInput!'this'}' 
+is not a valid size of pizza. 
+</code></li>
+									</ul></li>
+									<li>Click <img src="img/add-prompt.png" alt="Add Prompt button">.</li>
+									<li>For the value, enter <code>What size of pizza would you like?</code></li>
+									<li>Again, click <img src="img/add-prompt.png" alt="Add Prompt button">.</li>
+									<li>For the value, enter <code>Please choose small, medium or large.</code></li>					
+									<li>Click <b>Close</b>.</li>
+									<li>Again, click <img src="img/bag-item-button.png" alt="Add Bag Item button">.</li>
+									<li>Click <b>Close</b>.</li>
+									<li>On the Add Bag Item page, fill in the following values:
+									<ul>
+										<li><b>Name:</b> <code>PizzaTopping</code></li>
+										<li><b>Type:</b> <code>Entity</code></li>
+										<li><b>Entity Name:</b> <code>PizzaTopping</code> (If prompted in a popup, select <b>Overwrite</b>.)</li>
+										<li><b>Error Message:</b> <code>Sorry, we don't have that topping</code></li>
+										<li><b>Prompt for Disambiguation:</b> <i>switched ON</i></li>
+										<li><b>Disambiguation Prompt:</b> <code>Sorry you can only order one topping type</code></li>
+									</ul></li>
+									<li>Click <b>Close</b>.</li>
+									<li>Again click <img src="img/bag-item-button.png" alt="Add Bag Item button">.</li>								<li>On the Add Bag Item page, fill in the following values:
+									<ul>
+										<li><b>Name:</b> <code>PizzaDough</code></li>
+										<li><b>Type:</b> <code>Entity</code></li>
+										<li><b>Entity Name:</b> <code>PizzaDough</code></li>
+										<li><b>Out of Order Extraction:</b> <i>switched ON</i></li>
+										<li><b>Prompt for Value:</b> <code>false</code></li>
+									</ul></li>
+									<li>Click <b>Close</b>.</li>
+									<li>For the fourth (and final) time, click <img src="img/bag-item-button.png" alt="Add Bag Item button">.</li>
+									<li>On the Add Bag Item page, fill in the following values:
+									<ul>
+										<li><b>Name:</b> <code>DeliveryTime</code></li>
+										<li><b>Type:</b> <code>Entity</code></li>
+										<li><b>Entity Name:</b> <code>TIME</code></li>
+										<li><b>Maximum User Input Attempts:</b> <code>4</code></li></ul></li>										
+									<li>Scroll down to the Prompts section, replace the existing prompt with <u>When can we deliver that for you?</u>, and press Enter.</li>
+									<li>Click <img src="img/validation-rule-button.png" alt="Add Validation Rule button">.</li>
+									<li>In the <b>Expression</b> field, enter <code>${(pizza.value.DeliveryTime.hrs?number &lt; 10)?then('true','false')}</code></li>
+									<li>In the <b>Error Message</b> field, enter <code>Sorry, we only deliver up to 9:30pm</code> and press the Enter key.</li>
+									<li>Click <b>Close</b>.</li>
+								</ol>
+								<p>Here is what the PizzaBag composite bag should look like in the designer:</p>
+								<figure><img src="img/pizza-bag-entity.png", alt="Screenshot showing the Entities page in the designer. On the left side of the page is a list of entities, including PizzaBag, PizzaDough, PizzaSize, and PizzaTopping. The PizzaBag entity is selected. On the right side of the page, are the Description and Configuration sections. Within the Configuration section, the value of the Type field is Composite Bag, and the Bag Items sub-section contains items for PizzaSize, PizzaTopping, PizzaDough, and DeliveryTime."></figure>
+								
+							<h3>Associate the Entity with the Intent</h3>
+							<p>Now we need to associate the PizzaBag composite entity to the OrderPizza intent so that we can extract the key words and phrases from the user input.</p>
+							<ol>
+								<li>Select <img src="img/left_nav_intents.png" alt="the Intents icon">.</li>
+								<li>Select the <b>OrderPizza</b> intent.</li>
+								<li>Click the <img src="img/add-entity-dropdown.png" alt="Add entry dropdown button"> button and select <b>PizzaBag</b> from the dropdown. See this screenshot to help locate the button:
+								<figure><img src="img/associate-entity.png" alt="A screenshot showing a part of the Intents page. On the top right of the screenshot is an <b>Intent Entities</b> label and dropdown for entities that you can add to the intent."></figure></li>
+							</ol>
+							
+							<h3>Implement the Pizza Ordering Logic</h3>
+							<p>Next we need to write logic for the skill to understand the user query and respond accordingly. We'll do this in the <i>dialog flow</i> where we can choreograph the interaction between the skill and its users.</p>
+							<ol>
+								<li>Click <img src="img/left_nav_dialog.png" alt="Dialog Flow icon">.</li>
+								<li>Within the context variables section, add this entry:  <code>pizza: "PizzaBag"</code>
+								<p>Here's how the addition should look in context.</p>
+								<pre>context:
+  variables:
+    iResult: "nlpresult"
+    <b>pizza: "PizzaBag"</b></pre>
+		<p><b>Important:</b> For all dialog flow examples, make sure that you <i>get the indentation exactly right</i>. Each state starts with two spaces of indentation. With each additional level of indentation, you add two more spaces.</p> </li>
+								<li>Update the <code>text</code> and <code>transitions</code> properties in the <b>startOrderPizza</b> state:
+								<pre>  startOrderPizza:
+    component: "System.Output"
+    properties:
+      <b>text: "ok lets get that order sorted"</b>
+      keepTurn: true
+    <b>transitions: {}</b></pre>
+</li>
+								<li>Below the <b>startOrderPizza</b> state, add new <b>resolveEntities</b>, <b>setPizzaDough</b>, <b>showPizzaOrder</b>, and <b>maxError</b> states:
+								<pre><b>  resolveEntities:
+    component: "System.ResolveEntities"
+    properties:
+      variable: "pizza"
+      nlpResultVariable: "iResult"      
+      maxPrompts: 3
+      cancelPolicy: "immediate"        
+    transitions:
+      actions:
+        cancel: "maxError"
+        next: "setPizzaDough"
+
+  setPizzaDough:
+    component: "System.SetVariable"
+    properties:
+      variable: "pizza.PizzaDough"
+      # value set for the variable.
+      value: "${pizza.value.PizzaDough?has_content?then(pizza.value.PizzaDough,'regular')}"
+
+  showPizzaOrder:
+    component: "System.Output"
+    properties:
+      text: "Ok so we are getting you a ${pizza.value.PizzaSize} ${pizza.value.PizzaTopping} at ${pizza.value.DeliveryTime.date?long?number_to_time?string('HH:mm')}.  This will be on our ${pizza.value.PizzaDough} base "
+    transitions: 
+      return : "showPizzaOrder"
+
+  maxError:
+    component: "System.Output"
+    properties:
+      text: "OK lets connect you with someone to help"
+    transitions:
+      return: "maxError"</b></pre></li>
+							</ol>
+							
+							<h4>Notes on What We Just Did</h4>
+							<ul>
+								<li>We have added a context variable pizza of type <code>PizzaBag</code> and used it in the <b>resolveEntities</b> state. This state is called when the <b>OrderPizza</b> intent is resolved.</li>
+								<li>The <b>resolveEntities</b> state calls a system component (<code>System.ResolveEntities</code>), iterates through all the entity fields in the composite bag, converses with the user, and resolves all the fields.</li>
+								<li>The <b>setPizzaDough</b> state checks if the <code>dough</code> value is <code>null</code>. If yes, then it sets it to <code>regular</code>.</li>
+								<li>Once all the entities are resolved, we output the pizza details in the <b>showPizzaOrder</b> state.</li>
+								<li>The <b>maxError</b> state is called if the number of attempts for an entity in the bag has reached the value of <code>maxPrompts</code>.</li>
+							</ul>
+							<h3>Validate and Train PizzaSkill</h3>
+							<ol>
+								<li>Click the <b>Validate</b> button to validate the skill.
+								<p>(The Validate button is in the top navigation, next to the Instant Apps button.)</li>
+								<li>If validation fails, delete the code in the dialog flow, replace it with the contents of the <code>PizzaSkill_BotML.json</code> file, and validate the flow again.</li>
+								<li>Click <img src="img/train-button.png" alt="Train bot icon">, click <b>Submit</b>, and then wait a few seconds for the training to complete.</li>
+							</ol>
+							<h3>Test PizzaSkill</h3>
+							<ol>
+								<li>Find the Skill Tester icon (<img src="img/test_button.png" alt="the Skill Tester icon">) in the bottom of the skill's left navigation bar and click it.</li>
+								<li>Type <u>I want to order a medium pizza</u> in the <b>Message</b> field and click <b>Send</b>.</li>
+								<li>Click the <b>Intent/QnA</b> tab and observe the Entity Matches section. 
+								<p>You'll notice that the <code>PizzaSize</code> value is set to <code>Medium</code>:</p>
+								<figure><img src="img/test-pizza-skill.png" alt="Screenshot of the skill tester. On the left side, there is a conversation between the user and the skill. On the right side, the Intent/Q&A tab is selected, there is a graph showing the OrderPizza intent having a match of 100%, and there are entity matches shown for PizzaSize and PizzaBag. For PizzaBag, it shows Value:Medium."></figure></li>
+								<li>Click the <b>Reset</b> button.</li>
+								<li>Now try <u>Can I place an order for a medium meaty pizza to be delivered at 9:00 PM</u> and observe the response:
+								<figure><img src="img/test-pizza-skill2.png" alt="Screenshot of the skill tester. On the left side, there is a conversation between the user and the skill. The response to the user is 'ok let's get that order sorted' and 'Ok, so we're getting you a Medium Meaty at 21:00. This will be on our regular base.' On the right side, the Conversation tab is selected, and there is a flow chart showing the sequence of states called: startOrderPizza, resolvedEntities, setPizzaDough, and showPizzaOrder."></figure></li>
+								<li>Click <b>Reset</b>.</li>
+								<li>Now let’s try one with a gluten-free base by typing: <u>A small veggie pizza to be delivered at 8:00pm, also can you please make it gluten-free?</u>
+								<figure><img src="img/test-pizza-skill3.png" alt="Screenshot of the skill tester. On the left side, there is a conversation between the user and the skill. The response to the user is 'ok let's get that order sorted' and 'Ok, so we're getting you a Small Veggie at 20:00. This will be on our gluten free base.' "></figure>
+								</li>
+								<li>Click <b>Reset</b>.</li>
+								<li>Now try <u>Can I place an order for a medium meaty pizza to be delivered at 10:00 PM</u>. 
+								<p>This should result in the following response:
+								<figure><img src="img/test-pizza-skill4.png" alt="Screenshot of the skill tester. On the left side, there is a conversation between the user and the skill. The response to the user is 'ok let's get that order sorted' and 'Sorry, we only deliver up to 9:30 PM.' On the right side, the Conversation tab is selected, and there is a flow chart showing the sequence of states called: startOrderPizza and  resolvedEntities."></figure></li>
+								<li>Click <b>Reset</b>.</li>
+								<li>Now try <u>Can I place an order for a small medium meaty pizza to be delivered at 9:00 PM</u> and see what you get.</li>
+								<li>Click <b>Reset</b>.</li>
+								<li>Now try <u>Can I place an order for a small sausage pizza to be delivered at 9:00 PM</u> and see what you get.</li>
+								<li>Click <b>Reset</b>.</li>
+								<li>Next try <u>I want a small meaty pizza</u>.
+								<p>The skill asks at what time to deliver the pizza.</p></li>
+								<li>To see how the skill reacts when the user changes his mind mid-stream, type <u>actually make it large</u> and press Enter.</li>
+								<li>When the skill repeats the question about delivery time, type <u>9:00 PM</u>.
+								<p>This is what the conversation should look like:</p>
+								<figure><img src="img/test-pizza-skill5.png" alt="Screenshot of the skill tester. On the left side, there is a conversation between the user and the skill. After the user has entered '9:00pm', the response from the skill is 'OK so we are getting you a Large Meaty at 21:00. This will be on our regular base.'"></figure>
+								<p>As you can see, the skill was able to incorporate the change in the order and continue without missing a beat.</p>
+							</ol>
+							<p>Using the composite entity, we are able to resolve all the entities in a single customer query!</p>
+							
+							<h3><a name="publish-skill">Publish the Skill</a></h3>
+							<p>Now that we are done building the skill, we'd like to add it to our digital assistant.</p>
+							<p>However, to make the skill available to be added to a digital assistant, we first need to publish it:</p>
+							<ol>
+								<li>Click <img src="img/hamburger.png" alt="main menu icon"> to open the side menu.</li>
+								<li>Click <b>Development</b> and select <b>Skills</b>.</li>
+								<li>Click <img src="img/hamburger.png" alt="main menu icon"> again to collapse the side menu.</li>
+								<li>In the skills dashboard, find the tile for your copy of <b>PizzaSkill</b>.</li>
+								<li>Click the skill's Options menu (<img src="img/options-menu.png" alt="menu icon">) and select <b>Publish</b>.
+								<figure><img src="img/publish-skill.png" alt="Screenshot showing the PizzaSkill tile with the Options menu opened, and 8 menu items displayed, of which Publish is the 4th"></figure>
+
+								</li>								
+								<li>On the Publish Skills page, click <b>Publish</b>.</li>
+								<li>Once you have published the skill, note the icon on the skill's tile that shows it is now read-only.<figure><img src="img/published-read-only.png" alt="Screenshot showing the tile for PizzaSkill. In the upper right part of the tile is an icon, the alt text of which is 'Published: Skill bot is read-only'"></figure>
+</li>
+							</ol>
+							<p>Congrats! Your skill is now ready to be added to a digital assistant!</p>
+
+
+
+
+
+                        </section>
+                        <hr>
+                        <section>
+                            <h2 id="section_2" role="button" style="text-align: left;"><img src="img/32_2.png" alt="section 2" height="32" width="32" class="num_circ">Set Up the Shopping Centre Digital Assistant</h2>
+							<p>Digital assistants are virtual personal assistants that users can interact with using natural language. When a user engages with the digital assistant, the digital assistant evaluates the user input and routes the conversation to the appropriate skill. </p>
+							<p>Among other things, the digital assistant:</p>
+							<ul>
+								<li>Greets the user upon access.</li>
+								<li>Upon user request, lists what it can do and provides entry points into the given skills.</li>
+								<li>Routes explicit user requests to the appropriate skill.</li>
+								<li>Handles interruptions to flows.</li>
+								<li>Handles disambiguation.</li>
+								<li>Handles requests to exit the bot.</li>
+							</ul>							
+							<h3>Explore the Digital Assistant</h3>
+							<p>The starter digital assistant (or, DA for short) that you just cloned consists of two skills – FinancialBot and RetailBot. Later, we'll add PizzaSkill to the DA.</p>
+							<p>To familiarize yourself with the DA, try it out by following these steps:
+							<ol>
+								<li>Click <img src="img/hamburger.png" alt="main menu icon"> to open the side menu.</li>
+								<li>Click <b>Development</b> and select <b>Digital Assistants</b>.</li>
+								<li>Click <img src="img/hamburger.png" alt="main menu icon"> again to collapse the side menu.</li>
+								<li>On the Digital Assistants dashboard, find the tile for your copy of <b>ODA_HOL2019</b> and select it to open it up in the designer.</li>								<li>Ensure the Skills icon is selected (<img src="img/skills-icon.png" alt="the Skills icon">).
+								<p>Notice that FinancialBot and RetailBot are listed there.</p></li>
+								<li>Select the RetailBot skill and browse the attributes of its description and interaction model.</li>
+								<li>Select the FinancialBot skill and browse the attributes of its description and interaction model.</li>
+								<li>Select <img src="img/left_nav_intents.png" alt="the Intents icon">.</li>
+								<li>Note the three intents.
+								<p>These are built in to all digital assistants. Here's what they are for:</p>
+									<ul>
+										<li><b>exit:</b> applies when the user signals the desire to exit the current conversation or context in the digital assistant. </li>
+										<li><b>help:</b> applies when the user asks for help or orientation.</li>
+										<li><b>unresolvedIntent:</b> applies to user input that doesn't match well with the exit and help intents.</li>
+									</ul>
+								</li>
+								<li>Click <img src="img/left_nav_settings.png" alt="the Settings icon"> and select the <b>Configurations</b> tab.<p>Notice the <b>Routing Parameters</b>, <b>Conversation Parameters</b> and <b>Other Parameters</b> sections.</p></li>
+								<li>Click <img src="img/train-button.png" alt="Train bot icon">, click <b>Submit</b>, and then wait a few seconds for the training to complete.</li>
+								<li>Find the tester icon (<img src="img/test_button.png" alt="the Digital Assistant Tester icon">) in the bottom of the DA's left navigation bar and click it.</li>
+								<li>In the tester's <b>Message</b> field, type <u>help me</u>, press Enter, and note the DA's greeting and initial menu.</li>
+								<li>Click the <b>Reset</b> button.</li>
+								<li>Now try entering <u>Do I have enough money in my savings account</u>, pressing Enter, and observing the response.</li>
+								<li>Close the tester.</li>
+							</ol>
+ <!--
+pk: see if this can be worked in
+To optimize the behavior of a digital assistant, you will probably want to tune its configuration and the way that the skills are registered in the digital assistant. We are going to cover all this in our next section now!
+-->							
+							
+						
+							<h3>Add PizzaSkill to the DA</h3>
+							<p>With a new pizzeria opening in the shopping centre, we want the digital assistant to support this merchant as well. So let's add the PizzaSkill to our digital assistant and then train the digital assistant so that it can work with the new skill:</p>
+							<ol>
+								<li>In your DA, select <img src="img/skills-icon.png" alt="the Skills icon">.</li>
+								<li>Click <img src="img/add-skill-button.png" alt="Add Skill button">.</li>
+								<li>Find the tile for your copy of PizzaSkill.
+								<p><b>Note:</b> The skill won't appear there if you haven't completed the <a href="#publish-skill">Publish the Skill</a> part of the lab.</li>
+								<li>In the tile for your skill, click <img src="img/add-skill-icon.png" alt="Add Skill icon">.</li>
+								<li>Click <b>Close</b> to close the Skill Catalog.</li>
+								<li>Click <img src="img/train-button.png" alt="Train bot icon">, click <b>Submit</b>, and then wait a few seconds for the training to complete.</li>
+							</ol>
+			
+
+                        </section>
+                        <hr>
+                        <section>
+                            <h2 id="section_3" role="button" style="text-align: left;"><img src="img/32_3.png" alt="section 3" height="32" width="32" class="num_circ">Personalize Your Digital Assistant </h2>
+							<p>Once you have created a digital assistant and added skills to it, you can customize some of the aspects of the digital assistant, such as the invocation name of the digital assistant’s skills and the language in the digital assistant’s help and exit intents.</p>
+							
+							<h3>Change the Invocation Name</h3>
+							<p>An important part of configuring any skill is coming up with a good invocation name, which is used in explicit invocation of the skill. Here are the steps to change the invocation name of recently added skill:</p>
+                            <ol>
+                                <li>In your DA, select <img src="img/skills-icon.png" alt="the Skills icon">.</li>
+								<li>Select <b>Pizza Skill</b>.</li>
+                                <li>Scroll down to the Interaction Model section of the page and change the <b>Invocation Name</b> to <u>Pizza King</u>.</li>
+                                <li>Change the example utterance to <u>Order Pizza</u>.</li>
+                            </ol>
+							
+							<h3>Test the Invocation Name</h3>
+							<p>Now let’s try various invocation patterns and see whether and how the digital assistant responds:</p>
+							<ol>
+								<li>Click the tester icon (<img src="img/test_button.png" alt="the Digital Assistant Tester icon">).</li>
+								<li>In the tester's <b>Message</b> field, type <u>Go to Pizza King to place my pizza order</u>, press Enter, and note the DA's response.</li>
+								<li>Click the <b>Reset</b> button.</li>
+								<li>Now try <u>Pizza King</u>.</li>
+								<li>Click <b>Reset</b>.</li>
+								<li>Now try <u>Pizza King to check my order</u>.</li>
+								<li>Click <b>Reset</b>.</li>
+								<li>Now try <u>I want a large meaty pizza from pizza king</u>.</li>
+								<li>Click <b>Reset</b>.</li>
+								<li>Now try <u>Can you use Pizza King to place an order</u>.</li>
+								<li>Click <b>Reset</b>.</li>
+							</ol>
+							
+							<h3>System Intents and Prompts</h3>
+							
+							<p>You can customize the built-in system intents and the prompts that are driven by them.</p>
+							<p>First, let's add some utterances to the built-in <b>help</b> intent:</p>
+							<ol>
+								<li>In your DA, select <img src="img/left_nav_intents.png" alt="the Intents icon">.</li>
+								<li>Select the <b>help</b> intent.</li>
+								<li>In the Examples section, add the following utterances:
+								<ul>
+									<li>Can someone help me</li>
+									<li>What can you do</li>
+									<li>What things do you do</li>
+									<li>What can I ask you</li>
+								</ul></li>
+							</ol>
+							
+							<p>The digital assistant comes with configurable prompts to respond to various types of user input. These prompts can be modified in the DA's configuration settings.</p>
+							
+							<p>Let's modify the DA's help prompt:</p>
+							<ol>
+								<li>In the DA, click <img src="img/left_nav_settings.png" alt="the Settings icon"> and select the <b>Configurations</b> tab.</li>
+								<li>Scroll down to the Conversation Parameters section of the page.</li>
+								<li>Modify the value of <b>Digital Assistants Help Prompt</b> to <u>Welcome! I can do following things for you:</u></li>
+								<li>Click <img src="img/train-button.png" alt="Train bot icon">, click <b>Submit</b>, and then wait a few seconds for the training to complete.</li>
+							</ol>
+							<h3>Test the Utterances and Modified Prompt</h3>
+								<p>To see the new utterances and prompt in action:</p>
+							<ol>
+								<li>Click the tester icon (<img src="img/test_button.png" alt="the Digital Assistant Tester icon">).</li>
+								<li>In the tester's <b>Message</b> field, type <u>Can someone help me</u>, press Enter, and note the DA's response.</li>
+							</ol>
+                        </section>
+                        <hr>
+                        <section>
+                            <h2 id="section_4" role="button" style="text-align: left;"><img src="img/32_4.png" alt="section 4" height="32" width="32" class="num_circ">Evaluate Routing Behaviors</h2>
+							<p>Before putting the digital assistant into production, let’s use the tester to evaluate various aspects of its routing behavior.</p>
+                            <ul>
+								<li>Open the tester by clicking the tester icon (<img src="img/test_button.png" alt="the Digital Assistant Tester icon">).</li>
+                            </ul>
+							<h3>No Match</h3>
+							<ol>
+								<li>In the tester's <b>Message</b> field, type <u>I want a burger</u> and press Enter.
+								<p>Since no match is found in the DA and skill, it generates the DA-level help card:</p>
+								<figure><img src="img/no-match.png" alt="Screenshot showing the digital assistant tester. After the user input ('I want a burger') is the DA's response (The text 'No matches were found. Here are some things you can do.' followed by a card for Pizza King with the 'Order Pizza' option.)"></figure>
+								<p><b>Note:</b> Only the Pizza King shows in the screenshot, but you can use the horizontal scroll arrows to see the cards for the other skills.</p></li>
+								<li>Click <b>Reset</b>.</li>							</ol>
+							<h3>Implicit Invocation</h3>
+							<ol>
+								<li>In the tester's <b>Message</b> field, type <u>Send money</u> and press Enter.
+								<p>Notice that the routing resolves to the Digital Bank candidate skill and its <b>Send Money</b> intent:</p>
+								<figure><img src="img/implicit-invocation.png" alt="Screenshot showing the digital assistant tester. After the user input ('Send money') is the DA's response (The text 'From which account do you want to make a payment' followed by options for savings, checking, and credit card.)"></figure>
+								<p><b>Note:</b> "Digital Bank" is the invocation name of FinancialBot.</li>
+								<li>Click the <b>Routing</b> tab and scroll down.
+								<p>Notice the intent evaluation that leads to this response:</p>
+								<figure><img src="img/implicit-invocation2.png" alt="Screenshot showing the Intent Calls section of the Routing tab of the DA tester. In the Candidate Skills row , the Digital Bank skill is circled. In the Candidate Flows row, the Send Money intent is circled."></figure></li>
+								<li>Click <b>Reset</b>.</li>
+								
+							</ol>
+							<p><b>Note:</b> In these examples, you might get slightly different results than what are shown here, especially in the confidences scores (given in percentages) when resolving intents. And in some cases, the resolved intents could vary, should the differing confidence scores push those intents above or below the given confidence thresholds. The cause of this variance is the non-deterministic nature of the AI behind the natural language processing and the fact that these bots have a limited number of training utterances (in order to make the lab simpler).</p>
+							
+							<h3>Explicit Invocation</h3>
+							<ol>
+								<li>In the tester's <b>Message</b> field, type <u>I want to send money from Digital Bank</u> and press Enter.
+								<p>Here’s the user’s input and the digital assistant’s initial response:</p>
+								<figure><img src="img/explicit-invocation-b.png" alt="Screenshot showing the digital assistant tester. After the user input ('I want to send money from Digital Bank') is the DA's response (The text 'From which account do you want to make a payment' followed by options for savings, checking, and credit card.)"></figure></li>
+								<li>Click the <b>Routing</b> tab and scroll down to the Rules section and notice the rule that is displayed.
+								<figure><img src="img/explicit-invocation-b2.png" alt="Screenshot showing the Rules section of the Routing tab of the DA tester. The rule displayed reads 'Explicit invocation takes precedence over other flows in digital assistant context.'"></figure>
+								<p>In the Intent Calls section, you can see that the Digital Bank skill gets a much higher confidence score than the other skills.</p>
+								<figure><img src="img/explicit-invocation-b3.png" alt="Screenshot showing the Intent Calls section of the Routing tab of the DA tester. In the Candidate Skills row , the Digital Bank skill is circled. In the Candidate Flows row, the Send Money intent is circled."></figure>
+								</li>
+								<li>Click <b>Reset</b>.</li>
+							</ol>
+							
+							<h3>Ambiguous Utterance</h3>
+							<ol>
+								<li>In the tester's <b>Message</b> field, type <u>What is my balance?</u> and press Enter.
+								<p>Here’s the conversation:</p>
+								<figure><img src="img/ambiguous-utterance.png" alt="Screenshot showing the digital assistant tester. After the user input ('What is my balance?') is the DA's response (The text 'Do you want to go to:' followed by options for GiftCardBalance in Sport Store, Balances in Digital Bank, and None of the above.)"></figure>
+								<p>As you can see, the digital assistant is unsure of what the user wants to do, so it provides a prompt asking the user to choose among the Sport Store (which is the invocation name for the RetailBot skill) and Digital Bank skill intents.</p></li>
+								<li>Click the <b>Routing</b> tab and scroll down.
+								<p>Notice the evaluation in the Intent Calls section that leads to this response:</p>
+								<figure><img src="img/ambiguous-utterance2.png" alt="Screenshot showing the Intent Calls section of the Routing tab of the DA tester. The significant details are described in the ensuing text."></figure>
+								<p>Both the candidate skills got high scores (100%). And then for each of those skills, the router identified a candidate flow that also scored highly (also 100%).</p>
+								<p>Since the GiftCardBalance and Balances candidate flows exceed the confidence threshold, and since difference between their scores is less than the Confidence Win Margin value (10%), the digital assistant asks the user to choose between those intents.</p>
+								</li>
+								<li>Click <b>Reset</b>.</li>
+							</ol>			
+							<h3>Context Awareness</h3>
+							<ol>
+								<li>In the tester, type <u>What is my balance?</u> and press Enter.
+								<p>Here’s the conversation:</p>
+								<figure><img src="img/context-awareness.png" alt="Screenshot showing the digital assistant tester. After the user input ('What is my balance?') is the DA's response (The text 'Do you want to go to:' followed by options for GiftCardBalance in Sport Store, Balances in Digital Bank, and None of the above.)"></figure></li>
+								<li>Select <b>Balances in Digital Bank</b>.
+								<figure><img src="img/context-awareness2.png" alt="Screenshot showing the digital assistant tester. After the user input ('Balances in Digital Bank') is the DA's response (The text 'For which account do you want your balance' followed by options for savings, checking, and credit card.)"></figure></li>
+								<li>Select <b>checking</b>.
+								<figure><img src="img/context-awareness3.png" alt="Screenshot showing the digital assistant tester. After the user input ('checking') is the DA's response ('The balance in your checking account (903423-123) is $2334.56')"></figure>.</li>
+								<li>Again, type <u>How much do I have in my savings?</u>
+								<p>Here is the response:</p>
+								<figure><img src="img/context-awareness4.png" alt="Screenshot showing the digital assistant tester. After the user input ('How much do I have in my savings') is the DA's response ('The balance in your savings account (258293-832) is $2610.56')"></figure>.</li>
+								<li>Click <b>Reset</b>.</li>
+							</ol>
+							<h4>Notes on What We Just Did</h4>
+							<p>As you can see, the user starts with the question "What is my balance?", goes through a prompt to disambiguate between the Digital Bank skill and the Sport Store skill, and eventually gets her checking account balance. Then the user enters "What is my balance?" again, but this time doesn't have to navigate through any disambiguation prompts. The info in the Routing tab helps to explain why.</p>
+							
+							<p>Also note that in the Rules section of the Routing tab, you see the following:</p>
+							<figure><img src="img/rules-tab.png" alt="Screenshot of the Rules section of the Routing tab. It shows the detail 'Current context matches with very high confidence. Other skill flows are ignored.'"></figure>
+							<p>So, even though there are matching intents from the Sport Store skill, they are ignored. The Intent Calls section shows all of the matching intents, but the entry for “Current Context”, which contains only the Digital Bank skill’s Balances intent, is decisive.</p>
+							<figure><img src="img/intent-calls.png" alt="Screenshot showing the Intent Calls section of the Routing tab of the DA tester. For Candidate Skills, Digital Bank and Sports Store match. For Current Context, Digital Bank's Balances intent matches. For Candidate Flows, Digital Bank's Balances intent matches."></figure>
+
+							<h3>Non sequitur</h3>
+							<p>Non sequitur refers to interrupting a conversation flow by changing the subject. Here's an example where such interruptions occur because the user needs info from one skill to complete the flow in another skill.</p>
+							<ol>
+								<li>In the tester, type <u>I want to order a small meaty pizza</u> and press Enter.
+								<p>Pizza Skill is invoked and here is the response:</p>
+								<figure><img src="img/non-sequitur.png" alt="Screenshot showing the digital assistant tester. After the user input ('I want to order a small meaty pizza') is the DA's response ('ok lets get that order sorted' followed by 'When can we deliver that for you?')"></figure></li>
+								<li>To simulate the user suddenly being unsure if he has enough money, type the following: <u>oh, do I have enough money on my credit card?</u>
+								<p>At this point the DA detects that the intent corresponds to the Digital Bank skill and asks if user wants to switch to Balances in Digital Bank:
+								<figure><img src="img/non-sequitur2.png" alt="Screenshot showing the digital assistant tester. After the user input ('oh, do I have enough money on my credit card?') is the DA's response ('Do you want to switch to Balances in Digital Bank now' followed by Yes and No options."></figure></li>
+								<li>Select <b>Yes</b>.
+								<figure><img src="img/non-sequitur3.png" alt=" Screenshot showing the digital assistant tester. After the user input ('Yes') is the DA's response ('The balance in your credit card account (4352-3423-1234-5239) is $-208.88' followed by 'Your remaining credit is $4791.12' followed by 'Do you want to resume OrderPizza in Pizza King now?' followed by Yes and No options."></figure>
+								<p>The user is presented with his financial details, thus completing that flow. At that point, the DA asks if it can return back to PizzaSkill.</p></li>
+								<li>Again, select <b>Yes</b>.
+								<figure><img src="img/non-sequitur4.png" alt="Screenshot showing the digital assistant tester. After the user input ('Yes') is the DA's response ('When can we deliver that for you')"></figure>
+								<p>The DA returns to PizzaSkill and resumes the conversation where you left it:</p></li>
+								<li>Type <u>9:00 PM</u> and press Enter.
+								<figure><img src="img/non-sequitur5.png" alt="Screenshot showing the digital assistant tester. After the user input ('9:00 PM') is the DA's response ('Ok so we are getting you a Small Meaty at 21:00. This will be on our regular base')"></figure></li>
+							</ol>
+							<p>In this sequence, you started ordering a pizza, confirmed you had enough money in your account, and finished ordering the pizza.</p>
+							
+							<h3>Non sequitur – Complex Conversation</h3>
+							<p>Let’s try a more complex conversation:</p>
+							<ol>
+								<li>In the tester, type <u>I want to order a large pizza at 9:00 PM today</u> and press Enter.</li>
+								<li>Instead of selecting the kind of pizza, type <u>oh, do I have enough money?</u>
+								<p>At this point, the DA will ask you to switch to <b>Balance in Digital Bank</b>.</p></li>
+								<li>Select <b>Yes</b>.</li>
+								<li>Now, instead of selecting the account type, type <u>how about my gift card balance?</u>
+								<p>The DA asks if you want to switch to <b>GiftCardBalance in Sport Store</b>.</p></li>
+								<li>Select <b>Yes</b>.</li>
+								<li>Type <u>GC100</u> as the gift card number and press Enter.
+								<p>The DA informs you of your gift card balance.</p>
+								<p>Then the DA asks if you want to return to <b>Balance in Digital Bank</b>.</p></li>
+								<li>Select <b>Yes</b>.</li>
+								<li>Select <b>savings</b> as your account type.
+								<p>The DA fetches the savings account details for you and asks if you want to return to <b>OrderPizza in Pizza King</b>.</p></li>
+								<li>Select <b>Yes</b>.</li>
+								<li>Select any of the options for the kind of pizza you want to order.</li>
+								<li>Observe the states flow in the <b>Conversation</b> tab.<figure><img src="img/non-sequitur-complex.png" alt="Screenshot showing the Conversation tab of the digital assistant tester. Through a flow chart it depicts the states invoked in the DA in the following order: startOrderPizza, resolveEntities, startBalances (switch to Financial Bot), askBalancesAccountType, startGiftCardBalance (switch to RetailBot), setPizzaDough (switch to PizzaSkill), and showPizzaOrder."></figure>
+</li>
+
+							</ol>
+							<p>You are now done with creating, personalizing, and evaluating the routing behavior of your digital assistant! In the next section, we'll add it to a web channel through which users can access it.</p>
+																	
+				                        </section>
+                        <hr>			
+							
+
+                        <section>
+                            <h2 id="section_5" role="button" style="text-align: left;"><img src="img/32_5.png" alt="section 5" height="32" width="32" class="num_circ">Add the Digital Assistant to the Web Channel</h2>
+							<p>Channels carry the chat back and forth from users on various messaging platforms to the digital assistant. </p>
+							<p>In this lab, we'll configure and publish our DA through a web channel, install a sample client application, and run and test it against the DA.</p>
+							<h3>Create a New Channel</h3>
+                            <ol>
+ 								<li>Click <img src="img/hamburger.png" alt="main menu icon"> to open the side menu.</li>
+								<li>Click <b>Development</b> and select <b>Channels</b>.</li>
+								<li>Click <img src="img/hamburger.png" alt="main menu icon"> again to collapse the side menu.</li>                   <li>On the <b>Users</b> tab, click <b>+ Channel</b>.
+								<figure><img src="img/add-channel-screenshot.png" alt="Screenshot showing a small section of the Channels page. The Users tab is selected. The Add Channel button is the first item in the tab."></figure>
+								</li>
+								<li>In the Create Channel dialog, fill in the <b>Name</b>, <b>Description</b>, and <b>App Display Name</b> fields.
+								<p><b>Important:</b> If you are using the shared instance for this lab, be sure to include your initials in the <b>Name</b> and <b>App Display Name</b> fields so that they are distinct from those of other lab participants.</li>
+								<li>From the <b>Channel Type</b> dropdown, select <b>Web</b>. 
+								<p>The completed dialog might look something like this:</p>
+								<figure><img src="img/create-channel-screenshot.png" alt="Screenshot of the Create Channel dialog. It's Name, Description, and App Display name fields are filled out. The Channel Type field is set to Web."></figure></li>
+								<li>Click <b>Create</b>.
+								<p>Once created, you are returned to the page for the channel.</p>
+								<figure><img src="img/route-to-da.png" alt="Screenshot of the Channels page with none of the fields filled in. The Route To field is the first field in the list of fields."></figure></li></li>
+								<li>Open the <b>Route To</b> dropdown menu, enter your DA name in the <b>Filter</b> box, and select your DA.
+								</li>
+								<li>Switch <b>Channel Enabled</b> to ON.</li>
+								<li>Copy the the value of the <b>App Id</b> field to a text file.
+								<p>You will use it later on this lab while running the sample client application.</p></li>
+                            </ol>
+							
+							<h3>Set Up the Web Channel on Your Local Machine</h3>
+							<p>For purposes of this lab, we'll set up using your machine's localhost instead of using a public-facing web server.</p>
+							<ol>
+								<li>Find the <code>bots-client-sdk-js-samples-19.1.3.0.zip</code> file that you downloaded at the beginning of this lab and extract its contents.</li>
+								<li>Open a terminal window or command prompt and navigate to the <code>chat-sample-web</code> directory of the contents of the extracted zip.</li>
+								<li>Run the following command:
+								<pre>npm install</pre></li>
+								<li>Start the sample ChatSample app by running the following command:
+								<pre>node server.js</pre>
+								<p>After running this command, you should see a message indicating that the server is listening on port 3000.</p>
+								<figure><img src="img/node-terminal.png" alt="Screenshot of a terminal window. It contains a line showing that 'node server.js' has been called and the ensuing output ('listening on port 3000')"></figure>
+								</li>
+
+							</ol>
+							<h3>Test the DA on the Web Channel</h3>
+							<ol>
+								<li>Open a new browser window and navigate to <a href="http://localhost:3000" target="_blank">http://localhost:3000</a>.</li>
+								<li>Enter the app id that was generated when you created the channel (and which you copied to a text file) and click <b>Continue</b>.
+								<figure><img src="img/browser-app-id.png" alt="Screenshot of a web browser. In the address bar, it shows 'localhost:3000'. The page has some label text ('Mobile Cloud Enterprise' and 'Cloud'), a text field, and a Continue button."></figure></li>
+								<li>In the next screen, click the <b>Chat with your BOT</b> button.
+								<p>The Web Messenger widget should appear in the right side of your browser window.</p>
+								<figure><img src="img/web-messenger.png" alt="Screenshot of a web browser.  The page has some label text ('Mobile Cloud Enterprise', 'Cloud', 'Welcome', and 'This sample app shows how to use the Oracle Intelligent BOT SDK to embed chat function in a web app'. Below that are buttons for 'Chat with your BOT' and 'Clear Chat'). To the right is a chat window."></figure></li>
+								<li>Start communicating with the DA by asking for help and/or making specific requests, such as ordering pizza and checking account balances.
+								<figure><img src="img/web-messenger2.png" alt="A screenshot of a chat window showing a conversation starting with 'What can you do for me today?' and continuing with a welcome message and a menu of options provided by the Digital Bank and Pizza King skills (though the latter is cut off on the right margin of the window)."></figure>
+</li>
+							</ol>
+							<p>Hooray! You have now introduced your DA to its public by hooking it up to a web interface.
+Even more impressive -- you’ve completed the lab!
+</p>
+					
+                        </section>
+
+
+                    </article>
+                </div>
+                <br class="clearfloat">
+            </div>
+        </div>
+        <!--close main--> 
+        <!--end content-->
+        <div class="footer-container ">
+            <div style="max-width: 994px; padding:10px 0 0 17px;">
+                <footer class="footer-list">
+                    <ul>
+                        <li> <a href="https://www.oracle.com/corporate/index.html" target="_blank">About Oracle</a> </li>
+                        <li> <a href="https://www.oracle.com/us/corporate/contact/index.html" target="_blank">Contact Us</a> </li>
+                        <li> <a href="https://www.oracle.com/us/legal/index.html" target="_blank">Legal Notices</a> </li>
+                        <li> <a href="https://www.oracle.com/us/legal/terms/index.html" target="_blank">Terms of Use</a> </li>
+                        <li> <a href="https://www.oracle.com/us/legal/privacy/index.html" target="_blank">Your Privacy Rights</a> </li>
+                        <li> <a href="https://www.oracle.com/pls/topic/lookup?ctx=cpyr&id=en">Copyright © 2018, Oracle and/or its affiliates. All rights reserved.</a></li>
+                    </ul>
+                </footer>
+            </div>
+            <script type="text/javascript" src="https://www.oracleimg.com/us/assets/metrics/ora_docs.js"></script>
+        </div>
+        <!-- OBE Dialog Box code 10/15/2018 -->
+        <!-- DO NOT ALTER THE CODE BELOW   -->
+        <div id="lpModal" class="modal">
+            <!-- Modal hdr and body -->
+            <div id="obe_dialog" class="modal-content">
+                <div class="modal-header">
+                    <a href="#" class="close">  
+                        <span class="close">&times;</span>
+                    </a>
+                    <h1>Associated Learning Paths</h1>
+                </div>
+                <div id="dialog-content" >
+                </div>
+                <div id="dialog-close" class="closeBtn">
+                    <a href="#" class="close2">  
+                        <p class="close2"> 
+                             <span>&nbsp;&nbsp;View&nbsp;&nbsp;</span> 
+                        </p>
+                    </a>  
+                </div>
+            </div>   
+        </div>
+        <!-- END OBE Dialog Box code -->
+    </body>
+</html>

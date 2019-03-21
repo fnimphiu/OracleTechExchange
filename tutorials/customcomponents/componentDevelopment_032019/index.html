@@ -115,35 +115,41 @@
                             <li style="text-align:justify">Open the <a href="https://fixer.io" target="_blank"><b>fixer.io</b></a> in a browser window.</li>
                             <li style="text-align:justify">Click on the <b>GET FREE API KEY</b> link in the upper right corner.
                                 <br>
-                                <figure><img src="img/fixerio_1.png" alt="GET FREE API KEY button"></figure>
+                                <figure><img src="img/fixerio_1.png" alt="GET FREE API KEY button" width="70%" height="70%"></figure>
                                 <br> </li>
                             <li style="text-align:justify">Click the <b>GET FREE API KEY</b> button
                                 <br>
-                                <figure><img src="img/fixerio_2.png" alt="Get free API key"></figure>
+                                <figure><img src="img/fixerio_2.png" alt="Get free API key" width="70%" height="70%"></figure>
                                 <br> </li>
                             <li style="text-align:justify">Complete the registration form.</li>
                             <li style="text-align:justify">Copy and save the free API key displayed on the confirmation page.
                                 <br>
-                                <figure><img src="img/fixerio_3.png" alt="Fixer IO Confirmation page"></figure>
+                                <figure><img src="img/fixerio_3.png" alt="Fixer IO Confirmation page" width="70%" height="70%"></figure>
                             </li>
                         </ol>
                         <p style="text-align:justify"><b>Note: </b>The free API key does come with restrictions. For example, the currency information is updated only every hour. In addition, the base currency is Euro (EUR). The latter restriction can be handled in the custom component code so that users can use any currency as the base currency.</p>
                     </section>
                     <hr>
                     <section>
-                        <h2 id="section_3" role="button" style="text-align: left;"><img src="img/32_3.png" alt="section 3" height="32" width="32" class="num_circ">Creating a Custom Component Service Project</h2>
-                        <p style="text-align:justify">You create the custom component servce project using the Oracle Bots Node.js SDK command line interface. Once created, you can customize the component folder structure, as well as the name and the content of the generated custom component.</p>
+                        <h2 id="section_3" role="button" style="text-align: left;"><img src="img/32_3.png" alt="section 3" height="32" width="32" class="num_circ">Creating a new Custom Component Service</h2>
+                        <p style="text-align:justify">You create the custom component service project using the Oracle Bots Node.js SDK command line interface. The Oracle Bots Node.js SDK also provides all the infrastructure and tools you need to test, debug and deploy custom component services.</p>
+                        <h3>Creating a custom component project</h3>
+                        
                         <ol>
-                            <li style="text-align:justify">Create a new folder <b>currencyconverter</b> in a directory that does not contain blanks in its absolute path.
-                            <li style="text-align:justify">Open a terminal window and navigate into the <b>currencyconverter</b> folder</li>
-                            <li style="text-align:justify">In the <b>currencyconverter</b> folder, type the following commands<br>
+                            <li style="text-align:justify">Create a new folder <b>converterccs</b> in a directory that does not contain blanks in its absolute path name.
+                            <li style="text-align:justify">Open a terminal window and navigate into the <b>converterccs</b> folder
+                            <br><figure><img src="img/terminal_1.png" alt="terminal window"></figure>     
+                            </li>
+                            <li style="text-align:justify">In the <b>converterccs</b> folder, type the following commands<br>
                                 <ul>
-                                    <li style="text-align:justify"><code>...</code></li>
-                                    <li style="text-align:justify"><code>...</code></li>
-                                </ul>
-                            
+                                    <li style="text-align:justify"><code>npm init -y</code></li>
+                                    <li style="text-align:justify"><code>npm install -save @oracle/bots-node-sdk</code></li>
+                                    <li style="text-align:justify"><code>bots-node-sdk init --component-name CurrencyConverter</code></li>
+                                </ul>                            
                             </li>
                         </ol>
+                        <p style="text-align:justify"><b>What you just did: </b> Following the instructions in this section, you created a new node project (npm init -y) in which you installed the Oracle Bots Node.js SDK. Finally, you created a starter custom component: "CurrencyConverter". The project structure looks as shown in the image below:<br>
+                        <figure><img src="img/project_1.png" alt="project structure" width="100%" height="100%"></figure></p>
                     </section>
                     <hr>
                     <section>
