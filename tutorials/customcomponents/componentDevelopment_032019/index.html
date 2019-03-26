@@ -190,7 +190,8 @@
                                 <br>
                                 <figure><img src="img/jsedit_3.png" alt="metadata function with the applied changes" width="100%" height="100%"></figure>
                             </li>
-                            <li style="text-align:justify">Next, change the code in the <b>invoke: (conversation, done)</b> function so it looks as shown in the image below.<br>
+                            <li style="text-align:justify">Next, change the code in the <b>invoke: (conversation, done)</b> function so it looks as shown in the image below.
+                                <br>
                                 <figure><img src="img/jsedit_4.png" alt="invoke function" width="100%" height="100%"></figure>
                             </li>
                         </ol>
@@ -199,18 +200,31 @@
                         <p style="text-align:justify">The two supportedActions, <i>success</i> and <i>failure</i>, allow the custom component to indicate to the bot dsigner whether the currency conversion succeeded or not. The bot designer uses <i>supportedActions</i> in action transitions to conditionally continue the user-bot interaction based on the component outcome.</p>
                         <p style="text-align:justify">The code lines 16, 17, 18 and 19 read-in the required component input parameters. The input parameters are flagged as required in the metadata() definition, so that missing values cause a runtime exception when testing the bot. Because of this, there is no need to check for null values in the code</p>
                         <p style="text-align:justify">The <i>done()</i> function call invokes a callback that passes the component response back to the Oracle Digital Assistant skill the custom component is configured in. </p>
-
-
                         <h3>Adding your first logging statement</h3>
                         <ol>
-                            <li>Edit line 20 shown in the image above and add the following code as a single line:<br><br><code>conversation.logger().info("Input parameter values: variable: "+variable+", baseCurrency: "+baseCurrency+", targetCurrencies: "+targetCurrencies+", amount: "+amount);</code></li>
+                            <li>Edit line 20 shown in the image above and add the following code as a single line:
+                                <br>
+                                <br><code>conversation.logger().info("Input parameter values: variable: "+variable+", baseCurrency: "+baseCurrency+", targetCurrencies: "+targetCurrencies+", amount: "+amount);</code></li>
                         </ol>
                         <p style="text-align:justify"><b>Note: </b>The Orackle Digital Assistant custom component service SDK exposes a configurable logger to the custom component. By default, logging is setup to use the <i>console logger</i>. This enty-level tutorial does not cover custom component debugging, so that logging become the option of choice for tracking component execution. The log statement you added prints the names and values of the component input parameters.</p>
-
-                        <h3>Adding code to access the fixer.io backend service</h3>
-                        <p style="text-align:justify">In this tutorial you will use the <i>request</i> Node.js module to access the fixer.io remote REST backend services. Its important to note that there exist other Node modules, including <i>https</i> in the Node core installation for the same. The decision for using the <i>request module</i> in this tutorial is because of its ease of use. 
-                        </p>
-                        
+                        <h3>Building the fixer.io request URL</h3>                        
+                        <ol>
+                            <li style="text-align:justify">Create a new line under the <code>conversation.logger()</code> code line.</li>
+                            <li style="text-align:justify">Add the following code                                
+                                <pre>
+var tmpTargetCurrencies = targetCurrencies+","+baseCurrency;
+var fixerIoAPIKey = "&lt;replace with your api key&gt;"
+var reqUrl = "https://data.fixer.io/api/latest?"+fixerIoAPIKey+"&amp;base=EUR&amp;symbols="+tmpTargetCurrencies;
+conversation.logger().info("fixer.io request URL:"+reqUrl.replace(fixerIoAPIKey,"*********"));
+                            </pre>
+                            </li>
+                            <li style="text-align:justify">The custom component's <b>invoke</b> should now look as shown in the image below<br>
+                                <figure><img src="img/jsedit_5.png" alt="component code"></figure>
+                            </li>
+                        </ol>
+                        <p style="text-align:justify"><b>What you just did: </b> The free fixer.io subscription key only supports EUR as the base currency. To be able to still allow users to specify any currency as the base currency, the fixer.io request URL needs to contain the user specified base currency as an additional value for the target currency. The <code>replace(...)</code> function in the logging statement ensures that your fixer.io API key does not show in the log message.</p>
+                        <h3>Sending the request</h3>
+                        <p style="text-align:justify">In this tutorial you will use the <i>request</i> Node.js module to access the fixer.io remote REST backend services. Its important to note that there exist other Node modules, including <i>https</i> in the Node core installation for the same. The decision for using the <i>request module</i> in this tutorial is because of its ease of use. </p>
                     </section>
                     <hr>
                     <section>
