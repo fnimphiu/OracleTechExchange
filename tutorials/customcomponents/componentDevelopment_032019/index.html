@@ -224,11 +224,31 @@ conversation.logger().info("fixer.io request URL:"+reqUrl.replace(fixerIoAPIKey,
                         </ol>
                         <p style="text-align:justify"><b>What you just did: </b> The free fixer.io subscription key only supports EUR as the base currency. To be able to still allow users to specify any currency as the base currency, the fixer.io request URL needs to contain the user specified base currency as an additional value for the target currency. The <code>replace(...)</code> function in the logging statement ensures that your fixer.io API key does not show in the log message.</p>
                         <h3>Sending the request</h3>
-                        <p style="text-align:justify">In this tutorial you will use the <i>request</i> Node.js module to access the fixer.io remote REST backend services. Its important to note that there exist other Node modules, including <i>https</i> in the Node core installation for the same. The decision for using the <i>request module</i> in this tutorial is because of its ease of use. </p>
+                        <p style="text-align:justify">In this tutorial you use the <i>request</i> Node.js module to access the fixer.io REST service. Note that there exist other Node modules, e.g. <i>https</i> as part of the Node core installation, for the same.</p>
+                        <ol>                            
+                            <li style="text-align:justify">Open the terminal window again and navigate into the <b>converterccs</b> folder </li>
+                            <li style="text-align:justify">Type the following command and press the enter-key to install the <b>request </b> Node module:<br><br>
+                            <code>npm install request</code><br>
+                            <figure><img src="img/terminal_2.png" alt="request module installation" width="100%" height="100%"></figure>    
+                            </li>
+                            <li style="text-align:justify">Open your JavaScript editor.</li>
+                            <li style="text-align:justify">Add the following code into line 2 (right under the <b>'use strict'</b> code line) to create a reference to the request module:<br><br>
+                            <code>var request = require('request');</code><br></li>
+                            <li style="text-align:justify">At the bottom of the file, add a new line <b>above</b> the <b>done();</b> function call.</li>
+                            <li style="text-align:justify">Add the following code lines that call the fixer.io remote REST service:<br></li>
+                            <pre>
+request(reqUrl, {json: true }, (err, res, body) => {
+
+})
+                            </pre>
+                            <li style="text-align:justify">Your code should show as shown in the image below:<br>
+                            <figure><img src="img/jsedit_6.png" alt="request call" width="100%" height="100%"></figure></li>
+                            <li style="text-align:justify">...</li>
+                        </ol>
                     </section>
                     <hr>
                     <section>
-                        <h2 id="section_4" role="button" style="text-align: left;"><img src="img/32_4.png" alt="section 4" height="32" width="32" class="num_circ">Step Title</h2>
+                        <h2 id="section_4" role="button" style="text-align: left;"><img src="img/32_4.png" alt="section 4" height="32" width="32" class="num_circ">Custom Component Packaging And Deployment</h2>
                         <ol>
                             <li>...</li>
                             <li>...</li>
@@ -236,7 +256,7 @@ conversation.logger().info("fixer.io request URL:"+reqUrl.replace(fixerIoAPIKey,
                     </section>
                     <hr>
                     <section>
-                        <h2 id="section_5" role="button" style="text-align: left;"><img src="img/32_5.png" alt="section 5" height="32" width="32" class="num_circ">Step Title</h2>
+                        <h2 id="section_5" role="button" style="text-align: left;"><img src="img/32_5.png" alt="section 5" height="32" width="32" class="num_circ">Custom Component Testing</h2>
                         <ol>
                             <li>...</li>
                         </ol>
