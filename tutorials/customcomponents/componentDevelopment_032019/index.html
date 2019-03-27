@@ -130,7 +130,7 @@
                                 <figure><img src="img/fixerio_3.png" alt="Fixer IO Confirmation page" width="70%" height="70%"></figure>
                             </li>
                         </ol>
-                        <p style="text-align:justify"><b>Note: </b>The free API key does come with restrictions. For example, the currency information is updated only every hour. In addition, the base currency is Euro (EUR). The latter restriction can be handled in the custom component code so that users can use any currency as the base currency.</p>
+                        <p style="text-align:justify"><b>Note: </b>The free API key does come with restrictions. For example, the conversion rates are updated less frequent. In addition, the base currency is Euro (EUR). The latter restriction can be handled in the custom component code so that users can use any currency as the base currency. Also, requests can only be via HTTP, not HTTPS.</p>
                     </section>
                     <hr>
                     <section>
@@ -214,7 +214,7 @@
                                 <pre>
 var tmpTargetCurrencies = targetCurrencies+","+baseCurrency;
 var fixerIoAPIKey = "&lt;replace with your api key&gt;"
-var reqUrl = "https://data.fixer.io/api/latest?"+fixerIoAPIKey+"&amp;base=EUR&amp;symbols="+tmpTargetCurrencies;
+var reqUrl = "http://data.fixer.io/api/latest?"+fixerIoAPIKey+"&amp;base=EUR&amp;symbols="+tmpTargetCurrencies;
 conversation.logger().info("fixer.io request URL:"+reqUrl.replace(fixerIoAPIKey,"*********"));
                             </pre>
                             </li>
@@ -241,7 +241,7 @@ request(reqUrl, {json: true }, (err, res, body) => {
 
 })
                             </pre>
-                            <li style="text-align:justify">Your code should show as shown in the image below:<br>
+                            <li style="text-align:justify">Your code should look as in the image below:<br>
                             <figure><img src="img/jsedit_6.png" alt="request call" width="100%" height="100%"></figure></li>
                             <li style="text-align:justify">...</li>
                         </ol>
