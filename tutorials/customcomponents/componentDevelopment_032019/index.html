@@ -80,6 +80,7 @@
                             <li>You need to have access to Oracle Digital Assistant</li>
                             <li>You need a JavaScript IDE installed. This tutorial, for example, uses <a href="https://code.visualstudio.com" target="_blank"><b>Microsoft Visual Studio Ccode</b></a> in the screen shots. If you feel comfortable using a text editor, then this is fine too. </li>
                             <li style="text-align:justify">You must have <a href="https://nodejs.org/en/" target="_blank"><b>Node.js</b></a> and Node Package Manager (NPM) installed for global access.</li>
+                            <li style="text-align:justify">Download the <a href="files/CurrencyConverterTester(1.0).zip" target="_blank"><b>CurrencyConverterTester(1.0).zip</b></a> teser skill.</li>
                         </ul>
                     </section>
                     <!-- ========================================================================================================================= -->
@@ -317,7 +318,7 @@ request(reqUrl, {json: true }, (err, res, body) => {
                         <h3>Importing the tester skill</h3>
                         <p style="text-align:justify"><b>If you work in your own Oracle Digital Assistant instance</b>, then you import the starter skill and use it for the tuorial. In a shared trainings environment, the starter skill most like exists already. In which case we recommend cloning the skill. Skip to the next section to learn about how to clone a skill.</p>
                         <ol>
-                            <li style="text-align:justify"><a href="..." ><b>Select this link</b></a> to download the provided tester skill.</li>
+                            <li style="text-align:justify">If not done yet, <a href="files/CurrencyConverterTester(1.0).zip" ><b>select this link</b></a> to download the <b>CurrencyConverterTester(1.0).zip></b> tester skill.</li>
                             <li style="text-align:justify">Open the Oracle Digital Assistant dashboard in a browser the following URL <b>&lt;your instance url&gt;/botsui</b>.</li>
                             <li style="text-align:justify">Select the menu icon at the top-left of the page next to the "Oracle Digital Asisstant" label (<img src="img/hamburger.png" alt="menu icon">). </li>
                             <li style="text-align:justify">Select the <b>Skills</b> option in the <b>Development</b> category.
@@ -353,8 +354,25 @@ request(reqUrl, {json: true }, (err, res, body) => {
                             <li style="text-align:justify">Create the clone and open it to continue this tutorial.</li>
                         </ol>
                     </section>
-                    <h3>Deploying your custom component to the tester skill</h3>
-                    <p style="text-align:justify">...</p>
+                    <h3>Deploying your custom component to the tester skill</h3>                    
+                    <ol>
+                      <li>In the currency converter test skill, select the <b>Components</b> icon (<img alt="Components icon" src="img/csutcomp_icon2.png" height="25"/>)</li>
+                      <li style="text-align:justify">Click the <b>+ Service</b> button to open the  <i>Create Service</i> dialog (<img alt="+ Service button" src="img/plusServiceIcon.png" height="25"/>).</li>
+                      <li style="text-align:justify">In the <b>Name</b> field, type <b>CurrencyConverter</b>.</li>
+                      <li style="text-align:justify">As the <b>Description</b>, enter <b>fixer.io integration</b>.</li>
+                      <li style="text-align:justify">Ensure <b>Embedded Container</b> is selected.</li>
+                      <li style="text-align:justify">Locate the <b>converterccs-1.0.0.tgz</b> file in the <b>converterccs</b> folder on your file system.</li>
+                      <li style="text-align:justify">Drag-and-drop the <b>converterccs-1.0.0.tgz</b> into the <i>Create Service</i> dialog's <b>Package File</b> field</li>
+                      <li style="text-align:justify">Press the <b>Create</b> button.<br>
+                        <figure><img src="img/componentServiceRegistration_2.png" alt="Component registration" width="100%" height="100%"></figure>
+                        </li>
+                      <li style="text-align:justify">Wait for <b>Status</b> field to show <b>Ready</b>, which may take a few seconds<br>
+                        <figure><img src="img/componentServiceRegistration_3.png" alt="Status showing deployment as ready" width="100%" height="100%"></figure></li>
+                        <li style="text-align:justify">If not already, expand the <b>Currency Converter</b> header and select the <b>complete.training.CurrencyConverter</b> entry. Notice the component description to be the information you defined in the custom component's <i>metadata()</i> function:<br>
+                        <figure><img src="img/componentServiceRegistration_4.png" alt="Component description" width="100%" height="100%"></figure>
+                        </li>
+                        <li style="text-align:justify">With the custom component service deployed to the skill bot's local container, you are now ready to test the component.</li>
+                    </ol>                    
                     <hr>
                     <section>
                         <h2 id="section_5" role="button" style="text-align: left;"><img src="img/32_5.png" alt="section 5" height="32" width="32" class="num_circ">Custom Component Testing</h2>
@@ -362,9 +380,59 @@ request(reqUrl, {json: true }, (err, res, body) => {
                         <p style="text-align:justify"><b>Note: </b> The tester flow uses a composite bag entity to navigate users through the steps to provide the base currency, a conversion amount and one or many target currencies. Though the currency converter you built supports all world currencies, the tester uses a reduced list.</p>
                         <p style="text-align:justify"><b>Note: </b>If you are interested, follow <a href="https://docs.oracle.com/en/cloud/paas/digital-assistant/tutorial-entities/index.html" target="_blank"><b>this link</b></a> to learn about how to create and use composite bag entities.</p>
                         <ol>
-                            <li>...</li>
+                            
+                            <li style="text-align:justify">Open the dialog flow builder (<img alt="dialog flow editor" src="img/dialogEditor.png" height="25"/>)</li>
+                            <li style="text-align:justify">Notice the <b>getConversion:</b> state in line 15. The dialog flow state references the <i>CONVERSION</i> composite bag entity through the <i>conversion</i> dialog flow variable, which is referenced from the <i>variable</i>property of a <code>System.ResolveEntities</code> component. The <code>System.ResolveEntities</code> asks the user for the base currency, the currency amount as well as for one or many target currencies.</li>
+                            <li style="text-align:justify">The <b>converter:</b> state in line 23 references the custom component you built. The custom component input parameters reference the <i>conversion</i> variable to obtain their values. The result of the conversion is saved by the custom component into the <i>conversionResult</i> dialog flow variable</li>
+                            <li style="text-align:justify">Open the embedded conversation tester (<img alt="launch conversation tester" src="img/testerIcon.png" height="25"/>)</li>
+                            <li style="text-align:justify">Start by typing <b>hi</b>.</li>
+                            <li style="text-align:justify">Select <b>CAD</b> as the base currency from the displayed list of currencies</li>
+                            <li style="text-align:justify">As an amount to convert type <b>100</b></li>
+                            <li style="text-align:justify">When asked for the target currencies, type <b>4 5 9</b> and press the enter-key on your keyboard.<br>                            
+                            <figure><img src="img/converterTesting_1.png" alt="Converter testing" width="100%" height="100%"></figure></li>
+                            <li style="text-align:justify">As a result, you see a bot response as shown in the image below:<br>
+                                <figure><img src="img/converterTesting_2.png" alt="Conversion response" width="100%" height="100%"></figure>
+                            </li>
+                            <li style="text-align:justify">Reset the tester (<img alt="Reset" src="img/resetLink.png" height="25"/>)</li>
+                            <li style="text-align:justify">type <b>hi></b></li>
+                            <li style="text-align:justify">Select <b>USD</b> as the base currency. You will have to press the <b>Show More</b> button twice for the <b>USD</b> symbol to show.</li>
+                            <li style="text-align:justify">Type <b>100</b></li>
+                            <li style="text-align:justify">Type <b>EUR CHF GBP</b> and press the enter-key. A conversion rate quote should be displayed similar to the one before.<br><br>
+                            <b>Note: </b>By custom component design, selecting a target currency symbol that matches the base currency symbol will not display in the converter. </li>
+                            <li style="text-align:justify">Reset the tester (<img alt="Reset" src="img/resetLink.png" height="25"/>) and continue playing</li>
                         </ol>
-                    </section>                                       
+                    </section>
+                        <section>
+                    <h2 id="section_6" role="button" style="text-align: left;"><img src="img/32_1.png" alt="section 4" height="32" width="32" class="num_circ">Accessing the logs</h2>
+                    <p style="text-align:justify">The custom component code contains log statements (<code>conversation.logger().info(...)</code>. The log messages can be accessed from within the <i>Components</i> registration panel.</p>
+                    <ol>
+                    <li style="text-align:justify">If you reset the conversation tester, rerun the currency converter for the custom component to write log messages</li>
+                    <li style="text-align:justify">Select the <b>Components</b> menu item (<img alt="Component menu item" src="img/csutcomp_icon2.png" height="25"/>)</li>
+                    <li style="text-align:justify">Select the <b>Diagnostics</b> list item and choose the <b>View Logs</b> option.<br>
+                        <figure><img src="img/componentServiceRegistration_5.png" alt="Log Viewer" width="100%" height="100%"></figure></li>
+                        <li style="text-align:justify">Log messages should be displayed similar to shown in the image below.<br>
+                        <figure><img src="img/componentServiceRegistration_6.png" alt="Logs written by converter" width="100%" height="100%"></figure><br>
+                        <b>Notice </b>the following log message:<br><br> <i>access_key=*********&base=EUR&symbols=CHF,CNY,INR,CAD</i>.<br><br> Instead of printing the access credential, the custom component code masks the information, so it is not disclosed. </li>
+                    </ol>
+                    </section>
+                        <section>
+                    <h2 id="section_7" role="button" style="text-align: left;"><img src="img/32_1.png" alt="section 4" height="32" width="32" class="num_circ">Expert Tip</h2>
+                    <p style="text-align:justify">Within this tutorial, neither when building the custom component, nor when exploring the dialog flow BotML content, the data structure of the custom component response wasn't explained to you. So a general question is, how do you know what is in a component response? For example, how would you know that the <i>conversionResult</i> variable can be used as shown in the dialog flow editor lines 39 - 44? The expert tip to share is to use the conversation tester.</p>    
+                    <ol>
+                       <li style="text-align:justify">Reset the tester (<img alt="Reset" src="img/resetLink.png" height="25"/>)</li>
+                    <li style="text-align:justify">Type <b>hi</b></li>
+                    <li style="text-align:justify">Select a base currency.</li>
+                    <li style="text-align:justify">Provide a value for the amount.</li>
+                    <li style="text-align:justify">Select one or many target currencies.</li>
+                    <li style="text-align:justify">Have a look at the <b>Varaibles</b> displayed to the right:<br>
+                        <figure><img src="img/converterTesting_3.png" alt="Variables view" width="100%" height="100%"></figure></li>   
+                    <li style="text-align:justify">Fully expand the <b>conversionResult</b> variable as shown in the image below.<br>
+                        <figure><img src="img/converterTesting_4.png" alt="expanded variables" width="100%" height="100%"></figure></li>
+                        <li style="text-align:justify">Now you see the structure of the returned object.</li>                        
+                    </ol>
+                    <p style="text-align:justify"><b>Expert tip summary: </b>To learn about the structure of a data object returned by a custom component, stop after processing the custom component and use the <i>Conversation</i> tab of the embedded tester to explore the variable content.</p>
+                    
+                    </section>
                 </article>
             </div>
             <br class="clearfloat">
