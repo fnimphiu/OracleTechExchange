@@ -110,7 +110,7 @@
                     </section>
                     <hr>
                     <section>
-                        <h2 id="section_2" role="button" style="text-align: left;"><img src="img/32_2.png" alt="section 2" height="32" width="32" class="num_circ">Subscribing to fixer.io</h2>
+                        <h2 id="section_2" role="button" style="text-align: left;"><img src="img/32_2.png" alt="section 2" height="32" width="32" class="num_circ">Requesting a fixer.io Currency Converter API Key</h2>
                         <p style="text-align:justify">Fixer website, <a href="https://fixer.io" target="_blank"><b>fixer.io</b></a>, offers current and historic exchange rates for up to 170 currencies. To complete this tutorial, you need a free subscription that allows you to access current conversion rates. To complete this tutorial you will need a free account to access current exchange rates.</p>
                         <ol>
                             <li style="text-align:justify">Open the <a href="https://fixer.io" target="_blank"><b>fixer.io</b></a> in a browser window.</li>
@@ -214,16 +214,17 @@
                                 <pre>
 var tmpTargetCurrencies = targetCurrencies+","+baseCurrency;
 var fixerIoAPIKey = "&lt;replace with your api key&gt;"
-var reqUrl = "http://data.fixer.io/api/latest?"+fixerIoAPIKey+"&amp;base=EUR&amp;symbols="+tmpTargetCurrencies;
+var reqUrl = "http://data.fixer.io/api/latest?access_key="+fixerIoAPIKey + "&amp;base=EUR&amp;symbols=" + tmpTargetCurrencies;
 conversation.logger().info("fixer.io request URL:"+reqUrl.replace(fixerIoAPIKey,"*********"));
                             </pre>
+                                <b>Note:</b> You can download this code from <a href="files/converteruri.txt" target="_blank"><b>here</b></a> for easy copy & paste.
                             </li>
                             <li style="text-align:justify">The custom component's <b>invoke</b> should now look as shown in the image below<br>
                                 <figure><img src="img/jsedit_5.png" alt="component code"></figure>
                             </li>
                         </ol>
                         <p style="text-align:justify"><b>What you just did: </b> The free fixer.io subscription key only supports EUR as the base currency. To be able to still allow users to specify any currency as the base currency, the fixer.io request URL needs to contain the user specified base currency as an additional value for the target currency. The <code>replace(...)</code> function in the logging statement ensures that your fixer.io API key does not show in the log message.</p>
-                        <h3>Sending the request</h3>
+                        <h3>Adding the currency conversion code</h3>
                         <p style="text-align:justify">In this tutorial you use the <i>request</i> Node.js module to access the fixer.io REST service. Note that there exist other Node modules, e.g. <i>https</i> as part of the Node core installation, for the same.</p>
                         <ol>                            
                             <li style="text-align:justify">Open the terminal window again and navigate into the <b>converterccs</b> folder </li>
@@ -243,64 +244,127 @@ request(reqUrl, {json: true }, (err, res, body) => {
                             </pre>
                             <li style="text-align:justify">Your code should look as in the image below:<br>
                             <figure><img src="img/jsedit_6.png" alt="request call" width="100%" height="100%"></figure></li>
-                            <li style="text-align:justify">...</li>
+                            <li style="text-align:justify"><b>Remove</b>the <b>done();</b> code line (line 31 in above image). This code will move to another location in the final currency conversion implementation. It was left in as a reminder because it is an important (mandatory) call to make at the end of custom component processing.<br><br>
+                            <b>Note: </b>With this you defined the basic outline of the <i>complete.training.CurrencyConverter</i> component. What's missing is the code that actually implements the conversion of a base currency amount into one or more target currencies. The code for this is provided for you. So next you will be adding the provided code to your custom component. 
+                            
+                            </li>                            
+                            <li style="text-align:justify">Click <a href="files/converterimpl.txt" target="_blank"><b>this link</b></a> to open the <i>converterimpl.txt</i> text file that contains the currency converter implementation code</li>
+                            <li style="text-align:justify">Select and Copy all the code lines into the clipboard (ctrl+c on Windows or command+c on MAC).</li>
+                            <li style="text-align:justify">Place your mouse cursor into the <b>request function body</b> (line 29 in the image above).</li>
+                            <li style="text-align:justify">Paste the code from the cliboard (ctrl+v on Windows or command+v on MAC).</li>
+                            <li style="text-align:justify">Save your work.</li>
+                            <li style="text-align:justify"><b>Compare</b> your custom component with <a href="files/completecode.txt" target="_blank"><b>this sample code</b></a>. </li> Use this sample also as a reference find and fix problems in your code that may show testing in Oracle Digital Assistant.
                         </ol>
+                        <p style="text-align:justify"><b>Note: </b> Let's hold on for a few minutes to understand the implementation code you just added.<br><figure><img src="img/jsedit_7.png" alt="completed request function" width="100%" height="100%"></figure></p>
+                        
+                        <table class="body-table" style="text-align:justify" summary="This table ...">
+                            <tr>
+                                <th scope="col">Line</th>
+                                <th scope="col">Description</th>
+                            </tr>
+                             <tr>
+                                    <td scope="row">28</td>
+                                    <td>This code line performs the REST call to the fixer.io website. It then calls and anonymous function to which it passes the response object (res), the response body (body) and, if existing, the error object (err)</td>
+                             </tr>
+                             <tr>
+                                 <td scope="row">30</td>
+                                 <td>If the REST service call succeeded, then a http status code of 200 is returned.</td>
+                             </tr>
+                             <tr>
+                                 <td scope="row">31</td>
+                                 <td>Still the response may contain an error, if, for example, the API key that was passed with the request is invalid. This line of code checks the response body for whether the conversion was successful or not.</td>                                 
+                             </tr>
+                            <tr>
+                            <td scope="row">35</td>
+                            <td>If the request returned conversion rates, then these are saved in an array within the response body. The returned body is a JSON object, so that the rates can be accessed from <i>body.rates</i>.</td>
+                            </tr>
+                            <tr>
+                            <td scope="row">36</td>
+                            <td>To work around one of the limitation of the free fixer.io API key, which is that only <i>EUR</i> can be used as a base currency in the request, the base currency sent from the bot is added to the request as a target currecncy. In this line of code, the base currency is removed from the conversation rates so that only target currencies get reported back to the bot.</td>
+                            </tr>
+                            <tr>
+                            <td scope="row">37</td>
+                            <td>Compute the converted amount for the current handled target currency. To get the conversion rate of the target currency  relative to the bot provided base currency (and not EUR), it is needed to divide the target currency rate with the base currency rate (which is the bot provided currency rate in rekation to EUR). The currency symbol (e.g. USD), the conversion rate and the converted amount are then saved to an object, which is added to an array.</td>
+                            </tr>
+                            <tr>
+                            <td scope="row">47</td>
+                            <td>This line, and the following composes the response object that will be returned to the requesting skill. The returned object contains a <i>base</i> property that holds information about the base currency and a <i>conversion</i> property that contains all target currencies and their converted amounts.</td>
+                            </tr>
+                            <tr>
+                            <td scope="row">54</td>
+                            <td>The return object is saved into a dialog flow variable. The name of the dialog flow variable is provided by the bot designer using the custom component's <i>variable</i>property. In the following the custom component triggers navigation to the <i>success</i> transition action before calling <i>done()</i> to return the request to the bot.</td>
+                            </tr>
+                            <tr>
+                            <td scope="row">59+69/</td>
+                            <td>The code sections handle the case where the conversion was not successful (e.g. because of a missing API key) or where the response status code was not 200.</td>
+                            </tr>
+                         </table>
+                        
                     </section>
                     <hr>
                     <section>
                         <h2 id="section_4" role="button" style="text-align: left;"><img src="img/32_4.png" alt="section 4" height="32" width="32" class="num_circ">Custom Component Packaging And Deployment</h2>
+                        <p style="text-align:justify">You can deploy custom components to the local container in a skill, to a remote Node server, or to Oracle MobileHub. In this tutorial, you deploy the custom component service you've built to the local container. For this, you fitrst need to package the custom component service into a deployable file.</p>
+                        <h3>Packaging the component project for deployment</h3>
                         <ol>
-                            <li>...</li>
-                            <li>...</li>
+                            <li>Esnure the custom component service project is saved in your JavaScript IDE.</li>
+                            <li>Open a terminal window and navigate into to the <b>converterccs</b> folder.</li>
+                            <li style="text-align:justify">In the <b>convertercss</b> folder, type <code>npm pack</code> as a command and press the <b>enter-key</b>.The command packages the Node project into a <b>.tgz</b> file.
+                                <figure><img src="img/terminal_3.png" alt="npm pack command" width="100%" height="100%"></figure>
+                                
+                            </li>                                                        
+                        </ol>
+                        <h3>Importing the tester skill</h3>
+                        <p style="text-align:justify"><b>If you work in your own Oracle Digital Assistant instance</b>, then you import the starter skill and use it for the tuorial. In a shared trainings environment, the starter skill most like exists already. In which case we recommend cloning the skill. Skip to the next section to learn about how to clone a skill.</p>
+                        <ol>
+                            <li style="text-align:justify"><a href="..." ><b>Select this link</b></a> to download the provided tester skill.</li>
+                            <li style="text-align:justify">Open the Oracle Digital Assistant dashboard in a browser the following URL <b>&lt;your instance url&gt;/botsui</b>.</li>
+                            <li style="text-align:justify">Select the menu icon at the top-left of the page next to the "Oracle Digital Asisstant" label (<img src="img/hamburger.png" alt="menu icon">). </li>
+                            <li style="text-align:justify">Select the <b>Skills</b> option in the <b>Development</b> category.
+                                <br>
+                                <figure><img src="img/image_001.png" alt="Main Menu"></figure>
+                            </li>
+                            <li style="text-align:justify">Again, <b>click</b> on the menu icon at the top-left of the page to close the menu (<img src="img/hamburger.png" alt="menu icon">).</li>
+                            <li style="text-align:justify">Click the <b>Import Skills</b> button on the top right (<img src="img/importSkillButton.png" height="25" alt="import skill button">).</li>                            
+                            <li style="text-align:justify">On your computer, <b>browse</b> to the location you saved the dowloaded <b>CurrencyConverterTester(1.0).zip</b> file to.</li>
+                            <li style="text-align:justify">Select the CurrencyConverterTester(1.0).zip file and click <b>Open</b> to upload and install the starter skill bot.</li>
+                            <li style="text-align:justify">Locate the <b>CurrencyConverterTester</b> skill and open it by clicking on the CRC Tutorial Skill tile.
+                                <br>
+                                <br><b>Note:</b> If you cannot find the <i>CurrencyConverterTester</i> skill, then try and use the filter field above the <i>New Skill</i> tile to find it. </li>
+                        </ol>
+                        <h3>Cloning the tester skill</h3>
+                        <p style="text-align:justify"><b>If you follow this tutorial in a shared Oracle Digital Assistant instance</b>, like in a training, you should check first if the test skill already exists. If it does, <b>clone</b> the skill instead of importing it. The reason is that you can import a skill with a specific name only once.</p>
+                        <ol>
+                            <li style="text-align:justify">Open the Oracle Digital Assistant dashboard in a browser the following URL <b>&lt;your instance url&gt;/botsui.</b></li>
+                            <li style="text-align:justify">Select the menu icon at the top-left of the page next to the "Oracle Digital Asisstant" label (<img src="img/hamburger.png" alt="menu icon">). </li>
+                            <li style="text-align:justify">Select the <b>Skills</b> option in the <b>Development</b> category.
+                                <br>
+                                <figure><img src="img/image_001.png" alt="Main Menu"></figure>
+                            </li>
+                            <li style="text-align:justify"><b>Click</b> on the menu icon at the top-left of the page to close the menu (<img src="img/hamburger.png" alt="menu icon">).
+                            <li style="text-align:justify">If you cannot spot the <i>CurrencyConverterTester</i> skill, then try and use the filter field above the <i>'New Skill'</i> tile to find it. If still you cannot find it, import the skill as explained in the previous section.</li>
+                            <li style="text-align:justify">To clone the CurrencyConverterTester skill, use the <b>Clone</b> menu option of the <b>CurrencyConverterTester</b> skill shown in the image below.
+                                <br>
+                                <figure><img src="img/skill_01.png" alt="Cloning a skill"></figure>
+                                <br>
+                            </li>
+                            <li style="text-align:justify">In the opened dialog, provide a display name with your initials in it (e.g. "FN_CurrencyConverterTester").</li>
+                            <li style="text-align:justify">Optionally, provide a description.</li>
+                            <li style="text-align:justify">Create the clone and open it to continue this tutorial.</li>
                         </ol>
                     </section>
+                    <h3>Deploying your custom component to the tester skill</h3>
+                    <p style="text-align:justify">...</p>
                     <hr>
                     <section>
                         <h2 id="section_5" role="button" style="text-align: left;"><img src="img/32_5.png" alt="section 5" height="32" width="32" class="num_circ">Custom Component Testing</h2>
+                        <p style="text-align:justify">The skill bot dialog flow is readily setup for you to test the bot. If you followed the steps in this tutorial closely, then the component name, the input parameter names and the action transition names match the names used in the <b>CurrencyConverterTester</b> dialog flow state of the tester skill.</p>
+                        <p style="text-align:justify"><b>Note: </b> The tester flow uses a composite bag entity to navigate users through the steps to provide the base currency, a conversion amount and one or many target currencies. Though the currency converter you built supports all world currencies, the tester uses a reduced list.</p>
+                        <p style="text-align:justify"><b>Note: </b>If you are interested, follow <a href="https://docs.oracle.com/en/cloud/paas/digital-assistant/tutorial-entities/index.html" target="_blank"><b>this link</b></a> to learn about how to create and use composite bag entities.</p>
                         <ol>
                             <li>...</li>
                         </ol>
-                    </section>
-                    <hr>
-                    <section>
-                        <h2 id="section_6" role="button" style="text-align: left;"><img src="img/32_6.png" alt="section 6" height="32" width="32" class="num_circ">Step Title</h2>
-                        <ol>
-                            <li>...</li>
-                        </ol>
-                    </section>
-                    <hr>
-                    <section>
-                        <h2 id="section_7" role="button" style="text-align: left;"><img src="img/32_7.png" alt="section 7" height="32" width="32" class="num_circ">Step Title</h2>
-                        <ol>
-                            <li>...</li>
-                        </ol>
-                    </section>
-                    <hr>
-                    <section>
-                        <h2 id="section_8" role="button" style="text-align: left;"><img src="img/32_8.png" alt="section 8" height="32" width="32" class="num_circ">Step Title</h2>
-                        <ol>
-                            <li>...</li>
-                        </ol>
-                    </section>
-                    <hr>
-                    <section>
-                        <!-- Include the Next section only in a lab series or tutorial series -->
-                        <!-- Don't include this section if you plan to use the tutorials in a learning path -->
-                        <h2 id="next" role="button" style="text-align: left;"><img src="img/32_next.png" alt="next step" height="32" width="32" class="num_circ">Next Tutorial</h2>
-                        <p class="MsoNormal" style="text-align:justify"><span style="mso-ansi-language:EN-US" lang="EN-US">...</span></p>
-                    </section>
-                    <hr>
-                    <section>
-                        <!-- Include the More Information section only in a standalone tutorial or in the final lab or tutorial in a series (not in a learning path) -->
-                        <h2 id="more_info" role="button" style="text-align: left;"><img src="img/32_more.png" alt="more information" height="32" width="32" class="num_circ">Want to Learn More?</h2>
-                        <ul>
-                            <li><a href=".html" target="_blank">More information link here</a></li>
-                            <li><a href=".html" target="_blank">More information link here</a></li>
-                            <li><a href=".html" target="_blank">More information link here</a></li>
-                            <li><a href=".html" target="_blank">More information link here</a></li>
-                        </ul>
-                    </section>
-                    <hr>
+                    </section>                                       
                 </article>
             </div>
             <br class="clearfloat">

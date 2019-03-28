@@ -1,0 +1,9 @@
+invoke: (conversation, done) => {
+
+    const {variable} = conversation.properties();
+    const {baseCurrency} = conversation.properties();
+    const {targetCurrencies} = conversation.properties();
+    const {amount} = conversation.properties();
+        
+    done;          
+  }

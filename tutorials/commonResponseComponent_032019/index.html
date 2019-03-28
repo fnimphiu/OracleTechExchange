@@ -122,7 +122,7 @@
                             <li style="text-align:justify">Type <i>'I like to order a large pizza pepperoni'</i> (without quotes) into the <b>Message</b> field and press the <b>Send</b> key.</li>
                             <li style="text-align:justify">Note that the intent tester indicates the <i>'OrderPizza'</i> intent with a probabily of 100% and that both entities, <i>'PizzaType'</i> and <i>'PizzaSize'</i> could extract their values from the user input.</li>
                             <li style="text-align:justify">Press the <b>Reset</b> botton in the tester header and type <i>'Gimme a pizza supreme'</i> (without quotes).</li>
-                            <li style="text-align:justify"> Note that the returned confidence level for the <i>'PizzaOrder'</i> intent. This time, however, only one of the two entities could be extracted from the user message, so that the bot dialog flow would need to explicitly ask for the pizza size to order.</li>
+                            <li style="text-align:justify"> Note that the returned confidence level for the <i>'OrderPizza'</i> intent. This time, however, only one of the two entities could be extracted from the user message, so that the bot dialog flow would need to explicitly ask for the pizza size to order.</li>
                             <li style="text-align:justify"><b>Close the intent tester</b> by clicking the close button (<img alt="close button" src="img/closeButton.png" height="25" />).</li>
                             <li style="text-align:justify"><b>Select</b> the entity icon from the menu (<img alt="entity icon" src="img/entity.png" height="25" />).</li>
                             <li style="text-align:justify">Notice the <i>'CheeseType'</i>, <i>'NoToppings'</i>, <i>'PizzaCrust'</i>, <i>'PizzaSize'</i>, <i>'PizzaToppings'</i> and <i>'PizzaType'</i> entities that contribute the information required for a pizza order. In this tutorial, to reduce the scope, you are going to work with the <i>'PizzaType'</i> and <i>'PizzaSize'</i> entties only.</li>
@@ -287,7 +287,7 @@
                                 </tr>
                                 <tr>
                                     <td scope="row">label</td>
-                                    <td>When the list data is read from a value-list entity, then the currently stamped item is accssed through the <i>${enumValue}</i> expression. An Apache FreeMarker expression <i>?capitalize</i> is used to create a user-friendly message format form the all-uppercase pizza type names in the entity.</td>
+                                    <td>When the list data is read from a value-list entity, then the currently stamped item is accessed through the <i>${enumValue}</i> expression. An Apache FreeMarker expression <i>?capitalize</i> is used to create a user-friendly message format form the all-uppercase pizza type names in the entity.</td>
                                 </tr>
                                 <tr>
                                     <td scope="row">variables</td>
@@ -414,7 +414,7 @@
                                 <figure><img src="img/orderPizza_2.png" alt="orderPizza state with cards"></figure>
                             </li>
                             <li style="text-align:justify">Press the <b>Validate</b> button to ensure the component state to be valid.</li>
-                            <li style="text-align:justify">Edit the <b>pizzaOrder</b> state following the instructions in the table below. The image below the table provides you with a visual clues of how ths should look in the end.
+                            <li style="text-align:justify">Edit the <b>orderPizza</b> state following the instructions in the table below. The image below the table provides you with a visual clues of how ths should look in the end.
                                 <br>
                                 <table style="text-align:justify" summary="pizza order state changes">
                                     <tr>
