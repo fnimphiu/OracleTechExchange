@@ -1,0 +1,1 @@
+conversation.logger().info("Input parameter values: variable: " + variable + ", baseCurrency: " + baseCurrency + ", targetCurrencies: " + targetCurrencies + ", amount: " + amount);
