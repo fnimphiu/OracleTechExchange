@@ -1,0 +1,183 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <!-- Part number: Ennnnn-01 -->
+    <!-- Published date: Month Year -->
+    <!-- Template date: October 15, 2018 -->
+    <!-- Put the content ID of this OBE between the empty quotation marks for 'content' below -->
+    <meta name="contentid" content="">
+    <meta content="text/html; charset=utf-8" http-equiv="content-type">
+    <!-- The title below is displayed on the browser tab, in search results, and in  history. It can be longer than the tutorial title in the <h1> element, below.-->
+    <!-- Use an imperative verb in the title. -->
+    <title>Custom Component Service Local Debugging</title>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <meta name="robots" content="INDEX, FOLLOW">
+    <meta name="description" content="Put the description of the tutorial here.">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="css/normalize.min.css">
+    <link rel="stylesheet" href="css/font-awesome.min.css">
+    <link rel="stylesheet" href="css/obe-lite.css">
+    <script src="js/jquery-1.11.0.min.js"></script>
+    <script src="js/jquery-ui-1.10.4.custom.js"></script>
+    <script src="js/jquery.tocify.jd.js"></script>
+    <script src="js/leftnav.js"></script>
+</head>
+
+<body>
+    <header>
+        <div class="w1024" style="min-height:55px; display:block;">
+            <a href="https://docs.oracle.com" class="oracle-logo"> <img src="img/oracle_doc_logo.png" alt="Oracle Documentation" style="max-width: none;" height="22" width="236"></a>
+        </div>
+    </header>
+    <!--end header-->
+    <div id="content">
+        <!-- The title below is displayed as the title at the top of the OBE page. It can be shorter than the title in the <title> element, above. -->
+        <!-- Use an imperative verb in the title. -->
+        <h1><img src="img/obe_tag.png" align="middle" alt="Oracle by Example branding">Custom Component Service Local Debugging</h1>
+        <div class="w1024" style="clear:both; position:relative; margin-top:40px;">
+            <div class="navbackwide border-right">
+                <!-- -->
+            </div>
+            <div id="shownav" title="Show Navigation" tabindex="0"><span class="fa fa-list"></span></div>
+            <div id="sidebar">
+                <!-- -->
+                <div class="left-nav-tut">
+                    <!-- -->
+                    <div id="hidenavw" title="Hide Navigation" tabindex="0"><span class="fa fa-close"></span></div>
+                    <div id="navbar" class="left-nav-w">
+                        <!-- -->
+                        <div id="toc" class="tocify">
+                            <!-- -->
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div id="bookContainer">
+                <article>
+                    <p class="MsoNormal" style="text-align:justify"><span style="mso-ansi-language:EN-US" lang="EN-US"><b>
+                                <font size="+1">Tutorial by Frank Nimphius, Oracle</font>
+                            </b>
+                            <br>
+                            May 2019, Oracle Digital Assistant version 19.1.3<br>
+                        </span></p>
+                    <p style="text-align:justify">Custom components for Oracle Digital Assistant are developed using JavaScript and Node.js. In this tutorial you learn how to debug custom component services in the context of a bot conversation in Oracle Dgital Assistant.</p>
+                    <section>
+                        <h2><img src="img/32_begin.png" alt="section 0" height="32" width="32" class="num_circ">Before You Begin</h2>
+                        <p style="text-align:justify">Follow the instructions in this tutorial to debug a custom component that provides bot users with a quote of the day. In particular, you learn</p>
+                        <ul>
+                            <li style="text-align:justify">How to run custom components in the Oracle Bots Node.js SDK local Node express server.</li>
+                            <li style="text-align:justify">How to register custom components executed in a local Node express server to Oracle Digital Assistant.</li>
+                            <li style="text-align:justify">How to connect the Microsoft Visual Studio Code JavaScript IDE to the custom component local container.</li>
+                            <li style="text-align:justify">How to debug a custom component in the context of a bot conversation.</li>
+                        </ul>
+                        <h3>What Do You Need?</h3>
+                        <p style="text-align:justify">This tutorial is for developers that are familiar with JavaScript and Node.js development. To complete this tutorial, the following prerequisites must be met</p>
+                        <ul>
+                            <li style="text-align:justify">You need access to Oracle Digital Assistant.</li>
+                            <li style="text-align:justify">For this tutorial, you should be familiar with the development of custom components. If you are new to custom components, please first complete the <a href="../componentDevelopment_032019/index.html" target="_blank"><b>Custom Component Development and Backend Integration</b></a> tutorial.</li>
+                            <li style="text-align:justify">You need a JavaScript IDE installed that supports Node debugging. For example, this tutorial uses <a href="https://code.visualstudio.com" target="_blank"><b>Microsoft Visual Studio Code</b></a> in its screen shots.</li>
+                            <li style="text-align:justify">You must have <a href="https://nodejs.org/en/" target="_blank"><b>Node.js</b></a> and Node Package Manager (NPM) installed for global access. If you used a Node installer (Windows, Mac) both executables, <i>node</i> and <i>npm</i> should be available to you. To test if you have Node.js and NPM installed, open a terminal window and try the following commands seperately: <code>node -v</code>, <code>npm -v</code></li>
+                            <li style="text-align:justify">Download the <a href="files/QuoteOfTheDaySkill(1.0).zip" target="_blank"><b>QuoteOfTheDaySkill(1.0).zip</b></a> skill.</li>
+                            <li style="text-align:justify">Download the <a href="./files/quoteoftheday.zip" target="_blank"><b>quoteoftheday.zip</b></a> file containing the custom component sources.</li>
+                        </ul>
+                    </section>
+                    <!-- ========================================================================================================================= -->
+                    <hr>
+                    <section>
+                        <h2 id="section_1" role="button" style="text-align: left;"><img src="img/32_1.png" alt="section 1" height="32" width="32" class="num_circ">Importing The Quote Of The Day Skill</h2>
+                        <ol>
+                            <li style="text-align:justify">...</li>
+                            <li style="text-align:justify">...</li>
+                        </ol>
+                    </section>
+                    <hr>
+                    <section>
+                        <h2 id="section_2" role="button" style="text-align: left;"><img src="img/32_2.png" alt="section 2" height="32" width="32" class="num_circ">Executing The Custom Component Locally</h2>
+                        <ol>
+                            <li style="text-align:justify">...</li>
+                            <li style="text-align:justify">...</li>
+                        </ol>
+                    </section>
+                    <hr>
+                    <section>
+                        <h2 id="section_3" role="button" style="text-align: left;"><img src="img/32_3.png" alt="section 3" height="32" width="32" class="num_circ">Exposing The Custom Component To The Internet</h2>
+                        <ol>
+                            <li style="text-align:justify">...</li>
+                            <li style="text-align:justify">...</li>
+                        </ol>
+                    </section>
+                    <hr>
+                    <section>
+                        <h2 id="section_4" role="button" style="text-align: left;"><img src="img/32_4.png" alt="section 4" height="32" width="32" class="num_circ">Referencing The Custom Component From The Skill</h2>
+                        <ol>
+                            <li style="text-align:justify">...</li>
+                            <li style="text-align:justify">...</li>
+                        </ol>
+                    </section>
+                    <hr> 
+                    <section>
+                        <h2 id="section_5" role="button" style="text-align: left;"><img src="img/32_5.png" alt="section 5" height="32" width="32" class="num_circ">Configuring Microsoft Visual Studio Code</h2>
+                        <ol>
+                            <li style="text-align:justify">...</li>
+                            <li style="text-align:justify">...</li>
+                        </ol>
+                    </section>
+                    <hr> 
+                    <section>
+                        <h2 id="section_6" role="button" style="text-align: left;"><img src="img/32_6.png" alt="section 6" height="32" width="32" class="num_circ">Debugging The Custom Component</h2>
+                        <ol>
+                            <li style="text-align:justify">...</li>
+                            <li style="text-align:justify">...</li>
+                        </ol>
+                    </section>
+                    <hr> 
+<section>
+                        <h2 id="section_7" role="button" style="text-align: left;"><img src="img/32_7.png" alt="section 7" height="32" width="32" class="num_circ">Deploying The Debugged Custom Component</h2>
+                        <ol>
+                            <li style="text-align:justify">...</li>
+                            <li style="text-align:justify">...</li>
+                        </ol>
+                    </section>
+                    <hr>                     
+                </article>
+            </div>
+            <br class="clearfloat"> </div>
+    </div>
+    <!--close main-->
+    <!--end content-->
+    <div class="footer-container ">
+        <div style="max-width: 994px; padding:10px 0 0 17px;">
+            <footer class="footer-list">
+                <ul>
+                    <li> <a href="https://www.oracle.com/corporate/index.html" target="_blank">About Oracle</a> </li>
+                    <li> <a href="https://www.oracle.com/us/corporate/contact/index.html" target="_blank">Contact Us</a> </li>
+                    <li> <a href="https://www.oracle.com/us/legal/index.html" target="_blank">Legal Notices</a> </li>
+                    <li> <a href="https://www.oracle.com/us/legal/terms/index.html" target="_blank">Terms of Use</a> </li>
+                    <li> <a href="https://www.oracle.com/us/legal/privacy/index.html" target="_blank">Your Privacy Rights</a> </li>
+                    <li> <a href="https://www.oracle.com/pls/topic/lookup?ctx=cpyr&id=en">Copyright © 2018, Oracle and/or its affiliates. All rights reserved.</a></li>
+                </ul>
+            </footer>
+        </div>
+        <script type="text/javascript" src="https://www.oracleimg.com/us/assets/metrics/ora_docs.js"></script>
+    </div>
+    <!-- OBE Dialog Box code 10/15/2018 -->
+    <!-- DO NOT ALTER THE CODE BELOW   -->
+    <div id="lpModal" class="modal">
+        <!-- Modal hdr and body -->
+        <div id="obe_dialog" class="modal-content">
+            <div class="modal-header">
+                <a href="#" class="close"> <span class="close">&times;</span> </a>
+                <h1>Associated Learning Paths</h1> </div>
+            <div id="dialog-content"> </div>
+            <div id="dialog-close" class="closeBtn">
+                <a href="#" class="close2">
+                    <p class="close2"> <span>&nbsp;&nbsp;View&nbsp;&nbsp;</span> </p>
+                </a>
+            </div>
+        </div>
+    </div>
+    <!-- END OBE Dialog Box code -->
+</body>
+
+</html>
