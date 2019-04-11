@@ -85,7 +85,132 @@
                     <!-- ========================================================================================================================= -->
                     <hr>
                     <section>
-                        <h2 id="section_1" role="button" style="text-align: left;"><img src="img/32_1.png" alt="section 1" height="32" width="32" class="num_circ">Importing The Quote Of The Day Skill</h2>
+                        <h2 id="section_1" role="button" style="text-align: left;"><img src="img/32_1.png" alt="section 1" height="32" width="32" class="num_circ">Importing Or Cloning The Quote Of The Day Skill</h2>
+                        <p style="text-align:justify">The provided <i>'Quote Of The Day Skill'</i> skill hosts the custom component. You use the skill to explore the custom component functionality and during debugging. If you work in your own Oracle Digital Assistant instance, you need to import the provided skill. In a common environment such as training, the skill may already be there. In this case we recommend to clone the skill as explained in the nex section.</p>
+                        <h3>If in your own environment: Importing the skill</h3>
+                        <p style="text-align:justify"></p>
+                        <ol>
+                            <li style="text-align:justify">If the tester skill does not exist, <a href="files/QuoteOfTheDaySkill(1.0).zip"><b>select this link</b></a> to download the <b>QuoteOfTheDaySkill(1.0).zip></b> skill.</li>
+                            <li style="text-align:justify">Open the Oracle Digital Assistant dashboard in a browser using the following URL <b>&lt;your instance url&gt;/botsui</b>.</li>
+                            <li style="text-align:justify">Select the menu icon at the top-left of the page next to the "Oracle Digital Asisstant" label (<img src="img/hamburger.png" alt="menu icon">). </li>
+                            <li style="text-align:justify">Select the <b>Skills</b> option in the <b>Development</b> category.
+                                <br>
+                                <figure><img src="img/image_001.png" alt="Main Menu"></figure>
+                            </li>
+                            <li style="text-align:justify">Again, <b>click</b> on the menu icon at the top-left of the page to close the menu (<img src="img/hamburger.png" alt="menu icon">).</li>
+                            <li style="text-align:justify">Click the <b>Import Skills</b> button on the top right (<img src="img/importSkillButton.png" height="25" alt="import skill button">).</li>
+                            <li style="text-align:justify">On your computer, <b>browse</b> to the location you saved the downloaded <b>QuoteOfTheDaySkill(1.0).zip</b> file to.</li>
+                            <li style="text-align:justify">Select the <b>QuoteOfTheDaySkill(1.0).zip</b> file and click <b>Open</b> to upload and install the <i>"Quote Of The Day Skill"</i> skill bot.</li>
+                            <li style="text-align:justify">Locate the <b>"Quote Of The Day Skill"</b> skill and open it by clicking on the <i>"Quote Of The Day Skill"</i> tile.
+                                <br>
+                                <br><b>Note:</b> If you cannot find the "Quote Of The Day Skill" skill, then try and use the filter field above the <i>New Skill</i> tile to find it. </li>
+                        </ol>
+                        <h3>If in a shared environment: Cloning the tester skill</h3>
+                        <p style="text-align:justify"><b>If you follow this tutorial in a shared Oracle Digital Assistant instance</b>, like in a training, you should check first if the <i>"Quote Of The Day Skill"</i> skill exists. If it does, <b>clone</b> the skill instead of importing it. The reason is that you can import a skill with a specific name only once.</p>
+                        <ol>
+                            <li style="text-align:justify">Open the Oracle Digital Assistant dashboard in a browser the following URL <b>&lt;your instance url&gt;/botsui.</b></li>
+                            <li style="text-align:justify">Select the menu icon at the top-left of the page next to the "Oracle Digital Asisstant" label (<img src="img/hamburger.png" alt="menu icon">). </li>
+                            <li style="text-align:justify">Select the <b>Skills</b> option in the <b>Development</b> category.
+                                <br>
+                                <figure><img src="img/image_001.png" alt="Main Menu"></figure>
+                            </li>
+                            <li style="text-align:justify"><b>Click</b> on the menu icon at the top-left of the page to close the menu (<img src="img/hamburger.png" alt="menu icon">).
+                                <li style="text-align:justify">If you cannot spot the <i>"Quote Of The Day Skill"</i> skill, try and use the filter field above the <i>'New Skill'</i> tile to find it. If still you cannot find it, import the skill as explained in the previous section.</li>
+                                <li style="text-align:justify">To clone the "Quote Of The Day Skill" skill, use the <b>Clone</b> menu option of the <b>"Quote Of The Day Skill"</b> skill shown in the image below.
+                                    <br>
+                                    <figure><img src="img/skill_01.png" alt="Cloning a skill"></figure>
+                                    <br> </li>
+                                <li style="text-align:justify">In the opened dialog, provide a display name with your initials in it (e.g. "FN Quote Of The Day Skill").
+                                    <br>
+                                    <figure><img src="img/skill_02.png" alt="Cloning the skill" width="100%" height="100%"></figure>
+                                </li>
+                                <li style="text-align:justify">Provide a short description.</li>
+                                <li style="text-align:justify">Click the <b>Create</b> button to create the skill.</li>
+                        </ol>
+                    </section>
+                    <hr>
+                    <section>
+                        <h2 id="section_2" role="button" style="text-align: left;"><img src="img/32_2.png" alt="section 2" height="32" width="32" class="num_circ">Exploring The Quote Of The Day Skill</h2>
+                        <ol>
+                            <li style="text-align:justify">Open the <i>"Quote Of the Day Skill" skill (or your cloned copy).</i></li>
+                            <li style="text-align:justify">Select the conversation tester icon (<img alt="conversation tester" src="img/testerIcon.png" height="25" />)</li>
+                            <li style="text-align:justify">Type <b>hi</b> into the <b>Message</b> field and press the enter-key on your keyboard.</li>
+                            <li style="text-align:justify">When prompted, provide your name.</li>
+                            <li style="text-align:justify">You should see a message similar to the one below:
+                                <br>
+                                <figure><img src="img/tester_01.png" alt="Tester" width="100%" height="100%"></figure>
+                            </li>
+                            <li style="text-align:justify">Notice that, though a name was provided, the message prints <b>undefined</b> instead of the name.</li>
+                            <li style="text-align:justify">Reset the tester (<img alt="Reset link" src="./img/resetLink.png" height="25" />).</li>
+                            <li style="text-align:justify">Close the tester (<img alt="Close button" src="./img/closeButton.png" height="25" />).</li>
+                            <li style="text-align:justify">Open the dialog flow builder (<img alt="Dialog flow editor" src="./img/dialogEditor.png" height="25" />)</li>
+                            <li style="text-align:justify">Note the <b>askName</b> state (line 11) that prompts the user for a name.</li>
+                            <li style="text-align:justify">The <b>getQuote</b> state (line 16) passes the provided user name as an input argument to the custom component.
+                                <br>
+                                <br> <b>Note:</b> The dialog flow code appears to be correct. So the problem that the "quote of the day" message does not print the provided name must be within the custom component.</li>
+                            <li style="text-align:justify">Open the <b>Components</b> panel (<img alt="Custom component icon" src="./img/csutcomp_icon2.png" height="25" />).</li>
+                            <li style="text-align:justify">Notice the locally deployed custom component:
+                                <br>
+                                <figure><img src="img/customComponent_01.png" alt="Custom component" width="100%" height="100%"></figure>
+                            </li>
+                        </ol>
+                    </section>
+                    <hr>
+                    <section>
+                        <h2 id="section_3" role="button" style="text-align: left;"><img src="img/32_3.png" alt="section 3" height="32" width="32" class="num_circ">Running The Custom Component On Your Local Computer</h2>
+                        <p style="text-align:justify">To be able to debug the custom component, you first need to run it on your local machine. This way you later have a local process you can connect to from Microsoft Visual Studio Code IDE, or whatever your preferred JavaScript IDE is. The full custom component service source code is provided in the <a href="./files/quoteoftheday.zip"><b>quoteoftheday.zip</b></a> file you downloaded as a pre-requisite for this tutorial.</p>
+                        <ol>
+                            <li style="text-align:justify">On your computer, <b>browse</b> to the location you saved the downloaded <b>quoteoftheday.zip</b> custom component service file to.<br>
+                            <figure><img src="img/terminal_01.png" alt="Location of the unzipped component file" width="100%" height="100%"></figure><br></li>
+                            <li style="text-align:justify"><b>Unzip</b> the file in a folder that does not have blank characters in its directory path.</li>
+                            <li style="text-align:justify"><b>In a terminal window</b>, navigate into the parent folder containing the <b>quoteoftheday</b> folder</li>
+                            <li style="text-align:justify">If not done already, install the Oracle Bots Node.js SDK:<br>
+                                <ul>
+                                    <li style="text-align:justify">If your Internet access is through a proxy, do the following to be able to access the Oracle Bots Node.js SDK from the Internet:
+                                        <br>
+                                        <br>
+                                        <ul>
+                                            <li style="text-align:justify">In a browserm get the external IP address of your proxy (<a href="http://www.whatismyproxy.com/" target="_blank"><b>http://www.whatismyproxy.com/</b></a>)</li>
+                                            <li style="text-align:justify">In the terminal window type:
+                                                <br><br> <code>npm config set proxy http://external_ip:80</code>
+                                                <br> <code>npm config set https-proxy http://external_ip:80</code>
+                                                <br><br> <b>Note: </b>Alternatively find a way to access the Internet not using a proxy, e.g. using a mobile hotspot. </li>
+                                        </ul>
+                                    </li>
+                                    <li style="text-align:justify">To install Oracle Bots Node.js SDK for global access on your laptop, type
+                                        <br>
+                                        <br><code>npm install -g @oracle/bots-node-sdk</code>
+                                        <br>
+                                        <br> <b>Note:</b> On a Mac, you use the <i>sudo</i> command: <code>sudo npm install -g @oracle/bots-node-sdk</code> </li>
+                                    <li style="text-align:justify">To verify the success of your installation, type <code>bots-node-sdk -v</code>. The command should print the Oracle Bots Node.js SDK version.</li>
+                                </ul>
+                            </li>
+                            <li style="text-align:justify">Ensure you followed previous instructions and your terminal window cursor is in the folder that hosts the <b>quoteoftheday</b> custom component service folder.</li>
+                            <li style="text-align:justify">Issue the following command: <code>bots-node-sdk service quoteoftheday</code>
+                            <br><figure><img src="img/terminal_02.png" alt="Starting the component service" width="100%" height="100%"></figure><br>
+                            <b>Note: </b> The <code>bots-node-sdk service quoteoftheday</code> command starts the Oracle Bots Node.js SDK embedded Node express server to run the custom component. The express server is part of the custom component service project. It is added when following the custom component development instructions documented in the <a href="../componentDevelopment_032019/index.html" target="_blank"><b>Custom Component Development and Backend Integration </b></a>tutorial.
+                            </li>
+                            <li style="text-align:justify">Open a browser window.</li>
+                            <li style="text-align:justify">Type the following URL into the URL field: <code>localhost:3000/components</code></li>
+                            <li style="text-align:justify">You should see a server response as shown in the image below:<br>
+                            <figure><img src="img/browser_01.png" alt="Express server test showing component details" width="100%" height="100%"></figure><br>
+                                <b>Note: </b>What you see is the custom component metadata definition. Its the infromation Oracle Digital Assistant reads when registering custom component services in a skill. To you this proves that the Node express server is up and that the custom component is accessible. <br><br>By default, the Node express server listens on port 3000. You can change the port number by using the following command: <code>bots-node-sdk service quoteoftheday --port port_number</code>. <br><br> For example, use <code>bots-node-sdk service quoteoftheday --port 4000</code> to start the Node express server on port 4000
+                            </li>
+                        </ol>
+                    </section>
+                    <hr>
+                    <section>
+                        <h2 id="section_4" role="button" style="text-align: left;"><img src="img/32_4.png" alt="section 4" height="32" width="32" class="num_circ">Exposing The Local Custom Component Service To The Internet</h2>
+                        <p style="text-align:justify">Usually your local machine is not exposed as a server to the Internet. For this you need to create a network tunnel, for which in this tutorial you will use ngrok. In this section, the assumption is that the custom component service Node express server listens to port 3000.</p>
+                        <ol>
+                            <li style="text-align:justify">Download an install <a href="https://ngrok.com/download" target="_blank"><b>ngrok</b></a>. You don't need an account or a subscription to follow the instructions in this tutorial.<br><br>
+                            <b>Note:</b> If ngrok doesn't work for you, you may try other tunnelling solutions like <a href="https://github.com/localtunnel/localtunnel" target="_blank">localtunnel on GitHub</a>. If you don't own your local machine and if your IT administrators don't allow the use of tunneling software on your machine, then, unfortunately, you cannot complete this tutorial. Internet access to the local Node express server is required to run a debugging session from Oracle Digital Assistant. In this case, logging is the option for you to debug custom component services.</li>
+                            <li style="text-align:justify">Navigate to the location you installed <b>ngrok</b> to.</li>
+                        </ol>
+                    </section>
+                    <hr>
+                    <section>
+                        <h2 id="section_5" role="button" style="text-align: left;"><img src="img/32_5.png" alt="section 5" height="32" width="32" class="num_circ">Referencing The Custom Component From The Skill</h2>
                         <ol>
                             <li style="text-align:justify">...</li>
                             <li style="text-align:justify">...</li>
@@ -93,7 +218,7 @@
                     </section>
                     <hr>
                     <section>
-                        <h2 id="section_2" role="button" style="text-align: left;"><img src="img/32_2.png" alt="section 2" height="32" width="32" class="num_circ">Executing The Custom Component Locally</h2>
+                        <h2 id="section_6" role="button" style="text-align: left;"><img src="img/32_6.png" alt="section 6" height="32" width="32" class="num_circ">Configuring Microsoft Visual Studio Code</h2>
                         <ol>
                             <li style="text-align:justify">...</li>
                             <li style="text-align:justify">...</li>
@@ -101,7 +226,7 @@
                     </section>
                     <hr>
                     <section>
-                        <h2 id="section_3" role="button" style="text-align: left;"><img src="img/32_3.png" alt="section 3" height="32" width="32" class="num_circ">Exposing The Custom Component To The Internet</h2>
+                        <h2 id="section_7" role="button" style="text-align: left;"><img src="img/32_7.png" alt="section 7" height="32" width="32" class="num_circ">Debugging The Custom Component</h2>
                         <ol>
                             <li style="text-align:justify">...</li>
                             <li style="text-align:justify">...</li>
@@ -109,38 +234,13 @@
                     </section>
                     <hr>
                     <section>
-                        <h2 id="section_4" role="button" style="text-align: left;"><img src="img/32_4.png" alt="section 4" height="32" width="32" class="num_circ">Referencing The Custom Component From The Skill</h2>
+                        <h2 id="section_8" role="button" style="text-align: left;"><img src="img/32_8.png" alt="section 8" height="32" width="32" class="num_circ">Deploying The Debugged Custom Component</h2>
                         <ol>
                             <li style="text-align:justify">...</li>
                             <li style="text-align:justify">...</li>
                         </ol>
                     </section>
-                    <hr> 
-                    <section>
-                        <h2 id="section_5" role="button" style="text-align: left;"><img src="img/32_5.png" alt="section 5" height="32" width="32" class="num_circ">Configuring Microsoft Visual Studio Code</h2>
-                        <ol>
-                            <li style="text-align:justify">...</li>
-                            <li style="text-align:justify">...</li>
-                        </ol>
-                    </section>
-                    <hr> 
-                    <section>
-                        <h2 id="section_6" role="button" style="text-align: left;"><img src="img/32_6.png" alt="section 6" height="32" width="32" class="num_circ">Debugging The Custom Component</h2>
-                        <ol>
-                            <li style="text-align:justify">...</li>
-                            <li style="text-align:justify">...</li>
-                        </ol>
-                    </section>
-                    <hr> 
-<section>
-                        <h2 id="section_7" role="button" style="text-align: left;"><img src="img/32_7.png" alt="section 7" height="32" width="32" class="num_circ">Deploying The Debugged Custom Component</h2>
-                        <ol>
-                            <li style="text-align:justify">...</li>
-                            <li style="text-align:justify">...</li>
-                        </ol>
-                    </section>
-                    <hr>                     
-                </article>
+                    <hr> </article>
             </div>
             <br class="clearfloat"> </div>
     </div>
