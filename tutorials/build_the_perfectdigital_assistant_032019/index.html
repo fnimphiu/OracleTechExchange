@@ -81,9 +81,71 @@
 								<li>The ODA Client samples for JavaScript v19.1.3.0.							
 								<p>To get them, navigate to <a href="http://bit.ly/amcedownloads" target="_blank">http://bit.ly/amcedownloads</a>, accept the Oracle Technology Network license agreement, scroll down to the ODA Client SDKS section, and then download <b>bots-client-sdk-js-samples-19.1.3.0.zip</b>.
 								<figure><img src="img/oda-sample-download.png" alt="screenshot showing the ODA Client SDKs section of a web page. It contains a table with 6 items. The sixth row, which contains a download for bots-client-sdk-js-samples-19.1.3.0.zip is circled in red."></figure></li>
+
+							<li>An Oracle Digital Assistant (ODA) cloud instance. You can get one using either of the following approaches:<br><br>
+								<ul>
+								<li><a href="#trial">Option A - Setting up a trial instance</a>.
+								<p>You have special Oracle Code trial. The following process will provide you step by step instructions on how to setup your trial.
+                                By having your own instance, you can continue this lab after the event and even build your own digital assistant.</p><br>
+                                <p>OR</p><br>
+								<li><a href="#shared-instance">Option B - Using the shared instance</a> that has been provisioned for this event.
+								<p>If you select this option, you can dig into the lab with less setup time.</p>
+								<p>This instance will be used by other participants in the hands-on lab.</p></li>
 							</ul>
-														
-							<h3>Import the Starter Skill and Digital Assistant to Your Instance</h3>
+							</ul>
+							
+							<h3><a name="trial">Option A: Set Up a Trial Instance</a></h3>
+							<h4>Get an Oracle Cloud Account</h4>
+							<p>Before you can get a trial ODA instance, you need to get an Oracle Cloud account:</p>
+							<ol>
+								<li>Go to the link supplied by your instructor.</li>
+								<!--<li>Click <b>Try for Free</b>.</li>-->
+								<li>Fill in the Account Details section. Among the details you'll need to enter are the following:
+									<ul>
+										<li>A <b>Cloud Account Name</b>.</li>
+										<li>The <b>Default Data Region</b>, which determines where your services will be hosted. Select EMEA.</li>
+										<li>A valid email address that you used during registration.
+                                        <p>Simply tab out of the e-mail address field.</p></li>
+                                        <li>A dialog box will appear indicating you have been invited for an Oracle Cloud Free Trial Program. Click on OK.</li>
+                                        <li>If you do not see this dialog box check that the e-mail address you entered is the same as what you provided at the time of registration, otherwise contact your instructor.</li>
+									</ul>
+								</li>
+								<figure><img src="img/email-entered.jpg" alt="You are approved for Oracle Cloud account."></figure>
+								<li>
+								  <p>Provide rest of the detais similar to shown below. Click on Complete button.</p>
+							      <figure><img src="img/other-details.jpg" alt="Welcome to Oracle Cloud Free Trial."></figure>
+                                </li>
+								<li>
+								  <p>This process take about 10-15 minutes. You will receive an e-mail on the registered e-mail address as shown below.</p>
+                                  <p>Click on Get Started with Oracle Cloud.</p>
+							      <figure><img src="img/cloud-account-success.jpg" alt="Welcome to Oracle Cloud Free Trial."></figure>
+                                </li>
+							<li>On the web page that is opened, enter the username and  temporary password and click the <b>Sign In</b> button.
+							<figure><img src="img/signin-page.png" alt="screenshot of the Oracle Cloud sign-in web page"></figure></li>
+							<li>As prompted, change your password.
+                                <figure><img src="img/change-password.jpg" alt="screenshot of the Oracle Cloud sign-in web page"></figure>
+							</li>
+							</ol>
+							<p>At this point, you are in your cloud account and are ready to provision an ODA instance.</p>
+							<h4>Provision an Oracle Digital Assistant Instance</h4>
+							<ol>
+								<li>Click on hamburger menu on top left, navigate to the last, choose <b>My Services Dashboard</b>.<figure><img src="img/My-Services-Dashboard-path-new.png" alt="Screenshot of the main page after loggin in."></figure></li>
+                                <li>In the My Services Dashboard, click Create Instance.<figure><img src="img/create-instance.png" alt="Screenshot of the My Service dashboard. There are buttons for Guided Journey, Create Instance, Account Management, and Customize Dashboard."></figure></li>
+								<li>Select the <b>All Services</b> tab and click the <b>Create</b> button on the Digital Assistant tile.<figure><img src="img/create-instance2.png" alt="Screenshot of the Create Instance page. There are tabs for Featured Services and All Services. All Services is selected. There are tiles for 4 services, the 3rd of which is Atonomous Digital Assistant."></figure></li>
+								<li>On the next screen that appears, click <b>Create Instance</b>.<figure><img src="img/create-instance-button.png" alt="Screenshot of the Create Instance page."></figure></li>
+								<li>Fill in the <b>Instance Name</b>, check the option "I have special instructions from Oracle" field and enter <b>Placement tag</b> value as provided by your instructor. Leave the other fields with their default values, and click <b>Next</b>.<figure><img src="img/CreateInstance-step1.png" alt="Screenshot of the Create Instance page, enter your details here."></figure></li>
+								<li>On the Confirm page, click <b>Create</b>.<figure><img src="img/create-instance-step2-confirmation-page.png" alt="Screenshot of the Create Instance confirmation page"></figure>
+								<p>Within a few minutes your service should be created. On the Instances page, you can check the progress in the <b>Status</b> field.</p>
+								<figure><img src="img/creating-service.png" alt="screenshot showing the Instances page, which includes a Status field and the value 'Creating service...'."></figure>
+								<p>If it takes more than a few minutes to finish, try refreshing the page in the browser.</p>
+								</li>
+								<li>Once the instance is created, click <img src="img/options-menu.png" alt="the menu icon"> and select <b>Digital Assistant UI Designer</b>.
+								<figure><img src="img/select-da-designer.png" alt="screenshot showing a panel for a Digital Assistant instance. On the right side of the panel is an options menu, which is selected, showing options for Digital Assistant UI Designer, Add Tags, and Delete."></figure>
+								<p>A new browser tab will be opened with the Digital Assistant Designer UI.</p>
+								<figure><img src="img/da-ui.png" alt="a screenshot showing the home page of Oracle Digital Assistant"></figure></li>
+							
+						</ol>
+							<h4>Import the Starter Skill and Digital Assistant to Your Instance</h4>
 							<p>Now let's prepare our demo environment by setting up the starter pizza skill and  starter shopping centre digital assistant.</p>
 							<p><b>Import the Pizza Skill:</b></p>
 							<ol>
@@ -114,7 +176,41 @@
 
 
 
-							
+							<h3><a name="shared-instance">Option B: Use the Shared Instance</a></h3>
+							<h4>Log In to the Shared Instance</h4>
+							<ol>
+								<li>In your browser, navigate to <a href="http://bit.ly/DAOOW2019" target="_blank">http://bit.ly/DAOOW2019</a>.</li>
+								<li>Log in to the instance using the credentials provided by your lab instructor.</li>
+							</ol>
+							<p>After successfully logging in, you will land on the ODA home page.</p>
+							<h4>Clone Copies of the Starter Skill and Digital Assistant</h4>
+							<p>In this lab, a starter skill and a starter digital assistant are provided for you. Before you get to work, you need to create your own copies.</p>
+							<p><b>Clone the Starter Skill</b></p>
+							<ol>
+								<li>With the Oracle Digital Assistant UI open in your browser, click <img src="img/hamburger.png" alt="main menu icon"> to open the side menu.</li>
+								<li>Click <b>Development</b> and select <b>Skills</b>.</li>
+								<li>Click <img src="img/hamburger.png" alt="main menu icon"> again to collapse the side menu.</li>
+								<li>In the skills dashboard, find the tile for <b>PizzaSkill</b>.</li>
+								<li>Click PizzaSkill's Options menu (<img src="img/options-menu.png" alt="menu icon">) and select <b>Clone</b>.
+								<figure><img src="img/clone-skill.png" alt="screenshot showing the Skills page in ODA. There is a tile for New Skill and a tile for PizzaSkill. Within the tile for PizzaSkill, the Options menu is selected, and it shows menu items for Edit, New Version, Clone, etc."></figure></li>
+								<li>In the <b>Create Clone</b> dialog, enter a value for <b>Display Name</b> using the form <code><i>&lt;your_initials&gt;</i>_PizzaSkill</code>.
+								<p>For example, if your initials are AB, you'd name the skill <b>AB_PizzaSkill</b>.</p></li> 
+								<li>Click <b>Clone</b>.</li>
+								<li>On the Skills dashboard page, select <code><i>&lt;your_initials&gt;</i>_PizzaSkill</code> to open it up in the designer.
+							</ol>
+							<p><b>Clone the Starter Digital Assistant</b></p>
+							<ol>
+								<li>Click <img src="img/hamburger.png" alt="main menu icon"> to open the side menu.</li>
+								<li>Click <b>Development</b> and select <b>Digital Assistants</b>.</li>
+								<li>Click <img src="img/hamburger.png" alt="main menu icon"> again to collapse the side menu.</li>
+								<li>In the skills dashboard, find the tile for <b>ODA_HOL2019</b>, open its  Options menu (<img src="img/options-menu.png" alt="menu icon">), and select <b>Clone</b>.
+								</li>
+								<li>In the <b>Create Clone</b> dialog, enter a value for <b>Display Name</b> using the form <code><i>&lt;your_initials&gt;</i>_ODA_HOL2019</code>.
+								<p>For example, if your initials are AB, you'd name the skill <b>AB_ODA_HOL2019</b>.</p></li> 
+								<li>Click <b>Clone</b>.</li>
+								<li>On the Digital Assistants dashboard page, select <code><i>&lt;your_initials&gt;</i>_ODA_HOL2019</code> to open it up in the designer.
+							</ol>
+
 
 
                         </section>
