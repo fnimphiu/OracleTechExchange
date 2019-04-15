@@ -85,9 +85,9 @@
                     <!-- ========================================================================================================================= -->
                     <hr>
                     <section>
-                        <h2 id="section_1" role="button" style="text-align: left;"><img src="img/32_1.png" alt="section 1" height="32" width="32" class="num_circ">Importing Or Cloning The Quote Of The Day Skill</h2>
+                        <h2 id="section_1" role="button" style="text-align: left;"><img src="img/32_1.png" alt="section 1" height="32" width="32" class="num_circ">Import Or Clone The Quote Of The Day Skill</h2>
                         <p style="text-align:justify">The provided <i>'Quote Of The Day Skill'</i> skill hosts the custom component. You use the skill to explore the custom component functionality and during debugging. If you work in your own Oracle Digital Assistant instance, you need to import the provided skill. In a common environment such as training, the skill may already be there. In this case we recommend to clone the skill as explained in the nex section.</p>
-                        <h3>If in your own environment: Importing the skill</h3>
+                        <h3>If in your own environment: Import the skill</h3>
                         <p style="text-align:justify"></p>
                         <ol>
                             <li style="text-align:justify">If the tester skill does not exist, <a href="files/QuoteOfTheDaySkill(1.0).zip"><b>select this link</b></a> to download the <b>QuoteOfTheDaySkill(1.0).zip></b> skill.</li>
@@ -105,7 +105,7 @@
                                 <br>
                                 <br><b>Note:</b> If you cannot find the "Quote Of The Day Skill" skill, then try and use the filter field above the <i>New Skill</i> tile to find it. </li>
                         </ol>
-                        <h3>If in a shared environment: Cloning the tester skill</h3>
+                        <h3>If in a shared environment: Clone the tester skill</h3>
                         <p style="text-align:justify"><b>If you follow this tutorial in a shared Oracle Digital Assistant instance</b>, like in a training, you should check first if the <i>"Quote Of The Day Skill"</i> skill exists. If it does, <b>clone</b> the skill instead of importing it. The reason is that you can import a skill with a specific name only once.</p>
                         <ol>
                             <li style="text-align:justify">Open the Oracle Digital Assistant dashboard in a browser the following URL <b>&lt;your instance url&gt;/botsui.</b></li>
@@ -115,22 +115,23 @@
                                 <figure><img src="img/image_001.png" alt="Main Menu"></figure>
                             </li>
                             <li style="text-align:justify"><b>Click</b> on the menu icon at the top-left of the page to close the menu (<img src="img/hamburger.png" alt="menu icon">).
-                                <li style="text-align:justify">If you cannot spot the <i>"Quote Of The Day Skill"</i> skill, try and use the filter field above the <i>'New Skill'</i> tile to find it. If still you cannot find it, import the skill as explained in the previous section.</li>
-                                <li style="text-align:justify">To clone the "Quote Of The Day Skill" skill, use the <b>Clone</b> menu option of the <b>"Quote Of The Day Skill"</b> skill shown in the image below.
-                                    <br>
-                                    <figure><img src="img/skill_01.png" alt="Cloning a skill"></figure>
-                                    <br> </li>
-                                <li style="text-align:justify">In the opened dialog, provide a display name with your initials in it (e.g. "FN Quote Of The Day Skill").
-                                    <br>
-                                    <figure><img src="img/skill_02.png" alt="Cloning the skill" width="100%" height="100%"></figure>
-                                </li>
-                                <li style="text-align:justify">Provide a short description.</li>
-                                <li style="text-align:justify">Click the <b>Create</b> button to create the skill.</li>
+                            <li style="text-align:justify">If you cannot spot the <i>"Quote Of The Day Skill"</i> skill, try and use the filter field above the <i>'New Skill'</i> tile to find it. If still you cannot find it, import the skill as explained in the previous section.</li>
+                            <li style="text-align:justify">To clone the "Quote Of The Day Skill" skill, use the <b>Clone</b> menu option of the <b>"Quote Of The Day Skill"</b> skill shown in the image below.
+                                <br>
+                                <figure><img src="img/skill_01.png" alt="Cloning a skill"></figure>
+                                <br>
+                            </li>
+                            <li style="text-align:justify">In the opened dialog, provide a display name with your initials in it (e.g. "FN Quote Of The Day Skill").
+                                <br>
+                                <figure><img src="img/skill_02.png" alt="Cloning the skill" width="100%" height="100%"></figure>
+                            </li>
+                            <li style="text-align:justify">Provide a short description.</li>
+                            <li style="text-align:justify">Click the <b>Create</b> button to create the skill.</li>
                         </ol>
                     </section>
                     <hr>
                     <section>
-                        <h2 id="section_2" role="button" style="text-align: left;"><img src="img/32_2.png" alt="section 2" height="32" width="32" class="num_circ">Exploring The Quote Of The Day Skill</h2>
+                        <h2 id="section_2" role="button" style="text-align: left;"><img src="img/32_2.png" alt="section 2" height="32" width="32" class="num_circ">Explore The Quote Of The Day Skill</h2>
                         <ol>
                             <li style="text-align:justify">Open the <i>"Quote Of the Day Skill" skill (or your cloned copy).</i></li>
                             <li style="text-align:justify">Select the conversation tester icon (<img alt="conversation tester" src="img/testerIcon.png" height="25" />)</li>
@@ -157,11 +158,12 @@
                     </section>
                     <hr>
                     <section>
-                        <h2 id="section_3" role="button" style="text-align: left;"><img src="img/32_3.png" alt="section 3" height="32" width="32" class="num_circ">Running The Custom Component On Your Local Computer</h2>
+                        <h2 id="section_3" role="button" style="text-align: left;"><img src="img/32_3.png" alt="section 3" height="32" width="32" class="num_circ">Run The Custom Component On Your Computer</h2>
                         <p style="text-align:justify">To be able to debug the custom component, you first need to run it on your local machine. This way you later have a local process you can connect to from Microsoft Visual Studio Code IDE, or whatever your preferred JavaScript IDE is. The full custom component service source code is provided in the <a href="./files/quoteoftheday.zip"><b>quoteoftheday.zip</b></a> file you downloaded as a pre-requisite for this tutorial.</p>
                         <ol>
                             <li style="text-align:justify">On your computer, <b>browse</b> to the location you saved the downloaded <b>quoteoftheday.zip</b> custom component service file to.<br>
-                            <figure><img src="img/terminal_01.png" alt="Location of the unzipped component file" width="100%" height="100%"></figure><br></li>
+                                <figure><img src="img/terminal_01.png" alt="Location of the unzipped component file" width="100%" height="100%"></figure><br>
+                            </li>
                             <li style="text-align:justify"><b>Unzip</b> the file in a folder that does not have blank characters in its directory path.</li>
                             <li style="text-align:justify"><b>In a terminal window</b>, navigate into the parent folder containing the <b>quoteoftheday</b> folder</li>
                             <li style="text-align:justify">If not done already, install the Oracle Bots Node.js SDK:<br>
@@ -187,62 +189,266 @@
                             </li>
                             <li style="text-align:justify">Ensure you followed previous instructions and your terminal window cursor is in the folder that hosts the <b>quoteoftheday</b> custom component service folder.</li>
                             <li style="text-align:justify">Issue the following command: <code>bots-node-sdk service quoteoftheday</code>
-                            <br><figure><img src="img/terminal_02.png" alt="Starting the component service" width="100%" height="100%"></figure><br>
-                            <b>Note: </b> The <code>bots-node-sdk service quoteoftheday</code> command starts the Oracle Bots Node.js SDK embedded Node express server to run the custom component. The express server is part of the custom component service project. It is added when following the custom component development instructions documented in the <a href="../componentDevelopment_032019/index.html" target="_blank"><b>Custom Component Development and Backend Integration </b></a>tutorial.
+                                <br>
+                                <figure><img src="img/terminal_02.png" alt="Starting the component service" width="100%" height="100%"></figure><br>
+                                <b>Note: </b> The <code>bots-node-sdk service quoteoftheday</code> command starts the Oracle Bots Node.js SDK embedded Node express server to run the custom component. The express server is part of the custom component service project. It is added when following the custom component development instructions documented in the <a href="../componentDevelopment_032019/index.html" target="_blank"><b>Custom Component Development and Backend Integration </b></a>tutorial.
                             </li>
                             <li style="text-align:justify">Open a browser window.</li>
                             <li style="text-align:justify">Type the following URL into the URL field: <code>localhost:3000/components</code></li>
                             <li style="text-align:justify">You should see a server response as shown in the image below:<br>
-                            <figure><img src="img/browser_01.png" alt="Express server test showing component details" width="100%" height="100%"></figure><br>
+                                <figure><img src="img/browser_01.png" alt="Express server test show  component details" width="100%" height="100%"></figure><br>
                                 <b>Note: </b>What you see is the custom component metadata definition. Its the infromation Oracle Digital Assistant reads when registering custom component services in a skill. To you this proves that the Node express server is up and that the custom component is accessible. <br><br>By default, the Node express server listens on port 3000. You can change the port number by using the following command: <code>bots-node-sdk service quoteoftheday --port port_number</code>. <br><br> For example, use <code>bots-node-sdk service quoteoftheday --port 4000</code> to start the Node express server on port 4000
                             </li>
                         </ol>
                     </section>
                     <hr>
                     <section>
-                        <h2 id="section_4" role="button" style="text-align: left;"><img src="img/32_4.png" alt="section 4" height="32" width="32" class="num_circ">Exposing The Local Custom Component Service To The Internet</h2>
+                        <h2 id="section_4" role="button" style="text-align: left;"><img src="img/32_4.png" alt="section 4" height="32" width="32" class="num_circ">Expose The Component Service To The Internet</h2>
                         <p style="text-align:justify">Usually your local machine is not exposed as a server to the Internet. For this you need to create a network tunnel, for which in this tutorial you will use ngrok. In this section, the assumption is that the custom component service Node express server listens to port 3000.</p>
                         <ol>
-                            <li style="text-align:justify">Download an install <a href="https://ngrok.com/download" target="_blank"><b>ngrok</b></a>. You don't need an account or a subscription to follow the instructions in this tutorial.<br><br>
-                            <b>Note:</b> If ngrok doesn't work for you, you may try other tunnelling solutions like <a href="https://github.com/localtunnel/localtunnel" target="_blank">localtunnel on GitHub</a>. If you don't own your local machine and if your IT administrators don't allow the use of tunneling software on your machine, then, unfortunately, you cannot complete this tutorial. Internet access to the local Node express server is required to run a debugging session from Oracle Digital Assistant. In this case, logging is the option for you to debug custom component services.</li>
+                            <li style="text-align:justify">Download ngrok <a href="(https://ngrok.com/download)" target="_blank"><b>(https://ngrok.com/download)</b></a>. For this tutorial, the free ngrok offering will suffice.<br>
+                                To get past security possible warnings, you may need to open this link in a private window (Firefox) or icognito window (Chrome).<br><br>
+
+                                <b>Important:</b> Before using ngrok, ensure you read up on what it is and what it does (https://ngrok.com/) to understand how it works and the possible risks. Be sure to adhere to your company security policies.<br><br>
+                                <b>Note:</b> If ngrok doesn't work for you, you may try other tunnelling solutions like <a href="https://github.com/localtunnel/localtunnel" target="_blank">localtunnel on GitHub</a>. If you don't own the computer you work on, and if your IT administrators don't allow the use of tunneling software, then, unfortunately, you wont be able to complete this tutorial. In this case, logging is the option for you to debug custom component services.</li>
                             <li style="text-align:justify">Navigate to the location you installed <b>ngrok</b> to.</li>
+                            <li style="text-align:justify">Now launch ngrok:
+                                <pre>
+<b>Non-Windows:</b>
+
+./ngrok http &lt;port&gt; </pre>
+                                <pre>
+<b>Windows:</b>
+
+ngrok http &lt;port&gt;</pre>
+                            </li>
+                            <li style="text-align:justify">The screenshot below shows an ngrok instance that was successfully started to listen to port 3000. Notice the <b>Session Status</b> that is set to <b>"online"</b>, as well as the <b>Frowarding</b> URLs for http and https requests. <br>
+                                <figure><img src="img/terminal_03.png" alt="ngrok started" width="100%" height="100%"></figure>
+                            </li>
+                            <li style="text-align:justify">Open a browser window, type the forwarding URL for <b>https</b> into the URL field and append the URL with <b>/components</b>. The request should display the custom component definition as shown in the image below. This proves your ngrok access to work.
+                                <figure><img src="img/browser_02.png" alt="ngrok test in browser" width="100%" height="100%"></figure><br>
+                                <b>Note:</b> Your ngrok forwarding URL will differ from the URL shown in the image above. A new URL is generated each time you stop and start ngrok.
+                            </li>
                         </ol>
                     </section>
                     <hr>
                     <section>
-                        <h2 id="section_5" role="button" style="text-align: left;"><img src="img/32_5.png" alt="section 5" height="32" width="32" class="num_circ">Referencing The Custom Component From The Skill</h2>
+                        <h2 id="section_5" role="button" style="text-align: left;"><img src="img/32_5.png" alt="section 5" height="32" width="32" class="num_circ">Configure The Remote Custom Component Service</h2>
+                        <p style="text-align:justify">To debug the custom component service, you will create a second component registration. The registration will use the "external" configuration option to reference the component service running on your computer.</p>
                         <ol>
-                            <li style="text-align:justify">...</li>
-                            <li style="text-align:justify">...</li>
+                            <li style="text-align:justify">In the skill builder, select the custom component service registration icon located in the left side menu (<img alt="Component service registration" src="./img/csutcomp_icon2.png" height="25" />).</li>
+                            <li style="text-align:justify">Press the <b>+ Service</b> button to create a new custom component service registration.</li>
+                            <li style="text-align:justify">Enter <b>QuotesDebugging</b> into the <b>Name</b> field.</li>
+                            <li style="text-align:justify">Provide a brief description in the <b>Description</b> field.</li>
+                            <li style="text-align:justify">Set the radio button below the <i>Description</i> field to <b>External</b>.</li>
+                            <li style="text-align:justify">Set the <b>Metadata URL</b> field value to your ngrok URL with the '/components' extension. Its the same value you used to test the ngrok configuration in a borwser.</li>
+                            <li style="text-align:justify">The ngrok URL is not protected. So set the <b>User Name</b> and <b>Password</b> fields to <b>None</b>. The configuration should look similar to the one shown in the image below. Note that your ngrok URL is different from the one shown in the image. <br>
+                                <figure><img src="img/customComponent_02.png" alt="creating new custom component service" width="100%" height="100%"></figure>
+                            </li>
+                            <li style="text-align:justify">Press the <b>Create</b> button. The skill now attempts to access your custom component service to register its component(s). Upon registration success, the custom component service panel should look as shown in the image below.<br>
+                                <figure><img src="img/customComponent_03.png" alt="successfully registered component" width="100%" height="100%"></figure>
+                            </li>
+                            <li style="text-align:justify">At this moment you have the same custom component service configured as a local container and as a remote deployment. To debug the custom component service using the sources on your computer, you need to disable the component deployed to the local container. <b>Select</b> the <b>QuotesCustomComponentService</b> as shown in the image below (Notice the small vertical blue line next to the QuotesCustomComponentService indicating the selection)<br>
+                                <figure><img src="img/customComponent_04.png" alt="enabled service" width="100%" height="100%"></figure>
+                            </li>
+                            <li style="text-align:justify">Switch the <b>Service Enabled</b> toggle so it shows disabled (as shown in the image below). <br>
+                                <figure><img src="img/customComponent_05.png" alt="disabled service" width="100%" height="100%"></figure>
+                            </li>
+                            <li style="text-align:justify">Netx, test the remote custom component service. For this <b>select</b> the <b>Tester</b> (<img alt="Tester icon" src="./img/testerIcon.png" height="25" />) icon located in the left side menu.</li>
+                            <li style="text-align:justify">Type <b>Hi</b> into the <b>Message</b> field.</li>
+                            <li style="text-align:justify">When prommpted, <b>provide a Name</b>, e.g 'Frank'.</li>
+                            <li style="text-align:justify">If your remote custom component service works, then <b>you should see a quote similar to the one shown in the image below</b>. Notice the <i>"Hi undefined"</i> message, which is the same error you saw when testing the custom component service deployed in the local container.
+                                <figure><img src="img/tester_02.png" alt="custom component testing" width="100%" height="100%"></figure>
+                            </li>
+                            <li style="text-align:justify">Click the <b>Reset</b> button in the tester to clear the messages (<img alt="Reset button" src="./img/resetLink.png" height="25" />)</li>
+                            <li style="text-align:justify">Navigate back to the terminal window in which you started the custom component service Node express server. You should see log messages similar to the ones shown in the image below. Notice that the log message too displays <b>User name: undefined</b>, which is a clear indication that the problem is within the custom component code.<br>
+                                <figure><img src="img/terminal_04.png" alt="terminal window showing log messages" width="100%" height="100%"></figure>
+                            </li>
+                        </ol>
+                        <p style="text-align:justify"><b>What you just did: </b>Following the instructions in this section, you created a configuration for the "quoteoftheday" custom component service running on your computer. To ensure the bot uses the second configuration when interacting with the user, you disabled the custom component service that exists as a local container deployment. Finally, you tested the remote deployed custom component service to ensure it works and that the defect shows here too.</p>
+                    </section>
+                    <hr>
+                    <section>
+                        <h2 id="section_6" role="button" style="text-align: left;"><img src="img/32_6.png" alt="section 6" height="32" width="32" class="num_circ">Configure Microsoft Visual Studio Code for Debugging</h2>
+                        <p style="text-align:justify">Microsoft Visual Studio Code is the JavaScript IDE used in this tutorial. Debugging Oracle Digital Assistant custom component services is not dependent on a specific JavaScript IDE. This, any IDE that supports Node.js debugging will do.</p>
+                        <ol>
+                            <li style="text-align:justify"><b>Open</b> the JavaScript IDE (Microsoft Visual Studio Code in the following).</li>
+                            <li style="text-align:justify">Choose <b>File -> Open</b> and navigate to the <b>quoteoftheday</b> project folder. Select the <b>quoteoftheday</b> folder and click on the <b>Open</b> button.<br>
+                                <figure><img src="img/msvisualstudiocode_01.png" alt="Open quoteofday folder" width="100%" height="100%"></figure>
+                            </li>
+                            <li style="text-align:justify">In Visual Studio Code, select the <b>debugging icon</b> (<img alt="debugging icon" src="./img/msvsc_debugger.png" height="25" />) in the left side menu.</li>
+                            <li style="text-align:justify">Expand the <b>DEBUG</b> setting, that currently shows 'No Configurations'.<br>
+                                <figure><img src="img/msvisualstudiocode_02.png" alt="DEBUG configuration" width="100%" height="100%"></figure>
+                            </li>
+                            <li style="text-align:justify">Select the <b>Add Configuration</b> option.<br>
+                                <figure><img src="img/msvisualstudiocode_03.png" alt="Add Configuration option" width="100%" height="100%"></figure>
+                            </li>
+                            <li style="text-align:justify">In the opened dialog, select the <b>Node.js</b> option as shown in the image below.<br>
+                                <figure><img src="img/msvisualstudiocode_04.png" alt="Selecting the Node.js debug option" width="100%" height="100%"></figure>
+                            </li>
+                            <li style="text-align:justify">In the opened tab, select the <b>Add Configuration</b> button.<br>
+                                <figure><img src="img/msvisualstudiocode_05.png" alt="Add Configuration button" width="100%" height="100%"></figure>
+                            </li>
+                            <li style="text-align:justify">In the opened dialog, select the <b>Attach to Process</b> choice.<br>
+                                <figure><img src="img/msvisualstudiocode_06.png" alt="Select Attach to Process option" width="100%" height="100%"></figure>
+                            </li>
                         </ol>
                     </section>
                     <hr>
                     <section>
-                        <h2 id="section_6" role="button" style="text-align: left;"><img src="img/32_6.png" alt="section 6" height="32" width="32" class="num_circ">Configuring Microsoft Visual Studio Code</h2>
+                        <h2 id="section_7" role="button" style="text-align: left;"><img src="img/32_7.png" alt="section 7" height="32" width="32" class="num_circ">Start Debugging</h2>
+                        <p style="text-align:justify">If you followed the instructions in this tutorial closely, then you meet the following prerequisites for debugging custom components:<br>
+                        </p>
+                        <ul>
+                            <li style="text-align:justify">The <i>quoteoftheday</i> custom cmponent service is executed on the local Node express server (default port is 3000).<br>
+                                <figure><img src="img/terminal_02.png" alt="Node express instance" width="100%" height="100%"></figure>
+                            </li>
+                            <li style="text-align:justify">Your local machine is accessible from Oracle Digital Assistant using ngrok or a similar technology.<br>
+                                <figure><img src="img/terminal_03.png" alt="ngrok" width="100%" height="100%"></figure>
+                            </li>
+                            <li style="text-align:justify">You created an <i>external</i> custom component service registration that points to the service running on your local computer.</li>
+                            <li style="text-align:justify">You opened the <i>quoeoftheday</i> custcom component service project in your preferred JavaScript IDE (Microsoft Visual Studio Code in this tutorial) for debugging.</li>
+                        </ul>
+
+                        <h3>Connect the debugger to the custom component service process</h3>
                         <ol>
-                            <li style="text-align:justify">...</li>
-                            <li style="text-align:justify">...</li>
+                            <li style="text-align:justify">In Microsoft Visual Studio Code, you click on the debugging icon (<img alt="debugger" src="./img/debugger.png" height="25" />) in the left side menu.</li>
+                            <li style="text-align:justify">Ensure the <b>Attach by Process Id</b> option is selected as the <b>DEBUG</b> option.<br>
+                                <figure><img src="img/msvisualstudiocode_07.png" alt="Attach to Process Id option" width="100%" height="100%"></figure>
+                            </li>
+                            <li style="text-align:justify">Click the green <b>run</b> icon.<br>
+                                <figure><img src="img/msvisualstudiocode_08.png" alt="start debugging" width="100%" height="100%"></figure>
+                            </li>
+                            <li style="text-align:justify">Select the <b>quoteoftheday</b> service in the opened dialog.<br>
+                                <figure><img src="img/msvisualstudiocode_09.png" alt="quote of the day service" width="100%" height="100%"></figure>
+                            </li>
                         </ol>
+                        <h3>Debug the custom component code</h3>
+                        <ol>
+                            <li style="text-align:justify">Select the <b>Explorer</b> icon (<img alt="Visual Code Explorer ison" src="./img/msexplorer_icon.png" height="25" />)</li>
+                            <li style="text-align:justify">Expand the <b>components</b> node and select the <b>QuoteOfDay.js</b> file entry. <br>
+                                <figure><img src="img/msvisualstudiocode_10.png" alt="Selecting QuoteOfDay.js file" width="100%" height="100%"></figure>
+                            </li>
+                            <li style="text-align:justify">Set a breakpoint in line 25. For this, in Microsoft Visual Studio Code, you click into the marging area to the left of the line number.<br>
+                                <figure><img src="img/msvisualstudiocode_11.png" alt="Setting a breakpoint" width="100%" height="100%"></figure>
+                            </li>
+                            <li style="text-align:justify">Go back to the <b>Quote Of The Day Skill</b> skill you should have still open in the browser.</li>
+                            <li style="text-align:justify">Run the embedded conversation tester by clicking the tester icon (<img alt="Tester icon" src="./img/testerIcon.png" height="25" />).</li>
+                            <li style="text-align:justify">Type <b>hi></b>into the <b>Message</b> field and press the enter-key.</li>
+                            <li style="text-align:justify">When prompted, provide a name.</li>
+                            <li style="text-align:justify">Switch back to your JavaScript IDE. The breakpoint should show highlighted as shown in the image below for Microsoft Visual Studio Code.<br>
+                                <figure><img src="img/msvisualstudiocode_12.png" alt="breakpoint in MS Visual Studio Code" width="100%" height="100%"></figure>
+                            </li>
+                            <li style="text-align:justify">Hover the mouse over the <b>usr</b> variable in line 25. An overlay message should display with the string <b>undefined</b> in it.</li>
+                            <li style="text-align:justify">In line 25, click on the <b>usr</b> variable name to see all of its uses. The goal is to find its definition (which is in line 17, as shown in the image below).<br>
+                                <figure><img src="img/msvisualstudiocode_13.png" alt="Find definition of user variable" width="100%" height="100%"></figure>
+                            </li>
+                            <li style="text-align:justify">In line 17 you can see that the <b>usr</b> variable value is read from <code>conversation.properties();</code>. So it is safe to assume that the problem is within this call.</li>
+                            <li style="text-align:justify">In line 17, hover the mouse cursor over the <b>conversation</b> variable name. The <b>conversation</b> handle is a reference to the custom component SDK and contains all information passed in the bot request message payload. </li>
+                            <li style="text-align:justify">In the opened popup dialog, expand the <b>_request</b> node as shown in the image below.<br>
+                                <figure><img src="img/msvisualstudiocode_14.png" alt="Show conversation variable content" width="100%" height="100%"></figure>
+                            </li>
+                            <li style="text-align:justify">Expand the <b>properties</b> node. Notice a property with name <b>user</b> that has a value of "Frank". Apparently is no property named "usr", which means you found the problem in the custom component code. <figure><img src="img/msvisualstudiocode_15.png" alt="Introspecting the properties" width="100%" height="100%"></figure><br>
+                            </li>
+                            <li style="text-align:justify">To fix the problem, you need to rename the <b>usr</b> name in the constant variable definition to <b>user</b>. In Microsoft Visual Studio Code, select the <b>usr</b> variable with the right mouse button and choose <b>Change All Occurences</b> from the menu.<br>
+                                <figure><img src="img/msvisualstudiocode_16.png" alt="Rename symbol" width="100%" height="100%"></figure>
+                            </li>
+                            <li style="text-align:justify">Change the name from <b>usr</b> to <b>user</b>.<br>
+                                <figure><img src="img/msvisualstudiocode_17.png" alt="change variable name" width="100%" height="100%"></figure>
+                            </li>
+                            <li style="text-align:justify"><b>Save</b> the changes.</li>
+                        </ol>
+                        <p style="text-align:justify"><b>What you just did: </b>Following the hands-on instructions in this section, you debugged the custom component and identified the problem to be a misspelling of the "user" input parameter propperty. After correcting the misspelling you need to re-test the custom component.</p>
+                        <h3>Retest the Custom Component</h3>
+                        <p>Before you can retest the custom component, you need to restart the Node express server that runs the custom component service on your local machine. The restart is required for the code changes to take effect. You <b>don't</b> restart the tunneling software (e.g. ngrok in this tutorial).</p>
+                        <ol>
+                            <li style="text-align:justify">Go to the terminal window in which you launched the <i>quoteoftheday</i> custom component service.<br>
+                                <figure><img src="img/terminal_02.png" alt="terminal window executing the component" width="100%" height="100%"></figure>
+                            </li>
+                            <li style="text-align:justify">Stop the process by pressing the <b>ctrl+c</b> keys on your keyboard.</li>
+                            <li style="text-align:justify">Restart the services by issuing the <b>bots-node-sdk service quoteoftheday</b>command. <br>
+                                <figure><img src="img/terminal_05.png" alt="Restarting Node express server" width="100%" height="100%"></figure>
+                            </li>
+                            <li style="text-align:justify">In Microsoft Visual Studio Code, click on the debugging icon (<img alt="debugger" src="./img/debugger.png" height="25" />) in the left side menu.</li>
+                            <li style="text-align:justify">Ensure the <b>Attach by Process Id</b> option is selected as the <b>DEBUG</b> option.<br>
+                                <figure><img src="img/msvisualstudiocode_07.png" alt="Attach to Process Id option" width="100%" height="100%"></figure>
+                            </li>
+                            <li style="text-align:justify">Click the green <b>run</b> icon to restart the debugger.<br>
+                                <figure><img src="img/msvisualstudiocode_08.png" alt="start debugging" width="100%" height="100%"></figure>
+                            </li>
+                            <li style="text-align:justify">Select the <b>quoteoftheday</b> service in the opened dialog.<br>
+                                <figure><img src="img/msvisualstudiocode_09.png" alt="quote of the day service" width="100%" height="100%"></figure>
+                            </li>
+                            <li style="text-align:justify">Go back to the <i>Quote Of The Day</i> skill in the browser.</li>
+                            <li style="text-align:justify">If the embedded conversation tester is not open still, click the tester icon (<img alt="Tester" src="./img/testerIcon.png" height="25" />)</li>
+                            <li style="text-align:justify">The previous debugging session most like has expired. Press the <b>Reset</b> button in the tester (<img alt="reset button" src="./img/resetLink.png" height="25" />) to clear the tester conversation.</li>
+                            <li style="text-align:justify">In the <b>Message</b> field, type <b>Hi</b>.</li>
+                            <li style="text-align:justify">When prompted, provide a name and press the enter-key.</li>
+                            <li style="text-align:justify">In the Javascript IDE, use the mouse and hover over the <b>user</b> variable in line 25. You should see the name you provided.<br>
+                                <figure><img src="img/msvisualstudiocode_18.png" alt="corrected variable value" width="100%" height="100%"></figure>
+                            </li>
+                            <li style="text-align:justify">Finish and end debugging by clicking on the <b>Continue</b> button in the debugger toolbar (first icon on the left in the image below), or press F5.<br>
+                                <figure><img src="img/msvisualstudiocode_19.png" alt="Finish debugging" width="100%" height="100%"></figure>
+                            </li>
+                            <li style="text-align:justify">Go back to the conversation tester in the skill. You should see a message similar to the one in the image below. Notice that the provided name is included in the bot response.<br>
+                                <figure><img src="img/tester_03.png" alt="Working bot conversation" width="100%" height="100%"></figure>
+                            </li>
+                            <li style="text-align:justify">Reset the tester (<img alt="Reset link" src="./img/resetLink.png" height="25" />).</li>
+                            <li style="text-align:justify">Close the tester window.</li>
+                        </ol>
+                        <h3>Housekeeping</h3>
+                        <p style="text-align:justify">Now that the problem is solved, you can close the following terminal processes and software:</p>
+                        <ul>
+                            <li style="text-align:justify">Stop ngrok (or similar tunnel). Use <b>ctrl+c</b> to close the tunnel. For security reasons it is recommended to immediately close the tunnel software when no longer needed.</li>
+                            <li style="text-align:justify">Stop the Node express server that runs the local custom component service using ctrl+c</li>
+                            <li style="text-align:justify">Close the JavaScript IDE</li>
+                        </ul>
                     </section>
                     <hr>
                     <section>
-                        <h2 id="section_7" role="button" style="text-align: left;"><img src="img/32_7.png" alt="section 7" height="32" width="32" class="num_circ">Debugging The Custom Component</h2>
+                        <h2 id="section_8" role="button" style="text-align: left;"><img src="img/32_8.png" alt="section 8" height="32" width="32" class="num_circ">Re-Deploy And Test The Custom Component</h2>
+                        <h3>Re-Deploy the custom component service to the local container</h3>
                         <ol>
-                            <li style="text-align:justify">...</li>
-                            <li style="text-align:justify">...</li>
+                            <li style="text-align:justify">Open a terminal window and navigate to <b>quoteoftheday</b> folder.</li>
+                            <li style="text-align:justify">To package the custom component service project for deployment, issue the following command: <b>npm pack</b>.<br>
+                                <figure><img src="img/terminal_06.png" alt="package the custom component" width="100%" height="100%"></figure>
+                            </li>
+                            <li style="text-align:justify">Go to the Oracle Digital Assisant skill in the browser.</li>
+                            <li style="text-align:justify">Click the <b>Components</b> icon (<img alt="Components icon" src="./img/csutcomp_icon2.png" height="25" />)</li>
+                            <li style="text-align:justify">Select the <b>QuotesCustomComponentService</b> component service registration. <br>
+                                <figure><img src="img/customComponent_06.png" alt="Selecting the QuotesCustomComponentService registration" width="100%" height="100%"></figure>
+                            </li>
+                            <li style="text-align:justify">Click the <b>Change</b> link.</li>
+                            <li style="text-align:justify">In the opened dialog, navigate to the <b>quoteoftheday</b> folder and select the <b>my-custom-component-1.0.0.tgz file.</b><br>
+                                <figure><img src="img/customComponent_07.png" alt="Select tgz file" width="100%" height="100%"></figure>
+                            </li>
+                            <li style="text-align:justify">Press the <b>Open</b> button to re-deploy the custom component service.
+                                <b>Note: </b>Re-deploying the custom component service also enables the <i>Service Enabled</i>toggle.</li>
+                            <li style="text-align:justify">Next, select the <b>QuotesDebugging</b> component service registration you used for debugging.</li>
+                            <li style="text-align:justify">Press the <b>Delete</b> button to remove the debugging registration.<br>
+                                <figure><img src="img/customComponent_08.png" alt="Delete" width="100%" height="100%"></figure>
+                            </li>
+                            <li style="text-align:justify">Once deleted, you should a single registered component.<br>
+                                <figure><img src="img/customComponent_09.png" alt="remaining component" width="100%" height="100%"></figure>
+                                <br><b>Note: </b>If you want to keep the custom component service you used for debugging, you can switch the <i>Service Enabled</i> toggle so it shows inactive. For this to work, don't stop the tunnel and the local Node express server until you disabled the service registration.
+                            </li>
+                        </ol>
+                        <h3>Test the re-deployed component</h3>
+                        <p style="text-align:justify">Though you've seen the error being corrected at the end of the debugging session. The final prove is when you see the same after deploying the fix back into the local container.</p>
+                        <ol>
+                            <li style="text-align:justify">Press the <b>Tester</b> (<img alt="Tester icon" src="./img/testerIcon.png" height="25" />) icon in the left side menu.</li>
+                            <li style="text-align:justify">Type <b>Hi</b> into the message field.</li>
+                            <li style="text-align:justify">When prompted, provide a name.</li>
+                            <li style="text-align:justify">The bot response should contain the provided name in a similar message as shown in the image below.<br>
+                                <figure><img src="img/tester_04.png" alt="Final proof" width="100%" height="100%"></figure>
+                            </li>
                         </ol>
                     </section>
                     <hr>
-                    <section>
-                        <h2 id="section_8" role="button" style="text-align: left;"><img src="img/32_8.png" alt="section 8" height="32" width="32" class="num_circ">Deploying The Debugged Custom Component</h2>
-                        <ol>
-                            <li style="text-align:justify">...</li>
-                            <li style="text-align:justify">...</li>
-                        </ol>
-                    </section>
-                    <hr> </article>
+                </article>
             </div>
-            <br class="clearfloat"> </div>
+            <br class="clearfloat">
+        </div>
     </div>
     <!--close main-->
     <!--end content-->
@@ -268,7 +474,8 @@
         <div id="obe_dialog" class="modal-content">
             <div class="modal-header">
                 <a href="#" class="close"> <span class="close">&times;</span> </a>
-                <h1>Associated Learning Paths</h1> </div>
+                <h1>Associated Learning Paths</h1>
+            </div>
             <div id="dialog-content"> </div>
             <div id="dialog-close" class="closeBtn">
                 <a href="#" class="close2">
