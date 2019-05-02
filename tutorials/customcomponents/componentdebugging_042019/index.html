@@ -68,14 +68,14 @@
                         <ul>
                             <li style="text-align:justify">How to run custom components in a local Node express server using the Oracle Bots Node.js SDK.</li>
                             <li style="text-align:justify">How to register custom components that run on a local Node server in Oracle Digital Assistant.</li>
-                            <li style="text-align:justify">How to connect JavaScript IDEs such as Microsoft Visual Studio Code to the local container of the custom component.</li>
+                            <li style="text-align:justify">How to connect JavaScript IDEs such as Microsoft Visual Studio Code to the node server running on your local machine.</li>
                             <li style="text-align:justify">How to debug custom components in the context of a bot conversation.</li>
                         </ul>
                         <h3>What Do You Need?</h3>
                         <p style="text-align:justify">This tutorial is for developers who are familiar with JavaScript and Node.js. To complete this tutorial, you must meet the following requirements</p>
                         <ul>
                             <li style="text-align:justify">You need access to Oracle Digital Assistant.</li>
-                            <li style="text-align:justify">YYou should be familiar with the development of custom components. If you are new to custom components, please do the <a href="../componentDevelopment_032019/index.html" target="_blank"><b>Custom Component Development and Backend Integration</b></a> tutorial first.</li>
+                            <li style="text-align:justify">You should be familiar with the development of custom components. If you are new to custom components, please do the <a href="../componentDevelopment_032019/index.html" target="_blank"><b>Custom Component Development and Backend Integration</b></a> tutorial first.</li>
                             <li style="text-align:justify">You need a JavaScript IDE installed that supports Node debugging. For example, this tutorial uses <a href="https://code.visualstudio.com" target="_blank"><b>Microsoft Visual Studio Code</b></a> in its screen shots and instructions.</li>
                             <li style="text-align:justify">You must have  <a href="https://nodejs.org/en/" target="_blank"><b>Node.js</b></a> and Node Package Manager (NPM) installed for global access. If you used a Node installer (Windows, Mac) both executables, <i>node</i> and <i>npm</i> should be available to you. To test if you have Node.js and NPM installed, open a terminal window and try the following commands seperately: <code>node -v</code>, <code>npm -v</code></li>
                             <li style="text-align:justify">Download the <a href="files/QuoteOfTheDaySkill(1.0).zip" target="_blank"><b>QuoteOfTheDaySkill(1.0).zip</b></a> skill.</li>
@@ -90,7 +90,7 @@
                         <h3>If in your own environment: Import the skill</h3>
                         <p style="text-align:justify"></p>
                         <ol>
-                            <li style="text-align:justify">If the tester skill does not exist, <a href="files/QuoteOfTheDaySkill(1.0).zip"><b>select this link</b></a> to download the <b>QuoteOfTheDaySkill(1.0).zip></b> skill.</li>
+                            <li style="text-align:justify">If the <i>'Quote Of The Day Skill'</i> skill does not exist, <a href="files/QuoteOfTheDaySkill(1.0).zip"><b>select this link</b></a> to download the <b>QuoteOfTheDaySkill(1.0).zip></b> skill.</li>
                             <li style="text-align:justify">Open the Oracle Digital Assistant dashboard in a browser using the following URL <b>&lt;your instance url&gt;/botsui</b>.</li>
                             <li style="text-align:justify">Select the menu icon on the top-left of the page next to the "Oracle Digital Assistant" label (<img src="img/hamburger.png" alt="menu icon">). </li>
                             <li style="text-align:justify">Select the <b>Skills</b> option in the <b>Development</b> category.
@@ -165,7 +165,7 @@
                                 <figure><img src="img/terminal_01.png" alt="Location of the unzipped component file" width="100%" height="100%"></figure><br>
                             </li>
                             <li style="text-align:justify"><b>Unzip</b> the file in a folder that does not contain blanks in its name and path.</li>
-                            <li style="text-align:justify"><b>Open a terminal window (or a command line)</b> and navigate to the parent folder that hosts the <b>quoteoftheday</b> custom component service folder</li>
+                            <li style="text-align:justify"><b>Open a terminal window (or a command line)</b> and navigate to the parent folder that hosts the <b>quoteoftheday</b> folder.</li>
                             <li style="text-align:justify">If not done before, ensure you install the Oracle Bots Node.js SDK. The installation steps are as follows:<br>
                                 <ul>
                                     <li style="text-align:justify">If your Internet access is through a proxy, do the following to be able to access the Oracle Bots Node.js SDK from the Internet:
@@ -209,7 +209,7 @@
                                 To get past security possible warnings, you may need to open this link in a private window (Firefox) or icognito window (Chrome).<br><br>
 
                                 <b>Important:</b> Before using ngrok, ensure you read up on what it is and what it does (https://ngrok.com/) to understand how it works and the possible risks. Be sure to adhere to your company security policies.<br><br>
-                                <b>Note:</b> If ngrok doesn't work for you, you may try other tunnelling solutions like <a href="https://github.com/localtunnel/localtunnel" target="_blank">localtunnel on GitHub</a>. Unfortunately, if you do not own the computer you are working on, and if your IT administrators do not allow you to use tunnelling software, you are not be able to complete this tutorial. In this case, logging is the only option yu have to debug custom component services.</li>
+                                <b>Note:</b> If ngrok doesn't work for you, you may try other tunnelling solutions like <a href="https://github.com/localtunnel/localtunnel" target="_blank">localtunnel on GitHub</a>. Unfortunately, if you do not own the computer you are working on, and if your IT administrators do not allow you to use tunnelling software, you are not be able to complete this tutorial. In this case, logging is the only option you have to debug custom component services.</li>
                             <li style="text-align:justify">Navigate to the location you installed <b>ngrok</b> to.</li>
                             <li style="text-align:justify">Now launch ngrok:
                                 <pre>
@@ -253,7 +253,7 @@ ngrok http &lt;port&gt;</pre>
                             <li style="text-align:justify">Switch the <b>Service Enabled</b> toggle so it shows disabled (as shown in the image below). <br>
                                 <figure><img src="img/customComponent_05.png" alt="disabled service" width="100%" height="100%"></figure>
                             </li>
-                            <li style="text-align:justify">Netx, test the remote custom component service. For this <b>select</b> the <b>Tester</b> (<img alt="Tester icon" src="./img/testerIcon.png" height="25" />) icon located in the left side menu.</li>
+                            <li style="text-align:justify">Next, test the remote custom component service. For this <b>select</b> the <b>Tester</b> (<img alt="Tester icon" src="./img/testerIcon.png" height="25" />) icon located in the left side menu.</li>
                             <li style="text-align:justify">Type <b>Hi</b> into the <b>Message</b> field.</li>
                             <li style="text-align:justify">When prommpted, <b>provide a Name</b>, e.g 'Frank'.</li>
                             <li style="text-align:justify">If your remote custom component service works, you should see a quote similar to the one shown in the image below. Again, notice the <i>"Hi undefined"</i> message, which is the same error you saw when testing the custom component service deployed in the local container.
