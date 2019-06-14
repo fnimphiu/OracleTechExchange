@@ -1,0 +1,20 @@
+.allow-copy div {
+	display: block;
+	cursor: pointer;
+	width: 24px;
+	height: 24px;
+	float: right;
+	margin-top: -10px;
+	margin-right: 2px;
+	right: 0;
+	border: 1px solid #E4F0FA;
+	border-radius: 2px;
+	position: absolute;
+	background: #ffffff url(../img/copy.png) no-repeat 8px 8px;
+	background-position: center;
+}
+.allow-copy div:hover {
+	border:1px solid #006699; 
+	background: #ffffff url(../img/copy_mouseover.png) no-repeat 8px 8px;
+	background-position: center;
+}

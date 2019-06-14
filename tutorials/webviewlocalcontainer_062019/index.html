@@ -1,0 +1,509 @@
+﻿<!DOCTYPE html>
+<!--
+ * Copyright © 2018, Oracle and/or its affiliates. All rights reserved.
+ *
+ * The Universal Permissive License (UPL), Version 1.0
+ -->
+<html lang="en">
+
+<head>
+    <!-- Part number: Ennnnn-01 -->
+    <!-- Published date: Month Year -->
+    <!-- Template date: October 15, 2018 -->
+    <!-- Put the content ID of this OBE between the empty quotation marks for 'content' below -->
+    <meta name="contentid" content="">
+    <meta content="text/html; charset=utf-8" http-equiv="content-type">
+    <!-- The title below is displayed on the browser tab, in search results, and in  history. It can be longer than the tutorial title in the <h1> element, below.-->
+    <!-- Use an imperative verb in the title. -->
+    <title>Building Webviews for Local Deployment to Oracle Digital Assistant using Oracle JET</title>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <meta name="robots" content="INDEX, FOLLOW">
+    <meta name="description" content="Put the description of the tutorial here.">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="css/normalize.min.css">
+    <link rel="stylesheet" href="css/font-awesome.min.css">
+    <link rel="stylesheet" href="css/obe-lite.css">
+    <script src="js/jquery-1.11.0.min.js"></script>
+    <script src="js/jquery-ui-1.10.4.custom.js"></script>
+    <script src="js/jquery.tocify.jd.js"></script>
+    <script src="js/leftnav.js"></script>
+    <link rel="stylesheet" href="css/copy-button.css">
+    <script src="js/copytoclipboard.js"></script>
+</head>
+
+<body style="margin-right: 10px">
+    <header>
+        <div class="w1024" style="min-height:55px; display:block;">
+            <a href="https://docs.oracle.com" class="oracle-logo"> <img src="img/oracle_doc_logo.png" alt="Oracle Documentation" style="max-width: none;" height="22" width="236"></a>
+        </div>
+    </header>
+    <!--end header-->
+    <div id="content">
+        <!-- The title below is displayed as the title at the top of the OBE page. It can be shorter than the title in the <title> element, above. -->
+        <!-- Use an imperative verb in the title. -->
+        <h1><img src="img/obe_tag.png" align="middle" alt="Oracle by Example branding">Building Webviews for Local Deployment to Oracle Digital Assistant using Oracle JET</h1>
+        <div class="w1024" style="clear:both; position:relative; margin-top:40px;">
+            <div class="navbackwide border-right">
+                <!-- -->
+            </div>
+            <div id="shownav" title="Show Navigation" tabindex="0"><span class="fa fa-list"></span></div>
+            <div id="sidebar">
+                <!-- -->
+                <div class="left-nav-tut">
+                    <!-- -->
+                    <div id="hidenavw" title="Hide Navigation" tabindex="0"><span class="fa fa-close"></span></div>
+                    <div id="navbar" class="left-nav-w">
+                        <!-- -->
+                        <div id="toc" class="tocify">
+                            <!-- -->
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div id="bookContainer">
+                <article>
+                    <p class="MsoNormal" style="text-align:justify"><span style="mso-ansi-language:EN-US" lang="EN-US"><b>
+                                <font size="+1">Tutorial by Frank Nimphius, Oracle</font>
+                            </b>
+                            <br>
+                            May 2019, Oracle Digital Assistant version 19.1.5<br>
+                        </span></p>
+                    <p style="text-align:justify">Natural language conversations are, by their very nature, free-flowing. But they may not always be the best way for your skill to collect information from a user. For example, when entering credit card or passport details, users need to enter this information precisely. In addition, information like passwords or secrets should not be displayed in the messenger conversation history. To help with these kinds of tasks, your skill can call a webview app.</p>
+                    <p style="text-align:justify">Using the <code>System.Webview</code> component in Oracle Digital Assistant, you can integrate external and locally deployed web applications into your bot conversations. </p>
+                    <p style="text-align:justify"> In this tutorial you learn how to build single-page applications (SPA) with Oracle JavaScript Extension Toolkit (JET) and how to deploy them to the local webview container in Oracle Digital Assistant skills. </p>
+                    <section>
+                        <h2><img src="img/32_begin.png" alt="section 0" height="32" width="32" class="num_circ">Before You Begin</h2>
+                        <h3>What you going to build</h3>
+                        <p style="text-align:justify">Before you start, it may be good to know what you are going to build. The sample web application for this tutorial is part of a travel booking skill. As shown in the images below, the bot conversation completes a travel booking using a web form. The web form you see is the webview you are going to build using Oracle JET. The web view displays the data entered by the user during the bot conversation and allows changes to the data provided as well as setting a return date.</p>
+                        <ol>
+                            <li style="text-align:justify">User provides information about the city to depart from (Paris).
+                                <br>
+                                <figure><img src="img/samplebot_1.png" alt="Travelbooking" width="70%" height="70%"></figure>
+                            </li>
+                            <li style="text-align:justify">She then is prompted for a departure date. For this she inputs Dec 02 2019. Not shown in the image is that all entered data is validated against entities.
+                                <br>
+                                <figure><img src="img/samplebot_2.png" alt="Providig date" width="70%" height="70%"></figure>
+                            </li>
+                            <li style="text-align:justify">Finally, the user selects a destination airport (San Francisco), after which she is prompted for pressing the <b>Open Oracle Travel</b> button to finish the booking in the webview.
+                                <br>
+                                <figure><img src="img/samplebot_3.png" alt="Webview launcher" width="70%" height="70%"></figure>
+                            </li>
+                            <li style="text-align:justify">The webview opens in a separate browser tab, listing all previously provided data. The user sets the return date to Dec 19 2009 and presses the <b>Submit</b> button.
+                                <br>
+                                <figure><img src="img/samplebot_4.png" alt="Webview" width="70%" height="70%"></figure>
+                            </li>
+                            <li style="text-align:justify">The form data is sent back to the bot for confirmation in the conversation dialog.
+                                <br>
+                                <figure><img src="img/samplebot_5.png" alt="Confirmation in bot" width="70%" height="70%"></figure>
+                            </li>
+                        </ol>
+                        <h3>Prerequisite</h3>
+                        <p style="text-align:justify">To create webviews for deployment to Oracle Digital Assistant skills, you don't have to use Oracle JET. You can also build SPA application using third-party JavaScript frameworks such as Angular, React, and others. For this tutorial however, you will use Oracle JET.</p>
+                        <p style="text-align:justify">The following pre-requisites must be met for you to follow the instructions in this tutorial:</p>
+                        <h3>What Do You Need?</h3>
+                        <ul>
+                            <li style="text-align:justify">You need to have access to Oracle Digital Assistant 19.1.5 or later.</li>
+                            <li style="text-align:justify">Node.js and NPM (Node Package Manager) must be installed on your local machine. If you don't have Node.js installed yet, please install it from <a href="https://nodejs.org/en/download/ " target="_blank"><b>https://nodejs.org/en/download/ </b></a>.</li>
+                            <li style="text-align:justify">Unless you have a JavaScript IDE installed that you feel comfortable using, for this tutorial we suggest installing <b>Microsoft Visual Studio Code </b> (<a href="(https://code.visualstudio.com/download" target="_blank">https://code.visualstudio.com/download</a>) IDE. Microsoft Visual Studio Code is also used in the instructions and screenshots of this tutorial.</li>
+                        </ul>
+                    </section>
+                    <!-- ========================================================================================================================= -->
+                    <section>
+                        <hr>
+                        <h2 id="section_1" role="button" style="text-align: left;"><img src="img/32_1.png" alt="section 1" height="32" width="32" class="num_circ">Getting Started with Oracle JET</h2>
+                        <p style="text-align:justify">Oracle JET is a collection of open source JavaScript libraries along with a set of Oracle contributed JavaScript libraries for building client-side applications. Like Angular or React, Oracle JET is based on modern JavaScript, CSS3 and HTML5 design and development principles that promote modular application development.</p>
+                        <p style="text-align:justify">This tutorial does not require any knowledge of Oracle JET. In this section, you will learn enough to get started with Oracle JET.
+                            <ol>
+                                <li style="text-align:justify">Ensure you have a working Internet connection. </li>
+                                <li style="text-align:justify">Open a command line (Windows) or terminal window (Mac). </li>
+                                <li style="text-align:justify">If your machine is located behind a proxy server, use <code>npm config</code> or disconnect from the proxy before installing Oracle JET command line. To use <code>npm config</code>, type
+                                    <pre>npm config set proxy your-http-proxy-server-URL:proxy-port
+npm config set https-proxy your-https-proxy-server-URL:proxy-port</pre>
+                                </li>
+                                <li style="text-align:justify">To install the Oracle JET command line interface (CLI), type
+                                    <br>
+                                    <pre><b>On Windows</b><br><code>npm install -g @oracle/ojet-cli</code><br>
+<b>On Mac</b><br><code>sudo npm install -g @oracle/ojet-cli</code>
+                                </pre>
+                                </li>
+                                <li style="text-align:justify">Type <b>ojet help</b> to verify the success of your installation.</li>
+                            </ol>
+                    </section>
+                    <hr>
+                    <section>
+                        <h2 id="section_2" role="button" style="text-align: left;"><img src="img/32_2.png" alt="section 2" height="32" width="32" class="num_circ">Building the Single Page Application (SPA)</h2>
+                        <p style="text-align:justify">In this tutorial you are building a web application using Oracle JET. Note that Oracle JET can also be used to build hybrid mobile applications for Android and iOS.</p>
+                        <ol>
+                            <li style="text-align:justify">Still in the terminal window or on the command line, <b>navigate</b> to a folder to host the web application root folder. </li>
+                            <li style="text-align:justify">Create a new web application named <b>tutorialTravelBooking by typing the following command</b>
+                                <pre>ojet create tutorialTravelBooking --template=basic</pre> The command creates a new single page web application based on the Oracle Jet <b>basic</b> template. </li>
+                            <li style="text-align:justify">Navigate into the tutorialTravelBooking application folder by typing
+                                <pre>cd tutorialTravelBooking</pre>
+                            </li>
+                            <li style="text-align:justify">Next, type
+                                <pre>ojet serve</pre>
+                            </li>
+                            <figure><img src="img/terminalcreatejet_1.png" alt="commands to create ojet app" width="100%" height="100%"></figure>
+                            <li style="text-align:justify">The <b>ojet serve</b> command builds and runs the web application project. As a result, a browser window or tab opens displaying the following page:
+                                <br>
+                                <figure><img src="img/terminalcreatejet_2.png" alt="Browser view of empty app" width="100%" height="100%"></figure>
+                                <br> The opened page shows the content of the basic template in the Oracle JET application you built. In the next section, you are going to customize this view.
+                            </li>
+                            <li style="text-align:justify">Close the opened browser window or tab.</li>
+                            <li style="text-align:justify">on the command line, or in the terminal window, press
+                                <p>CTRL+C</p> to exit the ojet server command.</li>
+                        </ol>
+                    </section>
+                    <hr>
+                    <section>
+                        <h2 id="section_3" role="button" style="text-align: left;"><img src="img/32_3.png" alt="section 4" height="32" width="32" class="num_circ">Starting Oracle JET Application Development</h2>
+                        <p style="text-align:justify">In this section you will learn how to open the Oracle JET application in Microsoft Visual Studio Code for development and testing and remove content of the Oracle JET basic template that is not needed for the webview you are going to build. </p>
+                        <ol>
+                            <li style="text-align:justify">Open Visual Studio Code IDE, or whatever JavaScript IDE you prefer using instead.</li>
+                            <li style="text-align:justify">In Visual Studio Code, <b>select File -> Open</b> from the menu.
+                                <br>
+                                <figure><img src="img/msvscprojectopen_1.png" alt="File Open dialog" width="70%" height="70%"></figure>
+                            </li>
+                            <li style="text-align:justify">Navigate to and select the <b>tutorialTravelBooking</b> folder on your local computer's file system and press the <b>Open</b> button.
+                                <br>
+                                <figure><img src="img/msvscprojectopen_2.png" alt="Select project" width="100%" height="100%"></figure>
+                            </li>
+                            <li style="text-align:justify">In Visual Studio Code, expand the <b>src</b> node the and the <b>js</b> node therein.</li>
+                            <li style="text-align:justify">Select the <b>appController.js</b> file entry to open it for editing.</li>
+                            <li style="text-align:justify">Change <b>line 20</b> from
+                                <pre>self.appName = ko.observable("App Name");</pre> to
+                                <pre>self.appName = ko.observable("Oracle Travel");</pre>
+                            </li>
+                            <li style="text-align:justify"><b>Remove</b> lines 21 and 22. </li>
+                            <li style="text-align:justify">Select <b>File --> Save </b>from the menu to save the changes.</li>
+                            <li style="text-align:justify">Select and open the <b>index.html</b> file contained in the <b>src</b> node.</li>
+                            <li style="text-align:justify">Delete lines 59 - 73.</li>
+                            <li style="text-align:justify">Select <b>File --> Save </b>from the menu to save the changes.</li>
+                            <li style="text-align:justify">At the bottom of the Visual Studio Code IDE, select the <b>TERMINAL</b> tab as shown in the image below.
+                                <br>
+                                <figure><img src="img/msvscprojectopen_3.png" alt="Terminal tab" width="100%" height="100%"></figure>
+                            </li> <b>Note: </b>If you don't see the "PROBLEMS | OUTPUT | DEBUG CONSOLE | TERMINAL" console displayed in above image, choose <b>View --> Terminal</b> from the top menu to display it.
+                            <li style="text-align:justify">In the opened TERMINAL window, type
+                                <pre>ojet serve</pre> to build the project and launch it in a web browser.
+                                <br>
+                                <br><b>Note: </b>If you get the error <i>"... Uhoh. Got error listen EADDRINUSE: address already in use :::35729 ..."</i> then go to the terminal window where you first entered the ojet serve command and type CTRL-C.</li>
+                            <li style="text-align:justify">The embedded server in Oracle JET is started such that it immediately reflects any changes applied to the web application. To try this out, <b>type</b> <i>Hello World</i> into <b>line 62</b> before the &lt;/div&gt; element and choose <b>File --> Save</b> from the Visual Studio Code IDE top menu.
+                                <figure><img src="img/msvscprojectopen_4.png" alt="Adding Hello World" width="70%" height="70%"></figure>
+                            </li>
+                            <li style="text-align:justify">Check your browser to see the "Hello World" string appearing in the page body.
+                                <br>
+                                <figure><img src="img/helloWorld_1.png" alt="Hello World in browser" width="60%" height="60%"></figure>
+                            </li>
+                            <li style="text-align:justify"><b>Remove</b> the "Hello World" string.</li>
+                            <li style="text-align:justify">Still in the <code>index.html</code> file, find
+                                <pre>&lt;title&gt;Oracle JET Starter Template - Web Basic&lt;/title&gt;</pre> and replace it with
+                            <pre>&lt;title&gt;Oracle Travel&lt;/title&gt;</pre></li>
+                            <li style="text-align:justify">Find and <b>remove</b> the following markup near the bottom for the <code>index.html</code> file:
+                                <pre> &lt;footer class="oj-web-applayout-footer" role="contentinfo"&gt;
+   &lt;div class="oj-web-applayout-footer-item oj-web-applayout-max-width"&gt;
+     &lt;ul&gt;
+      &lt;oj-bind-for-each data="[[footerLinks]]"&gt;
+       &lt;template&gt;
+        &lt;li&gt; &lt;a :id="[[$current.data.linkId]]" :href="[[$current.data.linkTarget]]"><oj-bind-text value="[[$current.data.name]]">&lt;/oj-bind-text&gt; &lt;/a&gt; &lt;/li&gt;
+       &lt;/template&gt;
+     &lt;/oj-bind-for-each&gt;
+    &lt;/ul&gt;
+  &lt;/div&gt;
+  &lt;div class="oj-web-applayout-footer-item oj-web-applayout-max-width oj-text-secondary-color oj-text-sm">
+    Copyright © 2014, 2019 Oracle and/or its affiliates All rights reserved.
+  &lt;/div&gt;
+ &lt;/footer&gt;
+                        </pre>
+                            </li>
+                            <li style="text-align:justify">Save the <code>index.html</code> file.</li>
+                            <li style="text-align:justify">Select the <b>Terminal</b> window in Visual Studio Code and use CTRL+C to stop the <b>ojet server</b> process.</li>
+                        </ol>
+                    </section>
+                    <section>
+                        <h2 id="section_4" role="button" style="text-align: left;"><img src="img/32_4.png" alt="section 3" height="32" width="32" class="num_circ">Programming The Webview in Oracle JET</h2>
+                        <p style="text-align:justify">Oracle JET is based on a Model View ViewModel architecture. In simple terms, this means that the client and UI logic developed in JavaScript is not stored in the HTML document rendering of the user interface, but in a separate JavaScript file (ViewModel).</p>
+                        <p style="text-align:justify">DISCLAIMER: The aim of this tutorial is not teach Oracle JET best practices. To keep tutorial instructions simple, intentionally, you are going to edit all UI markup in the index.html file and code all client and UI logic to the main.js file. Oracle JET best practices would require this to be built in a separate view and viewModel file because single-page application does not mean "single HTML file".</p>
+                        <h3>Editing index.html</h3>
+                        <p style="text-align:justify">In this part of the tutorial you are going to create the data input form in the <code>index.html</code>file</p>
+                        <ol>
+                            <li style="text-align:justify">If not still open, open the <code>index.html</code> file in MS Visual Studio Code.</li>
+                            <li style="text-align:justify">Place the mouse cursor in front of the &lt;/div&gt; element in line 62 and press the enter key to create a new line. After this, line 62 should be empty and the &lt;/div&gt; moved into line 63 as shown in the image below.
+                                <figure><img src="img/indxhtml_1.png" alt="new line created" width="100%" height="100%"></figure>
+                            </li>
+                            <li style="text-align:justify">Open a browser window and <a href="https://www.oracle.com/webfolder/technetwork/jet/index.html" target="_blank"><b>navigate to the Oracle JET website</b></a>.</li>
+                            <li style="text-align:justify">Click on the <b>Cookbook</b> link in the page header.
+                            <figure><img src="img/ojethome_1.png" alt="Oracle JET Homepage" width="100%" height="100%"></figure></li>
+                            <li style="text-align:justify">On the "Oracle JET Developer Cookbook" page, click the <b>Layout & Nav</b> link.
+                                <figure><img src="img/indxhtml_2.png" alt="Layout and nav link" width="100%" height="100%"></figure>
+                            </li>
+                            <li style="text-align:justify">Select the <b>Form Layout</b> tile.
+                                <figure><img src="img/indxhtml_3.png" alt="Form Laout Tile" width="40%" height="40%"></figure>
+                            </li>
+                            <li style="text-align:justify">Click on the <b>Stacked</b> menu item entry in the left side menu.
+                                <figure><img src="img/indxhtml_4.png" alt="Stacked menu item" width="40%" height="40%"></figure>
+                            </li>
+                            <li style="text-align:justify">Select the <b>demo.html</b> tab below the "Stacked" header.
+                                <figure><img src="img/indxhtml_5.png" alt="demo html link" width="70%" height="70%"></figure>
+                            </li>
+                            <li style="text-align:justify">Copy the <code>&lt;oj-form-layout id="form-container"&gt;</code> markup to the clipboard (only this line).</li>
+                            <li style="text-align:justify">Select the <b>demo.js</b> link and notice the <b>ojs/ojformlayout</b> component reference in the ViewModel <b>require</b> function. Oracle JET components usually have a component tag and an associated JavaScript class that later (not now) needs to be added to the <code>main.js</code> file for the component to work.</li>
+                            <li style="text-align:justify">Go back to the <code>index.html</code> file you have opened in Visual Studio Code.</li>
+                            <li style="text-align:justify">Place the cursor into <b>line 62</b> (the empty row you created) and paste the <code>&lt;oj-form-layout id="form-container"&gt;</code> markup from the clipboard.</li>
+                            <li style="text-align:justify">Create 2 new line below line 62.</li>
+                            <li style="text-align:justify">Add the closing tag &lt;/oj-form-layout&gt; into line 64.
+                                <figure><img src="img/indxhtml_6.png" alt="form layout tag in index html" width="100%" height="100%"></figure>
+                            </li>
+                            <li style="text-align:justify">Open the <a href="./files/indexhtml_code_listing.txt" target="_blank"><b>indexhtml_code_listing.txt</b></a> file and copy its content to the clipboard (CTRL+A, followed by CTRL+C (Windows), CMD+A, followed by CMD+C (Mac)).</li>
+                            <li style="text-align:justify">Paste the clipboard content to the index.html file. Make sure the code is added to the empty line between the &lt;oj-form-layout id="form-container"&gt; and &lt;/oj-form-layout&gt; tags. (its <b>line 63</b> in the image above)</li>
+                            <li style="text-align:justify"><b>Save</b> the index.html file.</li>
+                            <li style="text-align:justify">As a proof that you did well, click the
+                                <oj-form-layout> element on <b>line 62</b> so it appears highlighted.
+                                    <figure><img src="img/indxhtml_7.png" alt="highlight form layout tag" width="50%" height="50%"></figure>
+                            </li>
+                            <li style="text-align:justify">Scroll down in the <code>index.html</code> file until you see the matching &lt;/oj-form-layout&gt; <b>in line 99</b>. If this tag is highlighted too, then the index.html file is well formatted. If the matching element is not highlighted, ensure you did not miss parts of the HTML to copy & paste into this file.</li>
+                        </ol>
+                        <p style="text-align:justify"><b>What you just did: </b>In this part of the tutorial, you created the single-page application HTML form to display the travel information that the user specified during the bot conversation.
+                            <br>
+                            <br>You learned how to use the Oracle JET cookbook to create the form layout and completed the form with markup that you copied from the provided <code>indexhtml_code_listing.txt</code> file.
+                            <br>
+                            <br>Note that the "ojet" components copied to the <code>index.html</code> file require a JavaScript class reference in the <code>required</code> function of the <code>main.js</code> file. This will be dealt with in the next section.</p>
+                        <h3>Editing main.js</h3>
+                        <p style="text-align:justify">The <code>main.js</code> file is the ViewModel of <code>index.html</code> and will hold the client logic, as well as the UI component references and values. </p>
+                        <h4>Getting ready</h4>
+                        <ol>
+                            <li style="text-align:justify">In Visual Studio Code, <b>open</b> the <code>main.js</code> file located in the <b>src/js</b> folder by clicking on it.
+                                <figure><img src="img/mainjs_1.png" alt="main.js file" width="70%" height="70%"></figure>
+                            </li>
+                            <li style="text-align:justify">Open the <a href="./files/main_js_starter.txt" target="_blank"><b>main_js_starter.txt</b> file in a text editor.</a></li>
+                            <li style="text-align:justify"><b>Copy</b> the whole content to the clipboard(CTRL+A followed by CTRL+C (Windows), CMD+A followed by CMD+C (Mac)).</li>
+                            <li style="text-align:justify">In MS Visual Studio Code, click into the opened <b>main.js</b> file.</li>
+                            <li style="text-align:justify">press CTRL+A, followed by CTRL+V Windows, or CMD+A, followed by CMD+V (Mac), to replace the current content with the content in the clipboard.</li>
+                            <li style="text-align:justify"><b>Save</b> the file.</li>
+                        </ol>
+                        <p style="text-align:justify"><b>What you just did: </b>For dynamic data binding to work between the ViewModel class and the UI components in the <code>index.html</code> file, the ViewModel needs to reference JavaScript object representations of the Oracle JET UI components. The object references are added as arguments to the <code>require (...)</code> function (line 47). By example of the &lt;oj-form-layout id = "form-container"&gt; component in the previous section, you learned how to get the UI component class name for a UI component from the Oracle JET cookbook.</p>
+                        <p style="text-align:justify">To shorten the time to create the single-page application, and to focus on the skill integration part, you copied the Oracle JET-specific code from a provided text file. If you are interested, code comments are added to the <code>main.js</code> content that explain what specific code is doing. Next, you are implementing the code required to read from input parameters passed by the skill and to call back into the skill to return data from the web application.</p>
+                        <h4>Adding code to interact with the Oracle Digital Assistant Skill</h4>
+                        <p style="text-align:justify">Single-page applications must read the input parameters sent by the Oracle Digital Assistant skill and call back to the skill to pass control and return data. For applications that are locally deployed and hosted in a skill, Oracle Digital Assistant passes input parameters as a JavaScript object when launching the app as a webview.</p>
+                        <ol>
+                            <li style="text-align:justify">In Visual Studio Code, <b>navigate to line 58</b> of the <code>main.js</code> file.</li>
+                            <li style="text-align:justify">Replace the <b>TODO</b> string with the following code:
+                                <pre class="allow-copy"><span>let webviewParameters = window.webviewParameters != null ? window.webviewParameters['parameters'] : null;</span></pre>
+                                <br> <b>Note: </b><code>window.webviewParameters</code> is a JavaScript object injected to the single page application when the application is launched by the <code>System.Webview</code> component. </li>
+                            <li style="text-align:justify">Go to <b>line 64</b>.</li>
+                            <li style="text-align:justify">Replace the <b>TODO</b> string with the following code:
+                                <pre class="allow-copy"><span>let getWebviewParam = (arrParams, key, defaultValue) => {
+  if (arrParams) {
+    let param = arrParams.find(e => {
+      return e.key === key;
+    });
+     return param ? param.value : defaultValue;
+    }
+ return defaultValue;
+};
+                            </span></pre>
+                                <br> <b>Note: </b> The <code>window.webviewParameters['parameters']</code> call returns an array of JSON objects in the format of [{key:"keyname", "value": param_value}, {...}]. The helper function above makes it easy to read a specific named input parameter. </li>
+                            <li style="text-align:justify">Go to <b>line 80</b>.</li>
+                            <li style="text-align:justify">Replace the <b>TODO</b> string with the following code:
+                                <pre class="allow-copy"><span>self.origin = ko.observable(getWebviewParam(webviewParameters, 'origin', 'CDG'));
+self.destination = ko.observable(getWebviewParam(webviewParameters, 'destination', 'SFO'));                            
+                            </span></pre>
+                                <br> <b>Note: </b> In the tutorial sample, the skill sends three input parameters to the Oracle JET application: origin, destination and the start date. The code lines above look for the "origin" and "destination" parameters. If they cannot be found, then they are defaulted to 'CDG' and 'SFO'. The <code>ko.observable()</code> function is from "Knockout" the data binding library used by Oracle JET. Using Knockout, data changes in the ViewModel are updated in the web UI, and changes in the web UI are written to the ViewModel.
+                            <li style="text-align:justify">>Go to <b>line 89</b>.</li>
+                            <li style="text-align:justify">Replace the <b>TODO</b> string with the following code:
+                                <pre class="allow-copy"><span>var webViewCallback = getWebviewParam(webviewParameters, 'webview.onDone', null);</span></pre>
+                            </li>
+                            <br> <b>Note: </b>Beside of the input parameters, the incoming payload from the skill contains the <code>webview.onDone</code> property that holds the callback URL the web application calls in an Ajax call to return data to the skill and to pass control so the skill conversation resumes.
+                            <li style="text-align:justify">>Go to <b>line 101</b>.</li>
+                            <li>Replace the <b>TODO</b> string with the following code:
+                                <pre class="allow-copy"><span>let dateInRequest = getWebviewParam(webviewParameters, 'departureDateInMS', null);</span></pre>
+                                <br> <b>Note: </b> This code line sets the start date. The date is sent from the skill in milliseconds.</li>
+                            <li style="text-align:justify">Go to <b>line 104</b>. Notice how the date in milliseconds gets converted into a format that can be used with the Knockout binding for the Oracle JET input date component.</li>
+                            <li style="text-align:justify">Go to <b>line 120</b>.</li>
+                            <li style="text-align:justify">The code in lines 120 to 165 handles the call back to the skill when either the submit or the cancel button is pressed:
+                                <table style="text-align:justify" summary="Code explained">
+                                    <tr>
+                                        <th width="20%" scope="col">Code line</th>
+                                        <th width="80%" scope="col">Description</th>
+                                    </tr>
+                                    <tr>
+                                        <td scope="row">126-132</td>
+                                        <td>Code constructs the data to be returned to the skill. You use the property names later in the dialog flow to access the returned data values.</td>
+                                    </tr>
+                                    <tr>
+                                        <td scope="row">137</td>
+                                        <td>To make it easier for the skill designer to tell whether a user submitted the form, or pressed cancel, the sample returns a "status" property. This is not mandatory but considered good practice.</td>
+                                    </tr>
+                                    <tr>
+                                        <td scope="row">139</td>
+                                        <td>JQuery Ajax call to the callback URL. This passes the data object as a payload as well as control back to the skill.</td>
+                                    </tr>
+                                    <tr>
+                                        <td scope="row">152-161</td>
+                                        <td>The code closes the opened browser tab of webview after a short delay that allows the Ajax call to complete.</td>
+                                    </tr>
+                                </table>
+                            </li>
+                        </ol>
+                        <p style="text-align:justify"><b>What you just did: </b> Completing this part of the tutorial added the code to read from the incoming skill payload and to update the UI components with the data. You also learned how to return control and the application response back to the skill using a JQuery Ajax call.</p>
+                        <h3>A First Test</h3>
+                        <p style="text-align:justify">Though the Oracle JET application is not yet ready to be called from Oracle Digital Assistant, you can test it. </p>
+                        <ol>
+                            <li style="text-align:justify">In Visual Studio Code, ensure the <code>index.html</code> and the <code>main.js</code> files are saved.</li>
+                            <li style="text-align:justify">Select the <b>Terminal</b>. If not open, choose <b>View --&gt; Terminal</b> from the menu.</li>
+                            <li style="text-align:justify">Type <code>ojet serve</code> and press the enter-key.
+                                <figure><img src="img/testing_1.png" alt="launching the web app" width="100%" height="100%"></figure>
+                            </li>
+                            <li style="text-align:justify">The web application should display as shown in the image below.
+                                <figure><img src="img/testing_2.png" alt="Sample app" width="70%" height="70%"></figure>
+                                <hr> <b>What if you see a blank page instead of a form? </b>If you don't see a form but a blank page then either the code added to <code>index.html</code> or the edits in <code>main.js</code> have errors or are malformed. To get you unlocked, copy and paste the content from <a href="./files/index.html.txt" target="_blank"><b>index.html.txt</b></a> and <a href="./files/main.js.txt" target="_blank"><b>main.js.txt</b></a> into your versions of the two files, replacing your file contents. Save the two files. The browser should now display the form as shown in the image above.
+                                <hr>
+                            </li>
+                            <li style="text-align:justify">Press the <b>Submit</b> button to close the browser tab.</li>
+                            <li style="text-align:justify">Select the Terminal window in Visual Studio Code and press CTRL+C to stop the <b>ojet server process</b>.</li>
+                        </ol>
+                    </section>
+                    <hr>
+                    <section>
+                        <h2 id="section_5" role="button" style="text-align: left;"><img src="img/32_5.png" alt="section 4" height="32" width="32" class="num_circ">Deploying the Oracle JET App to into a Package</h2>
+                        <p style="text-align:justify">To deploy a single-page application to the local web container in Oracle Digital Assistant, you first need to generate a release version of the application that uses minimized versions of dependent libraries. Finally, you pack the application version into a compressed '.tgz' archive.</p>
+                        <ol>
+                            <li style="text-align:justify">Select the <b>Terminal</b>. If not open, choose <b>View --&gt; Terminal</b> from the menu.</li>
+                            <li style="text-align:justify">Type the following command into the <b>Terminal window</b> and press enter
+                                <pre>ojet build --release </pre>
+                                <figure><img src="img/apprelease_1.png" alt="Deploy command" width="70%" height="70%"></figure>
+                                <b>Note: </b>The command will take some time to complete.
+                                <figure><img src="img/apprelease_2.png" alt="Command complete" width="70%" height="70%"></figure>
+                            </li>
+                            <li style="text-align:justify">In the <b>Terminal</b> window, type
+                                <pre>cd web</pre>
+                            </li>
+                            <li style="text-align:justify">To create the compressed '.tgz' package, type
+                                <pre class="allow-copy"><span>tar -zcvf tutorialtravelwebview.tgz * </span></pre>
+                            </li>
+                        </ol>
+                        <p style="text-align:justify"><b>What you just did: </b> Following the instructions in this section you created a compressed archive "tutorialtravelwebview.tgz" for deployment to the web container in Oracle Digital Assistant. The ".tgz" file is located in the "tutorialTravelBooking/web" folder. </p>
+                    </section>
+                    <hr>
+                    <section>
+                        <h2 id="section_6" role="button" style="text-align: left;"><img src="img/32_6.png" alt="section 5" height="32" width="32" class="num_circ">Importing the Sample Skill</h2>
+                        <p style="text-align:justify">A sample skill is provided for this tutorial, allowing you to test the webview application you just created. </p>
+                        <ol>
+                            <li style="text-align:justify">Go to<b> &lt;your_digital_assistant_cloud_instance&gt;/botsui</b>.</li>
+                            <li style="text-align:justify">Select the "hamburger" icon at the top (<img alt="hamburger icon" src="./img/hamburger.png" height="25" />).</li>
+                            <li style="text-align:justify">Expand the <b>Development</b> menu group and select the <b>Skills</b> entry.</li>
+                            <li style="text-align:justify">Again, click on the "hamburger" icon to close the side menu (<img alt="hamburger icon" src="./img/hamburger.png" height="25" />).</li>
+                            <li style="text-align:justify">In the filter field above the <b>New Skill</b> tile, type <b>OracleTravelTutorial</b>.
+                                <figure><img src="img/importskill_2.png" alt="search tutorial skill" width="70%" height="70%"></figure>
+                            </li>
+                            <li style="text-align:justify">If the skill does not exist, download the <a href="files/OracleTravelTutorial(1.0).zip" target="_blank"><b>OracleTravelTutorial(1.0).zip</b></a> skill and use the <b>Import Skill</b> button (<img alt="Import button" src="./img/importskill_4.png" height="25" />) to add it to your cloud instance.</li>
+
+                            <li style="text-align:justify">Once imported, find and <b>clone</b> the skill by selecting the <b>Clone </b>context menu option.
+                                <figure><img src="img/importskill_5.png" alt="Cloning the skill" width="70%" height="70%"></figure>
+                            </li>
+                            <li style="text-align:justify">When prompted, add a unique string to the <b>Name</b> field of the skill, for example: <b>&lt;your_initials&gt;OracleTravelTutorial</b>, and provide information for the other input fields. </li>
+                            <li style="text-align:justify">Ensure you select the <b>Open cloned skill bot afterwards</b> select box before you press the <b>Clone</b> button.</li>
+                            <li style="text-align:justify">In the opened skill, click onto the dialog flow builder icon in the left side menu (<img alt="dialog builder icon" src="./img/dialogEditor.png" height="25" />).</li>
+                            <li style="text-align:justify">In the opened Dialog Flow editor, navigate to <b>line 79</b>.</li>
+                            <li style="text-align:justify">Notice the <code>System.Webview</code> component configuration, especially the <b>service</b>, <b>sourceVariableList</b> and the <b>variable</b> properties. <br><br>The <b>service</b> property references the webview to launch. Notice the "oracletravelweb" string, which is the name you will provide later to the uploaded Oracle JET application.<br><br>The <b>sourceVariableList</b> property references the names of variables that will be sent as input parameters to the webview. The name of the variable becomes a "key" in the message payload. <br><br>The <b>variable</b> property holds the return parameters sent from the Oracle JET webview application to the skill.</li>
+                        </ol>
+                        <p style="text-align:justify"><b>What you just did: </b>In this section you imported the sample skill to test your webview in Oracle Digital Assistant. In the next section you learn how to deploy and register the Oracle JET SPA application as a webview using the local container.</p>
+                    </section>
+                    <hr>
+                    <section>
+                        <h2 id="section_7" role="button" style="text-align: left;"><img src="img/32_7.png" alt="section 6" height="32" width="32" class="num_circ">Uploading the Oracle JET Application to the Skill</h2>
+                        <p style="text-align:justify">In this section you will upload the tutorialtravelwebview.tgz package to the local web container in the skill to make it available for launch in the context of the bot conversation.</p>
+                        <ol>
+                            <li>In the skill, navigate to the component registration page by selecting the <b>Components</b> icon in the left side toolbar (<img alt="Components page" src="./img/custcomp_icon1.png" height="25" />).</li>
+                            <li style="text-align:justify">Select the <b>Webview</b> tab.</li>
+                            <li style="text-align:justify">Press the <b>+ Service</b> button.</li>
+                            <li style="text-align:justify">In the opened <b>Create Service</b> dialog, set the <b>Name</b> field value to <b>oracletravelweb</b>, which is he name referenced in the <code>System.Webview</code> "service" property.</li>
+                            <li style="text-align:justify">Provide a short description.</li>
+                            <li style="text-align:justify">Keep the <b>Service Hosted</b> setting selected as is.</li>
+                            <li style="text-align:justify">Use the <b>Upload a webview component package file (.tgz file) </b> link to upload the tutorialtravelwebview.tgz archive file, or drag and drop the file into the <b>Package File</b> field.<br><br><b>Note: </b>The tutorialtravelwebview.tgz file was saved in the tutorialTravelBooking/web folder.
+                                <figure><img src="img/deployapp_1.png" alt="Finding the tutorialtravelwebview file" width="100%" height="100%"></figure>
+                            </li>
+                            <li style="text-align:justify">Press the <b>Create</b> button.
+                                <figure><img src="img/deployapp_2.png" alt="Creating the service" width="100%" height="100%"></figure>
+                            </li>
+                            <li style="text-align:justify">The deployment may take a few seconds to complete. When completed, you see a confirmation screen as shown below:
+                                <figure><img src="img/deployapp_3.png" alt="Deployment confirmation screen" width="100%" height="100%"></figure>
+                            </li>
+                        </ol>
+                    </section>
+                    <hr>
+                    <section>
+                        <h2 id="section_8" role="button" style="text-align: left;"><img src="img/32_8.png" alt="section 7" height="32" width="32" class="num_circ">Testing the Skill</h2>
+                        <p style="text-align:justify">Last but not least, let's test your webview application in the context of a skill conversation.</p>
+                        <ol>
+                            <li style="text-align:justify">Select the <b>conversation tester</b> icon in the left side menu (<img alt="embedded conversation tester" src="./img/testerIcon.png" height="25" />).</li>
+                            <li style="text-align:justify">Type <i>Hi</i> into the <b>Message</b> field and press the enter-key.</li>
+                            <li style="text-align:justify">Choose <b>Paris</b> from displayed list.</li>
+                            <li style="text-align:justify">When prompted for a departure date, type <b>Dec 12 2019</b>.</li>
+                            <li style="text-align:justify">In the second list displayed, select <b>Munich</b>.
+                                <figure><img src="img/testing_3.png" alt="Conversation in the tester" width="70%" height="70%"></figure>
+                            </li>
+                            <li style="text-align:justify">When prompted to press the <b>Open Oracle Travel</b> button, click on the button to launch the Oracle JET application you built and deployed. The UI you see is generated by the <code>System.Webview</code> component.
+                                <figure><img src="img/testing_4.png" alt="System.Webview UI" width="70%" height="70%"></figure>
+                            </li>
+                            <li style="text-align:justify">In the opened browser tab, notice that the web form shows the previously selected information as well as the start date of Dec 12 2019 .</li>
+                            <li style="text-align:justify">Use the web form to change some of the displayed values.</li>
+                            <li style="text-align:justify">When done, press the <b>Submit</b> button.</li>
+                            <li style="text-align:justify">You should see a confirmation message as shown in the image below. In the image you see that the web form was used to change the departure airport to SFO, the destination to LHR and that it set the return date to be different from the departure date.
+                                <figure><img src="img/testing_5.png" alt="Confirmation message" width="70%" height="70%"></figure>
+                            </li>
+                        </ol><br>
+                        <p style="text-align:justify">
+                            <b>Note:</b> You may wonder how skill designers can learn about the response payload that gets returned from a web view, assuming the skill designer and the SPA application developer are two different persons. </p>
+                        <p style="text-align:justify">The embedded conversation tester can help you with this. You first need to run and complete the web application. The <code>System.Webview</code> component has its variable property pointing to a variable of type string. In the sample skill, this variable name is "webviewresponse". </p>
+                        <p style="text-align:justify">If, in the tester's "Variables" section, you expand the "webviewresponse" variable node, you see the return payload key names as well as their associated values. The tutorial sample apparently returned the "returnDate" and "departureDate" in milliseconds and the "origin" and "destination" as airport codes. In addition, it send a "status" key that indicates whether the user clicked the "Submit" button in the web form or cancelled it.
+                            <figure><img src="img/testing_6.png" alt="Response payload in tester" width="80%" height="80%"></figure>
+                        </p>
+                        <p style="text-align:justify"><b>Trouble shooting:</b> If no response is returned to the skill, try again. The web application closes the browser tab after 500 milliseconds. Chances are that this is too quick so that the response is not returned. If this is the case for you and if rerunning the conversation does not help, then you can change the delay after which the browser tab is closed by editing line 159 in the <code>main.js</code> file. </p>
+                        <p style="text-align:justify"><b>Download the completed app:</b> You can download the completed Oracle JET component, as well as a ready-to-use skill that has the webview configured from here: <a href="files/localwebview_complete_solution.zip" target="_blank"><b> localwebview_complete_solution.zip</b></a>.</p>
+                        <p style="text-align:justify">Download and extract the ZIP file and import the skill contained in the "skill" folder to Oracle Digital Assistant.</p>
+                        <p style="text-align:justify">The <b>webview_src</b> folder contains the completed Oracle JET project. To use the Oracle JET project, you need to open a terminal window and navigate into the <b>tutorialTravelBooking</b> folder. Type <code>npm install</code> to install the Node.js dependencies.</p>
+                    </section>
+                    <hr>
+                </article>
+            </div>
+            <br class="clearfloat">
+        </div>
+    </div>
+    <!--close main-->
+    <!--end content-->
+    <div class="footer-container ">
+        <div style="max-width: 994px; padding:10px 0 0 17px;">
+            <footer class="footer-list">
+                <ul>
+                    <li> <a href="https://www.oracle.com/corporate/index.html" target="_blank">About Oracle</a> </li>
+                    <li> <a href="https://www.oracle.com/us/corporate/contact/index.html" target="_blank">Contact Us</a> </li>
+                    <li> <a href="https://www.oracle.com/us/legal/index.html" target="_blank">Legal Notices</a> </li>
+                    <li> <a href="https://www.oracle.com/us/legal/terms/index.html" target="_blank">Terms of Use</a> </li>
+                    <li> <a href="https://www.oracle.com/us/legal/privacy/index.html" target="_blank">Your Privacy Rights</a> </li>
+                    <li> <a href="https://www.oracle.com/pls/topic/lookup?ctx=cpyr&id=en">Copyright © 2018, Oracle and/or its affiliates. All rights reserved.</a></li>
+                </ul>
+            </footer>
+        </div>
+        <script type="text/javascript" src="https://www.oracleimg.com/us/assets/metrics/ora_docs.js"></script>
+    </div>
+    <!-- OBE Dialog Box code 10/15/2018 -->
+    <!-- DO NOT ALTER THE CODE BELOW   -->
+    <div id="lpModal" class="modal">
+        <!-- Modal hdr and body -->
+        <div id="obe_dialog" class="modal-content">
+            <div class="modal-header">
+                <a href="#" class="close"> <span class="close">&times;</span> </a>
+                <h1>Associated Learning Paths</h1>
+            </div>
+            <div id="dialog-content"> </div>
+            <div id="dialog-close" class="closeBtn">
+                <a href="#" class="close2">
+                    <p class="close2"> <span>&nbsp;&nbsp;View&nbsp;&nbsp;</span> </p>
+                </a>
+            </div>
+        </div>
+    </div>
+    <!-- END OBE Dialog Box code -->
+</body>
+
+</html>

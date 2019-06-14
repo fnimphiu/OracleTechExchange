@@ -1,0 +1,173 @@
+/**
+ * @license
+ * Copyright (c) 2014, 2019, Oracle and/or its affiliates.
+ * The Universal Permissive License (UPL), Version 1.0
+ */
+'use strict';
+
+/**
+ * Example of Require.js boostrap javascript
+ */
+
+requirejs.config(
+  {
+    baseUrl: 'js',
+
+    // Path mappings for the logical module names
+    // Update the main-release-paths.json for release mode when updating the mappings
+    paths:
+    //injector:mainReleasePaths
+    {
+      'knockout': 'libs/knockout/knockout-3.4.2.debug',
+      'jquery': 'libs/jquery/jquery-3.3.1',
+      'jqueryui-amd': 'libs/jquery/jqueryui-amd-1.12.1',
+      'promise': 'libs/es6-promise/es6-promise',
+      'hammerjs': 'libs/hammer/hammer-2.0.8',
+      'ojdnd': 'libs/dnd-polyfill/dnd-polyfill-1.0.0',
+      'ojs': 'libs/oj/v6.2.0/debug',
+      'ojL10n': 'libs/oj/v6.2.0/ojL10n',
+      'ojtranslations': 'libs/oj/v6.2.0/resources',
+      'text': 'libs/require/text',
+      'signals': 'libs/js-signals/signals',
+      'customElements': 'libs/webcomponents/custom-elements.min',
+      'proj4': 'libs/proj4js/dist/proj4-src',
+      'css': 'libs/require-css/css',
+      'touchr': 'libs/touchr/touchr'
+    }
+    //endinjector
+  }
+);
+
+/**
+ * A top-level require call executed by the Application.
+ * Although 'ojcore' and 'knockout' would be loaded in any case (they are specified as dependencies
+ * by the modules themselves), we are listing them explicitly to get the references to the 'oj' and 'ko'
+ * objects in the callback
+ */
+require(['ojs/ojcore', 'knockout', 'appController', 'jquery', 'ojs/ojknockout', 'ojs/ojformlayout', 'ojs/ojselectcombobox', 'ojs/ojdatetimepicker', 'ojs/ojvalidation-datetime', 'ojs/ojtimezonedata', 'ojs/ojlabel', 'ojs/ojbutton'],
+  function (oj, ko, app, $) { // this callback gets executed when all required modules are loaded
+
+    $(function () {
+
+
+      /*
+        Parameters send from the webview are saved in a window object named "webviewParameters". In this sample
+        the parameters contain information provided by the user in the bot conversation. 
+      */       
+    
+      //TODO  
+
+      /*
+        helper function to read named webview parameter
+      */ 
+    
+      //TODO    
+    
+      /*
+        Setting default values for the origin and destination of a trip in case no 
+        information is provided in the request 
+      */ 
+      
+      
+      //TODO
+
+      /*
+        When the user submits ot cancels the web form, control need to be passed back to the bot, 
+        For this a callback URL is passed from the webview to the web application. The parameter
+        holding the information is "webview.done" 
+      */ 
+
+      //TODO
+            
+      /*
+        Get current date
+      */ 
+      let today = new Date();
+
+      /*
+        Get the departure date from the webview parameters. If not found, set variable to null. In a second step, replace 
+        the null date with the current date
+      */       
+
+      //TODO
+      
+      //if date is provided in request, create new JS Date and parse to ISO string
+      self.departureDate = ko.observable(dateInRequest != null ? (new Date(new Number(dateInRequest))).toISOString() : today.toISOString());
+      let _minDate = new Date(self.departureDate());
+      _minDate.setUTCHours(0, 0, 0, 0)
+
+      /*
+        Set the calendar range so that return date cannot be before departure date. Departure date
+        cannot be selected before current date (its not a time machine) 
+      */       
+      self.minDateDeparture = ko.observable(_minDate.toISOString());
+      self.minDateReturn = ko.observable(self.departureDate());
+
+      /*
+        If departure date is passed from webview, use it. If not, set it to the same value as departure date 
+      */       
+      self.returnDate = ko.observable(getWebviewParam(webviewParameters, 'departureDate', self.departureDate()));
+
+      self.buttonClick = function (event) {
+        if (event.currentTarget.id === 'Submit') {
+
+         /*
+           Get the values from the web form and send them to the bot
+         */ 
+          let data = {};
+          data.origin = self.origin();
+          data.destination = self.destination();
+
+          //return date in milliseconds
+          data.departureDate = (new Date(self.departureDate())).getTime();
+          data.returnDate = (new Date(self.returnDate())).getTime();
+         /*
+           Add a status property to the  response to make it easy for the bot designer to tell 
+           whether a user submitted a form or pressed cancel
+         */           
+          data.status = "success"
+          //JQuery post call          
+          $.post(webViewCallback, JSON.stringify(data));
+        }
+        else {
+        /*
+          In case of cancel, return data object that has a status property for cancel only 
+         */ 
+          let data = {};
+          data.status = "cancel"
+
+          //JQuery post call          
+          $.post(webViewCallback, JSON.stringify(data));          
+        }
+
+        const sleep = (milliseconds) => {
+          return new Promise(resolve => setTimeout(resolve, milliseconds))
+        }
+
+        //Closes the browser tab the window is opened in. When closing the browser 
+        //tab, ensure the ajax call gets trough before the the tab closes. Thus adding 
+        //a "sleep" time
+        sleep(500).then(() => {                  
+            window.open('', '_self').close();          
+        })         
+      }
+         return true;
+      }
+
+      function init() {
+        // Bind your ViewModel for the content of the whole page body.
+        ko.applyBindings(app, document.getElementById('globalBody'));
+      }
+
+      // If running in a hybrid (e.g. Cordova) environment, we need to wait for the deviceready 
+      // event before executing any code that might interact with Cordova APIs or plugins.
+      if ($(document.body).hasClass('oj-hybrid')) {
+        document.addEventListener("deviceready", init);
+      } else {
+        init();
+      }
+
+    });
+
+  }
+);

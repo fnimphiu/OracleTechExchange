@@ -1,0 +1,37 @@
+        <h3>Please edit your information</h3>
+        <p>Complete this form and press submit, or press cancel.</p>
+        <div id="containerDiv">
+          <oj-label for="basicSelect">Select Origin</oj-label>
+          <oj-select-one id="basicSelect" value="{{origin}}" style="max-width:20em">
+            <oj-option value="CDG">Paris</oj-option>
+            <oj-option value="SFO">San Francisco</oj-option>
+            <oj-option value="LHR">London</oj-option>
+            <oj-option value="MUC">Munich</oj-option>
+          </oj-select-one>
+        </div>
+        <div id="containerDiv">
+          <oj-label for="departureDate">Departure Date</oj-label>
+          <oj-input-date id="departureDate" value="{{departureDate}}" min="{{minDateDeparture}}">
+          </oj-input-date>
+        </div>
+        <div id="containerDiv">
+          <oj-label for="returnDate">Return Date</oj-label>
+          <oj-input-date id="returnDate" value="{{returnDate}}" min="{{departureDate}}">
+          </oj-input-date>
+        </div>
+        <div id="containerDiv">
+          <oj-label for="basicSelect">Select Destination</oj-label>
+          <oj-select-one id="basicSelect" value="{{destination}}" style="max-width:20em">
+            <oj-option value="CDG">Paris</oj-option>
+            <oj-option value="SFO">San Francisco</oj-option>
+            <oj-option value="LHR">London</oj-option>
+            <oj-option value="MUC">Munich</oj-option>
+          </oj-select-one>
+        </div>
+        <div>
+          <br>
+          <div id='buttons-container'>
+            <oj-button id='Submit' on-oj-action='[[buttonClick]]'>Submit</oj-button>
+            <oj-button id='Cancel' on-oj-action='[[buttonClick]]'>Cancel</oj-button>
+          </div>
+        </div>
