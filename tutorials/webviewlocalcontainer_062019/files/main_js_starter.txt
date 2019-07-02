@@ -150,8 +150,7 @@ require(['ojs/ojcore', 'knockout', 'appController', 'jquery', 'ojs/ojknockout', 
         sleep(500).then(() => {                  
             window.open('', '_self').close();          
         })         
-      }
-         return true;
+        return true;
       }
 
       function init() {
