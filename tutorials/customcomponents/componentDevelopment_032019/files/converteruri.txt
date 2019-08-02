@@ -1,7 +1,0 @@
-
- var tmpTargetCurrencies = targetCurrencies + "," + baseCurrency;
- var fixerIoAPIKey = "<replace with your api key>"
- var reqUrl = "http://data.fixer.io/api/latest?access_key="+fixerIoAPIKey + "&base=EUR&symbols=" + tmpTargetCurrencies;
- //hide  API key from logs
- conversation.logger().info("fixer.io request URL:" + reqUrl.replace(fixerIoAPIKey, "*********"));
-                           

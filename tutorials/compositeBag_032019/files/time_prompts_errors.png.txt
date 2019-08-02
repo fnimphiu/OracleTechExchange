@@ -1,1 +1,0 @@
-This is a screen capture that shows the two prompts (When can we deliver that for you? and If you can, let us know the delivery time) and the error message (Sorry, we only offer delivery up to 9:30 pm.

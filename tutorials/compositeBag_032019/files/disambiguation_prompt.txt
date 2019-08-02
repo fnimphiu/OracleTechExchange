@@ -1,1 +1,0 @@
-This is an image of the Prompt for Disambiguation toggle (switched on), and the Disambiguation Prompt field, populated with Sorry, you can only order one topping type.

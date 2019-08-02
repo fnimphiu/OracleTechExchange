@@ -1,1 +1,0 @@
-An image of the of the configuration dialog specifying the name and configuration type of the PizzaBag entity.

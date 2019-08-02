@@ -1,1 +1,0 @@
-This is an image of the prompt sequence: 1. What size do you want?, 2. Please choose small, medium, or large pizza., 3. Enter OK, let's have one more got at this. I just just need you to select a pizza size. We offer large, medium and small
