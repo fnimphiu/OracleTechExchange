@@ -1,0 +1,1 @@
+This is a runtime image of the Buy Product task. In this image, the value of the confirmation message is Up to 48 inch, the chosen size.

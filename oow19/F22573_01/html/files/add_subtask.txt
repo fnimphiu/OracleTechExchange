@@ -1,0 +1,1 @@
+This is an image of the Action Type dialog. In this image, the Branch Conversation option has been selected. Directly beneath that, Warranty Reg has been entered as the target conversation. Below, that is the Default optoin (selected). At the bottom right of the dialog are the Clear and Done buttons.

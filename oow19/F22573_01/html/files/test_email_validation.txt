@@ -1,0 +1,1 @@
+This is a runtime image of the Product Question dialog. In this image, invalid input (what?) has been given for the requested email address, which is an EMAIL entity. The appropriate input (john.smith @example.com) has been given in response to the skill's confirmation message.

@@ -1,0 +1,1 @@
+This is an image of the Actions section of the Bots Add Message dialog. In this image, there are three actions: Up to 32 inch, Up to 48 inch, and Up to 80 inch. Each Action entry has a context menu. In this image the context menu for the Up to 48 inch action has been selected.

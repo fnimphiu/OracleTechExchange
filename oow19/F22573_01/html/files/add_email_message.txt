@@ -1,0 +1,1 @@
+This is an image of the Add Message dialog for user message. Across the top of the dialog are two options Text (selected here) and Attachment. In the User's Message field is a string, grant@email.com. In the Classification section of the dialog (located below this fied), this input is classified as EMAIL. The dialog has Cancel and Done buttons at the bottom right.

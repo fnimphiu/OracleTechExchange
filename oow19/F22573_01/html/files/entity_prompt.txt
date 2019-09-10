@@ -1,0 +1,1 @@
+This image is a partial view of the composite bag entity page which shows the prompts. In this image the prompt displayed is one generated from the skills Actionm message, What size of tv are you interested in?

@@ -1,0 +1,1 @@
+This image shows the Bot's action message from the Buy Product task flow. The message has three actions: Up to 32 inch, Up to 48 inch, Up to 80 inch. In this image, Up to 32 inch bears a check mark, meaning that it will be the default choice when the conversation is played in the preview.

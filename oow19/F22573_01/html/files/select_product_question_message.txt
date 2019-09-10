@@ -1,0 +1,1 @@
+This image shows the Product Question message in the preview. In this image, the message has been selected, which invokes a context menu beneath it that has a set of icons. The first of these Edit Interaction is selected.

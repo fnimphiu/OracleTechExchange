@@ -1,0 +1,1 @@
+This is an image of the Add Message dialog for the Bot. In this image, the General tab for the Card message displays. 

@@ -1,0 +1,1 @@
+This is an image of the Add Message dialog. In this image, the Attachment Option at the top of the dialog is selected. the Bot's Message field is populated with text (Here's your TV manual) and the URL and Type field are also populated with a URL and File, respectively. At the bottom right of the dialog are the Cancel and Done buttons.

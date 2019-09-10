@@ -1,0 +1,1 @@
+This is an image of the Product Question task flow replayed in the preview. In this image, the conversation culminates in the last message of the Log Ticket subtask, Ok -- I've opened a support ticket on product 12345678. Someone will contact you shortly.

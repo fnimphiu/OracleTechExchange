@@ -1,0 +1,1 @@
+This is an image othe Tasks lists. It lists the tasks created for this tutorial. From top to bottom, they are Buy Goods, Download Manual, Human Live Chat (selected in this image), and Product Question. Next to each task entry is a context menu.

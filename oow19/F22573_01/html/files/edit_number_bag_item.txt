@@ -1,0 +1,1 @@
+This image shows  the Bag Items section of the composite bag page. At the top is the Add Bag Item button. Directly beneath is a table with Name, Type and Entity Name columns. In this image, this table has one row, whose values are number (Name), ENTITY (Type) and NUMBER (Entity Name). Directly to the right is the Edit button (highlighted in this image).

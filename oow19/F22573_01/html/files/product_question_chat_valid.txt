@@ -1,0 +1,1 @@
+This is an image of part of the Product Question task-related chat in the Skill Tester. In this image, an invalid, non-NUMBER value has been entered. The skill replies that this is not a valid value. The next user message has a valid value, which is reflected in the skill's reply message.

@@ -1,0 +1,1 @@
+This is an image of the Add Message dialog for user message. In this image, a string of numbers is added to the User's Message field. In the Classification section directly below this field, this input is classfied as NUMBER. The dialog has Cancel and Done buttons at the lower right hand side.

@@ -1,0 +1,1 @@
+This is an image of the TV list menu, whose options, from top to bottom, are Up to 32 inch, Up to 48 inch, and Up to 80 inch. In this image, the Up to 48 inch option bears a check mark. This means it will be the default option chosen when you preview the conversation.

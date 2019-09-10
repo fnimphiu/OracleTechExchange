@@ -1,0 +1,1 @@
+This is an image of the Tasks list. This image shows tasks (Buy Goods, Download Manual, Human Llive Chat, Product Question) and also subtasks Support, Warranty Check, and Warranty Reg. All tasks and subtask entries have context menus. In this image, the Support subtask is selected.

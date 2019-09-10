@@ -1,0 +1,7 @@
+This is an image of the Bots Add Message dialog. There are three options across the top. From left to right, they are Text, Actions (selected here), and Cards.
+
+Beneath the options is the Bot's Message field which contains the string, What size of TV are you interested in?
+
+Beneath this field is the Actions section of the card, where there actions have been defined: Up to 32 inch, Up to 48 inch, Up to 80 inch. There is context menu next to each of these entries.
+
+The dialog has Cancel and Done button at the lower right.

@@ -1,0 +1,1 @@
+This image shows the Buy Product task in the preview. In this image, the Bot's card response message is selected and the context menu beneath it has been invoked. The context menu has the following functions Edit Interaction (highlighted in this image), Add Bot Interaction, Add Human Interaction, Duplicate Interaction, Delete Interaction, Move Up, Move Down.

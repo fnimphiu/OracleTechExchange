@@ -1,0 +1,1 @@
+This image shows the Actions section of the Edit Message dialog. In this image, there are two actions configured: Speak to live agent and log a service ticket. Both of these are accompanied with a context menu. In this image, the context menu next to Log as service ticket has been hightlighted.

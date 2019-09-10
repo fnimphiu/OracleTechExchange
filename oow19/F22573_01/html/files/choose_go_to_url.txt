@@ -1,0 +1,1 @@
+This is an image of the Action Type menu. It has the followoing two actions: Branch Conversation and Go to URL (selected here).

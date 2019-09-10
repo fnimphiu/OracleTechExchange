@@ -1,0 +1,1 @@
+This is an image of the Add Message dialog. In this image, the Actions option has been selected. The Bot's Message field has a the string, OK -- For product questions, I can help you with the following. In the Actions section of the dialog, the following three actions have been defined: Warranty Registration, Warranty Check, and Support.

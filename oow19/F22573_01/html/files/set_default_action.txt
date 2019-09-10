@@ -1,0 +1,1 @@
+This is an image of the Action Type dialog. This dialog has a field with Select an action placeholder text, a Default option (selected in this image). The dialog also has Clear and Done options at the lower right.

@@ -1,0 +1,1 @@
+This is an partial image of the Entities page. It shows the televisiontv entity selected from the list.

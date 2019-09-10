@@ -1,0 +1,1 @@
+This is an image of the Buy Product task flow replayed in the preview. In this image, the Up to 32 inch option displays (even though the default has now been set to Up to 48 inch).

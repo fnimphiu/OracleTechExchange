@@ -1,0 +1,1 @@
+This is a partial image of the Intent page that shows the training data generated for a task. In this image, it's the training data for the Buy Goods task. Among the utterances are Buy Goods and the user message, I would like to buy a television set please. Other phrases include buy television and I would buy television.

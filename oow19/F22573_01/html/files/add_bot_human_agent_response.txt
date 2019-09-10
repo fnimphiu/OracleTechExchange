@@ -1,0 +1,5 @@
+This is an image of the Bots Add Message dialog. There are three options across the top. From left to right, they are Text, (selected here) Actions, and Cards.
+
+Beneath the options is the Bot's Message field which contains the string, Happy to connect you to our call center? In the Classification section (located directly beneath this field), this input is classified as OUTPUT.
+
+The dialog has Cancel and Done button at the lower right.

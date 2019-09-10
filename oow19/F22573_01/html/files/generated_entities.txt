@@ -1,0 +1,1 @@
+This is a partial image of the Entities page. In this image, a list of the entities generted by the Conversation Designer display.

@@ -1,0 +1,3 @@
+This is a screen capture of the Add Message dialog for Bots. This dialog has three buttons on the top of the card: Text, Actions, and Card (selected in this image). When the Cards tab is selected, the dialog has two tabs: General and Cards (selected in this image). Directly beneath the tabs are small tiles for each card created for the carousel. Each tile has a context menu and in this image, the first card bears a checkmark, meaning that it will display as the default choice in the preview.
+
+Directly beneath are the input fields, which from top to bottom are Title, Description, Image URL, Actions, and Link.

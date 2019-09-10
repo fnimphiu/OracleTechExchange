@@ -1,0 +1,1 @@
+This is a screen capture of the chat related to the Download Manual task. In this image, the user message consists of a numeric string. The skill replies with a message that a download link to the pdf.

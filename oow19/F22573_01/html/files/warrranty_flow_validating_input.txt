@@ -1,0 +1,1 @@
+This is a runtime image of the Product Question conversation, specifically, the Warranty Check subtask. In this image, input that's not valid for the the serial number, a NUMBER entity, has been entered. The skill prompts for valid input, which is then provided as a string of numbers. 

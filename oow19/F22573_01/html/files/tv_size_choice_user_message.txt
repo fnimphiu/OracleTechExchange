@@ -1,0 +1,1 @@
+This is a message of the Add Message dialog invoked by the User Speaks icon. In this image the Text option is selected. In the User's Message field, Up to 48 inch has been entered. CHOICE appears in the Classification section of the dialog. The dialog has Cancel and Done buttons at the lower right.

@@ -1,0 +1,1051 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta http-equiv="content-type" content="text/html; charset=utf-8">
+    <!-- Part number: F22573-01 -->
+    <!-- Published date: September 2019 -->
+    <!-- Template date: October 15, 2018 -->
+    <!-- Put the content ID of this OBE between the empty quotation marks for 'content' below -->
+    <meta name="contentid" content="DATCD">
+    <!-- The title below is displayed on the browser tab, in search results, and in  history. It can be longer than the tutorial title in the <h1> element, below.-->
+    <!-- Use an imperative verb in the title. -->
+    <title>OpenWorld 2019 Hands-On Lab - Build a Skill with the Conversation
+      Designer</title>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <meta name="robots" content="INDEX, FOLLOW">
+    <meta name="description" content="Put the description of the tutorial here.">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="css/normalize.min.css">
+    <link rel="stylesheet" href="css/font-awesome.min.css">
+    <link rel="stylesheet" href="css/obe-lite.css">
+    <script src="js/jquery-1.11.0.min.js"></script>
+    <script src="js/jquery-ui-1.10.4.custom.js"></script>
+    <script src="js/jquery.tocify.jd.js"></script>
+    <script src="js/leftnav.js"></script>
+  </head>
+  <body>
+    <header>
+      <div class="w1024" style="min-height:55px; display:block;"> <a href="https://docs.oracle.com"
+          class="oracle-logo"> <img src="img/oracle_doc_logo.png" alt="Oracle Documentation"
+            style="max-width: none;" height="22" width="236"></a> </div>
+    </header>
+    <!--end header-->
+    <div id="content">
+      <!-- The title below is displayed as the title at the top of the OBE page. It can be shorter than the title in the <title> element, above. -->
+      <!-- Use an imperative verb in the title. -->
+      <h1><img src="img/obe_tag.png" alt="Oracle by Example branding" align="middle">OpenWorld
+        2019 Hands-On Lab: Build a Skill with the Conversation Designer</h1>
+      <div class="w1024" style="clear:both; position:relative; margin-top:40px;">
+        <div class="navbackwide border-right"><!-- --></div>
+        <div id="shownav" title="Show Navigation" tabindex="0"><span class="fa fa-list"></span></div>
+        <div id="sidebar"><!-- -->
+          <div class="left-nav-tut"><!-- -->
+            <div id="hidenavw" title="Hide Navigation" tabindex="0"><span class="fa fa-close"></span></div>
+            <div id="navbar" class="left-nav-w"><!-- -->
+              <div id="toc" class="tocify"><!-- --></div>
+            </div>
+          </div>
+        </div>
+        <div id="bookContainer">
+          <article>
+            <section>
+              <h2><img src="img/32_begin.png" alt="section 0" class="num_circ" height="32"
+                  width="32">Before You Begin</h2>
+              <p>This 60-minute hands-on lab introduces you to the Oracle
+                Digital Assistant's Conversation Designer. This lab demonstrates
+                how you can generate a fully functioning skill from example
+                conversations between the user and the skill. </p>
+              <h3>Background</h3>
+              <p>The ability to rapidly develop a functioning skill, one that
+                typifies the interactions between the skill and its users, can
+                be a very useful feature for any company developing a
+                conversational interface for a number of reasons. These include:</p>
+              <ul>
+                <li>Getting the buy-in and sign-off from your business on the
+                  flow and function of the skill.<br>
+                </li>
+                <li>Road testing the conversation flow with target users to get
+                  their feedback.<br>
+                </li>
+                <li>Providing skill developers with a concrete idea of the
+                  conversation that they need to implement.<br>
+                </li>
+              </ul>
+              <h3>What Do You Need?</h3>
+              <p>To complete this lab, you need an Oracle Digital Assistant
+                (ODA) cloud instance. You can get one using either of the
+                following approaches: </p>
+              <ul>
+                <li><a href="#trial">Setting up a trial instance</a>.
+                  <p>By having your own instance, you can continue this lab
+                    after the event and even build your own digital assistant.</p>
+                  <p>Though it will not cost you any money to complete the lab
+                    using this option, you may need a credit card to sign up.</p>
+                </li>
+                <li><a href="#shared-instance">Using a shared instance</a> that
+                  has been provisioned for this event.
+                  <p>If you select this option, you can dig into the lab with
+                    less setup time.</p>
+                  <p>This instance will be used by other participants in the
+                    hands-on lab.</p>
+                </li>
+              </ul>
+              <h3><a name="trial">Option A: Set Up a Trial Instance</a></h3>
+              <h4>Get an Oracle Cloud Account</h4>
+              <p>Before you can get a trial ODA instance, you need an Oracle
+                Cloud account. If you don't already have one, go to <a href="http://oracle.com/oow19LON"
+                  target="_blank">http://oracle.com/oow19LON</a> to sign up.</p>
+              <!--<ol>
+								<li>Go to <a href="http://oracle.com/oow19LON" target="_blank">http://oracle.com/oow19LON</a>.</li>-->
+              <!--<li>Click <b>Try for Free</b>.</li>-->
+              <!--<li>Fill in the Account Details section. Among the details you'll need to enter are the following:
+									<ul>										<li>A <b>Cloud Account Name</b>.</li>										<li>The <b>Default Data Region</b>, which determines where your services will be hosted. Select North America or EMEA.</li>										<li>A valid email address.											<p>Instructions about signing in to your new cloud account are sent to this address.</p>											<p>If your email address is already associated with a cloud account, then you can click the link to get all your accounts associated with your email address.</p></li>																</ul>								</li>								<li>In the Verification Code section, enter the phone number of your mobile phone and click <b>Request Code</b>.								<p>A verification code will be sent to this number.</p></li>								<li>In the <b>Verification Code</b> field, enter the number that is sent to your phone and click <b>Verify</b>.</li>								<li>In the Credit Card Details section, click <b>Add Payment Method</b> and fill in the requested address and credit card details.								<p>After successful finishing the payment information, you should see a <b>Your credit card has been successfully validated</b> message:</p>								<figure><img src="img/credit-card-verification.png" alt="screenshot showing the Credit Card Details page which contains the message 'Your credit card has been successfully validated'"></figure></p></li>								<li>In the <b>Terms & Condition</b> section, review the terms and conditions and click <b>Complete</b> to accept them.								<p>At this point, the account creation process is started and should be complete within 15 minutes. You will get a confirmation screen something like this:</p>							<figure><img src="img/signup-confirmation.png" alt="A screenshot of a web page with the message 'Thank you for signing up for Oracle Cloud'"></figure></li>							<li>Check your email account for the welcome email from Oracle Cloud.</li>							<li>Open the email and click the <b>Get Started with Oracle Cloud</b> in the email.							<figure><img src="img/access-email.png" alt="screenshot of the section of welcome email that contains a box entitled 'Access Details for My Service' and a 'Get Started with Oracle Cloud' button."></figure></li>							<li>On the web page that is opened, enter the username and  temporary password and click the <b>Sign In</b> button.							<figure><img src="img/signin-page.png" alt="screenshot of the Oracle Cloud sign-in web page"></figure></li>							<li>As prompted, change your password.							</li>							</ol>							<p>At this point, you are in your cloud account and are ready to provision an ODA instance.</p>-->
+              <h4>Provision an Oracle Digital Assistant Instance</h4>
+              <ol>
+                <li>Click the navigation menu (<img src="./img/nav_menu_icon.png"
+                    alt="Navigation menu icon">) in the top left corner, scroll
+                  down to and expand <b>Platform Services</b>, and then click <b>Digital
+                    Assistant</b>.
+                  <figure><img src="./img/oci_console_platform_menu.png" alt="Description of oci_console_platform_menu.png follows"></figure>
+                </li>
+                <li>Click <b>Instances</b>. </li>
+                <li>Click <b>Create Instance</b>.</li>
+                <li>In the <b>Details</b> section of the <b>Instance</b> area,
+                  fill in the following details:
+                  <ul>
+                    <li><b>Instance Name</b>: Enter a name that reflects usage
+                      of the environment. For example, for a development
+                      environment, you might use something like <code>oda-dev1</code>.
+                      <p>You can use a name of up to 20 characters. It must
+                        start with a letter, and can contain only letters,
+                        numbers and hyphens (-). It cannot end with a hyphen
+                        (-).</p>
+                      <p>Use a different name for each environment you create.</p>
+                    </li>
+                    <li><b>Description</b>: (Optional) Enter a brief description
+                      of what the instance will be used for. </li>
+                    <li><b>Notification Email:</b> Status reports are sent to
+                      this email, including notice of when your instance has
+                      been created. </li>
+                    <li><b>Region</b>: Regions are localized geographic areas. </li>
+                    <li><b>Tags:</b> (Optional) Add tags and assign tags to this
+                      service. </li>
+                  </ul>
+                </li>
+                <li>If you have a placement tag from Oracle:
+                  <ol type="a">
+                    <li>In the <b>Special Instructions</b> section of the <b>Instance</b>
+                      area, select the <b>I have special instructions from
+                        Oracle</b> checkbox. </li>
+                    <li>Input your placement tag.</li>
+                  </ol>
+                </li>
+                <li>Click <b>Next</b>. </li>
+                <li>Review the instance details, then click <b>Create</b>.
+                  <p>There will be a short wait before you receive an email
+                    confirming that your <b>Digital Assistant</b> instance is
+                    ready for you to sign into. </p>
+                  <p>If it takes more than a few minutes to finish, try
+                    refreshing the page in the browser.</p>
+                </li>
+                <li>Once the instance is created, click <img src="./img/options-menu.png"
+                    alt="the menu icon"> and select <b>Digital Assistant UI
+                    Designer</b>.
+                  <figure><img src="img/select-da-designer.png" alt="screenshot showing a panel for a Digital Assistant instance. On the right side of the panel is an options menu, which is selected, showing options for Digital Assistant UI Designer, Add Tags, and Delete."></figure>
+                  <p>A new browser tab will be opened with the Digital Assistant
+                    Designer UI.</p>
+                  <figure><img src="./img/da-ui.png" alt="a screenshot showing the home page of Oracle Digital Assistant"></figure>
+                </li>
+              </ol>
+              <div name="OptionB:UsetheSharedInstance" data-unique="OptionB:UsetheSharedInstance"></div>
+              <h3><a name="shared-instance">Option B: Use the Shared Instance</a></h3>
+              <h4>Log In to the Shared Instance</h4>
+              <ol>
+                <li>In your browser, navigate to <a href="https://idcs-1d42d94aeef24a7881cdeaacb5b24360.identity.oraclecloud.com/ui/v1/signin"
+                    target="_blank">http://bit.ly/ODAHOLInstance2</a>.</li>
+                <li>Log in to the instance using the credentials provided by
+                  your lab instructor.</li>
+              </ol>
+              <p>After successfully logging in, you will land on the ODA home
+                page.</p>
+            </section>
+            <!-- ========================================================================================================================= -->
+            <section>
+              <hr>
+              <h2 id="section_1" role="button" style="text-align: left;"><img src="img/32_1.png"
+                  alt="section 1" class="num_circ" height="32" width="32">Review
+                the Conversation Flow</h2>
+              <p>You can conceptualize the user-skill conversation in different
+                ways before you actually begin building it with the Conversation
+                Designer. For example, you can sit down with a business
+                stakeholder or target user and create a overall flow based on
+                how they envision a typical conversation. For the purposes of
+                this lab, we've already assembled the following flow for the
+                conversation that you will realize using the Conversation
+                Designer.</p>
+              <figure><img src="img/conversation_mockup.png" alt="Description of this illustration"
+                  width="100%"> <figcaption><a href="files/conversation_mockup.txt">Description
+                    of the illustration</a></figcaption> </figure>
+              <p>You'll notice that there are four top-level flows that can be
+                triggered through natural language processing (NLP):</p>
+              <ul>
+                <li>Live Chat -- Executed when the skill understands that user
+                  wants to speak to an agent. It then hands the user off to a
+                  call center. (For this lab, you won't actually be configuring
+                  the agent hand off in Oracle Service Cloud. The goal here is
+                  to just demonstrate the flow.)</li>
+                <li>Buy Goods -- Presents a carousel of cards, each with a
+                  different product. Each card directs the user to the company's
+                  website.</li>
+                <li>&nbsp;Product Question -- Recognizes that the user wants to
+                  ask a question about a product. It presents a list of help
+                  topics, such as registering a warranty, checking a warranty,
+                  or product support.</li>
+                <li>Download User Manual -- Prompts the user for product
+                  information and then presents the appropriate PDF that the
+                  user can download.</li>
+              </ul>
+              <p></p>
+              <p> </p>
+            </section>
+            <hr>
+            <section>
+              <h2 id="section_2" role="button" style="text-align: left;"><img src="img/32_2.png"
+                  alt="section 2" class="num_circ" height="32" width="32">Create
+                Tasks</h2>
+              <p>You need to create a new skill when you use the Conversation
+                Designer (you can't use it with an existing skill), so start off
+                by creating a new skill in your ODA instance. From your new
+                skill, you'll access the Conversation Designer and then begin
+                building the tasks.</p>
+              <ol>
+                <li>In your ODA instance, click the left menu (<img src="./img/left_nav_menu.png"
+                    alt="The Menu Icon">), expand <strong>Development</strong>,
+                  and then click <strong>Skills</strong>.</li>
+                <li>Click the <strong>New Skill</strong> tile.</li>
+                <img src="img/new_skill_tile.png" alt="The New Skill tile">
+                <li> Complete the Create Skill dialog by giving your skill a
+                  name. If you're sharing an instance with other developers,
+                  start the name with your initials. For example:
+                  GR_ConversationDesignerSkill.</li>
+                <li>Click <strong>Create</strong>. </li>
+                <li>In the left navigation bar, click <strong>Conversation
+                    Designer</strong> ( <img src="./img/conversation_designer_icon.png"
+                    alt="The Conversation Designer icon">).</li>
+                <li>In the Welcome screen, add the following and then click <strong>Create</strong>.
+                  <ul>
+                    <li>Human Live Chat</li>
+                    <li>Buy Goods</li>
+                    <li>Product Question</li>
+                    <li>Download Manual</li>
+                  </ul>
+                </li>
+                <figure><img src="img/add_tasks.png" alt="Description of the illustration follows">
+                  <figcaption><a href="files/add_tasks.txt">Description of the
+                      illustration. </a></figcaption> </figure>
+              </ol>
+              <section>
+                <h3> Build the Human Live Chat Task </h3>
+                <p> In this step, you're going to create a sample agent
+                  escalation conversation, where the chat is transferred from
+                  the skill to a live agent upon the user request. As mentioned
+                  previously, you're not going to actually configure the agent
+                  hand-off to Oracle Service Cloud. Instead, your going to add
+                  the user request and a series of skill responses that would be
+                  typical for an escalation scenario.</p>
+                <ol>
+                  <li>Click <strong>Human Live Chat</strong> in the Tasks menu.
+                    <figure><img src="img/select_task.png" alt="Description of this illustration follows">
+                      <figcaption><a href="files/select_task.txt">Description of
+                          the illustration.</a></figcaption> </figure>
+                  </li>
+                  <li>Click the <strong>Person Speaks</strong> icon ( <img src="./img/person_speaks_icon.png"
+                      alt="The Person Speaks icon">).</li>
+                  <li> In the Add Message dialog, first select <strong>Text</strong>
+                    (if it's not already selected) and then enter <i>I want to
+                      speak to a human</i>. Note that Conversation Designer
+                    classifies this input as INTENT UTTERANCE. </li>
+                  <figure><img src="img/add_human_agent_intent.png" alt="Description of sample-arch-image.png follows">
+                    <figcaption><a href="files/add_human_agent_intent.txt">Description
+                        of the illustration.</a></figcaption> </figure>
+                  <li>Click <strong>Done</strong>. Note that the message
+                    appears in the preview. </li>
+                  <figure><img src="img/message_in_preview.png" alt="Description of this image follows">
+                    <figcaption><a href="files/message_in_preview.txt">Description
+                        of the illustration.</a></figcaption> </figure>
+                  <li>Click the <strong>Bot Speaks</strong> icon (<img src="./img/bot_speaks_icon.png"
+                      alt="The Bot Speaks icon">). </li>
+                  <li>In the Add Message dialog, select <strong>Text</strong>
+                    (if it isn't already selected).</li>
+                  <li>Enter <i>Happy to connect you to our call center</i>.
+                    Then click <strong>Done</strong>.</li>
+                  <p> <b>Note</b>: Unless you're told otherwise, select <strong>Text</strong>
+                    (the default) for both the skill and user messages for the
+                    remainder of this tutorial.</p>
+                  <figure><img src="img/add_bot_human_agent_response.png" alt="Description of sample-arch-image.png follows">
+                    <figcaption><a href="files/add_bot_human_agent_response.txt">Description
+                        of the illustration.</a></figcaption> </figure>
+                  <li>Click <img src="./img/bot_speaks_icon.png" alt="The Bot Speaks icon"
+                      style="width: 27px; height: 25px;"> again. Enter <i>OK --
+                      passing you to an agent now</i>. </li>
+                  <li>Click <strong>Done</strong>.</li>
+                </ol>
+                <p> You've just completed the first task. It should look like
+                  this in the preview: </p>
+                <figure><img src="img/human_agent_convesation_complete.png" alt="Description of this image follows">
+                  <figcaption><a href="files/human_agent_convesation_complete.txt">Description
+                      of the illustration.</a></figcaption> </figure>
+                <section>
+                  <h3>Build the Buy Goods Task</h3>
+                  <p>For this task, you're going to build a conversation where
+                    the user searches for, and buys, a television. After you
+                    enter the initial user request message, you're going to
+                    create a series of skill messages that prompt the user
+                    through the transaction. These messages include lists of
+                    options, a confirmation message, and a carousel of cards
+                    with images and clickable actions.</p>
+                  <ol>
+                    <li>Click <strong>Buy Goods</strong> in the Tasks menu.</li>
+                    <li>Click <img src="./img/person_speaks_icon.png" alt="The Person Speaks icon">.
+                      Enter <i>I'd like to buy a television please</i>. Notice
+                      that the Conversation Designer again classifies this type
+                      of statement as an INTENT UTTERANCE.</li>
+                    <li>&nbsp;Click <strong>Done</strong>. </li>
+                    <li>Click <img src="./img/bot_speaks_icon.png" alt="The Bot Speaks icon">.
+                      Enter <i>OK -- We have a great selection at low, low
+                        prices!</i> Conversation Designer classifies this
+                      message as OUTPUT. </li>
+                    <li>Click <strong>Done</strong>.</li>
+                    <li>Click <img src="./img/bot_speaks_icon.png" alt="The Bot Speaks icon">
+                      again. In the Add Message dialog, select <strong>Actions</strong>.</li>
+                    <img src="./img/select_actions_buttons.png" alt="The Select Button.">
+                    <li>In the Bot's Message field, enter <i>What size of TV
+                        are you interested in?</i></li>
+                    <li>Add the following three actions:
+                      <ul>
+                        <li>Up to 32 inch</li>
+                        <li>Up to 48 inch</li>
+                        <li>Up to 80 inch</li>
+                      </ul>
+                    </li>
+                    <figure><img src="img/add_tv_size_action_message.png" alt="Description of this image follows">
+                      <figcaption><a href="files/add_tv_size_action_message.txt">Description
+                          of the illustration.</a></figcaption> </figure>
+                    <li>Click <strong>Done</strong> to close the dialog. <span
+                        style="color: red;"></span></li>
+                    <li>Click <img src="./img/person_speaks_icon.png" alt="The Person Speaks icon">.
+                      Enter <i>Up to 32 inch</i>. Because this user message
+                      references an action whose value was defined already, the
+                      Conversation Designer classifies it as CHOICE since the
+                      user is choosing a known value. </li>
+                    <li>Click <strong>Done</strong>.</li>
+                    <li>Click <img src="./img/bot_speaks_icon.png" alt="The Bot Speaks icon">
+                      and then enter the confirmation message, <i>Here are our
+                        TVs Up to 32 inch</i>. <span style="color: #e60000;"><span
+                          style="color: #080000;"></span></span>
+                      <p> Because this message contains one of the values set
+                        for the action, it will enable the skill to populate the
+                        user's choice in the message at runtime. <span style="color: #e60000;"><span
+                            style="color: #080000;">Be sure to enter the same
+                            letters and characters that you used in the action <i>(Up
+                              to 32 inch</i>, for example, not <i>Up to 32-inch</i>).
+                            If you don't, the skill will output this message as
+                            static text. </span></span></p>
+                    </li>
+                    <li><span style=" color: #e60000;"><span style=" color: #080000;">Click
+                          <strong>Done</strong>.<br>
+                        </span></span></li>
+                    <li><span style=" color: #e60000;"><span style=" color: #080000;">Click
+                          </span></span><span style=" color: #e60000;"><span style=" color: #080000;"><img
+                            src="./img/bot_speaks_icon.png" alt="The Bot Speaks icon">
+                          again, but this time, select <strong>Cards</strong>.</span></span></li>
+                    <img src="./img/select_action_button.png" alt="The Action button">
+                    <li><span style="  color: #e60000;"><span style="  color: #080000;">In
+                          the General tab, enter <i>Here are our TVs that are
+                            currently in stock</i> in the Bot's Message
+                          field.&nbsp;</span></span></li>
+                    <figure><img src="img/add_card_general.png" alt="Description of this image follows">
+                      <figcaption><a href="files/add_card_general.txt">Description
+                          of the illustration.</a></figcaption> </figure>
+                    <li> Click the <strong>Cards</strong> tab.</li>
+                    <img src="./img/cards_tab.png" alt="The cards tab">
+                    <li><span style="    color: #e60000;"><span style="    color: #080000;">In
+                          the Title field, enter <i>Panasonic 75 HD</i>.</span></span></li>
+                    <li><span style="     color: #e60000;"><span style="     color: #080000;">In
+                          the Description field, enter <i>Premium picture
+                            quality on a large scale</i>.</span></span></li>
+                    <li><span style="      color: #e60000;"><span style="      color: #080000;">Enter
+                          <code>
+                            https://cdn.pixabay.com/photo/2018/12/22/03/27/smart-tv-3889141_1280.png</code>
+                          in the Image URL field.</span></span></li>
+                    <li><span style="       color: #e60000;"><span style="       color: #080000;">In
+                          the Actions field, enter <i>Buy</i>.<br>
+                        </span></span></li>
+                    <li><span style="       color: #e60000;"><span style="       color: #080000;">Click
+                          the menu (<img src="./img/message_menu.png" alt="The menu icon">)
+                          next to the Actions field and then select <strong>Go
+                            to URL</strong> from the Action Type menu.</span></span></li>
+                    <figure><img src="img/choose_go_to_url.png" alt="Description of this image follows">
+                      <figcaption><a href="files/choose_go_to_url.txt">Description
+                          of the illustration.</a></figcaption> </figure>
+                    <li><span style="        color: #e60000;"><span style="        color: #080000;">Enter
+                          <code>https://www.panasonic.com</code><strong></strong>.</span></span></li>
+                    <figure><img src="img/add_url_to_action.png" alt="Description of this image follows">
+                      <figcaption><a href="files/add_url_to_action.txt">Description
+                          of the illustration.</a></figcaption> </figure>
+                    <li><span style="         color: #e60000;"><span style="         color: #080000;">Click
+                          <strong>Done</strong>.<br>
+                        </span></span></li>
+                    <figure><img src="img/tv_card_1.png" alt="Description of this image follows">
+                      <figcaption><a href="files/tv_card_1.txt">Description of
+                          the illustration.</a></figcaption> </figure>
+                    <li>Click <strong>Add Card</strong> <img src="./img/add.png"
+                        alt="The add icon">.</li>
+                    <img src="./img/click_add_button.png" alt="The Add Card icon">
+                    <li>Repeat the previous steps, but enter the following
+                      values:
+                      <ul>
+                        <li><b>Title</b>: <i>Samsung Q95OR</i></li>
+                        <li><b>Description</b>: <i>Experience immersive viewing
+                            for less</i></li>
+                        <li><b>Image URL</b>: <code>https://cdn.pixabay.com/photo/2012/04/11/18/33/lcd-29306_1280.png</code></li>
+                        <li><strong>Action</strong>: <i>Buy</i></li>
+                        <li><b>Go to URL</b>: <code>https://samsung.com</code></li>
+                      </ul>
+                    </li>
+                    <figure><img src="img/tv_card_2.png" alt="Description of this image follows">
+                      <figcaption><a href="files/tv_card_2.txt">Description of
+                          the illustration.</a></figcaption> </figure>
+                    <li>Click<strong></strong> <img src="./img/add.png" alt="The add icon">
+                      again and then add the following:
+                      <ul>
+                        <li><strong>Title</strong>: <i>Sony SG9</i></li>
+                        <li><strong>Description</strong>: <i>Double award
+                            winner</i></li>
+                        <li><strong>Image URL</strong>: <code>https://cdn.pixabay.com/photo/2017/02/20/00/03/tv-2081277_1280.png</code></li>
+                        <li><strong>Action</strong>: <i>Buy</i></li>
+                        <li><strong>Go to URL</strong>: <code>https://www.sony.com</code></li>
+                      </ul>
+                    </li>
+                    <figure><img src="img/tv_card_3.png" alt="Description of this image follows">
+                      <figcaption><a href="files/tv_card_3.txt">Description of
+                          the illustration.</a></figcaption> </figure>
+                    <li> Click <strong>Done</strong>.</li>
+                  </ol>
+                </section>
+                <hr>
+                <section>
+                  <h3>Build the Product Question Task </h3>
+                  <p> For this conversation, the skill handles various product
+                    support requests with a list of actions that route to other
+                    tasks. To enable this routing, you will add actions that
+                    branch to subtasks. As the name implies, subtasks perform
+                    supporting functions. Unlike tasks, they contain
+                    conversations that have been started by the skill, not by a
+                    user's intent utterance.</p>
+                  <ol>
+                    <li>Click <strong>Product Question</strong> in the Tasks
+                      menu. </li>
+                    <li>Click <img src="./img/person_speaks_icon.png" alt="The Person Speaks icon">.
+                      Enter <i>I have a product question</i>.</li>
+                    <li>Click <strong>Done</strong>.</li>
+                    <li>Click <img src="./img/bot_speaks_icon.png" alt="The Bot Speaks icon">.
+                    </li>
+                    <li>In the Add Message dialog, click <strong>Actions</strong>.</li>
+                    <li>In the Bot's Message field, enter <i>Ok, -- for product
+                        questions, I can help you with the following</i>.</li>
+                    <li>Enter <i>Warranty Registration</i> in the <i>Action 1</i>
+                      field.</li>
+                    <li>Click the menu (<img src="./img/message_menu.png" alt="The menu icon">)
+                      that's next to the field and then choose <strong>Branch
+                        Conversation</strong> from the Action Type menu.</li>
+                    <figure><img src="img/branch_action_option.png" alt="Description of this image follows">
+                      <figcaption><a href="files/branch_action_option.txt">Description
+                          of the illustration.</a></figcaption> </figure>
+                    <li>Enter <i>Warranty Reg</i> (the name of a subtask that
+                      you'll create later on) and then click <strong>Done</strong>.</li>
+                    <figure><img src="img/add_subtask.png" alt="Description of this image follows">
+                      <figcaption><a href="files/add_subtask.txt">Description of
+                          the illustration.</a></figcaption> </figure>
+                    <li>Repeat these steps to create two more actions, Warranty
+                      Check and Support. These two actions will also branch to
+                      subtasks that you will create later on.</li>
+                    <ul>
+                      <li>For the Warranty Check action, enter <i>Warranty
+                          Check</i> as the branched conversation.</li>
+                      <li>For Support, enter <i>Support</i> as the branched
+                        conversation.</li>
+                      <figure><img src="img/warranty_action_message.png" alt="Description of this image follows">
+                        <figcaption><a href="files/warranty_action_message.txt">Description
+                            of the illustration.</a></figcaption> </figure>
+                    </ul>
+                    <li>Click <strong>Done</strong> to close the dialog.</li>
+                  </ol>
+                  <p> The Warranty Registration, Warranty Check, and Support
+                    subtasks have been added to the Tasks list. </p>
+                  <figure><img src="img/subtasks_added_list.png" alt="Description of this image follows">
+                    <figcaption><a href="files/subtasks_added_list.txt">Description
+                        of the illustration.</a></figcaption> </figure>
+                </section>
+                <hr>
+                <section>
+                  <h3>Build the Download User Manual Task</h3>
+                  <p> For this final task, you'll create a conversation where
+                    the skill replies to the user's request for a product
+                    manual. To enable this download, you will add an attachment
+                    message that points to the URL for the manual, which is a
+                    PDF document. </p>
+                  <ol>
+                    <li>Click <strong>Download Manual</strong> from the Tasks
+                      menu.</li>
+                    <li>Click <img src="./img/person_speaks_icon.png" alt="The Person Speaks icon">.
+                      Enter <i>I want to download a manual for my TV</i>.</li>
+                    <li>Click <strong>Done</strong>.</li>
+                    <li>Click <span style=" color: #e60000;"><span style=" color: #080000;"><img
+                            src="./img/bot_speaks_icon.png" alt="The Bot Speaks icon"></span></span>.
+                      Enter <i>Can you please confirm the product ID?</i></li>
+                    <li>Click <strong>Done</strong>.</li>
+                    <li>&nbsp;Click <img src="./img/person_speaks_icon.png" alt="The Person Speaks icon">.
+                      Enter <i>ABC-12345</i>. Notice that the Conversation
+                      Designer classifies this input as NUMBER.</li>
+                    <li>Click <strong>Done</strong>.</li>
+                    <figure><img src="img/add_number.png" alt="Description of this image follows">
+                      <figcaption><a href="files/add_number.txt">Description of
+                          the illustration.</a></figcaption> </figure>
+                    <li>Click <img src="./img/bot_speaks_icon.png" alt="The Bot Speaks icon">.</li>
+                    <li>Click the <strong>Next</strong> option (next to <strong>Cards</strong>)
+                      to navigate to <strong>Attachment</strong>.</li>
+                    <figure><img src="img/click_next_option.png" alt="Description of this image follows">
+                      <figcaption><a href="files/click_next_option.txt">Description
+                          of the illustration.</a></figcaption> </figure>
+                    <li>Enter <i>Here is your TV manual</i> in the Bot's
+                      Message field.</li>
+                    <li>In the URL field, enter <code>http://downloadcenter.samsung.com/content/EM/201902/20190208124554853/BN68-09451A-00_QSG_Q90R_ZA_190118.0.pdf</code></li>
+                    <li>Choose <strong>File</strong> from the Type menu. Then
+                      click <strong>Done</strong>.</li>
+                    <figure><img src="img/add_attachment_message.png" alt="Description of this image follows">
+                      <figcaption><a href="files/add_attachment_message.txt">Description
+                          of the illustration.</a></figcaption> </figure>
+                  </ol>
+                </section>
+              </section>
+              <hr>
+              <h2 id="section_3" role="button" style="text-align: left;"><img src="img/32_3.png"
+                  alt="section 3" class="num_circ" height="32" width="32">Create
+                the Sub Tasks</h2>
+              <p>You added Warranty Registration, Warranty Check, and Support
+                subtasks when you configured action routing for the Product
+                Question task. In this section, you're going to build them out
+                with their own messages.</p>
+              <section>
+                <h3>Build the Warranty Registration Subtask </h3>
+                <ol>
+                  <li>Click <strong>Warranty Reg</strong> in the Tasks list.</li>
+                  <figure><img src="img/click_warranty_reg.png" alt="Description of this image follows">
+                    <figcaption><a href="files/click_support_subtask.txt">Description
+                        of the illustration.</a></figcaption> </figure>
+                  <li>Click <img src="./img/bot_speaks_icon.png" alt="The Bot Speaks icon">.
+                    Enter <i>OK -- I can register your warranty. Can you
+                      confirm the email address?</i> </li>
+                  <li>Click <strong>Done</strong>.</li>
+                  <li>Click <img src="./img/person_speaks_icon.png" alt="The Person Speaks icon">.
+                    Enter <i>name@example.com</i>. Note that the Conversation
+                    Designer classifies this as EMAIL.</li>
+                  <li>Click <strong>Done</strong>.</li>
+                  <li>Click <img src="./img/bot_speaks_icon.png" alt="The Bot Speaks icon">.
+                    Enter <i>OK--we will email our warranty registration form
+                      to you</i>.</li>
+                  <li>Click <strong>Done</strong>.</li>
+                </ol>
+              </section>
+              <section>
+                <h3>Build the Warranty Check Subtask</h3>
+                <ol>
+                  <li>Click <strong>Warranty Check</strong> in the Tasks list.</li>
+                  <li>Click <img src="./img/bot_speaks_icon.png" alt="The Bot Speaks icon">.
+                    Enter <i>OK--let's check your warranty. Please enter the
+                      product serial number</i>. </li>
+                  <li>Click <strong>Done</strong>.</li>
+                  <li>Click <img src="./img/person_speaks_icon.png" alt="The Person Speaks icon">.
+                    Enter <i>12345678</i>. Note that the Conversation Designer
+                    classifies this as NUMBER.</li>
+                  <li>Click <strong>Done</strong>.</li>
+                  <li>Click <img src="./img/bot_speaks_icon.png" alt="The Bot Speaks icon">.
+                    Enter <i>OK--I can confirm 12345678 is currently in
+                      warranty until the 12th of October 2019</i>. Be sure that
+                    the serial number matches your input in the previous user
+                    message.</li>
+                  <li>Click <strong>Done</strong>.</li>
+                </ol>
+              </section>
+              <section>
+                <h3>Build the Support Subtask</h3>
+                <ol>
+                  <li>Click <strong>Support</strong> in the Tasks list.</li>
+                  <li>Click <img src="./img/bot_speaks_icon.png" alt="The Bot Speaks icon">.
+                  </li>
+                  <li>Click <strong>Actions</strong>.</li>
+                  <li>Enter <i>Would you like to speak to an agent or raise a
+                      ticket?</i> in the Bot's Message field.</li>
+                  <li>In the first action field, enter <i>Speak to a live agent</i>.</li>
+                  <li>Click the menu (<img src="./img/message_menu.png" alt="The menu icon">)
+                    next to the field and then choose <strong>Branch
+                      Conversation</strong> from the Action Type menu.</li>
+                  <li>Enter <i>Live Chat</i>. Then click <strong>Done</strong>.</li>
+                  <figure><img src="img/branch_live_chat_subflow.png" alt="Description of this image follows">
+                    <figcaption><a href="files/branch_live_chat_subflow.txt">Description
+                        of the illustration.</a></figcaption> </figure>
+                  <li>Enter <i>Log a service ticket</i> in the second action
+                    field.</li>
+                  <li>Click the context menu then choose <strong>Branch
+                      Conversation</strong>.</li>
+                  <li>Enter <i>Log Ticket</i>. Then click <strong>Done</strong>.</li>
+                  <figure><img src="img/branch_log_ticket_subflow.png" alt="Description of this image follows">
+                    <figcaption><a href="files/click_support_subtask.txt">Description
+                        of the illustration.</a></figcaption> </figure>
+                  <li>Click <strong>Done</strong> to close the dialog.</li>
+                  <figure><img src="img/support_subtask_message.png" alt="Description of this image follows">
+                    <figcaption><a href="files/support_subtask_message.txt">Description
+                        of the illustration.</a></figcaption> </figure>
+                </ol>
+              </section>
+              <section>
+                <h3>Build the Live Chat Subtask</h3>
+                <ol>
+                  <li>Click <strong>Live Chat</strong> in the Tasks list.</li>
+                  <li>Click <img src="./img/bot_speaks_icon.png" alt="The Bot Speaks icon">.
+                    Enter <i>Connecting you to one of our agents...</i></li>
+                  <li>Click <strong>Done</strong>.</li>
+                </ol>
+              </section>
+              <section>
+                <h3>Build the Log Ticket Subtask</h3>
+                <ol>
+                  <li>Click <strong>Log Ticket</strong> in the Tasks list.</li>
+                  <li>Click <img src="./img/bot_speaks_icon.png" alt="The Bot Speaks icon">.
+                    Enter <i>Ok--logging a ticket. Can you please confirm the
+                      product serial number?</i></li>
+                  <li>Click <strong>Done</strong>.</li>
+                  <li>Click <img src="./img/person_speaks_icon.png" alt="The Person Speaks icon">.
+                    Enter <em>12345678</em>. Note the the Conversation Designer
+                    has classified this input as NUMBER. </li>
+                  <li>Click <strong>Done</strong>.</li>
+                  <figure><img src="img/user_serial_number.png" alt="Description of this image follows">
+                    <figcaption><a href="files/user_serial_number.txt">Description
+                        of the illustration.</a></figcaption></figure>
+                  <li>Click <img src="./img/bot_speaks_icon.png" alt="The Bot Speaks icon">.
+                    Enter <i>OK--I've opened a support ticket on product
+                      12345678. Someone will contact you shortly</i>. </li>
+                  <li>Click <strong>Done</strong>.</li>
+                </ol>
+              </section>
+            </section>
+            <hr>
+            <section>
+              <h2 id="section_4" role="button" style="text-align: left;"><img src="img/32_4.png"
+                  alt="section 4" class="num_circ" height="32" width="32">Preview
+                the Mockup</h2>
+              <p> Now that you've completed the mockup, you can preview its
+                various tasks and see how the conversation flows. In fact, you
+                can preview a task while you're building it to check your work.</p>
+              <p>While building the flows, you probably noticed the check mark
+                that appears next to actions and cards. This denotes a default
+                action or choice.</p>
+              <figure><img src="img/default_choice.png" alt="Description of this image follows">
+                <figcaption><a href="files/default_choice.txt">Description of
+                    the illustration.</a></figcaption> </figure>
+              <p>The preview replays the conversation according to the default
+                actions, so by resetting the defaults, you can preview different
+                outcomes. In this section, we're going to change the default
+                settings for the Buy Goods and Product Question tasks because
+                they have multiple actions. </p>
+              <section>
+                <h3> Preview the Buy Goods Task </h3>
+                <ol>
+                  <li>Click <strong>Buy Goods</strong> in the Tasks list.</li>
+                  <li>Click <strong>Preview Your Task!</strong> (located at the
+                    upper right).</li>
+                  <img src="./img/preview_your_task.png" alt="The Preview your task! link">
+                  <li>Click <strong>Send Message</strong> (<img src="./img/send_message_icon.png"
+                      alt="The Send Message icon">) to enter the initial user
+                    message (<i>I'd like to buy a television please</i>) after
+                    it's populated in the chat.<br>
+                    <img src="./img/send_button.png" alt="The Send icon"></li>
+                  <li>When the preview outputs <i>Up to 32 inch</i>, click<strong></strong>
+                    <img src="./img/send_message_icon.png" alt="The Send Message icon">.</li>
+                  <li>When you click<strong></strong> <img src="./img/send_message_icon.png"
+                      alt="The Send Message icon"> to enter <strong>Buy</strong>
+                    at the end of the flow, a separate tab opens for the target
+                    URL associated with the Panasonic 75 HD, the Panasonic
+                    website.</li>
+                  <figure><img src="img/buy_product_card_replay_1.png" alt="Description of this image follows">
+                    <figcaption><a href="files/buy_product_card_replay_1.txt">Description
+                        of the illustration.</a></figcaption> </figure>
+                  <li>Return to the browser tab that's running Oracle Digital
+                    Assistant.</li>
+                  <li>Click <strong>Back to Mockup</strong>.</li>
+                  <img src="./img/back_to_mockup.png" alt="The Back to Mockup link">
+                </ol>
+              </section>
+              <section>
+                <h3> Change the Default Card for the Buy Goods Task </h3>
+                <p> The browser opens the Panasonic website because the
+                  Panasonic 75 HD is the default choice (It bears the check mark
+                  in the preview). Let's try something else. </p>
+                <ol>
+                  <li>In the preview, click the skill's <i>Here are our TVs
+                      currently in stock</i> message.</li>
+                  <li>Click <strong>Edit Interaction</strong> (<img src="./img/edit_interaction_icon.png"
+                      alt="The Edit Interaction icon">) in the context menu.</li>
+                  <figure><img src="img/edit_interaction.png" alt="Description of this image follows">
+                    <figcaption><a href="files/edit_interaction.txt">Description
+                        of the illustration.</a></figcaption> </figure>
+                  <li>Click the <strong>Cards</strong> tab in the Edit Message
+                    dialog.</li>
+                  <li>Click the menu (<img src="./img/message_menu.png" alt="The menu icon">)
+                    in the second card tile located near the top of the dialog.</li>
+                  <figure><img src="img/card_menu.png" alt="Description of this image follows">
+                    <figcaption><a href="files/card_menu.txt">Description of the
+                        illustration.</a></figcaption> </figure>
+                  <li>Click <strong>Set Default</strong><strong></strong>.</li>
+                  <figure><img src="img/set_default_card.png" alt="Description of this image follows">
+                    <figcaption><a href="files/set_default_card.txt">Description
+                        of the illustration.</a></figcaption> </figure>
+                  <li>Click <strong>Done</strong> to close the dialog.</li>
+                  <li>Click <strong>Preview Your Task!</strong> again. This
+                    time, the carousel scrolls to the Samsung Q95OR card. When
+                    you click <img src="./img/send_message_icon.png" alt="The Send Message icon">
+                    to enter <i>Buy</i>, the Samsung website opens.</li>
+                  <figure><img src="img/buy_product_card_replay_2.png" alt="Description of this image follows">
+                    <figcaption><a href="files/buy_product_card_replay_2.txt">Description
+                        of the illustration.</a></figcaption> </figure>
+                  <li>Return the browser tab that's running Oracle Digital
+                    Assistant, then click <strong>Back to Mockup</strong>.</li>
+                </ol>
+              </section>
+              <section>
+                <h3>Change the Default Action</h3>
+                <p> The default TV size in the preview mode is Up to 32 inch.
+                  Let's see what happens in the preview when you change the
+                  default setting for the size options. </p>
+                <ol>
+                  <li>Select the skill's <i>What size of TV are you interested
+                      in?</i> message in the preview. (You may need to scroll
+                    up.)<br>
+                  </li>
+                  <li>Click <img src="./img/edit_interaction_icon.png" alt="The Edit Interaction icon">
+                    in the context menu.<br>
+                  </li>
+                  <li>In the Edit Message dialog, select the <strong>Actions</strong>
+                    tab if it isn't already open and then click the menu (<img src="./img/message_menu.png"
+                      alt="The menu icon">) next to the Up to 48 inch action.</li>
+                  <figure><img src="img/change_default_action_menu.png" alt="Description of this image follows">
+                    <figcaption><a href="files/change_default_action_menu.txt">Description
+                        of the illustration.</a></figcaption> </figure>
+                  <li>Click <strong>Default</strong>, then click <strong>Done</strong>.
+                    Click <strong>Done</strong> to close the Edit Message
+                    dialog.</li>
+                  <figure><img src="img/set_default_action.png" alt="Description of this image follows">
+                    <figcaption><a href="files/set_default_action.txt">Description
+                        of the illustration.</a></figcaption> </figure>
+                  <li>Click <strong>Preview Your Task!</strong> and then start
+                    the conversation again by clicking<strong></strong> <img src="./img/send_message_icon.png"
+                      alt="The Send Message icon"> after each user message. So
+                    far, the user's responses have been the same as the default
+                    values, but in this case, the preview ignores the new
+                    default of <i>Up to 48 inch</i> and proceeds with <i>Up to
+                      32 inch</i>. Why? Because the user's <i>Up to 32 inch</i>
+                    message overrides the default setting in the preview mode.
+                    If you hadn't added this user message, then the conversation
+                    would play according to the default value. When you actually
+                    chat with the skill later on, you can enter any of these
+                    values.</li>
+                  <figure><img src="img/buy_product_card_replay_3.png" alt="Description of this image follows">
+                    <figcaption><a href="files/buy_product_card_replay_3.txt">Description
+                        of the illustration.</a></figcaption> </figure>
+                  <li>Click <strong>Back to Mockup</strong>.</li>
+                </ol>
+              </section>
+              <section>
+                <h3> Preview the Product Question Task</h3>
+                <p> By default, the Product Question task routes per the
+                  Warranty Registration action, which branches to the Warranty
+                  Reg subtask.</p>
+                <figure><img src="img/product_question_replay_1.png" alt="Description of this image follows">
+                  <figcaption><a href="files/product_question_replay_1.txt">Description
+                      of the illustration.</a></figcaption> </figure>
+                <p>To preview this task:</p>
+                <ol>
+                  <li>Click <strong>Product Question</strong> in the Tasks list</li>
+                  <li>Click <strong>Preview Your Task!</strong></li>
+                  <li>Prompt the conversation by clicking <img src="./img/send_message_icon.png"
+                      alt="The Send Message icon"> after each user message.</li>
+                  <li>When the replay reaches the end of the Warranty Reg task (<i>Ok
+                      -- we will email our warranty registration form to you</i>.),
+                    click <strong>Back to Mockup</strong>.</li>
+                </ol>
+              </section>
+              <section>
+                <h3>Change the Default Routing for the Product Question Task </h3>
+                <ol>
+                  <li>Click <strong>Product Question</strong> in the Tasks
+                    list.<strong></strong></li>
+                  <li>Click the skill's reply (<i>Ok-- for product questions, I
+                      can help you with the following</i> in the preview. Then
+                    click <img src="./img/edit_interaction_icon.png" alt="The Edit Interaction icon">
+                    in the context menu.</li>
+                  <figure><img src="img/select_product_question_message.png" alt="Description of this image follows">
+                    <figcaption><a href="files/select_product_question_message.txt">Description
+                        of the illustration.</a></figcaption> </figure>
+                  <li>In the Edit Message dialog, click the menu (<img src="./img/message_menu.png"
+                      alt="The menu icon">) next to the Support action.</li>
+                  <figure><img src="img/edit_product_question_actions.png" alt="Description of this image follows">
+                    <figcaption><a href="files/edit_product_question_actions.txt">Description
+                        of the illustration.</a></figcaption> </figure>
+                  <li>Choose <strong>Default</strong> and then click <strong>Done</strong>.
+                    Then click <strong>Done</strong> again to close the Edit
+                    Message dialog.</li>
+                  <li>Click <strong>Support</strong> in the Tasks list.</li>
+                  <li>In the preview, click the message and then click<strong></strong>
+                    <img src="./img/edit_interaction_icon.png" alt="The Edit Interaction icon">
+                    in the context menu.</li>
+                  <li>Click the menu next to the Log a service ticket action.</li>
+                  <figure><img src="img/edit_log_support_action.png" alt="Description of this image follows">
+                    <figcaption><a href="files/edit_log_support_action.txt">Description
+                        of the illustration.</a></figcaption> </figure>
+                  <li>Choose <strong>Default</strong> and then click <strong>Done</strong>.
+                    Click <strong>Done</strong> again to close the Edit Message
+                    dialog.</li>
+                  <li>Click <strong>Product Question</strong> in the Tasks
+                    lists again and then click <strong>Preview Your Task!</strong>
+                    and then click <img src="./img/send_message_icon.png" alt="The Send Message icon">
+                    to replay the conversation. Note that conversation now ends
+                    with Log Ticket subtask. </li>
+                  <figure><img src="img/product_question_replay_2.png" alt="Description of this image follows">
+                    <figcaption><a href="files/product_question_replay_2.txt">Description
+                        of the illustration.</a></figcaption> </figure>
+                  <li>Click <strong>Back to Mockup</strong>.</li>
+                </ol>
+              </section>
+            </section>
+            <hr>
+            <section>
+              <h2 id="section_5" role="button" style="text-align: left;"><img src="img/32_5.png"
+                  alt="section 5" class="num_circ" height="32" width="32">Generate
+                the Skill and Take a Look at the Artifacts</h2>
+              <p> With your tasks complete, you're now ready to generate an
+                actual skill. </p>
+              <ol>
+                <li>Click <strong>Generate Skill</strong> (<img src="./img/generate_skill_icon.png"
+                    alt="The Generate Skill icon">).</li>
+                <img src="./img/generate_skill.png" alt="The Generate Skill icon">
+                <li>Click <strong>Generate</strong> in the Generate Skill
+                  dialog.</li>
+                <li>Click <strong>Train</strong> (<img src="./img/train-button.png"
+                    alt="The Train Button">).</li>
+                <img src="./img/train.png" alt="The Train icon">.
+                <li>Click <strong>Submit</strong> in the Train <strong></strong>
+                  dialog.</li>
+              </ol>
+              <section>
+                <p> The Conversation Designer creates a complete dialog flow
+                  definition along with intents and entities that it interpreted
+                  from the tasks and their messages. Let's take a quick look at
+                  some examples. </p>
+                <h3>View the Generated Intents</h3>
+                <ol>
+                  <li>Click <strong>Intents</strong> (<img src="./img/intents_icon.png"
+                      alt="Intent icon" title="Intent icon">) in the left
+                    navigation bar. Notice that the Conversation Designer has
+                    generated a Greeting intent along with intents that match
+                    each task. It has also added training data that it
+                    interpolated from the task name and the user messages that
+                    it classified as INTENT UTTERANCE.
+                    <figure><img src="img/generated_intents.png" alt="Description of this image follows">
+                      <figcaption><a href="files/generated_intents.txt">Description
+                          of the illustration.</a></figcaption> </figure>
+                    For example, click <strong>BuyGoods</strong>. Notice that
+                    both the name of the task and the user message (<i>I would
+                      like to buy a television set please</i>) are incorporated
+                    into the training data along with variants of these phrases.<br>
+                    <figure><img src="img/training_data.png" alt="Description of this image follows">
+                      <figcaption><a href="files/training_data.txt">Description
+                          of the illustration.</a></figcaption> </figure>
+                  </li>
+                </ol>
+              </section>
+              <section>
+                <h3>View the Generated Entities</h3>
+                <ol>
+                  <li>Click <strong>Entities</strong> (<img src="./img/entities_icon.png"
+                      alt="Entities Menu Icon" title="Entities Menu Icon">) in
+                    left navigation bar. The Conversation Designer used the bot
+                    and user messages (and their various relationships to one
+                    another) to create a series of entities and composite bag
+                    entities. There are are a lot of them, so we're just going
+                    to look at one of them.<br>
+                    <figure><img src="img/generated_entities.png" alt="Description of this image follows">
+                      <figcaption><a href="files/generated_entities.txt">Description
+                          of the illustration.</a></figcaption> </figure>
+                  </li>
+                  <li>Click <strong>TelevisionTv</strong> in the Entities list.
+                  </li>
+                  <figure><img src="img/select_television_tv.png" alt="Description of this image follows">
+                    <figcaption><a href="files/select_television_tv.txt">Description
+                        of the illustration.</a></figcaption> </figure>
+                  <li>Notice that Conversation Designer has created a Value List
+                    entity from the skill's action message that asks for TV
+                    sizes.</li>
+                  <figure><img src="img/televsion_tv_values.png" alt="Description of this image follows">
+                    <figcaption><a href="files/televsion_tv_values.txt">Description
+                        of the illustration.</a></figcaption> </figure>
+                </ol>
+              </section>
+            </section>
+            <hr>
+            <section>
+              <h2 id="section_6" role="button" style="text-align: left;"><img src="img/32_6.png"
+                  alt="section 5" class="num_circ" height="32" width="32">Test
+                the Skill</h2>
+              <p>In this step, you're finally going to chat with the skill
+                itself and discover how the generated artifacts support its
+                understanding of natural language, its ability to route the
+                conversation, slot entity values, and validate user input.</p>
+              <section>
+                <h3>Test the Buy Goods Task</h3>
+                <ol>
+                  <li>Click the Skill Tester (<img src="./img/skill_tester.png"
+                      alt="The Skill Tester icon">) in the left navigation bar.</li>
+                  <li>Enter <i>I want to buy a television</i> in the chat
+                    window.</li>
+                  <li>Choose a size. Note that the skill confirms that size. </li>
+                  <figure><img src="img/buy_tv_size_runtime.png" alt="Description of this image follows">
+                    <figcaption><a href="files/buy_tv_size_runtime.txt">Description
+                        of the illustration.</a></figcaption> </figure>
+                  <li>Click <strong>Reset</strong> (<img src="./img/reset-button.png"
+                      alt="The Reset Button">), located at the upper right hand
+                    side.</li>
+                  <img src="./img/reset_button_location.png" alt="The Reset button">
+                  <li>Begin the conversation again by entering <i>I want to buy
+                      a television</i>.</li>
+                  <li>When prompted to choose a size, enter something that's not
+                    one the values, like 100 or Huge. Notice that the skill only
+                    accepts input that matches the action names.</li>
+                  <figure><img src="img/buy_television_error.png" alt="Description of this image follows">
+                    <figcaption><a href="files/buy_television_error.txt">Description
+                        of the illustration.</a></figcaption> </figure>
+                  <li>Enter one of the action names, like 80 inch.</li>
+                  <li>Scroll through the carousel to select a TV, then click <strong>Buy</strong>.
+                    The company website opens a separate tab.</li>
+                  <li>Click <img src="./img/reset-button.png" alt="The Reset Button"><strong></strong>
+                    and then repeat these steps, varying the intent message (<i>buy
+                      TV</i>, <i>I wanna television</i>, etc.) and choosing
+                    different combinations of TV sizes and models each time. Be
+                    sure to click <img src="./img/reset-button.png" alt="The Reset Button">
+                    after each conversation. When you're done with this flow.
+                    click <img src="./img/reset-button.png" alt="The Reset Button">.</li>
+                </ol>
+              </section>
+              <section>
+                <h3>Test the Product Question Flow</h3>
+                <ol>
+                  <li>Enter <i>I've got a question about my warranty</i>.</li>
+                  <li>Click <strong>Warranty Registration</strong>.</li>
+                  <li>When prompted to enter an email address, enter <i>what?</i>
+                    (or something else that's not formatted as an email
+                    address). Notice that skill is asking for a specific entity
+                    type, EMAIL.</li>
+                  <li>Enter a valid email address.</li>
+                  <figure><img src="img/warranty_chat.png" alt="Description of this image follows">
+                    <figcaption><a href="files/warranty_chat.txt">Description of
+                        the illustration.</a></figcaption> </figure>
+                  <li>Click <img src="./img/reset-button.png" alt="The Reset Button">.</li>
+                  <li>Enter <i>I have a warranty question</i>.</li>
+                  <li>Click <strong>Support</strong>, then <strong>Log a
+                      service ticket</strong>.</li>
+                  <li>Enter any numeric string (like 9898989898989). Note that
+                    the confirmation message references that value. If you
+                    entered a string of letters (<i>wESdlfjlakdkl</i>, for
+                    example), the skill would prompt you for a NUMBER entity
+                    value.</li>
+                  <figure><img src="img/product_question_chat_valid.png" alt="Description of this image follows">
+                    <figcaption><a href="files/product_question_chat_valid.txt">Description
+                        of the illustration.</a></figcaption> </figure>
+                  <li>Click <img src="./img/reset-button.png" alt="The Reset Button">.
+                  </li>
+                </ol>
+              </section>
+              <section>
+                <h3>Test the Download Manual Flow</h3>
+                <ol>
+                  <li>Enter <i>i need a manual</i>.</li>
+                  <li>Enter a string of numbers.</li>
+                  <li>Click the link. You may need to open this document in
+                    another tab. For example, if you're using Windows,
+                    right-click your mouse and then choose <strong>Open Link in
+                      New Tab</strong>.</li>
+                  <figure><img src="img/download_manual_chat.png" alt="Description of this image follows">
+                    <figcaption><a href="files/download_manual_chat.txt">Description
+                        of the illustration.</a></figcaption> </figure>
+                </ol>
+                <p> Congratulations! You've created a working skill using the
+                  concept of design by example.</p>
+              </section>
+            </section>
+            <hr>
+            <section>
+              <!-- Include the More Information section only in a standalone tutorial or in the final lab or tutorial in a series (not in a learning path) -->
+              <h2 id="more_info" role="button" style="text-align: left;"><img src="img/32_more.png"
+                  alt="more information" class="num_circ" height="32" width="32">Want
+                to Learn More?</h2>
+              <ul>
+                <li><a href="http://www.oracle.com/pls/topic/lookup?ctx=en/cloud/paas/digital-assistant&amp;id=DACUA-GUID-FC887D2E-281F-453C-A753-C48299FAC947"
+                    target="_blank">The Conversation Designer</a></li>
+              </ul>
+            </section>
+          </article>
+        </div>
+        <br class="clearfloat">
+      </div>
+    </div>
+    <!--close main-->
+    <!--end content-->
+    <div class="footer-container ">
+      <div style="max-width: 994px; padding:10px 0 0 17px;">
+        <footer class="footer-list">
+          <ul>
+            <li> <a href="https://www.oracle.com/corporate/index.html" target="_blank">About
+                Oracle</a> </li>
+            <li> <a href="https://www.oracle.com/us/corporate/contact/index.html"
+                target="_blank">Contact Us</a> </li>
+            <li> <a href="https://www.oracle.com/us/legal/index.html" target="_blank">Legal
+                Notices</a> </li>
+            <li> <a href="https://www.oracle.com/us/legal/terms/index.html" target="_blank">Terms
+                of Use</a> </li>
+            <li> <a href="https://www.oracle.com/us/legal/privacy/index.html" target="_blank">Your
+                Privacy Rights</a> </li>
+            <li> <a href="https://www.oracle.com/pls/topic/lookup?ctx=cpyr&amp;id=en">Copyright
+                © 2019, Oracle and/or its affiliates. All rights reserved.</a></li>
+          </ul>
+        </footer>
+      </div>
+      <script type="text/javascript" src="https://www.oracleimg.com/us/assets/metrics/ora_docs.js"></script>
+    </div>
+    <!-- OBE Dialog Box code 10/15/2018 -->
+    <!-- DO NOT ALTER THE CODE BELOW   -->
+    <div id="lpModal" class="modal">
+      <!-- Modal hdr and body -->
+      <div id="obe_dialog" class="modal-content">
+        <div class="modal-header"> <a href="#" class="close"> <span class="close">×</span>
+          </a>
+          <h1>Associated Learning Paths</h1>
+        </div>
+        <div id="dialog-content"> </div>
+        <div id="dialog-close" class="closeBtn"> <a href="#" class="close2">
+            <p class="close2"> <span>&nbsp;&nbsp;View&nbsp;&nbsp;</span> </p>
+          </a> </div>
+      </div>
+    </div>
+    <!-- END OBE Dialog Box code -->
+  </body>
+</html>

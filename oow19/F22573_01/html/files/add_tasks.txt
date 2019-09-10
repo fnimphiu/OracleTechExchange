@@ -1,0 +1,1 @@
+The field for adding tasks in the Welcome page. In this image, the following Tasks have been added to the dialog: Human Live Chat, Buy Goods, Product Question, Download Manual. There is a delete icon next to each entry. There is also a Create button at the bottom right of the dialog.

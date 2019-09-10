@@ -1,0 +1,1 @@
+This is an image of the chat for the Buy Television task in the Skill Tester. In this image, an invalid size has been entered ("Huge"). The skill responds with a message "Huge is not a valid value for tv."

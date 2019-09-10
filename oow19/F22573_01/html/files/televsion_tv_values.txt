@@ -1,0 +1,1 @@
+This is a partial view of the Entities page. In this image, the generated values for the TelevisionTV are displayed as 32 inch, 48 inch, and 80 inch.

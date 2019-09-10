@@ -1,0 +1,1 @@
+This image shows the Actions section of the Edit Message dialog. In this image, there are three actions configured: Warranty Registration, Warranty Check, and Support. Each action item is accompanied with a context menu. In this image, the context menu next to Support has been hightlighted.
