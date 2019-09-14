@@ -1,0 +1,88 @@
+metadata:
+  platformVersion: "1.0"
+main: true
+name: "PizzaSkill"
+context:
+  variables:
+    iResult: "nlpresult"
+    pizza: "PizzaBag"
+states:
+  intent:
+    component: "System.Intent"
+    properties:
+      variable: "iResult"
+    transitions:
+      actions:
+        OrderPizza: "startOrderPizza"
+        CancelPizza: "cancelOrder"
+        FileComplaint: "fileComplaint"
+        unresolvedIntent: "unresolved"
+
+  startOrderPizza:
+    component: "System.Output"
+    properties:
+      text: "ok lets get that order sorted"
+      keepTurn: true
+    transitions: {}       
+
+  resolveEntities:
+    component: "System.ResolveEntities"
+    properties:
+      variable: "pizza"
+      nlpResultVariable: "iResult"      
+      maxPrompts: 3
+      cancelPolicy: "immediate"        
+    transitions:
+      actions:
+        cancel: "maxError"
+        next: "setPizzaCrust"
+
+  setPizzaCrust:
+    component: "System.SetVariable"
+    properties:
+      variable: "pizza.PizzaCrust"
+      # value set for the variable.
+      value: "${pizza.value.PizzaCrust?has_content?then(pizza.value.PizzaCrust,'regular')}"
+
+  showPizzaOrder:
+    component: "System.Output"
+    properties:
+      text: "OK, so we are getting you a ${pizza.value.PizzaSize} ${pizza.value.PizzaType} at ${pizza.value.DeliveryTime.date?long?number_to_time?string('HH:mm')}.  This will be on our ${pizza.value.PizzaCrust} crust."
+    transitions: 
+      return : "showPizzaOrder"
+
+  maxError:
+    component: "System.Output"
+    properties:
+      text: "OK lets connect you with someone to help"
+    transitions:
+      return: "maxError"
+        
+
+  helpState:
+    component: "System.Output"
+    properties:
+      text: "I am the pizza bot here to help you!!"
+    transitions:
+      return: "helpState"
+      
+  cancelOrder:
+    component: "System.Output"
+    properties:
+      text: "Your order is cancelled"
+    transitions:
+      return: "cancelOrder"
+      
+  fileComplaint:
+    component: "System.Output"
+    properties:   
+      text: "We are sorry to hear you are upset. Soon we will have a complaint form. In the meantime, feel free to call us directly."
+    transitions:
+      return: "done"
+
+  unresolved:
+    component: "System.Output"
+    properties:
+      text: "I don't understand. What do you want to do?"
+    transitions:
+      return: "unresolved"
