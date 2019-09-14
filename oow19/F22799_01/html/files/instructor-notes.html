@@ -1,0 +1,216 @@
+
+<html>
+<!--PK: Need to provide every student:
+ - ODA login credentials
+ - value for da.FARestEndpoint custom parameter
+ - HCM login credentials
+ - redo DA
+ -->
+ 
+ 
+ 						<section>
+								<li>In the HCM instance, open the web widget and enter: <u>go to hcm skill</u>
+							
+								</li>
+								<li>Enter the following request: <u>Who am I?</u><!--pk: lead-in--><figure><img src="../img/skill-conversation.png" alt=""></figure></li>
+						</section>
+						
+ 						<section>
+						<h2 id="section_0" role="button" style="text-align: left;">HCM Setup Steps</h2>
+						<p><b><i>These steps have already been completed in the demo instance</i></b>, but they are recorded here in case of emergency....</p>
+						
+						
+						<p>In order for the lab participants to complete the lab, the HCM instance in the lab needs to be set up ahead of time by someone  with knowledge of the lab and environment.</p>
+ 
+						    <h3>Set up the Digital Assistant</h3>
+							<p>As the instructor, you first need to go through all of the <b>Set Up Your Digital Assistant and HCM Skill</b> section of this lab yourself to set up a digital assistant and channel, which you then will associate with the HCM instance.</p>
+							
+							<h2>Set up the Channel</h2>
+                            <ol>
+ 								<li>Click <img src="../img/hamburger.png" alt="main menu icon"> to open the side menu.</li>
+								<li>Click <b>Development</b> and select <b>Channels</b>.</li>
+								<li>Click <img src="../img/hamburger.png" alt="main menu icon"> again to collapse the side menu.</li>                   <li>On the <b>Users</b> tab, click <b>+ Channel</b>.
+								<figure><img src="../img/add-channel-screenshot.png" alt="Screenshot showing a small section of the Channels page. The Users tab is selected. The Add Channel button is the first item in the tab."></figure>
+								</li>
+								<li>In the Create Channel dialog, fill in the <b>Name</b>, <b>Description</b>, and <b>App Display Name</b> fields.
+								
+								</li>
+								<li>From the <b>Channel Type</b> dropdown, select <b>Web</b>. 
+								<p>The completed dialog might look something like this:</p>
+								<figure><img src="../img/create-channel-screenshot.png" alt="Screenshot of the Create Channel dialog. It's Name, Description, and App Display name fields are filled out. The Channel Type field is set to Web."></figure>
+								<!--pk: replace screenshot--></li>
+								<li>Click <b>Create</b>.
+								<p>Once created, you are returned to the page for the channel.</p></li>
+								<li>Open the <b>Route To</b> dropdown menu, enter your DA name in the <b>Filter</b> box, and select your DA.
+								</li>
+								<li>Switch <b>Channel Enabled</b> to ON.</li>
+								<li>Copy the the value of the <b>App Id</b> field to a text file.
+								</li>
+                            </ol>
+							
+
+
+							<h2>Enable the Digital Assistant in HCM Cloud</h2>
+							<!--<p>In this section, -->
+							<p>Once you have set up the digital assistant and channel, you do the following to enable the digital assistant in HCM Cloud.</p>
+							
+							<h3>Set the Necessary Profile Options</h3>
+							<p>Y enable your digital assistant in the HCM environment by setting the following two Profile Options:</p>
+							<ul>
+								<li><b>FA_ENABLE_DIGITAL_ASSISTANT</b>: You'll set this to <b>Y</b> to enable the digital assistant.</li>
+								<li><b>FA_DIGITAL_ASSISTANT_APP_ID</b>: You'll set this to the app ID for your digital assistant.<!--pk: or channel?--></li>
+							</ul>
+							<p>Here are the steps for adding the profile options:</p>
+							<ol>
+								<li>Log In to the HCM Cloud Instance as user <code>hcm_impl</code></li>
+								<li>Click on the arrow placed on right side of the profile icon.
+								<figure><img src="img/hcm-profile-icon.png" alt=""></figure>
+								<p>On clicking, a drop-down menu will appear.</p>
+								</li>
+								<li>Select <b>Setup and Maintenance</b>.
+								<figure><img src="img/hcm-setup-maintenance.png" alt=""></figure></li>
+								<li>Click the Tasks icon on the right side of the screen.
+								<figure><img src="img/hcm-tasks-menu.png" alt=""></figure></li>
+								<li>Click <b>Search</b>.
+								<figure><img src="img/hcm-search-option.png" alt=""></figure></li>
+								<li>Search for <b>Manage Administrator Profile Values</b> and select it from the list.
+								<figure><img src="img/hcm-manage-admin-profile.png" alt=""></figure></li>
+								<li>Select <b>Manage Administrator Profile Values</b>.
+								</li>
+								<li>In the <b>Profile Option Code</b> field, enter <code>FA_ENABLE_DIGITAL_ASSISTANT</code> and click the <b>Search</b> button.
+								<figure><img src="img/hcm-manage-admin-profile-values.png" alt=""></figure></li>
+								<li>In the <b>Profile Value</b> field for the Site profile level, enter <code>Y</code>.
+								<p>This will enable the digital assistant.</p>
+								<figure><img src="img/hcm-manage-admin-profile-values-y.png" alt=""></figure></li>
+								<li>In the <b>Profile Option Code</b> field enter <code>FA_DIGITAL_ASSISTANT_APP_ID</code> and click <b>Search</b>.
+								<figure><img src="img/hcm-manage-admin-profile-values2.png" alt=""></figure></li>								
+								</li>
+								<li>In the <b>Profile Value</b> field for the Site profile level, enter the app ID for your digital assistant.<!--PK: or channel?-->
+								<figure><img src="img/hcm-manage-admin-profile-values-appid.png" alt=""></figure></li>								</li>
+
+								</ol>		
+
+								<h3>Associate Privileges to Use the Digital Assistant</h3>
+								<!--pk: is this the right title-->
+								<p>You will need to give the user the following privileges so that the digital assistant can access the appropriate REST APIs.</p>
+								<ul>
+									<li><b>Function Security Privileges</b>
+										<ul>
+											<li>Use REST Service - Person Notes Visibility Options Read Only</li>
+											<li>Use REST Service - Candidates Read Only</li>
+											<li>Use REST Service - Job Applications Read Only</li>
+											<li>Use REST Service - Job Requisitions Read Only</li>
+										
+										</ul>
+									</li>
+									<li><b>Abstract Roles</b>
+										<ul>
+											<li>Use REST Service - Benefit Enrollments Read Only</li>
+											<li>Use REST Service - Performance Goals Read Only</li>
+											<li>Use REST Service - Payslips Read Only</li>
+											<li>Use REST Service - Person Notes</li>
+											<li>Use REST Service - Performance Evaluations Read Only</li>
+											<li>Use REST Service - Public Workers Read Only</li>
+											<li>Use REST Service - Absences Read Only</li>
+											<li>Use REST Service - Job Offers Read Only</li>
+										</ul>
+									</li>
+								</ul>
+								<ol>
+									<li>Click the main menu icon, and select <b>Security Console</b> option under the Tools sub-menu.
+												<figure><img src="img/hcm-tools-security-console.png" alt=""></figure></li>
+									<li>Click <b>Create Role</b>, add the information below, and click <b>Next</b>.
+										<ul>
+											<li><b>Role Name</b> - <code>&lt;your_initials&gt;HCM_DA</code></li>
+											<li><b>Role Code</b> - <code>&lt;your_initials&gt;HCMDA</code></li>
+											<li><b>Role Category</b> - <b>HCM – Abstract Roles</b></li>
+										</ul>
+										<figure><img src="img/hcm-create-role.png" alt=""></figure></li>
+										</ol>
+										<h3>Add Function Security Privileges</h3>
+										<ol>
+										<!--PK: "Add Function security privileges"-->
+									<li>Click <b>Add Function Security Policy</b>.
+															<figure><img src="img/hcm-add-function.png" alt=""></figure></li>
+									<li>In the <b>Search</b> dropdown, select <b>Privileges</b>.</li>
+									<li>In the search field, enter <b>Use REST Service - Person Notes Visibility</b> and press Enter.
+										<figure><img src="img/hcm-add-function-security.png" alt=""></figure></li>
+										<li>Click <b>Add Privilege to Role</b>.
+										</li>
+									<li>Repeat above steps for each of these three security privileges:
+										<ul>
+											<li>Use REST Service - Candidates Read Only</li>
+											<li>Use REST Service - Job Applications Read Only</li>
+											<li>Use REST Service - Job Requisitions Read Only</li>
+										</ul>
+										<p>After completing these steps, you should the four security privileges under the <b>Privileges </b></p>
+										<figure><img src="img/hcm-add-function-security-privileges.png" alt=""></figure></li>
+										</ol>
+										
+										<h3>Add Abstract Roles</h3>
+										<ol>
+										<li>Click Next, skip step 4, and click again to move to the <b>Role Hierarchy</b> section.</li>
+										<li>Click <b>Add Role</b>.
+										<p>The Add Role Membership window appears.</p></li>
+										<li>In the <b>Search</b> field, enter <b>Find Use REST Service - Benefit Enrollments Read Only</b> and press Enter.</li>
+										<li>Click <b>Add Role Membership</b>.
+										<figure><img src="img/hcm-add-role-membership.png" alt=""></figure></li>
+										<li>Repeat the previous two steps for each of the following roles:
+											<ul>
+												<li>Use REST Service - Performance Goals Read Only</li>
+												<li>Use REST Service - Payslips Read Only</li>
+												<li>Use REST Service - Person Notes</li>
+												<li>Use REST Service - Performance Evaluations Read Only</li>
+												<li>Use REST Service - Public Workers Read Only</li>
+												<li>Use REST Service - Absences Read Only</li>
+												<li>Use REST Service - Job Offers Read Only</li>
+											</ul>
+											<p>After adding these roles, they should all be listed on the page.</p>
+											<figure><img src="img/hcm-role-hierarchy.png" alt=""></figure>
+										</li>
+										</ol>
+										<h3>Associate Users to Digital Assistant</h3>
+										<ol>
+											<li>Skip <b>Segregation of Duties</b> and move to <b>Users</b></li>
+											<li>On the right side of the page, click <b>Add User</b> button.</li>
+											<li>Select <b>AMANDA.AVERY</b> and click Search</li>
+											<li>In the search results, select the user <b>AMANDA.AVERY</b> and click <b>Add User to Role</b>.
+											<figure><img src="img/hcm-add-user.png" alt=""></figure></li>
+											<li>Review the summary and click <b>Save and Close</b>.</li>
+											<li>Log out of the HCM instance.</li>
+											<li>Log in to the instance again using one of the test users (e.g. Amanda Avery).
+											<p>You should see a chat widget in the bottom right of the screen.</p>
+											<figure><img src="img/hcm-web-widget.png" alt=""></figure></li>
+										</ol>
+										<h3>Give Participants Login Info for Oracle Digital Assistant and Oracle HCM Cloud</h3>
+										<!-- 
+										Finally, you need to logout and login into HCM instance again. Observe bottom-right to view the web-widget. Congrats, your HCM instance is ready with its digital assistant!
+			<!--
+					
+			
+			
+						-->
+						</section>
+						<hr>
+						                        <section>
+                            <h2 id="section_2" role="button" style="text-align: left;"><img src="img/32_2.png" alt="section 2" height="32" width="32" class="num_circ">Log In to the Shared HCM Instance</h2>
+							
+							<p><i>PK: Need to fill in the up-to-date URL.</i></p>
+							<ol>
+								<li>In your browser, navigate to <a href="http://bit.ly/rdh_todo" target="_blank">http://bit.ly/rdh_todo</a>.</li>
+								<li>Log in to the instance using the credentials provided by your lab instructor.</li>
+							</ol>
+														 
+
+							<p>After successfully logging in, you will land on the HCM home page and should see a chat widget in the bottom right of the screen.
+							<figure><img src="img/hcm-web-widget.png" alt=""></figure></p>
+											
+
+
+                        </section>
+
+						
+
+						
+						</html>
+						

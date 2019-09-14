@@ -1,0 +1,4 @@
+Need to provide every student:
+ - ODA login credentials
+ - value for da.FARestEndpoint custom parameter
+ - HCM login credentials

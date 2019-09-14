@@ -1,0 +1,451 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <!-- Part number:  -->
+        <!-- Published date: Month Year -->
+        <!-- Template date: October 15, 2018 -->
+        <!-- Put the content ID of this OBE between the empty quotation marks for 'content' below -->
+        <!--<meta name="contentid" content="">-->
+        <meta content="text/html; charset=utf-8" http-equiv="content-type">
+        <title>Oracle OpenWorld 2019 Hands-On Lab - HCM</title>
+        <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+        <meta name="robots" content="INDEX, FOLLOW">
+        <meta name="description" content="Shows how to create a digital assistant that works with Oracle HCM Cloud.">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <link rel="stylesheet" href="css/normalize.min.css">
+        <link rel="stylesheet" href="css/font-awesome.min.css">
+        <link rel="stylesheet" href="css/obe-lite.css">
+        <script src="js/jquery-1.11.0.min.js"></script>
+        <script src="js/jquery-ui-1.10.4.custom.js"></script>
+        <script src="js/jquery.tocify.jd.js"></script>
+        <script src="js/leftnav.js"></script>
+    </head>
+    <body>
+        <header>
+            <div class="w1024" style="min-height:55px; display:block;"> <a href="https://docs.oracle.com" class="oracle-logo">
+              <img src="img/oracle_doc_logo.png" alt="Oracle Documentation" style="max-width: none;" height="22" width="236"></a>
+            </div>
+        </header>
+        <!--end header-->
+
+        <div id="content">
+
+
+			<h1><img src="img/obe_tag.png" align="middle" alt="Oracle by Example branding">Oracle OpenWorld 2019 Hands-On Lab - Creating a Digital Assistant for Oracle HCM Cloud</h1>
+            <div class="w1024" style="clear:both; position:relative; margin-top:40px;">
+                <div class="navbackwide border-right"><!-- --></div>
+                <div id="shownav" title="Show Navigation" tabindex="0"><span class="fa fa-list"></span></div>
+                <div id="sidebar"><!-- -->
+                    <div class="left-nav-tut"><!-- -->
+                        <div id="hidenavw" title="Hide Navigation" tabindex="0"><span class="fa fa-close"></span></div>
+                        <div  id="navbar" class="left-nav-w"><!-- -->
+                            <div id="toc" class="tocify"><!-- --></div>
+                        </div>
+                    </div>
+                </div>
+                <div id="bookContainer">
+                    <article>
+					<p>In this lab, you'll learn how to set up and use a digital assistant with Oracle HCM Cloud.</p>
+					<ul>
+						<li>Oracle HCM Cloud is Oracle's cloud-based human capital management solution, which gives your entire enterprise the power of HRMS through Oracle's Global Human Resources, Talent Management, and Social solutions.</li>
+						<li>A <b>skill</b> is an individual chatbot that is focused on a specific set of capabilities, such as tracking inventory, submitting time cards, and creating expense reports. In this lab, we'll work with a skill that was created for Oracle HCM Cloud.</li>
+						<li>A <b>digital assistant</b> is a master chatbot containing one or more specialized skills. When a user engages with the digital assistant, the digital assistant evaluates the user input and routes the conversation to the appropriate skill. You can populate your digital assistant with skills from the Skill Store and with skills you have designed yourself. We'll be adding an HCM skill to a digital assistant.</li>
+					</ul>
+					<p><b>Here’s the scenario for this lab:</b></p> 
+					<p>You’re part of a project team at the fictitious BigCorp and are planning to provide a digital assistant to allow employees to perform HR-related inquiries and operations via a digital assistant. You'll be using a skill provided by HCM but will make a few customizations to it that are specific to BigCorp.</p>
+					<p>In addition, you would like to investigate the performance of your digital assistant, which Oracle Digital Assistant's Insights feature can help you with.</p>
+					<p>Here is what you need to do:</p>
+					<ul>
+						<li>Configure the HCM skill that we have provided so that it can access the HCM instance.</li>
+						<li>Test the skill.</li>
+						<li>Associate the skill with a digital assistant.</li>
+						<li>Test the digital assistant.</li>
+						<li>Investigate the skill using Insights.</li>
+					</ul>
+	                        <section>
+                            <h2><img src="img/32_begin.png" alt="section 0" height="32" width="32" class="num_circ">Before You Begin</h2>
+                            <h3>What Do You Need?</h3>
+							
+                            <p>To complete this lab, you need:</p>
+							<ul>	
+							<li>An Oracle Digital Assistant (ODA) cloud instance. You will be using the shared instance that has been provided for this event.</li>
+							<li>The HCM skill (<b>OOW 2019 HOL HCM</b>).</li>
+							<li>A starter digital assistant.</li>
+							<li>An HCM Cloud instance. You will be using the shared instance that has been provided for this event.</li>
+							</ul>
+
+                        </section>
+						<hr>
+						<section>
+						 <h2 id="section_1" role="button" style="text-align: left;"><img src="img/32_1.png" alt="section 1" height="32" width="32" class="num_circ">Log In to the Shared ODA Instance</h2>
+							<p>Let's get started by logging into Oracle Digital Assistant</p>
+
+							<h3>Log In to the Shared ODA Instance</h3>
+							<ol>
+								<li>In your browser, navigate to <a href="http://bit.ly/ODAHOLInstance2" target="_blank">http://bit.ly/ODAHOLInstance2</a>.</li>
+								<li>Log in to the instance using the credentials provided by your lab instructor.</li>
+							</ol>
+							<p>After successfully logging in, you will land on the ODA home page.</p>
+
+                        <!-- ========================================================================================================================= -->
+                        <section>
+
+                            <h2 id="section_2" role="button" style="text-align: left;"><img src="img/32_2.png" alt="section 2" height="32" width="32" class="num_circ">Set Up the HCM Skill</h2>
+							<p>In this section of the lab, we'll set up the HCM Skill, which is a "factory-made" skill for accessing HCM Cloud features.</p>
+					
+							
+							<h3>Clone the Starter Skill</h3>
+							
+							<p>Since multiple people will be doing this lab at once, you'll need to clone the HCM skill so that you have your own copy to work with.</p>
+							<ol>
+								<li>With the Oracle Digital Assistant UI open in your browser, click <img src="img/hamburger.png" alt="main menu icon"> to open the side menu.</li>
+								<li>Click <b>Development</b> and select <b>Skills</b> to open the Skills dashboard.</li>
+								<li>Click <img src="img/hamburger.png" alt="main menu icon"> again to collapse the side menu.</li>
+								<li>In the <b>Filter</b> field above the <b>New Skill</b> tile, type <code>HOL HCM</code> to quickly locate the starter skill (OOW 2019 HOL HCM).</li>
+								<li>In the tile for the OOW 2019 HOL HCM skill, click the Options menu (<img src="img/options-menu.png" alt="menu icon">) and select <b>Clone</b>.
+								<figure><img src="img/skill-clone.png" alt="screenshot showing the Skills page in ODA. There is a tile for the OOW 2019 HOL HCM skill. Within the tile, the Options menu is selected, and it shows menu items for Edit, New Version, Clone, etc."></figure></li>
+								<li>In the <b>Create Clone</b> dialog, enter a value for <b>Display Name</b> using the form <code><i>&lt;your_initials&gt;</i>_HCM</code>.
+								<p>For example, if your initials are AB, you'd name the skill <b>AB_HCM</b>.</p></li> 
+								<li>Click <b>Clone</b>.</li>
+								<li>On the Skills dashboard page, select <code><i>&lt;your_initials&gt;</i>_HCM</code> to open it up in the designer.
+							</ol>
+							<h3>Connect the Skill to the HCM Instance</h3>
+							<p>Now we need to connect the skill to an HCM instance so that the skill can return data based on the user requests.</p>
+							<p>For purposes of this lab, we're also going to add a user name and password to the configuration. This will enable us to test from within the Oracle Digital Assistant tester without the need to keep logging on. We'll access the skill with the username AMANDA AVERY.</p>
+							<ol>
+								<li>In the left navigation of the skill, select <img src="img/left_nav_settings.png" alt="the Settings icon"> and then select the <b>Configuration</b> tab.</li>
+								<li>Scroll down to the <b>Custom Parameters</b> section of the page.</p>
+								<li>Select the entry for <b>da.FARestEndPoint</b> and click <b>Edit</b>.
+								<figure><img src="img/select-and-edit-property.png" alt=""></figure></li>
+								<li>In the <b>Value</b> field of the Edit Parameter dialog, enter <u>https://ucf3-zfyd-fa-ext.oracledemos.com</u> and click <b>OK</b>.</li>
+								<li>Select the entry for <b>da.Password</b> and click <b>Edit</b>.</li>
+								<li>In the <b>Value</b> field of the Edit Parameter dialog, enter <u>UHV83379</u> and click <b>OK</b>.</li>
+								<li>Select the entry for <b>da.Username</b> and click <b>Edit</b>.</li>
+								<li>Set the value as <u>AMANDA.AVERY</u> and click <b>OK</b>.</li>
+								</ol>
+	
+
+							<h3>Turn on Insights and Conversation Logging</h3>
+							<p>Since we'll later be using the Insights feature to evaluate skill usage and performance, you'll need to turn on the Insights feature.</p>
+							<ul>
+								<li>Select the <b>General</b> tab and enable all logging and enable Insights and all three switches for Conversation Logging.
+								<figure><img src="img/insights-enable-logging.png" alt=""></figure>
+								</li>
+							</ul>
+
+							<h3>Train the Skill</h3>
+							<p>Before you can publish a skill and use it in a digital assistant, you need to train it.</p>
+							<ul>
+								
+								<li>Click <img src="img/train-button.png" alt="Train bot icon">, click <b>Submit</b>, and then wait for the training to complete.
+								<p><i>This might take a few minutes.</i> You'll be informed when the training completes with a popup message like the following:</p>
+								<figure><img src="img/trained2.png" alt=""></figure>
+								<p>If you miss that message, you can confirm if the training has been finished if the Train button has a checkmark next to it (<img src="img/trained.png" alt="">).</p>
+								</li>
+								</ul>
+							
+							<h3>Test the Features of the HCM Skill</h3>
+							
+							<p>The HCM skill is designed to address employment-related questions and help you initiate manager self-service transactions. The skill is broken down multiple <i>intents</i>, which are classifications of what users may want to do, such as check their vacation balance. The HCM skill has intents for the following activities:
+							<ul>
+								<li>Absence Balances</li>
+								<li>Past & Future Scheduled Absences</li>
+								<li>Anytime Feedback</li>
+								<li>Benefits Coverage</li>
+								<li>Directory</li>
+								<li>Salary</li>
+								<li>Tax Withholding & Year-End Documents</li>
+								<li>Payslip</li>
+								<li>Onboarding</li>
+								<li>Manager Self-Service</li>
+								<li>Team Performance Evaluations & Goals</li>
+							</ul>
+							<p>To see these features in action, we'll use ODA's built-in skill tester.</p>
+							<ol>
+							<li>Find the Skill Tester icon (<img src="img/test_button.png" alt="the Skill Tester icon">) in the bottom of the skill's left navigation bar and click it.</li>
+								<li>In the tester's <b>Message</b> field, type <u>who am I</u>, and press Enter.
+								<p>You should see the following response:</p>
+								<figure><img src="img/who-am-i-amanda.png" alt=""></figure></li>
+
+								<li>Now try the following requests:
+									<ul>
+										<li><u>Show me my scheduled absences</u></li>
+										<li><u>What is my medical group number?</u></li>
+										<li><u>Who is my HR rep?</u></li>
+										<li><u>What is my salary?</u></li>
+										<li><u>How many allowances do I have?</u></li>
+										<li><u>What are my onboarding tasks?</u></li>
+									</ul>		
+									<p>For each of these, you should get an appropriate response, like those shown in the following two images.</p>
+									<figure><img src="img/skill-test-first3.png" alt=""></figure>
+									<figure><img src="img/skill-test-next3.png" alt=""></figure></li>
+								</li>
+								</ol>
+								<h3>Enhance an Existing Intent</h3>
+
+								<p>One of the HCM skill's functions is to log feedback. We'd like to enhance this ability so that it can handle nominations to the "Leadership Circle" group, which is an honor specific to our fictitious company.</p>
+								<ol>
+								<li>In the tester, click <b>Reset</b>.</li>
+								<li>Enter <u>I'd like to nominate @larry swanson for leadership circle</u>.
+								<p>This is what you should see:</p>
+								<figure><img src="img/recommendation-larry.png" alt=""></figure>
+								<p>The skill doesn't understand this request. So let's dig down into the intent for feedback and see if there's anything we can do about it.</p></li>
+								<li>Close the tester.</li>
+								<li>In the left navigation for the designer, select <img src="img/left_nav_intents.png" alt="the Intents icon">.</li>
+								<li>Select the <b>AnytimeFeedback</b> intent.
+								<figure><img src="img/anytime-feedback-intent.png" alt=""></figure></li>
+								<li>Find the Examples section of the page.
+								<p>The examples here are example <i>utterances</i> that are used to train to the skill to understand when a user wants to provide feedback.</p>
+								<p>Let's see if any of these utterances include "leadership circle".</p></li>
+								<li>In the <b>Filter</b> field, type <code>leadership circle</code>, and press Enter.
+								<p>As you can see, none of the examples contain "leadership circle".</p>
+								<figure><img src="img/no-examples-to-display-recommend.png" alt=""></figure>
+								<p>So let's add some examples that do.</p></li>
+								<li>In the <b>Enter your example utterances here</b>  field (below the Filter field), enter <u>I'd like to nominate @larry swanson for leadership circle</u> and press Enter.</li>
+								<li>Repeat the previous step using the following phrases:
+								<ul>
+									<li>make a nomination for leadership circle</li>
+									<li>add John Smith to Leadership Circle</li>
+									<li>is it possible to add someone to leadership circle?</li>
+								</ul>
+
+								<figure><img src="img/recommendation-utterances.png" alt=""></figure>
+								</li>
+								</ol>
+								<h3>Retrain and Retest the Skill</h3>
+								<p>To see if these enhancements work, we need to retrain the skill and then test it again.</p>
+								<ol>
+								<li>Click <img src="img/train-button.png" alt="Train bot icon">, and click <b>Submit</b>, and then wait for the training to complete.</li>
+								<li>Click the tester icon (<img src="img/test_button.png" alt="the Skill Tester icon">).</li>
+								<li>In the tester, click <b>Reset</b>.</li>
+								<li>In the <b>Message</b> field, enter <u>I'd like to nominate @mitch blum for leadership circle</u>.
+								<p>This is what you should see:</p>
+								<figure><img src="img/recommendation-larry2.png" alt=""></figure>
+								<p>The additional utterances in the training model have improved the accuracy of the skill's response.</p></li>
+								<li>Close the tester.</li>
+								</ol>
+								
+								
+
+							<h3><a name="publish-skill">Publish the Skill</a></h3>
+							<ol>
+								<li>Click <img src="img/hamburger.png" alt="main menu icon"> to open the side menu.</li>
+								<li>Click <b>Development</b> and select <b>Skills</b>.</li>
+								<li>Click <img src="img/hamburger.png" alt="main menu icon"> again to collapse the side menu.</li>
+								<li>In the Skills dashboard, find the tile for your skill.<p>If you don't quickly spot your copy of the skill, type your initials into the <b>Filter</b> field located above the <b>New Skill</b> tile to narrow down the list of skills shown.</p></li>
+								<li>Click the skill's Options menu (<img src="img/options-menu.png" alt="menu icon">) and select <b>Publish</b>.
+								<figure><img src="img/skill-publish.png" alt="Screenshot showing an HCM skill tile with Options menu opened, and several menu items displayed, of which Publish is the 4th"></figure>
+								</li>								
+								<li>On the Publish Skills page, click <b>Publish</b>.</li>
+								<li>Once you have published the skill, note the icon on the skill's tile that shows it is now read-only.<figure><img src="img/skill-published.png" alt="Screenshot showing the tile for an HCM skill. In the upper right part of the tile is an icon, the alt text of which is 'Published: Skill bot is read-only'"></figure>
+								</li>
+							</ol>
+						
+</section>
+
+                        <section>
+                            <h2 id="section_3" role="button" style="text-align: left;"><img src="img/32_3.png" alt="section 3" height="32" width="32" class="num_circ">Create a Digital Assistant</h2>
+							<p>Now we'll create a digital assistant and add the HCM skill to it. A digital assistant works as a master bot that contains one or more skills. A digital assistant:
+							
+							<ul>
+								<li>Greets the user upon access.</li>
+								<li>Upon user request, lists what it can do and provides entry points into the given skills.</li>
+								<li>Routes explicit user requests to the appropriate skill.</li>
+								<li>Handles interruptions to flows.</li>
+								<li>Handles disambiguation.</li>
+								<li>Handles requests to exit.</li>
+							</ul>
+														
+							<h3>Clone the Starter Digital Assistant</h3>
+							<p>As a starting point, we'll clone an existing digital assistant.</p>
+							<ol>
+								<li>Click <img src="img/hamburger.png" alt="main menu icon"> to open the side menu.</li>
+								<li>Click <b>Development</b> and select <b>Digital Assistants</b>.</li>
+								<li>Click <img src="img/hamburger.png" alt="main menu icon"> again to collapse the side menu.</li>
+								<li>In the <b>Filter</b> field above the <b>New Digital Assistant</b> tile, type <code>FADig</code> to quickly locate the FADigitalAssistant digital assistant.</li>
+								<li>In the tile for <b>FADigitalAssistant</b>, open its  Options menu (<img src="img/options-menu.png" alt="menu icon">), and select <b>Clone</b>.
+								<figure><img src="img/da-clone.png" alt=""></figure></li>
+								<li>In the <b>Create Clone</b> dialog, enter a value for <b>Display Name</b> using the form <code><i>&lt;your_initials&gt;</i>_FA_DA</code>.
+								<p>For example, if your initials are AB, you'd name the skill <b>AB_FA_DA</b>.</p></li> 
+								<li>Click <b>Clone</b>.</li>
+								<li>On the Digital Assistants dashboard page, select <code><i>&lt;your_initials&gt;</i>_FA_DA</code> to open it up in the designer.
+							</ol>								
+							
+							<h3>Add the HCM Skill to the Digital Assistant</h3>
+							<p>Now you'll add your copy of the HCM skill to your copy of the digital assistant.</p>
+
+							<ol>
+								<li>In your DA, select <img src="img/skills-icon.png" alt="the Skills icon">.</li>
+								<li>Click <img src="img/add-skill-button.png" alt="Add Skill button">.</li>
+								<li>Find the tile for your copy of the HCM skill.
+								<p><b>Note:</b> The skill won't appear there if you haven't completed the <a href="#publish-skill">Publish the Skill</a> part of the lab.</li>
+								<li>In the tile for your skill, click <img src="img/add-skill-icon.png" alt="Add Skill icon">.</li>
+								<li>Click <b>Close</b> to close the Skill Catalog.</li>
+								<li>Click <img src="img/train-button.png" alt="Train bot icon">, click <b>Submit</b>, and wait for the training to complete.
+								</li>
+							</ol>
+							<h3>Personalize the Digital Assistant</h3>
+								<p>Once you have created a digital assistant and added skills to it, you can customize some of the aspects of the digital assistant, such as the invocation name of the digital assistant’s skills and the utterances that are used to automatically construct a menu for the skill in the digital assistant.</p>
+							
+							<h4>Change the Invocation Name</h4>
+							<p>An important part of configuring any skill is coming up with a good invocation name, which is used when the user explicitly invokes the skill. Here are the steps to change the invocation name of recently added skill:</p>
+                            <ol>
+                                <li>In your DA, select <img src="img/skills-icon.png" alt="the Skills icon">.</li>
+								<li>Select your copy of the HCM skill.</li>
+                                <li>Scroll down to the Interaction Model section of the page and change the value of the <b>Invocation Name</b> field to <u>BigCorp HR</u>.</li>
+								</ol>
+							<h4>Add Example Utterances for Invoking the Skill</h4>
+							<p>Now we'll add a few example utterances. These will be used as menu items when for the skill when you first open the digital assistant.</p>
+								<ol>
+                                <li>Select the existing example utterance and change its value to <u>Onboarding tasks</u>.</li>
+								<li>In the <b>Example Utterances</b> field, enter <u>My salary</u> and press Enter.</li>
+								<li>In the <b>Example Utterances</b> field, enter <u>Scheduled absences</u> and press Enter.
+								<p>When you're done this, is what the Interaction Model section of the page should look like.</p>
+								<figure><img src="img/da-interaction-model.png" alt=""></figure>
+								</li>
+								</ol>
+								<!--training not needed here-->
+
+								
+							<h3>Explore the Digital Assistant's System Intents</h3>
+								<p>Digital assistants come with three system intents:</p>
+								<ul>
+								<li><code>exit</code>, which applies when the user signals the desire to exit the current conversation or context in the digital assistant.</li>
+								<li><code>help</code>, which applies when the user asks for help or orientation.</li>
+								<li><code>unresolvedIntent</code>, which applies to user input that doesn't match well with the exit and help intents. It improves classification of the exit and help intents</li>
+								</ul>
+								<p>To explore these intents and their example utterances: 
+								<ul>
+									<li>In the digital assistant, select <img src="img/left_nav_intents.png" alt="the Intents icon">.</li>
+								</ul>
+							
+							<h3>Converse with the Digital Assistant</h3>
+							<p>Now let’s have a conversation with the digital assistant and see how it responds to various types of input:</p>
+							<ol>
+								<li>Click the tester icon (<img src="img/test_button.png" alt="the Digital Assistant Tester icon">).</li>
+								<li>In the tester's <b>Message</b> field, type <u>hello</u>, press Enter, and note the DA's response.
+								<figure><img src="img/da-help-menu.png" alt=""></figure>
+								<p>You'll notice that the menu items in the response correspond with the example utterances you entered earlier.</p>
+								</li>
+								<li>Click the <b>My salary</b> option.
+								<p>It should return Amanda Avery's salary information.</li>
+								<li>Now, instead of clicking one of the menu options, <i>type</i> <u>What is my medical group number?</u>.
+								<p>In the response, you learn that Amanda is not enrolled in any plans.</p></li>
+								<li>Now enter <u>what else can you do?</u>.
+								<p>This phrase is recognized as a request for help, so you get the menu of HCM tasks again.</li>
+								<li>Click <b>Onboarding tasks</b>.
+								<p>You are given options for displaying processes for yourself or pending workers.</p></li>
+								<li>Instead of selecting one of those options, type <u>	wait, what are my scheduled absences?</u>
+								<figure><img src="img/da-interruption.png" alt=""></figure>
+								<p>The digital assistant is able to accommodate the interruption in flow, answer your question about scheduled absences, and return to the previous flow.</p></li>
+								<li>Click <b>Yes</b> to continue with information on onboarding and then click <b>Yourself</b>.
+								<figure><img src="img/da-continue.png" alt=""></figure></li>
+								<li>Now enter <u>I'd like to give kudos to &#64;Mitch Blum</u>.</li>
+								<li>When prompted to enter feedback, type <u>He's great!</u>.
+								<figure><img src="img/da-feedback.png" alt=""></figure>
+								</li>
+								<li>When prompted for who can see the feedback, enter <u>forget it</u>.
+								<figure><img src="img/da-exit.png" alt=""></figure>
+								<p>The skill clearly is trained well enough to exit the flow.</p></li>
+														
+							</ol>
+
+                        </section>
+                        <hr>
+                        <section>
+                            <h2 id="section_4" role="button" style="text-align: left;"><img src="img/32_4.png" alt="section 4" height="32" width="32" class="num_circ">Investigate HCM Skill Performance Using Insights</h2>
+							<p>In this section, we'll learn about the Insights feature, which helps you identify general usage patterns and get to the bottom of any issues with your skills.</p>
+							
+							<h3>Basic Conversation Insights</h3>
+							<p>You are now going to use Insights to understand how the user interacted with the skill. By doing so, you can learn things such as:</p>
+							<ul>
+								<li>How much each feature of the skill is being accessed.</li>
+								<li>Paths that users tend to follow through the conversations.</li>
+								<li>The percentage of conversations that complete successfully.</li>
+								<li>Any trouble spots in conversations.</li>
+							</ul>
+							<p><b>To access Insights:</b></p>
+							<ol>
+								<li>In Oracle Digital Assistant, click <b>Development</b> and select <b>Skills</b>.</li>
+								<li>In the <b>Filter</b> field located above the <b>New Skill</b> tile, enter your initials to quickly locate your copy of the HCM skill.</li>
+								<li>Click your copy of the skill to open it. 
+								<li>In the left navbar of the skill designer, click <b>Insights</b> (<img src="./img/insights.png" alt="The Insights icon">). 
+								<p>In the <b>Conversations</b> tile, you should see that there have been several conversations logged.
+								<figure><img src="img/skill-insights1.png" alt=""></figure></li>
+								<li>Click the <b>Conversations</b> tab and notice the completed conversations. 
+								<figure><img src="img/skill-insights2.png" alt=""></figure>								</li>
+								<li>Click <b>View Conversation</b> to view detailed conversations.
+								<figure><img src="img/skill-insights3.png" alt=""></figure></li>
+								<li>Click <b>Close</b> to return to the <b>Conversations</b> tab</li>
+							</ol>
+							<h3>Export Insights Data</h3>
+							<ol>
+								<li>Select the <b>Export</b> tab and click the <b>Export</b> button.</li>
+								<li>Provide a name and select a date range, as shown below, and click <b>Export</b>.<figure><img src="img/skill-insights-export.png" alt=""></figure>
+								<p>The export of insight data begins.</p></li>
+								<li>Click the <b>Refresh</b> button to monitor the status.</li>
+								<li>Once the status changes from <b>In progress</b> to <b>Completed</b>, click the <b>Complete</b> icon to download the insights data in a zip file.
+								<!--<figure><img src="img/skill-insights-export2.png" alt=""></figure>--></li>
+							</ol>
+				                        </section>
+                        <hr>	
+
+						<section>
+
+              <h2 id="more_info" role="button" style="text-align: left;"><img src="img/32_more.png" alt="more information" class="num_circ" height="32" width="32">Want to Learn More?</h2>
+              <ul>
+                <li><a href="http://www.oracle.com/pls/topic/lookup?ctx=en/cloud/paas/digital-assistant&id=DACUA-GUID-599F68DF-74B1-4AD6-B6B4-31AA31EAC300" target="_blank">Skills</a></li>                <li><a href="http://www.oracle.com/pls/topic/lookup?ctx=en/cloud/paas/digital-assistant&id=DACUA-GUID-10717C2E-39F3-4F43-A995-10C6559E0219" target="_blank">Digital Assistants</a></li>
+				<li><a href="http://www.oracle.com/pls/topic/lookup?ctx=en/cloud/paas/digital-assistant&id=DACUA-GUID-DA83A784-69CF-45CB-AB1E-0F08D2B2E6CF" target="_blank">Insights</a></li>
+              </ul>
+            </section>
+            <hr>
+
+
+
+                    </article>
+                </div>
+                <br class="clearfloat">
+            </div>
+        </div>
+        <!--close main--> 
+        <!--end content-->
+        <div class="footer-container ">
+            <div style="max-width: 994px; padding:10px 0 0 17px;">
+                <footer class="footer-list">
+                    <ul>
+                        <li> <a href="https://www.oracle.com/corporate/index.html" target="_blank">About Oracle</a> </li>
+                        <li> <a href="https://www.oracle.com/us/corporate/contact/index.html" target="_blank">Contact Us</a> </li>
+                        <li> <a href="https://www.oracle.com/us/legal/index.html" target="_blank">Legal Notices</a> </li>
+                        <li> <a href="https://www.oracle.com/us/legal/terms/index.html" target="_blank">Terms of Use</a> </li>
+                        <li> <a href="https://www.oracle.com/us/legal/privacy/index.html" target="_blank">Your Privacy Rights</a> </li>
+                        <li> <a href="https://www.oracle.com/pls/topic/lookup?ctx=cpyr&id=en">Copyright © 2019, Oracle and/or its affiliates. All rights reserved.</a></li>
+                    </ul>
+                </footer>
+            </div>
+            <script type="text/javascript" src="https://www.oracleimg.com/us/assets/metrics/ora_docs.js"></script>
+        </div>
+        <!-- OBE Dialog Box code 10/15/2018 -->
+        <!-- DO NOT ALTER THE CODE BELOW   -->
+        <div id="lpModal" class="modal">
+            <!-- Modal hdr and body -->
+            <div id="obe_dialog" class="modal-content">
+                <div class="modal-header">
+                    <a href="#" class="close">  
+                        <span class="close">&times;</span>
+                    </a>
+                    <h1>Associated Learning Paths</h1>
+                </div>
+                <div id="dialog-content" >
+                </div>
+                <div id="dialog-close" class="closeBtn">
+                    <a href="#" class="close2">  
+                        <p class="close2"> 
+                             <span>&nbsp;&nbsp;View&nbsp;&nbsp;</span> 
+                        </p>
+                    </a>  
+                </div>
+            </div>   
+        </div>
+        <!-- END OBE Dialog Box code -->
+    </body>
+</html>
