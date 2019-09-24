@@ -67,15 +67,25 @@
 
                                     <figure><img src="img/videoQualty.png" style="width:50%;height:50%;" alt="YouTube quality setting"></figure>
                                 </p>
+
+                                <h3>Reading Data Objects from an Array Stored in a Dialog Flow Variable</h3>
+                                <p style="text-align:justify">
+                                    In Oracle Digital Assistant, backend data is queried through a custom component and then stored in a dialog flow variable.
+
+                                    The dialog flow variable, in case where the queried data is an array, can the be referenced form a System.CommonResonse component to display a list of values ​​or a carousel of cards. Chances are that not all attributes of a data object are displayed on a card.
+
+                                    One way to access information that is not displayed in a card is to use the selected card index to read the equivalent data object in the array, as explained in this video.
+                                </p>
+                                <p style="text-align:justify"><iframe width="560" height="315" src="https://www.youtube.com/embed/gEpgKgr8vjA" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe></p>
                                 <h3>Download Image, Video, Audio and Other Files</h3>
                                 <p style="text-align:justify">Downloading content such as audio, video, pictures, or files is a common usecase when working with chatbots and Oracle Digital Assistant. This video explains how to download content in a skill conversation using either the System.CommonResponse component or a custom component.
-                                
-                                The sample sources used in this video are available 
-                                <a href="https://blogs.oracle.com/mobile/techexchange%3A-how-to-download-documents-in-oracle-digital-assistant-conversations" target="_blank">on the Oracle TechExchange blog.</a>
-                                    
+
+                                    The sample sources used in this video are available
+                                    <a href="https://blogs.oracle.com/mobile/techexchange%3A-how-to-download-documents-in-oracle-digital-assistant-conversations" target="_blank">on the Oracle TechExchange blog.</a>
+
                                 </p>
                                 <p style="text-align:justify">
-                                 <iframe width="560" height="315" src="https://www.youtube.com/embed/YBAA41HizWM" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+                                    <iframe width="560" height="315" src="https://www.youtube.com/embed/YBAA41HizWM" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
                                 </p>
                                 <h3>Read a Current Conversation's Message History From a Custom Component</h3>
                                 <p style="text-align:justify">This video explains a new REST API added to Oracle Digital Assistant 19.1.5 that allows you to perform authorized REST calls to the conversation logs (if enabled) to query the user bot message exchange of a conversation session.</p>
@@ -99,10 +109,10 @@
                                     </ul>
                                 </p>
                                 <p style="text-align:justify">Oracle Digital Assistant supports uploading images and documents through the System.Text, System.List, and System.CommonResponse components. Watch this video to learn how it works.</p>
-                        
+
                                 <p style="text-align:justify"><iframe width="560" height="315" src="https://www.youtube.com/embed/8xpsTZ5_2Uo" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe></p>
-                        <p style="text-align:justify"><b>Read</b> the Oracle TechExchange article and download the demo sources: <a href="https://blogs.oracle.com/mobile/techexchange%3a-upload-documents-in-an-oracle-digital-assistant-conversation-with-messengers-like-facebook-or-the-oracle-javascript-client-sdk" target="_blank"><b>Article &amp; Sample</b></a></p>
-                        
+                                <p style="text-align:justify"><b>Read</b> the Oracle TechExchange article and download the demo sources: <a href="https://blogs.oracle.com/mobile/techexchange%3a-upload-documents-in-an-oracle-digital-assistant-conversation-with-messengers-like-facebook-or-the-oracle-javascript-client-sdk" target="_blank"><b>Article &amp; Sample</b></a></p>
+
                                 <h3>JavaScript Variable Destructuring in Custom Components</h3>
                                 <p style="text-align:justify">One for developers of custom components. This 2-minute tech tip explains how JavaScript variable destructuring works in Oracle Digital Assistant custom components. It also provides a solution for the very unlikely situation where no input parameters may be given (similar to the probability that oxygen masks fall off the ceiling in a plane).</p>
                                 <p style="text-align:justify">ES 6, known as ECMA Script 2015 or JavaScript 6, introduced the concept of destructuring for creating variables and assigning values to them. Destructuring, as an expression, reads values ​​from arrays and objects and assigns them to variables. Custom components in Oracle Digital Assistant support JavaScript destructuring and custom component developers may use this syntax to assign component input parameter values to variables. </p>
