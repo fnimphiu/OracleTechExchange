@@ -67,6 +67,16 @@
 
                                     <figure><img src="img/videoQualty.png" style="width:50%;height:50%;" alt="YouTube quality setting"></figure>
                                 </p>
+                                
+                                <h3>How-to Use the System.CommonResponse channelCustomProperties Property to Render Channel Specific Layouts (Adaptive Cards Sample)</h3>
+                                <p style="text-align:justify">Channels are different in the layouts they suport. Oracle Digital Assistant internally uses channel specific connectors to render the optimal layout for built-in component and custom component responses. To render layouts that are vailable on a specific channel only, you can use the channelCustomProperties variable on the System.CommonResponse component in ODA 19.12 and later.</p>
+                               
+                                <p style="text-align:justify"><iframe width="560" height="315" src="https://www.youtube.com/embed/4zods39LR2s" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe></p>
+                                
+                                <h3>Sending RAW Message Payloads From Custom Components</h3>
+                                <p style="text-align:justify">Custom components in Oracle Digital Assistant allow you to send raw message pyloads to a messenger client. A raw message payload is sent to the client as is and allows you to leverage channel specific layouts (like adaptive cards in MS Teams). For his you need to be able to detect the channel type the component is "talking to" and then use the ODA custom component MessageModel class to define the component response.</p>
+                                <p style="text-align:justify"><iframe width="560" height="315" src="https://www.youtube.com/embed/KssDv3LTAoQ" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe></p>
+                                
                                 <h3>Handling Smalltalk in Oracle Digital Assistant</h3>
                                 <p style="text-align:justify">Smalltalk are off-topic messages users sent to a bot. Example messages are: "Are you a bot?", "May I ask you something?", "Tell me a joke" and more. Bots don't have to answer Smalltalk messages in detail or a follow-up conversation, but should not ignore them either. Instead, bots could use these messages as a "boomerang" and remind users of the task(s) or business the bot was created for.
                                 
